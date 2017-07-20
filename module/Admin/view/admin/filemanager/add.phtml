@@ -1,0 +1,114 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('name');
+$elementDescription	= $myForm->get('description');
+
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tên thư mục',
+		'tooltipmessage'	=>	'Tên thư mục',
+	),
+	
+	
+	
+	array(
+		'label'				=>	$this->formLabel($elementDescription),
+		'input'				=>	$this->formElement($elementDescription),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Mô tả',
+		'tooltipmessage'	=>	'Mô tả',
+	),
+	
+
+	array(
+		'label'				=>	'Phân quyền',
+		'input'				=>	'<table>
+								<tbody><tr class="even">	
+								    <td align="center" style="width:80px;">Owner: </td>
+								    <td align="center" style="width:80px;">4 '.$this->formElement($myForm->get('ChmodOwnerRead')).' Read </td>
+								    <td align="center" style="width:80px;">2 '.$this->formElement($myForm->get('ChmodOwnerWrite')).' Write </td>
+								    <td align="center" style="width:80px;">1 '.$this->formElement($myForm->get('ChmodOwnerExecute')).' Execute </td>
+								</tr>
+								<tr class="even">	
+								    <td align="center" style="width:80px;">Group: </td>
+								    <td align="center" style="width:80px;">4 '.$this->formElement($myForm->get('ChmodGroupRead')).' Read </td>
+								    <td align="center" style="width:80px;">2 '.$this->formElement($myForm->get('ChmodGroupWrite')).' Write </td>
+								    <td align="center" style="width:80px;">1 '.$this->formElement($myForm->get('ChmodGroupExecute')).' Execute </td>
+								</tr>
+								<tr class="even">	
+								    <td align="center" style="width:80px;">Everyone: </td>
+								    <td align="center" style="width:80px;">4 '.$this->formElement($myForm->get('ChmodEveryoneRead')).' Read </td>
+								    <td align="center" style="width:80px;">2 '.$this->formElement($myForm->get('ChmodEveryoneWrite')).' Write </td>
+								    <td align="center" style="width:80px;">1 '.$this->formElement($myForm->get('ChmodEveryoneExecute')).' Execute </td>
+								</tr>
+								</tbody></table>',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Phân quyền',
+		'tooltipmessage'	=>	'Phân quyền',
+	),
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'name'					=>	$elementName,
+	
+));
+
+
+
+ 
+       
+
+
+?>
+
+
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var content = CKEDITOR.replace( 'content', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+	
+
+	</script>
+
+
+   	      	 	

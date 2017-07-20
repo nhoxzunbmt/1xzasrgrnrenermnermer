@@ -1,0 +1,23 @@
+<?php
+
+
+
+$name  			= $this->item->name;
+$nickname 		= $this->item->nickname;
+$phone 			= $this->item->phone;
+$email 			= $this->item->email;
+$type 			= $this->item->type;
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh</h5>
+<p class='detail-info even'><span></p>
+<p class='detail-info even'><label>Tên hiển thị:</label><span><?php echo $name ;?></span></p>
+<p class='detail-info even'><label>Nick name:</label><span><?php echo $nickname;?></span></p>
+<p class='detail-info even'><label>Điện thoại:</label><span><?php echo $phone;?></span></p>
+<p class='detail-info even'><label>Email:</label><span><?php echo $email;?></span></p>
+<p class='detail-info even'><label>Thuộc nhóm:</label><span><?php echo $type;?></span></p>
+</div>

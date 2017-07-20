@@ -1,0 +1,23 @@
+<?php
+
+$image  = (!empty($this->item['images']))  ? UPLOAD_URL .'/fengshui-news/'.$this->item['images'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+$title  		= $this->item['title'];
+$name_category 	= $this->item['name_category'];
+
+$description 	= $this->item['description'];
+$content		= $this->item['content'];
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh Tin tức</h5>
+<p class='detail-info even'><span><img style="border-radius: 1px;-moz-border-radius: 1px;-webkit-border-radius: 1px;box-shadow: 0 0 5px black;-webkit-box-shadow: 0 0 5px black;" src="<?php echo $image;?>" width="200px" height="100"></span></p>
+<p class='detail-info even'><label>Tiêu đề:</label><span><?php echo $title ;?></span></p>
+<p class='detail-info even'><label>Danh mục:</label><span><?php echo $name_category;?></span></p>
+<p class='detail-info even'><label>Mô tả ngắn:</label><span><?php echo $description ;?></span></p>
+<p class='detail-info even'><label>Nội dung:</label><span><?php echo $content ;?></span></p>
+
+</div>

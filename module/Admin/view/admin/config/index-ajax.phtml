@@ -1,0 +1,61 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementTitle       = $myForm->get('title');
+$elementKeyword     = $myForm->get('keyword');
+$elementDescription = $myForm->get('description');
+
+$elements = array(
+    array(
+        'label'             =>  $this->formLabel($elementTitle),
+        'input'             =>  $this->formElement($elementTitle),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Tiêu đề website',
+        'tooltipmessage'    =>  'Tiêu đề website',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementKeyword),
+        'input'             =>  $this->formElement($elementKeyword),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Thẻ từ khóa',
+        'tooltipmessage'    =>  'Thẻ từ khóa',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementDescription),
+        'input'             =>  $this->formElement($elementDescription),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Thẻ mô tả',
+        'tooltipmessage'    =>  'Thẻ mô tả',
+    ),
+    
+    
+);
+          
+?>
+
+<table class="admintable" style="width: 100%;">
+    <?php  echo $this->form()->openTag($myForm);
+    echo $this->partialLoop('admin/form-group.phtml',$elements);
+    echo $this->form()->closeTag();
+    ?>
+</table>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

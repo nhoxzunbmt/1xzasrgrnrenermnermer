@@ -1,0 +1,81 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementProtocol    = $myForm->get('protocol');
+$elementServer      = $myForm->get('server');
+$elementEmail       = $myForm->get('email');
+$elementPassword    = $myForm->get('password');
+$elementPort        = $myForm->get('port');
+$elements = array(
+    array(
+        'label'             =>  $this->formLabel($elementProtocol),
+        'input'             =>  $this->formElement($elementProtocol),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Sử dụng giao thức để gửi mail',
+        'tooltipmessage'    =>  'Sử dụng giao thức để gửi mail',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementServer),
+        'input'             =>  $this->formElement($elementServer),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Server',
+        'tooltipmessage'    =>  'Server',
+    ),
+
+
+    array(
+        'label'             =>  $this->formLabel($elementEmail),
+        'input'             =>  $this->formElement($elementEmail),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Email sử dụng',
+        'tooltipmessage'    =>  'Email sử dụng',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementPassword),
+        'input'             =>  $this->formElement($elementPassword),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Password Email',
+        'tooltipmessage'    =>  'Password Email',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementPort),
+        'input'             =>  $this->formElement($elementPort),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Port',
+        'tooltipmessage'    =>  'Port',
+    ),
+    
+    
+);
+          
+?>
+
+<table class="admintable" style="width: 100%;">
+    <?php  echo $this->form()->openTag($myForm);
+    echo $this->partialLoop('admin/form-group.phtml',$elements);
+    echo $this->form()->closeTag();
+    ?>
+</table>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

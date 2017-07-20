@@ -1,0 +1,100 @@
+<?php
+$ssFilter   = $this->arrParam['ssFilter'];
+$frmTextBox = $this->cmsInput('keywords','keywords','text',array('value'=>$ssFilter['keywords'],'maxlength'=>'100','placeholder'=>'keywords','class'=>'input_search'));
+
+$linkSearch = $this->basePath($this->currentController . '/filter/search/null/null/1');
+$frmSubmit  = $this->cmsInput('search','search','button',array('value'=>'Lọc','class'=>'Bgbutton','onclick'=>'OnSubmitForm(\''.$linkSearch.'\')','style'=>'width:50px;height:28px;'));
+
+$linkClear  = $this->basePath($this->currentController . '/filter/search/null/null/0');
+$frmClear   = $this->cmsInput('clear','clear','button',array('value'=>'Bỏ lọc','class'=>'btn','onclick'=>'OnSubmitForm(\''.$linkClear.'\')','style'=>'width:50px;height:28px;'));
+
+//Tìm kiếm theo tình trạng
+$arrOptions = array(
+    array('id'=>'','name'=>'-- Tình trạng --'),
+    array('id'=>1,'name'=>'Chưa kích hoạt'),
+    array('id'=>2,'name'=>'Kích hoạt'),
+  
+);
+$frmStatus  = $this->cmsSelect('status',$ssFilter['status'],$arrOptions,'no-level',array('class' =>'select_status'));
+
+//Tìm kiếm theo field
+$arrOptions = array(
+    array('id'=>'username','name'=>'Tên đăng nhập'),
+    array('id'=>'email','name'=>'Địa chỉ Email'),
+    array('id'=>'fullname','name'=>'Họ tên'),
+    array('id'=>'phone','name'=>'Điện thoại'),
+);
+$frmField   = $this->cmsSelect('field',$ssFilter['field'],$arrOptions,'no-level',array('class' =>'select_criteria'));
+
+
+?>
+<form name="appForm" method="post" action="">
+<div id="BoxListStaff">
+	<div class="TitleBox">
+		<h2>Danh sách nhân viên</h2>
+	</div>
+	<div class="DesBoxListStaff">
+		<ul class="Formsearch">
+            <li>
+               <?php echo $frmStatus;?>
+			</li>
+			<li>
+				<?php echo $frmField;?>
+
+			</li><li>
+				<?php echo $frmTextBox;?>
+			</li><li class="BtSearch">
+				
+					<div><?php echo $frmSubmit;?></div>
+				
+			</li><li class="BtSearch">
+				
+					<div><?php echo $frmClear;?></div>
+				
+			</li>
+		</ul>
+	</div>
+	
+	<div class="dataTables_wrapper">
+                        <!-- V? tri load datat-->
+    </div>	
+<?php
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/account/list/page/".$page;
+?>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(".loading").show();
+    $.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        data    : {page : <?php echo $page;?>},
+        cache   : false,
+        success : function(data,status){
+            $("div.dataTables_wrapper").html(data);
+            $(".loading").fadeOut(1000);
+        }
+    });
+})
+
+
+
+</script>
+
+<script type="text/javascript">
+
+
+function deleteStaff(id)
+{   
+    if(!confirm("Bạn có chắc xóa nhân viên này?")) return;
+    else
+    {
+        window.location = '<?php echo $this->url(null,array("module"=>"user","controller"=>"account","action"=>"delete"));?>' + id;
+    }   
+}
+
+</script>
+	<div class="PagesNumber" id="dvPaging" style="display: none;"></div>
+</div>
+</form>

@@ -1,0 +1,129 @@
+<?php
+$title          = $this->item['title'];
+$date_time      = $this->item['date_time'];
+$content        = $this->item['content'];
+$number         = (!empty($this->item['number'])) ? $this->item['number'] : 'Updating...';
+$placeissued    = (!empty($this->item['placeissued'])) ? $this->item['placeissued'] : 'Updating...';
+$dateissued     = (!empty($this->item['dateissued'])) ? $this->item['dateissued'] : 'Updating...';
+$effectivedate     = (!empty($this->item['effectivedate'])) ? $this->item['effectivedate'] : 'Updating...';
+$expirydate     = (!empty($this->item['expirydate'])) ? $this->item['expirydate'] : 'Updating...';
+$effect         = (!empty($this->item['effect'])) ? $this->item['effect'] : 'Updating...';
+$print          =   $this->url('PrintLegalHousingRoute',array(
+    'controller'        => 'legalhousing',
+    'action'            => 'print',
+    'id'                => $this->item['id'],
+));
+
+//tin tương tự
+$xhtml = '';
+if(!empty($this->itemsTuongTu)){
+    foreach ($this->itemsTuongTu as $key => $item) {
+        $urlDetail   = $this->url('DetailLegalHousingRoute',array(
+            'controller'        => 'legalhousing',
+            'action'            => 'detail',
+            'namecategory'      => \ZendVN\Url\FriendlyLink::filter($item['name_category']),
+            'title'             => \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'               => $item['cat_id'],
+            'id'                => $item['id'],
+            'extension'         => 'html',
+        ));
+        $xhtml .='<li><a href="'.$urlDetail.'" title="'.$item['title'].'">'.$item['title'].' <span>('.$item['date_time'].')</span></a></li>';
+    }
+}
+
+
+$menuLegalHousing       = $this->url('ListLegalHousingRoute',array('controller'=>'legalhousing','action'=>'index'));
+
+$menuLegislationHousing = $this->url('ListLegislationHousingRoute',array('controller'=>'legislationhousing','action'=>'index'));
+
+$menuContractForm       = $this->url('ListContractFormRoute',array('controller'=>'contractform','action'=>'index'));
+
+$xhtmlCategory = '';
+if(!empty($this->listItemsCategory)){
+  foreach ($this->listItemsCategory as $key => $item) {
+    $urlCategory = $this->url('CategoryLegislationHousingRoute',array(
+      'module'=>'home',
+      'controller'  =>'legislationhousing',
+      'action'      =>'category',
+      'name'        => \ZendVN\Url\FriendlyLink::filter($item['name']),
+      'page'        => '1',
+      'id'          => $item['id'],
+       'extension'  => 'html',
+    ));
+    $xhtmlCategory .= '<p><a href="'.$urlCategory.'" title="'.$item['name'].'">'.$item['name'].'</a></p>';
+  }
+}
+
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->breadcrumb,array('task'=>'data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+    <div class="leftMainContent">
+      <div class="niceHouseKeyLink">
+    <div class="smallSearch" style="display: block;">
+        <div class="boxSearch">
+        <ul>
+            <li><h4><a href="<?php echo $menuLegalHousing;?>" title="Pháp lí nhà đất">Pháp lí nhà đất</a></h4></li><li class="current"><h4><a href="<?php echo $menuLegislationHousing;?>" title="Văn bản luật nhà đất">Văn bản luật nhà đất</a></h4></li><li><h4><a href="<?php echo $menuContractForm ;?>" title="Biểu mẫu hợp đồng">Biểu mẫu hợp đồng</a></h4></li>
+        </ul>
+        <div class="contentSearch bgWhite" style="display:block;">
+            <div class="quickLink"><?php echo $xhtmlCategory;?></div>
+</div> 
+    </div>
+  </div>
+</div>
+<div class="lawDocumentDetail">
+              <h2 class="leftTitle"><b><span id="MainContent_LawDetail1_lbl_1" style="font-weight:bold;">Văn bản pháp luật</span></b></h2>
+                <div class="contentDetail">
+                    <div class="leftSmallContent">
+                        <h1><span id="MainContent_LawDetail1_lbl_Ten" style="font-weight:bold;"><?php echo $title ;?></span></h1>
+                        <div class="topBox">
+                          <p><span>Số hiệu:</span><span><b><span id="MainContent_LawDetail1_lbl_SoHieu"><?php echo $number;?></span></b></span></p>
+                            <p><span>Nơi ban hành:</span><span><b><span id="MainContent_LawDetail1_lbl_EnforceWhere"><?php echo $placeissued;?></span></b></span></p>
+                            <p><span>Ngày ban hành:</span><span><b><span id="MainContent_LawDetail1_lbl_EnforeDate"><?php echo $dateissued;?></span></b></span></p>
+                            <p><span>Ngày hiệu lực:</span><span><b><span id="MainContent_LawDetail1_lbl_ValidDate"></span></b><?php echo $effectivedate;?></span></p>
+                            <p><span>Ngày hết hiệu lực:</span><span><b><span id="MainContent_LawDetail1_lbl_InValidDate"></span><?php echo $expirydate ;?></b></span></p>
+                            <p><span>Hiệu lực:</span><span><b><span id="MainContent_LawDetail1_lbl_Valid"><?php echo $effect;?></span></b></span>
+                                
+                            </p>
+                        </div>
+                        
+                        <span id="MainContent_LawDetail1_lblContent"><p><font size="1"><?php echo $content;?></span>
+                        
+            
+                        
+                        <div class="moreEmailPrint">
+                            <a class="sendEmailFriend2" title="Gửi cho bạn bè" href="javascript:;" onclick="ShowLawFormToFriend_Subdomain('13','law');">Gửi cho bạn bè</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+  <?php echo $this->blkCafeLuat();?>
+
+      
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+  </div>

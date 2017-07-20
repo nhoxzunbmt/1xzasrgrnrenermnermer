@@ -1,0 +1,189 @@
+<?php
+
+if(!empty($this->itemStatisticService)){
+    $infoAccountService = \Zend\Json\Json::decode($this->itemStatisticService['info_service_account']);
+   
+
+        $normal     = $infoAccountService->normal;
+        $vip        = $infoAccountService->vip;
+        $hot        = $infoAccountService->hot;
+        $free       = $infoAccountService->free;
+        $chinhchu   = $infoAccountService->chinhchu;
+        $date_end   = $infoAccountService->date_end;
+        $service_account = $infoAccountService->service_account;
+}
+
+$frmAgent          = $this->cmsSelect('sltAgent','',$this->childUser,'no-level',array('class' =>'select'));
+
+?>
+
+
+<div class="serviceReport">
+    <div class="TitleBox">
+        <h2>
+            Báo cáo sử dụng dịch vụ của bạn</h2>
+    </div>
+    <div class="inside">
+       
+        <h4>Thông kê</h4>
+<table cellspacing="1" cellpadding="0" border="0">
+            <tbody>
+                <tr>
+                    <td align="left" width="57%">
+                        <label>
+                            Gói dịch vụ</label>
+                    </td>
+                    <td width="43%" align="left">
+                        <span id="MainContent_ctl00_lblTongDiem" class="star"><?php echo $service_account;?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" width="57%">
+                        <label>
+                            Tin Thường còn lại:</label>
+                    </td>
+                    <td width="43%" align="left">
+                        <span id="MainContent_ctl00_lblDiemDaDung" class="star"><?php echo $normal;?></span>
+                    </td>
+                </tr>                
+                <tr>
+                    <td align="left" width="57%">
+                        <label>
+                            Tin VIP còn lại:</label>
+                    </td>
+                    <td width="43%" align="left">
+                        <span id="MainContent_ctl00_lblDiemDaDung" class="star"><?php echo $vip;?></span>
+                    </td>
+                </tr>
+               <tr>
+                    <td align="left" width="57%">
+                        <label>
+                            Tin HOT còn lại:</label>
+                    </td>
+                    <td width="43%" align="left">
+                        <span id="MainContent_ctl00_lblDiemDaDung" class="star"><?php echo $hot;?></span>
+                    </td>
+                </tr>
+                 <tr>
+                    <td align="left" width="57%">
+                        <label>
+                            Tin Miễn phí còn lại:</label>
+                    </td>
+                    <td width="43%" align="left">
+                        <span id="MainContent_ctl00_lblDiemDaDung" class="star"><?php echo $free;?></span>
+                    </td>
+                </tr>
+                 <tr>
+                    <td align="left" width="57%">
+                        <label>
+                            Tin Chính chủ còn lại:</label>
+                    </td>
+                    <td width="43%" align="left">
+                        <span id="MainContent_ctl00_lblDiemDaDung" class="star"><?php echo $chinhchu;?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" width="57%">
+                        <label>
+                            Ngày kết thúc:</label>
+                    </td>
+                    <td align="left">
+                        <span id="MainContent_ctl00_lblNgayKetThuc" class="star"><?php echo $date_end ;?></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+        <ul class="tabS">
+            <li><a id="tab1_th_a" href="javascript:" onclick="ChangeTab('tab2_th','tab1_th','tab1_th_a','tab2_th_a');GetServiceList(1);" title="Lịch sử kích hoạt tin" class="current">Lịch sử kích hoạt tin</a></li></ul>
+        <div id="tab1_th">
+            
+            <div class="boxSearchAcc">
+                <ul>
+                    <li>
+                        <label>
+                            ID BĐS:</label>
+                        <p>
+                            <input type="text" id="txtIdBds" value="">
+                        </p>
+                    </li>
+                    <li id="liAgent" style="display:block;">
+                        <label>
+                            Tài khoản:</label>
+                        <p>
+                            <?php echo $frmAgent;?>
+                        </p>
+                    </li>
+                   
+                   
+                   
+                </ul>
+                <a class="actionButtonAcc" title="Tìm ngay" href="javascript:" onclick="GetTransactionHistory();">
+                    Tìm ngay</a>
+            </div>
+            <div id="ListDiv">
+                 <div class="dataTables_wrapper"><!--load--></div>
+
+
+                    <?php
+                    $page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+                    $LinkPage   = $this->basePath()."/".$this->arrParam['module']."/statistic/service-ajax/page/".$page;
+
+                    ?>
+                    <script type="text/javascript">
+
+                    $(document).ready(function(){
+                        var agent = <?php echo $this->identity()->id;?>;
+                        $(".loading").show();
+                        $.ajax({
+                            url     : '<?php echo $LinkPage;?>',
+                            type    : 'GET',
+                            data    : {page : <?php echo $page;?>, agent : agent},
+                            cache   : false,
+                            success : function(data,status){
+                                $("div.dataTables_wrapper").html(data);
+                                $(".loading").fadeOut(1000);
+                            }
+                        });
+
+                        
+                    });
+
+                    function GetTransactionHistory(){
+                        var txtIdBds = $("#txtIdBds").val();
+                        var sltAgent = $("#sltAgent option:selected").val();
+                        if(sltAgent == ''){
+                            var agent = <?php echo $this->identity()->id;?>;
+                        }else{
+                            var agent = sltAgent;
+                        }
+
+                        if(txtIdBds == ''){
+                            alert('Bạn phải nhập ID Bất động sản');
+                        }else{
+                            $(".loading").show();
+                            $.ajax({
+                                url     : '<?php echo $LinkPage;?>',
+                                type    : 'GET',
+                                data    : {page : <?php echo $page;?>, IdBds: txtIdBds, agent : agent},
+                                cache   : false,
+                                success : function(data,status){
+                                    $("div.dataTables_wrapper").html(data);
+                                    $(".loading").fadeOut(1000);
+                                }
+                            });
+                        }
+                        
+                    }
+
+                    
+
+                    </script>
+            </div>
+        </div>
+        
+    </div>
+
+  
+</div>
+
+

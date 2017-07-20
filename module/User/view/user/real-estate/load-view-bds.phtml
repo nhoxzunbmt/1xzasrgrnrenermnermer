@@ -1,0 +1,93 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+$xhtml          = '';
+$totalView      = 0;
+$real_estate_id = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+        $xhtml .= ' <tr height="25"><td width="60%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;">'.$item['date_time'].'</td>
+                                    <td width="40%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;">'.$item['view'].'</td>
+                                </tr>';
+        
+                     
+        $totalView      += $item['view']; 
+        $real_estate_id = $item['real_estate_id'];                        
+                             
+    }
+}
+
+?>
+           
+
+
+<div class="TitleDialog">
+    <h4>Chi tiết lượt xem của BĐS: <?php echo $real_estate_id;?></h4>
+    <a class="bt_close_1" onclick="hideViewBds();" title="Đóng">Đóng</a>
+</div>
+<div class="ContentDialog">
+    <ul class="Formsearch">
+        <li>
+            <label>Ngày </label>
+            <input type="text" disabled="disabled" class="input_detafrom" id="UCFromDateView" value="<?php echo date('d/m/Y');?>">
+            <a href="javascript:void(0);" onclick="displayCalendarFixed(window.document.getElementById('UCFromDateView'),'dd/mm/yyyy',this, '0')">
+                <img src="http://muabannhadat.com.vn//images/b_date.gif" alt="">
+            </a>
+            </li>
+       
+
+        <li class="end">
+            <a title="Xem" class="actionButton" href="javascript:;" onclick="showViewDate(<?php echo $real_estate_id;?>);">Xem</a>
+        </li>
+    </ul>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="viewRating">
+        <tbody><tr>
+            <td>
+                <table width="100%" style="border:1px solid #CCCCCC;">
+                    <tbody><tr height="25" bgcolor="#EFEFEF">
+                        <td width="100%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;">
+                            Tổng lượt xem: <?php echo $totalView;?>
+                        </td>
+                        
+                    </tr>
+                </tbody></table>
+            </td>
+        </tr>
+    </tbody></table>
+    <div class="scrollBox">
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="viewRating">
+            <tbody><tr>
+                <td>
+                   
+                        <table width="100%" style="border:1px solid #CCCCCC;">
+                        <tbody>                     
+                            <tr height="25"><td width="60%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;"><b>Ngày xem</b></td>
+                                    <td width="40%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;"><b>Lượt xem</b></td>
+                                </tr>
+
+                                <?php echo $xhtml;?>                 
+                        </tbody>
+                    </table>
+                   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="actionButton" onclick="hideViewBds();" href="javascript:void(0)" title="Thoát">Thoát</a>
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+</div>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

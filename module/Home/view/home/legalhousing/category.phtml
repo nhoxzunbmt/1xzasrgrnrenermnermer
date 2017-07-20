@@ -1,0 +1,126 @@
+<?php
+$menuLegalHousing       = $this->url('ListLegalHousingRoute',array('controller'=>'legalhousing','action'=>'index'));
+
+$menuLegislationHousing = $this->url('ListLegislationHousingRoute',array('controller'=>'legislationhousing','action'=>'index'));
+
+$menuContractForm       = $this->url('ListContractFormRoute',array('controller'=>'contractform','action'=>'index'));
+
+$xhtmlCategory = '';
+if(!empty($this->listItemsCategory)){
+  foreach ($this->listItemsCategory as $key => $item) {
+    $urlCategory = $this->url('CategoryLegalHousingRoute',array(
+      'module'=>'home',
+      'controller'  =>'legalhousing',
+      'action'      =>'category',
+      'name'        => \ZendVN\Url\FriendlyLink::filter($item['name']),
+      'page'        => '1',
+      'id'          => $item['id'],
+       'extension'  => 'html',
+    ));
+    $xhtmlCategory .= '<p><a href="'.$urlCategory.'" title="'.$item['name'].'">'.$item['name'].'</a></p>';
+  }
+}
+?>
+
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->breadcrumb,array('task'=>'data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+  
+  
+<div class="pageWrap">
+    <div class="leftMainContent">
+      
+<div class="niceHouseKeyLink">
+    <div class="smallSearch" style="display: block;">
+        <div class="boxSearch">
+        <ul>
+            <li class="current"><h4><a href="<?php echo $menuLegalHousing ;?>" title="Pháp lí nhà đất">Pháp lí nhà đất</a></h4></li><li><h4><a href="<?php echo $menuLegislationHousing;?>" title="Văn bản luật nhà đất">Văn bản luật nhà đất</a></h4></li><li><h4><a href="<?php echo $menuContractForm;?>" title="Biểu mẫu hợp đồng">Biểu mẫu hợp đồng</a></h4></li>
+        </ul>
+        <div class="contentSearch bgWhite" style="display:block;">
+            <div class="quickLink"><?php echo $xhtmlCategory;?></div>
+        </div>  
+    </div>
+  </div>
+</div>
+
+
+ 
+ <div id="MainContent_ArticleList1_notNiceHouseId" class="niceHouseKeyList">
+    <div class="contentDetail">
+        <div class="leftSmallContent">
+            <div class="topObjectTitle"><div class="text"><h1><?php echo $this->itemInfoCategory['name'];?></h1></div></div>
+         
+            
+
+        <div class="dataTables_wrapper"><!--load--></div>
+        <?php
+        $page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+        $LinkPage   = $this->basePath()."/".$this->arrParam['module']."/legalhousing/category-ajax/page/".$page;
+        $catid      = (!empty($this->arrParam["id"])) ? $this->arrParam["id"] : "" ;
+        $name       = $this->arrParam["name"];
+        ?>
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+            $(".loading").show();
+            var page        = '<?php echo $page;?>';
+            var catid       = '<?php echo $catid ?>';
+            var name        = '<?php echo $name;?>';
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {page: page, catid: catid, name: name},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    $(".loading").fadeOut(1000);
+                }
+            });
+        });
+
+        </script>
+
+   
+
+
+          <script type="text/javascript">
+            _ITEMS_PAGES=$("#idItemPage").val();
+            var tps = (parseInt($("#hTotalRows").val())%_ITEMS_PAGES)!=0?(parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES))+1):parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES));
+            nvgPaging.mjDrawLbPageListingPiNoAjaxLi(tps, $("#hCurrentPage").val(), "dvPagingDefault",$("#idPage").val(),$("#idQs").val(),$('#pPath').val());
+            nvgPaging.loadMiddleListBanner("divMiddleListBanner","middlelistbanner");
+          </script>
+           
+                  </div>
+              </div>
+          </div>
+
+
+    </div>
+    <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+  <?php echo $this->blkCafeLuat();?>
+
+      
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+  </div>

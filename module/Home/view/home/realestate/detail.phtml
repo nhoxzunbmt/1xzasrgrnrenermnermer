@@ -1,0 +1,261 @@
+<div class="ct-in-l">
+	<?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'box' . DS . 'breadcrumb.php';?>
+	<?php
+        $id             = $this->item['id'];
+        $title          = $this->item['title'];
+        $name_city      = $this->item['name_city'];
+        $name_district  = $this->item['name_district'];
+        $name_ward      = $this->item['name_ward'];
+        $adress         = $name_ward .' - ' .$name_district .' - '.$name_city;
+        $content        = $this->item['content'];
+        $fullname       = $this->item['fullname'];
+        $phone          = $this->item['phone'];
+        $name_type      = $this->item['name_type'];
+        
+        $date_start     = $this->item['date_start'];
+        $date_end       = $this->item['date_end'];
+        $date_modifi    = $this->item['date_modifi'];
+        $name_project   = $this->item['name_project'];
+        $floor          = $this->item['floor'];
+        $bedroom        = $this->item['bedroom'];
+        $bathroom       = $this->item['bathroom'];
+        $direction      = $this->item['direction'];
+        $area           = $this->item['area'];
+        $type_news      = $this->item['type_news'];
+        $status         = $this->item['status'];
+        $cat_id         = $this->item['cat_id'];
+        $avenue         = (!empty($this->item['avenue'])) ? $this->item['avenue'] : 'Chưa cập nhật';
+        $name_juridical = (!empty($this->item['name_juridical'])) ? $this->item['name_juridical'] : 'Chưa cập nhật';
+        $direction      = (!empty($this->item['direction'])) ? $this->item['direction'] : 'Chưa cập nhật';
+        $bedroom        = (!empty($this->item['bedroom'])) ? $this->item['bedroom'] : 'Chưa cập nhật';
+        $bathroom       = (!empty($this->item['bathroom'])) ? $this->item['bathroom'] : 'Chưa cập nhật';
+        $floor          = (!empty($this->item['floor'])) ? $this->item['floor'] : 'Chưa cập nhật';
+        $avatar         = (!empty($this->item['avatar']))  ? UPLOAD_URL .'/avatar/'.$this->item['avatar'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        $name_status    = $this->item['name_status'];
+        $latitude_gmap  = (!empty($this->item['latitude_gmap'])) ? $this->item['latitude_gmap'] : '21.033333';
+        $longitude_gmap = (!empty($this->item['longitude_gmap'])) ? $this->item['longitude_gmap'] : '105.85000000000002'; 
+        $UrlViewMap     = $this->url('MVC_HomeRouter/MapApi',array('module'=>'home','controller'=>'map-api','action'=>'index','latitude'=>$latitude_gmap,'longitude'=>$longitude_gmap));
+        
+        
+        
+        $xImage         = '';
+        $xImageLi       = '';
+        $images         = $this->item['images'];
+        
+        
+        //Quy đổi
+        
+        $price          = $this->item['price'];
+        
+        if($price < 1000){
+            $xprice = $price . ' Triệu';
+        }else{
+            $xprice = round(($price / 1000) * 100) / 100 . " Tỷ";
+        }
+        
+        //Quy đổi
+        $priceVND  = $price . '000000' ;//VND
+        $priceUSD  = round($priceVND / 20000);//VND->USD
+        $gold      = round($priceVND / 42000000);//VND->SJC
+        
+        if(!empty($images)){
+            $images     = \Zend\Json\Json::decode($images);
+            foreach ($images as $key => $image) {
+                $event       = '';
+                $image       = UPLOAD_URL .'/real-estate/'.$image;
+                $xImage     .= ' <li>
+                                    <a class="swipebox" title="' . $title . '" href="' . $image . '">
+                                        <img class="imageThumbOne" alt="' . $title . '" src="' . $image . '">
+                                    </a>
+                                </li>';
+            }
+        }
+        
+        //Tin tương tự
+        $xhtmlTuongTu = '';
+        
+        if(!empty($this->itemsTuongTu)){
+            $i = 1;
+            foreach($this->itemsTuongTu as $itemTuongTu){
+                $imageTuongTu   = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
+                if(!empty($itemTuongTu['images'])){
+                    $imagesTuongTu  = \Zend\Json\Json::decode($itemTuongTu['images']);
+                    foreach ($imagesTuongTu as $key => $imgTuongTu) {
+                        if($i == 1){
+                            $imageTuongTu = UPLOAD_URL .'/real-estate/'.$imgTuongTu;
+                            break;
+                        } 
+                        $i++;
+                    }
+                }
+        
+                
+                $TTprice          = $itemTuongTu['price'];
+                
+        
+                $linkDetail = $this->url('DetailBatDongSanRoute',array(
+                                        'module'        =>  'home',
+                                        'controller'    =>  'realestate',
+                                        'action'        =>  'detail',
+                                        'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($itemTuongTu['name_type']),
+                                        'title'         =>  \ZendVN\Url\FriendlyLink::filter($itemTuongTu['title']),
+                                        'cid'           =>  $itemTuongTu['cat_id'],
+                                        'id'            =>  $itemTuongTu['id'],
+                                        'extension'     =>  'html',
+                                    ));
+        
+                $xhtmlTuongTu .= ' <li>
+                                  <a class="imgBox" title="'.$itemTuongTu['title'].'" href="'.$linkDetail.'"><img src="'.$imageTuongTu.'" width="74" height="55" alt=""></a>
+                                  <h3>
+                                    <a href="'.$linkDetail.'" title="'.$itemTuongTu['title'].'">'.\ZendVN\Filter\ReadMore::create($itemTuongTu['title'],0,80).'</a>
+                                    <span>'.\ZendVN\Convert\Price::convert($TTprice).'</span>
+                                  </h3>
+                                </li>';
+                              
+            }
+        }        
+        ?>
+    <div class="dv-main-detail">
+        <div class="dv-ct-detail">
+            <h1><?php echo $title?></h1>
+            <div class="dv-time-dt">
+                <p>
+                    <label id="ContentPlaceHolder2_lbDate"><?php echo $date_modifi;?></label>
+                    <label id="ContentPlaceHolder2_lbGiaDienTich" class="lb-pri-dt">Giá: <?php echo \ZendVN\Convert\Price::convert($price);?> - Diện Tích:<strong><?php echo $area;?></strong> M² ( Lộ giới:<strong><?php echo $avenue;?></strong>m)</label>
+                </p>
+                <span id="ContentPlaceHolder2_spXacthuc"></span>
+            </div>
+            <div class="dv-m-ct-dt">
+                <div class="dv-slider-dt">
+                    
+                    <div class="myPanelClass">
+                    <ul id="ContentPlaceHolder2_viewImage1_divLi">
+                        <?php echo $xImage;?>
+                    </ul>
+                    </div>
+                                        
+                    <div style="padding: 2px;">
+                    </div>
+                    <div class="dv-cont-dt">
+                        <div style="width: 100%">
+                            <div style="text-align: left; float: left; padding-left: 10px; padding-top: 15px;">
+                                <label id="ContentPlaceHolder2_viewInfo1_lbHoTen">
+                                    <a rel="nofollow" title="<?php echo $fullname;?>" href="javascript:;"><?php echo $fullname;?></a>
+                                </label>
+                            </div>
+                            <div style="text-align: right; padding-right: 3px; float: right;">
+                                <table>
+                                    <tbody><tr>
+                                        <td>
+                                            <a href="/GTN-2145050/" id="ContentPlaceHolder2_viewInfo1_hrefGuiTN" rel="nofollow" title="Hãy để lại tin nhắn cho tôi nếu bạn không liên hệ được với tôi ngay lúc này">
+                                                <img alt="" border="0" height="35" src="<?php echo TEMPLATE_URL?>/home/images/email_ico2.jpg"></a>
+                                        </td>
+                                    </tr>
+                                </tbody></table>
+                            </div>
+                        </div>
+                        <p>
+                            <label id="ContentPlaceHolder2_viewInfo1_lbDoiTuong"><strong>Đối Tượng: </strong>Công Ty Nhà Đất - Môi Giới BĐS</label>
+                            <label id="ContentPlaceHolder2_viewInfo1_lbDiaChi"><strong>Địa Chỉ: </strong>Số 4 lô 11 A - Đường Trung Yên 3 - KĐT Trung Yên - Cầu Giấy - Hà Nội.</label>
+                            <label id="ContentPlaceHolder2_viewInfo1_lbPhone"><strong>Điện thoại: </strong><?php echo $phone;?></label>
+                        </p>
+                    </div>
+                </div>
+                <div class="dv-tsbds">
+                    <div class="dv-tb-tsbds">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="col1">Địa chỉ</td>
+                                    <td><?php echo $adress;?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Loại BĐS</td>
+                                    <td><?php echo $name_type;?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Tổng tiền</td>
+                                    <td><?php echo \ZendVN\Convert\Price::convert($price);?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Diện Tích</td>
+                                    <td><strong><?php echo $area;?></strong> M²</td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Pháp lý</td>
+                                    <td><?php echo $name_juridical;?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Hướng</td>
+                                    <td><?php echo $direction ;?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Phòng ốc</td>
+                                    <td><?php echo $bedroom;?> PN | <?php echo $bathroom;?> WC </td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Số tầng</td>
+                                    <td><?php echo $floor;?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Mã BĐS</td>
+                                    <td>
+                                        <strong><?php echo $id;?></strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Trạng thái</td>
+                                    <td><?php echo $name_status;?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Ngày Đăng</td>
+                                    <td><?php echo $date_start;?></td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">Ngày hết hạn</td>
+                                    <td><?php echo $date_end;?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dv-socail-dt">
+                        <span>
+                            <label>
+                                Chia sẻ qua:
+                            </label>
+                            <a rel="nofollow" class="a-faceb-dt" target="_blank" title="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo ZendVN\Url\CurrentUrl::get();?>"></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="dv-tab-mtbds-dt">
+                <div class="dv-bl-dg-ctg">
+                    <ul class="tabs3">
+                        <li style="margin-left: 22px;" class="li-ct active" id="li-des">Mô Tả</li>
+                        <li class="li-ct" id="li-map">Bản đồ</li>
+                    </ul>
+                    <span class="clear"></span>
+                    <!--Mota-->
+                    <div class="content li-des dv-ct-boder">
+                        <div class="dv-txt-mt">
+                            <div id="ContentPlaceHolder2_divContent" style="color: black; line-height: 20px; font-size: 14px;"><?php echo $content;?></div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+</div>
+<div class="ct-in-r">
+    <?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-search.php';?>	
+    <?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-hotline.php';?>	
+    <?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-adv1.php';?>	
+	<?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-pro.php';?>
+	<?php //require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-price.php';?>
+	<?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-type.php';?>
+	<?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-project.php';?>
+	<?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-adv1.php';?>	
+	<?php require_once TEMPLATE_PATH . DS . 'home' . DS . 'inc' . DS . 'sidebar-news.php';?>
+</div>

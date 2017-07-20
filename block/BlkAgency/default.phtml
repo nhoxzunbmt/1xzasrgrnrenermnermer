@@ -1,0 +1,45 @@
+<?php
+$xhtml                  = '';
+$i                      = 1;   
+$urlHelper              = $this->getView()->plugin('url');
+$itemAgencyHighlight    = '<table id="ContentPlaceHolder3_showThanhVienNoiBat1_DataList1" cellspacing="0" cellpadding="4" style="width: 100%; border-collapse: collapse;">';
+foreach ($this->_data as $item) {
+    
+    $fullname       = $item['fullname'];
+    $phone          = $item['phone'];
+
+    $introduced     = $item['introduced'];
+    $avatar         = (!empty($item['avatar']))  ? UPLOAD_URL .'/avatar/'.$item['avatar'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+    $linkDetail     = $urlHelper('DetailAgencyRoute',array(
+                                                        'module'    =>  'home',
+                                                        'controller'=>  'agency',
+                                                        'action'    =>  'detail',
+                                                        'name'      =>  \ZendVN\Url\FriendlyLink::filter($fullname),
+                                                        'id'        =>  $item['id'],
+                                                    ));
+    
+    $itemAgencyHighlight .= '<tr>
+                        		<td>
+                        			<div class="dv-item-mgnb">
+                        				<div class="dv-img-mgnb">
+                        					<a rel="nofollow" title="Xem các tin đăng của: '.$fullname.'" href="'.$linkDetail.'">
+                        					   <img alt="'.$fullname.'" width="100" src="'.$avatar.'">
+                        					</a>
+                        				</div>
+                        				<div class="dv-txt-mgnb">
+                        					<a rel="nofollow" title="Xem các tin đăng của: '.$fullname.'" class="a-title" href="'.$linkDetail.'">'.$fullname.'</a>
+                        					<p>
+                        						<a rel="nofollow" href="javascript:;" class="a-txt-cl1-2" title="Mobile: '.$phone.'">'.$phone.'</a>
+                        					</p>
+                        					<p>
+                        						<a rel="nofollow" href="javascript:;" class="a-txt-cl2-2" title="'.$introduced.'">'.$introduced.'</a>
+                        					</p>
+                        					<label class="lb-des" style="text-overflow: ellipsis; overflow: hidden; width: 200px;">'.$phone.'</label>
+                        				</div>
+                        			</div>
+                        		</td>
+                        	</tr>';
+}
+$itemAgencyHighlight .='</table>';
+echo $itemAgencyHighlight;
+

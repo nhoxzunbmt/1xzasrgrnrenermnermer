@@ -1,0 +1,133 @@
+<?php
+$lblCheckAll            = $this->cmsInput('checkbox','checkbox','checkbox',array('onclick'=>'checkedAll()'));
+if(!empty($this->items)){
+    $xhtml  = '';
+
+    foreach ($this->items as $key => $item) {
+            
+        $id         = $item['id'];
+        $cid        = $this->cmsInput('cid[]','cid','checkbox',array('value'=>$id));
+        $nguoinhan  = $item['fullname'];
+        $title      = $item['name'];
+        $linkMessageRead     = $this->url('MVC_UserRouter/action',array('module'=>'user','controller'=>'message','action'=>'view-send','id'=>$id));
+        $xhtml .= '<tr><td>'.$cid.'</td><td>'.$nguoinhan.'</td><td>'.$title .'</td><td><a href="'.$linkMessageRead.'">Đọc tin</a></td></tr>';
+    }
+}
+?>
+<form name="appForm" method="post" action="">
+<div class="boxContentAcc">
+    <div class="TitleBox">
+        <h2>
+            Hộp thư đi</h2>
+    </div>
+    <div class="messageAcc" id="tableResult">
+     <div id="dialog-confirm-all" title="Thông báo!'" style="display: none;">
+        <p>Bạn có chắc muốn những phần tử được chọn này hay không?</p>
+    </div>     
+       
+            
+            <ul>
+            <li>
+                <?php echo $lblCheckAll;?>Tất
+                cả</li>
+            <li><a href="javascript:" onclick="javascript:Confirm('multi-delete');">Xóa thư</a></li>
+            <li><a href="javascript:" onclick="ReloadMessageSend();">Cập nhật thư mới</a></li>
+        </ul> 
+        <table class="gridAcc result">
+            <tbody><tr class="title" id="tr_title">
+                <td width="15%"></td>
+                <td width="25%">Người nhận</td>
+                <td width="45%">Tiêu đề</td>
+                <td width="15%">Chức năng</td>
+            </tr>
+                <?php echo $xhtml;?>
+            </tbody>
+
+        </table>
+
+       
+        
+        
+    </div>
+
+     <?php
+        $currentUrl =  $this->currentController.'/send/page/';
+        echo $this->paginationControl($this->paginator , 'sliding' , 'user/paginator.phtml', array('currentUrl'=>$currentUrl)); 
+
+        ?>
+</div>
+
+</form>
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui-1.10.3.custom.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_URL;?>/admin/css/jquery-ui-1.10.3.custom.min.css">
+
+<script type="text/javascript">
+
+
+//Xóa những item đã chọn
+function deleteItemChanged(){
+    $("#dialog-confirm-all").dialog({
+        resizable : false,
+        height : 200,
+        modal : true,
+        buttons : {
+            "Yes" : function() {
+                var strId = '';
+                $('input[id=cid]:checked').each( function(index,element) {
+                   
+                    if(index == 0){
+                        strId += $(this).val();
+                    }else{
+                        strId += ',' + $(this).val();
+                    }
+                    
+                   
+                });
+                $(this).dialog("close");
+                <?php $urlMutiDelete = $this->currentController.'/multi-delete-send/';?>
+                window.location.href ='<?php echo $urlMutiDelete;?>' + strId;
+                
+            },
+            Cancel : function() {
+                $(this).dialog("close");
+            }
+        }
+    });
+}
+
+//Chọn xóa
+function Confirm(option) {
+    var strId = '';
+    $('input[type=checkbox]:checked').each( function(index,element) {
+        if($(this).val() != 'on'){
+            if(index == 1){
+                strId += $(this).val();
+            }else{
+                strId += ',' + $(this).val();
+            }
+        }
+       
+    });
+    if(strId == ''){
+        alert('Hãy chọn ít nhất 1 Item để thao tác');
+    }else{
+        if(option == 'multi-delete'){
+            deleteItemChanged();
+        }if(option == 'multi-active'){
+            statusItemChanged('multi-active');
+        }if(option == 'multi-in-active'){
+            statusItemChanged('multi-in-active');
+        }
+    }
+    return false;
+}
+
+function ReloadMessageSend(){
+    <?php $urlRefresh = $this->currentController.'/send/';?>
+                window.location.href ='<?php echo $urlRefresh;?>';
+}
+
+   
+</script>

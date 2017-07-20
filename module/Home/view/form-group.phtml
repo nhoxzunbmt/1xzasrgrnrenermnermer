@@ -1,0 +1,24 @@
+<?php 
+	$class = '';
+	if(!empty($this->error) &&  $this->error != ''){
+		$class = "has-feedback has-error";
+	}
+	$xhtml 	= 	'<li><b>'.$this->label.'</b><span>'.$this->input.'</span></li>
+				<li style="display: none;" id="'.$this->lierror.'"><b>&nbsp;</b>
+				<span><em id="'.$this->error.'" class="textWarmning"></em></span>
+				</li>
+                 
+                 ';				
+	echo $xhtml;
+?>
+
+
+
+
+
+               
+
+
+
+	
+   

@@ -1,0 +1,40 @@
+<?php
+$xhtml                  = '';
+$i                      = 1;   
+$urlHelper              = $this->getView()->plugin('url');
+$xhtmlTinSlide          = '';
+foreach ($this->_data['data']  as $key =>$item) {
+    
+    $title          = $item['title'];
+    $date_time      = $item['date_time'];
+    $image          = (!empty($item['images']))  ? UPLOAD_URL .'/news/'.$item['images'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+    $urlDetail   = $urlHelper('DetailNewsRoute',array(
+            'controller'        => 'news',
+            'action'            => 'detail',
+            'namecategory'      => \ZendVN\Url\FriendlyLink::filter($item['name_category']),
+            'title'             => \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'               => $item['cat_id'],
+            'id'                => $item['id'],
+            'extension'         => 'html',
+    ));
+
+    $xhtmlTinSlide .= '<tr>
+                			<td>
+                				<div class="dv-item-ttbds">
+                					<div class="dv-img-ttbds">
+                						<a title="'.$title.'" href="' . $urlDetail . '">
+                							<img alt="'.$title.'" src="' . $image . '" />
+                						</a>
+                					</div>
+                					<div class="dv-txt-ttbds">
+                						<a title="'.$title.'" class="a-title" href="' . $urlDetail . '">'.$title.'</a>
+                						<p style="color: #0774B9;">' . $item['name_category'] . '</p>
+                						<p><i class="ico-sty i-time-bla"></i>' . $date_time . '</p>
+                					</div>
+                				</div>
+                			</td>
+                		</tr>';
+}
+
+echo $xhtmlTinSlide;

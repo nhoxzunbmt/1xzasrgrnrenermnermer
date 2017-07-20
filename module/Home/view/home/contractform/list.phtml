@@ -1,0 +1,75 @@
+
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+       
+        $id             = $item['id'];
+        $title          = $item['title']; 
+      
+        $download          =   $this->url('DownloadContractFormRoute',array(
+            'controller'        => 'contractform',
+            'action'            => 'download',
+            'id'                => $id,
+        ));
+
+        $xhtml .= '<tr><td>'.$id.'</td><td><p>'.$title.'</p><p><span>Tải tập tin theo định dạng: <a href="'.$download.'" rel="nofollow">Word</a></span></p></td></tr>';
+
+                    
+
+                             
+    }
+}
+
+
+?>
+   <script src="http://muabannhadat.com.vn/js/Document.js" type="text/javascript"></script>
+   <div class="taList1"><table><tbody><tr><th>STT</th><th>Tên biểu mẫu</th></tr>
+        <?php echo  $xhtml;?>
+    </tbody></table>
+
+<script type="text/javascript">
+  _ITEMS_PAGES=$("#idItemPage").val();
+  var tps = (parseInt($("#hTotalRows").val())%_ITEMS_PAGES)!=0?(parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES))+1):parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES));
+  nvgPaging.mjDrawLbPageListingPiNoAjaxLi(tps, $("#hCurrentPage").val(), "dvPagingDefault",$("#idPage").val(),$("#idQs").val(),$('#pPath').val());
+  nvgPaging.loadMiddleListBanner("divMiddleListBanner","middlelistbanner");
+</script>
+</div>
+
+   
+
+    </tbody></table>
+<script type="text/javascript">
+    _ITEMS_PAGES=$("#idItemPage").val();
+    var tps = (parseInt($("#hTotalRows").val())%_ITEMS_PAGES)!=0?(parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES))+1):parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES));
+    nvgPaging.mjDrawLbPageListingPiNoAjaxLi(tps, $("#hCurrentPage").val(), "dvPagingDefault",$("#idPage").val(),$("#idQs").val(),$('#pPath').val());
+    nvgPaging.loadMiddleListBanner("divMiddleListBanner","middlelistbanner");
+</script>
+</div>
+
+  
+ <?php
+    $paramsUrl  = array(
+       'module'        => 'home',
+        'controller'   => 'contractform',
+        'action'       => 'index',
+        'page'         => '1',
+    );
+    echo $this->paginationControl($this->paginator , 'sliding' , 'home/business/paginator.phtml', array(
+        'router'    => 'ListContractFormRoute',
+        'arrParam'  =>$paramsUrl,
+    )); 
+ ?>
+
+
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

@@ -1,0 +1,78 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+	$xhtml = '';
+	if(!empty($this->items)){
+	    foreach($this->items as $item){
+	    	$id 			= $item['id'];
+	    	$name 			= $item['name'];
+	    	$address 		= $item['name_district'] . ' - '.$item['name_city'];
+	    	$pricefrom 		= $item['pricefrom'];
+	    	$priceto 		= $item['priceto'];
+	    	$area 			= $item['area'];
+	    	$direction		= $item['direction'];
+	    	$name_juridical	= $item['name_juridical'];
+	    	$road 			= $item['road'];
+	    	$name_type 		= $item['name_type'];
+	    	$email 			= $item['email'];
+	    	$date_time		= $item['date_time'];
+	    	$xhtml .= '<tr>
+				    <td>'.$id.'</td>
+				    <td align="left">
+				        <ul class="ConditionSelect">
+							<li><font class="highlight">Thư báo: <span>'.$name.'</span></font></li><li>Loại giao dịch: <span>Tìm mua Đất</span></li><li>Vị trí: <span>'.$address.'</span></li><li>Giá thấp nhất <span class="star">'.$pricefrom.' Triệu </span></li><li>Giá tối đa <span class="star">'.$priceto.' Triệu</span></li>Đặc tính khác: Diện tích <b>'.$area.' m<sup>2</sup></b>, Hướng <b>'.$direction.'</b>, Pháp lý <b>'.$name_juridical.'</b>, Đường trước nhà <b>'.$road.' m</b>, Kiểu BĐS <b>'.$name_type.'</b><br>Email nhận tin: <b>'.$email.'</b>
+				        </ul> 
+				    </td>
+				    <td>'.$date_time.'</td>
+				    
+				    <td class="clr_borright">
+				        <ul class="Alter">
+				            <li><a href="http://muabannhadat.com.vn/ban-nen-du-an-kdc-moi-q-ba-dinh-tp-ha-noi-500-trieu-1-ty/a-rv/b-res-sale-land/c28/d241/f500/g1000/h/i/r-/?p=1">Tìm BĐS</a></li>
+				            <li><a href="javascript:;" onclick="deleteRegisterEmail('.$id.')">Xóa</a></li>
+				        </ul>
+				    </td>
+				</tr>';
+	    }
+	}    	
+?>
+
+		<div class="RSFit" id="dvAlert">
+<table cellspacing="0" cellpadding="0" border="0">
+	<tbody><tr class="Bgform">
+		<td width="4%"><label>STT</label></td>
+		<td width="54%"><label>Điều kiện tìm kiếm BĐS</label></td>
+		<td width="12%"><label>Ngày đăng ký</label></td>
+		
+		<td width="12%"><label>Chức năng</label></td>
+	</tr>
+	<?php echo $xhtml;?>
+	</tbody></table></div>
+
+		<?php
+		
+		$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/statistic/info-ajax";
+
+		?>
+		<script type="text/javascript">
+
+		$(document).ready(function(){
+		    
+
+		});
+
+		function deleteRegisterEmail(id)
+        {   
+            if(!confirm("Bạn có chắc xóa  không?")) return;
+            else
+            {
+                window.location = '<?php echo $this->url(null,array("module"=>"user","controller"=>"register-email","action"=>"delete"));?>' + id;
+            }   
+        }
+
+		</script>
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

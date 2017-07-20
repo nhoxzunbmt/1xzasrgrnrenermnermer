@@ -1,0 +1,137 @@
+<?php
+
+$page                = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage            = $this->basePath()."/".$this->arrParam['module']."/business/list/page/".$page;
+$linkLoadDistrict    = $this->url('MVC_HomeRouter/action',array(
+    'module'=>'home',
+    'controller'=>'business',
+    'action'=>'load-select-district'
+));
+
+//Doanh nghiệp thành phố lớn
+$xhtmlCity = '';
+if(!empty($this->listCity)){
+    foreach($this->listCity as $item){
+        $urlCity   = $this->url(
+            'CityBusinessRoute',
+            array('action'=>'category','cityname'=>\ZendVN\Url\FriendlyLink::filter($item['name']),'page'=>1,'id'=>$item['id']
+        ));
+        $xhtmlCity      .= '<li>  <a href="'.$urlCity.'" title="'.$item['name'].'">'.$item['name'].' <span></span>  </a></li>';
+    }  
+}
+
+//Search Name
+$linkSearch         = $this->url('MVC_HomeRouter/action',array('controller'=>'business','action'=>'search'));
+
+?>
+
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+        <div class="leftMainContent">
+            
+        <?php echo $this->formSearchBusiness;?>
+        <div class="dataTables_wrapper"><!--load--></div>
+       
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+
+             //Load quận huyện
+            $("#city").change(function(){
+                var city = $("#city option:selected").val();
+                
+                loadDistrict(city);
+            });
+
+            $(".loading").show();
+           
+            var id          = '<?php echo $this->arrParam["id"];?>';
+            var nameUrl     = '<?php echo $this->arrParam["name"];?>';
+            var page       = '<?php echo $page;?>';
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {id : id, page: page, name: name, nameUrl : nameUrl},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    $(".loading").fadeOut(1000);
+                }
+            });
+
+            $("#search-business-form #search-submit-business").click(function(){
+                var q           = $("#txtTenDN").val();
+                var type        = $("#type option:selected").val();
+                var city        = $("#city option:selected").val();
+                var district    = $("#district option:selected").val();
+
+                var linkSearchProject = '<?php echo $linkSearch;?>?q='+ q + '&type=' + type + '&city=' + city + '&district=' + district + '&page=1';
+
+                //Tìm kiếm tất cả thông tin
+                if(q != '' || type != '' || city != ''  || district != ''){
+                    window.location = linkSearchProject;
+                }else if(q == '' && type == '' && city == ''  && district == ''){
+                     alert("Bạn phải nhập từ khóa, hoặc chọn các tiêu chí");
+                }
+                
+            });
+        });
+
+         function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+
+        </script>
+
+           
+        <div class="companyProvince">
+            <h2 class="leftTitle"><b>Doanh nghiệp BĐS ở các tỉnh/thành </b></h2>
+                
+            <div class="leftSmallContent">      
+                <ul class="leftLine">
+                   <?php echo $xhtmlCity;?>
+                </ul>
+                <div class="clr_both"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+
+ 
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+</div>

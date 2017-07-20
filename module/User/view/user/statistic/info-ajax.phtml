@@ -1,0 +1,45 @@
+<?php
+$id 			= $this->item['id'];
+$cat_id 		= $this->item['cat_id'];
+$name_status 	= $this->item['name_status'];
+$name_type 		= $this->item['name_type'];
+$title 			= $this->item['title'];
+$adrress 		= $this->item['name_city'] . ' - '. $this->item['name_district'];
+$date_start 	= $this->item['date_start'];
+$transaction 	= $this->item['transaction'];
+
+if($transaction == 1){
+	$label = 'Cho thuê';
+}else{
+	$label = 'Bán';
+}
+
+
+$linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+?>
+<div class="Title"><h3> (<?php echo $name_status;?>) BÐS <?php echo $label;?> - <?php echo $name_type;?></h3></div>
+<table cellspacing="0" cellpadding="0" border="0" class="DetailStatistic"><tbody>
+<tr class="Bgform">
+	<td width="23%"></td>
+	<td width="12%"><label>ID</label></td>
+	<td width="12%"><label>Chi tiết</label></td>
+	<td width="12%"><label>Ngày đăng</label></td>
+	<td width="25%"><label>Tiêu đề tin đăng</label></td>
+	<td width="11%"><label>Số lần xem</label></td>
+</tr>
+<tr>
+	<td rowspan="1"><label><?php echo $adrress;?></label><div></div></td>
+
+	<td><?php echo $id ;?></td>
+	<td><span class="id"><a href="<?php echo $linkDetail;?>" target="_blank">Xem tin</a></span></td>
+	<td><?php echo $date_start;?></td><td align="left"><label><?php echo $title;?></label></td><td><a onclick="showViewBds(<?php echo $id;?>);" href="#usrTop"><span>Số lần xem BĐS</span></a></td>
+</tr></tbody></table>

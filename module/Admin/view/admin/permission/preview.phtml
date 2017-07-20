@@ -1,0 +1,114 @@
+<?php
+
+
+$privilege_id = array();
+if(!empty($this->item)){
+	$arrPrivilege =  \Zend\Json\Json::decode($this->item['permission_id']);
+	if(!empty($arrPrivilege)){
+		foreach($arrPrivilege as $val){
+			$privilege_id[]		=	$val;
+		}
+	}
+}
+
+
+
+
+$parents		= 	$this->cmsSelectPermission("parents", $privilege_id, $this->parents,
+									array("size" => 10, "style" => "min-width: 200px; min-height: 400px;"));
+
+
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/edit-ajax/";
+?>
+
+<style>
+ul { 
+  list-style: none;
+  margin: 5px 20px;
+}
+li {
+  margin: 0 0 5px 0;
+}
+#page-wrap{
+	height: 420px;
+	width=200px;
+	overflow: scroll;
+}
+.b{
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+.btn-link{
+    border: 1px solid #eee;
+    border-color: #eee #dedede #dedede #eee;
+    background-color: #f5f5f5;
+    font: bold 12px Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    float: left;
+    width:700px;
+}
+
+.btn-link span{
+    padding: 5px 5px 5px 20px;
+    display: block; 
+    background:url(<?php echo TEMPLATE_URL;?>/admin/images/apply.png) left center no-repeat;
+    margin-left: 5px;
+}
+
+
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info' style="float:left;position:relative;"><h5>Xem nhanh</h5>
+	<div class="dataTables_wrapper">
+		<?php echo $parents;?>
+	</div>	
+
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+function addPrivilege(PrivilegeId){
+	
+	$("#privilege-" + PrivilegeId).css({"background" : "url(<?php echo TEMPLATE_URL;?>/admin/images/apply-hover.png) left center no-repeat", "background-color" :"#696969" , "color" : "white"});
+
+	$("#change-permission-" + PrivilegeId).css({"background-color" :"#696969"});
+
+	$(".loading").show();
+    $.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        data    : {id : <?php echo $this->arrParam['id'];?> , privilege_id : PrivilegeId , option : 'add'},
+        cache   : false,
+        success : function(data,status){
+            //$("div.dataTables_wrapper").html(data);
+            $(".loading").fadeOut(1000);
+            
+        }
+    })
+}
+
+function removePrivilege(PrivilegeId){
+	$("#privilege-" + PrivilegeId).css({"background" : "url(<?php echo TEMPLATE_URL;?>/admin/images/apply.png) left center no-repeat", "background-color" :"#f5f5f5",  "color" : "black"});
+
+	$("#change-permission-" + PrivilegeId).css({"background-color" :"#f5f5f5"});
+
+	$(".loading").show();
+    $.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        data    : {id : <?php echo $this->arrParam['id'];?> , privilege_id : PrivilegeId , option : 'remove' },
+        cache   : false,
+        success : function(data,status){
+           // $("div.dataTables_wrapper").html(data);
+            $(".loading").fadeOut(1000);
+            console.log(data);
+        }
+    })
+}
+</script>		

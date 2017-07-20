@@ -1,0 +1,143 @@
+<?php
+$xhtml                  = '';
+$i                      = 1;   
+$urlHelper              = $this->getView()->plugin('url');
+$xhtmlTinSlide          = '';
+foreach ($this->_data  as $key =>$item) {
+    $title          = $item['title'];
+    $description    = $item['description'];
+    $image          = (!empty($item['images']))  ? UPLOAD_URL .'/nice-house/'.$item['images'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+    if($key == 0){
+      $divStyle = '';
+      $slideControl = "<li id='sli0' class=\"current\"><a onclick='SlideNo(0);'></a></li>
+                      <li id='sli1' ><a onclick='SlideNo(1);'></a></li>
+                      <li id='sli2' ><a onclick='SlideNo(2);'></a></li>
+                      <li id='sli3' ><a onclick='SlideNo(3);'></a></li>
+                      <li id='sli4' ><a onclick='SlideNo(4);'></a></li>";
+    }else if($key == 1){
+      $divStyle = 'style="display: none;"';
+      $slideControl = "<li id='sli0'><a onclick='SlideNo(0);'></a></li>
+                      <li id='sli1' class=\"current\" ><a onclick='SlideNo(1);'></a></li>
+                      <li id='sli2' ><a onclick='SlideNo(2);'></a></li>
+                      <li id='sli3' ><a onclick='SlideNo(3);'></a></li>
+                      <li id='sli4' ><a onclick='SlideNo(4);'></a></li>";
+    }else if($key == 2){
+      $divStyle = 'style="display: none;"';
+      $slideControl = "<li id='sli0'><a onclick='SlideNo(0);'></a></li>
+                      <li id='sli1'><a onclick='SlideNo(1);'></a></li>
+                      <li id='sli2' class=\"current\" ><a onclick='SlideNo(2);'></a></li>
+                      <li id='sli3' ><a onclick='SlideNo(3);'></a></li>
+                      <li id='sli4' ><a onclick='SlideNo(4);'></a></li>";
+    }else if($key == 3){
+      $divStyle = 'style="display: none;"';
+      $slideControl = "<li id='sli0'><a onclick='SlideNo(0);'></a></li>
+                      <li id='sli1'><a onclick='SlideNo(1);'></a></li>
+                      <li id='sli2' ><a onclick='SlideNo(2);'></a></li>
+                      <li id='sli3' class=\"current\" ><a onclick='SlideNo(3);'></a></li>
+                      <li id='sli4' ><a onclick='SlideNo(4);'></a></li>";
+    }else if($key == 4){
+      $divStyle = 'style="display: none;"';
+      $slideControl = "<li id='sli0'><a onclick='SlideNo(0);'></a></li>
+                      <li id='sli1'><a onclick='SlideNo(1);'></a></li>
+                      <li id='sli2' ><a onclick='SlideNo(2);'></a></li>
+                      <li id='sli3' ><a onclick='SlideNo(3);'></a></li>
+                      <li id='sli4' class=\"current\" ><a onclick='SlideNo(4);'></a></li>";
+    }  
+
+    $urlDetail   = $urlHelper('DetailNiceHouseRoute',array(
+            'controller'        => 'nicehouse',
+            'action'            => 'detail',
+            'namecategory'      => \ZendVN\Url\FriendlyLink::filter($item['name_category']),
+            'title'             => \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'               => $item['cat_id'],
+            'id'                => $item['id'],
+            'extension'         => 'html',
+    ));
+
+    $xhtmlTinSlide .= "<div class='newsjsctl' id='divNewMain_".$key."' ".$divStyle.">
+                <a class='imgNews' title='".$title."' href='".$urlDetail."'>
+                <img width='370' height='277' title='".$title."' alt='".$title."' src='".$image."' /></a>
+                <div class='text'>
+                    <div class='mainNewsContent'>
+                      <h3><a title='".$title."' href='".$urlDetail."'>".$title."</a></h3>
+                      <p>".$description."</p>
+                    
+                    </div>
+                  <ul class='slideControl'>           
+                    ".$slideControl."
+                  </ul>
+                </div>
+              </div>";
+    
+}
+?>
+
+<div class="mainNews" style="height: 241px;">
+    <?php echo $xhtmlTinSlide;?>
+    <input id="hdfNewsVipCur" type="hidden" value="divNewMain_0"><input id="hdfNewsVipTotal" type="hidden" value="4">
+</div>
+
+<script type="text/javascript">
+    //<!--
+    var divId;
+    if ($('#hdfNewsVipTotal').val() != "0") {
+        var vipNewsToIndex = setTimeout("NextVipNew('divNewMain_',1)", 10000);
+        function NextVipNew(div, Id) {
+            if (Id <= parseInt($('#hdfNewsVipTotal').val())) {
+                $('.newsjsctl').hide(); 
+                $('#' + div + Id).show();
+
+                $('#hdfNewsVipCur').val(div + Id);
+
+                var idNextTo = Id + 1; 
+                if (Id == parseInt($('#hdfNewsVipTotal').val())) {
+                    idNextTo = 0;
+                }
+               // ChangeLiClass(Id);
+                if (vipNewsToIndex != null) clearTimeout(vipNewsToIndex);
+
+                vipNewsToIndex = setTimeout("NextVipNew('divNewMain_', " + idNextTo + ")", 5000);
+
+            }
+        }
+    }
+    function SlideNo(param) {
+        $('.newsjsctl').hide();
+        $('#divNewMain_' + param).fadeIn(50);
+       
+        NextVipNew('divNewMain_', param);
+        
+       // ChangeLiClass(param);
+    }
+    function ChangeLiClass(p) {
+        $('#divNewMain_' + p + ' .slideControl li').removeClass('current');
+        $('#divNewMain_' + p + ' .slideControl #sli' + p).addClass('current');        
+    }
+    //-->
+</script>
+      
+<script type="text/javascript">
+  //<!--
+  var NewsSearchCtrl = {
+    SearchClick: function () {
+      var kw = "";
+      if ($('#txtNewsKeySearch').val() != "Nhập từ khóa" && $('#txtNewsKeySearch').val() != "") {
+        kw = "&kw=" + $('#txtNewsKeySearch').val();
+      }
+      var text = $("#hrfText").text();
+      if (text == "Chọn")
+        text = "";
+      //var t = 'MainContent_ucSearchBox';
+      window.location = pathClient + "newslist.aspx?id=" + $('#hdfNewsTypeId').val() + kw + "&text=" + text;
+    },
+    EnterKeyPress: function (e) {
+      var unicode = e.charCode ? e.charCode : e.keyCode;
+      if (unicode == 13) {
+        NewsSearchCtrl.SearchClick();
+      }
+    }
+  }
+  //-->
+</script>
+
+

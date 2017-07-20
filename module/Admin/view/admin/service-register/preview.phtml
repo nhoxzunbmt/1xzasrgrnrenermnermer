@@ -1,0 +1,26 @@
+<?php
+
+
+$fullname  	= $this->item['fullname'];
+$email		= $this->item['email'];
+$phone  	= $this->item['phone'];
+$name  		= $this->item['name'];
+$date_start  		= $this->item['date_start'];
+$date_end  		= $this->item['date_end'];
+$total_price  	= $this->item['total_price'];
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Thông tin khách hàng đăng kí </h5>
+<p class='detail-info even'><label>Khách hàng đăng kí:</label><span><?php echo $fullname ;?></span></p>
+<p class='detail-info even'><label>Số điện thoại:</label><span><?php echo $phone ;?></span></p>
+<p class='detail-info even'><label>Email:</label><span><?php echo $email ;?></span></p>
+
+<p class='detail-info even'><label>Tên dịch vụ:</label><span><?php echo $name ;?></span></p>
+<p class='detail-info even'><label>Ngày đăng kí:</label><span><?php echo $date_start ;?></span></p>
+<p class='detail-info even'><label>Ngày hết hạn:</label><span><?php echo $date_end ;?></span></p>
+<p class='detail-info even'><label>Tổng tiền:</label><span><?php echo $total_price ;?></span></p>
+</div>

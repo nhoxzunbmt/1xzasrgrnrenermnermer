@@ -1,0 +1,120 @@
+<?php
+	
+	
+
+	$linkStart = $this->url('CategoryBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'category',
+            'namecity'      =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namecity']),
+            'namedistrict'  =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namedistrict']),
+            'type'          =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['type']),
+            'name'          =>  \ZendVN\Url\FriendlyLink::filter('nha-dat-ban'),
+            'idcity'        =>  $this->arrParam['idcity'],
+            'iddistrict'    =>  $this->arrParam['iddistrict'],
+            'page'          =>  $this->first,
+            'id'            =>  123,
+            'extension'     =>  'html',
+    ));
+
+    $linkEnd = $this->url('CategoryBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'category',
+            'namecity'      =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namecity']),
+            'namedistrict'  =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namedistrict']),
+            'type'          =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['type']),
+            'name'          =>  \ZendVN\Url\FriendlyLink::filter('nha-dat-ban'),
+            'idcity'        =>  $this->arrParam['idcity'],
+            'iddistrict'    =>  $this->arrParam['iddistrict'],
+            'page'          =>  $this->last,
+            'id'            =>  123,
+            'extension'     =>  'html',
+    ));
+
+    $linkNext = $this->url('CategoryBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'category',
+            'namecity'      =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namecity']),
+            'namedistrict'  =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namedistrict']),
+            'type'          =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['type']),
+            'name'          =>  \ZendVN\Url\FriendlyLink::filter('nha-dat-ban'),
+            'idcity'        =>  $this->arrParam['idcity'],
+            'iddistrict'    =>  $this->arrParam['iddistrict'],
+            'page'          =>  $this->next,
+            'id'            =>  123,
+            'extension'     =>  'html',
+    ));
+
+    $linkPrevious = $this->url('CategoryBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'category',
+            'namecity'      =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namecity']),
+            'namedistrict'  =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namedistrict']),
+            'type'          =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['type']),
+            'name'          =>  \ZendVN\Url\FriendlyLink::filter('nha-dat-ban'),
+            'idcity'        =>  $this->arrParam['idcity'],
+            'iddistrict'    =>  $this->arrParam['iddistrict'],
+            'page'          =>  $this->previous,
+            'id'            =>  123,
+            'extension'     =>  'html',
+    ));
+
+
+	//$linkStart 		= $this->currentUrl . $this->first;
+	//$linkEnd 		= $this->currentUrl . $this->last;
+	//$linkNext 		= $this->currentUrl . $this->next;
+	//$linkPrevious 	= $this->currentUrl . $this->previous;
+	$startXhtml 	= '';
+	$previousXhtml 	= '';
+	$endXhtml 		= '';
+	$nextXhtml		= '';
+	if($this->current != 1){
+		$startXhtml 	= sprintf('<li><a href="%s" class="">Trang đầu</a></li>',$linkStart);
+
+		$previousXhtml 	= sprintf('<li><a href="%s" class="">«</a></li>',$linkPrevious);
+	}
+	if($this->current != $this->last){
+		$endXhtml 		= sprintf('<li><a href="%s" class="">Trang cuối</a></li>',$linkEnd);
+
+		$nextXhtml 		= sprintf('<li><a href="%s" class="">»</a></li>',$linkNext);
+	}
+	$pagesInRange = '';
+	foreach($this->pagesInRange as $key){
+		//$linkPage = $this->currentUrl . $key;
+		$linkPage = $this->url('CategoryBatDongSanRoute',array(
+		            'module'        =>  'home',
+		            'controller'    =>  'realestate',
+		            'action'        =>  'category',
+		            'namecity'      =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namecity']),
+		            'namedistrict'  =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['namedistrict']),
+		            'type'          =>  \ZendVN\Url\FriendlyLink::filter($this->arrParam['type']),
+		            'name'          =>  \ZendVN\Url\FriendlyLink::filter('nha-dat-ban'),
+		            'idcity'        =>  $this->arrParam['idcity'],
+		            'iddistrict'    =>  $this->arrParam['iddistrict'],
+		            'page'          =>  $key,
+		            'id'            =>  123,
+		            'extension'     =>  'html',
+		    ));
+		if($this->current == $key){
+
+			$pagesInRange .= sprintf('<li><a  href="%s" class="current">%s</a></li>',$linkPage,$key);
+		}else{
+			$pagesInRange .= sprintf('<li><a href="%s" class="LinkNumbers">%s</a></li>',$linkPage,$key);
+		}
+		
+	}
+	
+?>
+
+
+    <ul class="pageNumber" id="dvPagingDefault">
+    	<li style="display:none"></li> 
+        <?php echo $startXhtml;?>
+       	<?php echo $previousXhtml;?>             
+        <?php echo $pagesInRange;?>    
+        <?php echo $nextXhtml;?>
+       	<?php echo $endXhtml;?>
+    </ul>

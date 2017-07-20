@@ -1,0 +1,116 @@
+<?php
+$ssFilter   = $this->arrParam['ssFilter'];
+
+//==========Messages=========================//
+$messages   = $this->flashMessenger()
+                    ->setMessageOpenFormat('<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="alert alert-success">')
+                    ->setMessageSeparatorString('')
+                    ->setMessageCloseString('<button data-dismiss="alert" class="close">×</button>')
+                    ->render('success',array('success message'));
+
+
+
+
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementDescriptionNews     = $myForm->get('descriptionNews');
+$elementDescriptionRealEstate      = $myForm->get('descriptionRealEstate');
+$elementDescriptionLegalhousing = $myForm->get('descriptionLegalhousing');
+$elementCommentFacebook = $myForm->get('commentFacebook');
+
+
+$messagesErrors = $this->elementErrors(array(
+    'descriptionNews'       => $elementDescriptionNews,
+     
+));
+
+
+$linkConfig     = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'config','action'=>'index'));
+
+
+$linkConfigCompany      = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'config','action'=>'company'));
+
+$linkConfigMap          = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'config','action'=>'map'));
+
+$linkConfigDisplay      = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'config','action'=>'display'));
+
+$linkConfigEmail        = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'config','action'=>'email'));
+
+$linkConfigAdvance      = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'config','action'=>'advance'));
+
+$linkConfigMaintenance      = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'config','action'=>'maintenance'));
+?>
+
+
+<form name="appForm" id="appForm" method="post" action="">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+
+            <div class="widget-body">
+                <div id="cph_Main_ctl00_TopTab_divSubMenu" class="">
+                <ul id="submenu" class="nav nav-tabs">
+                    <li><a class="active" href="<?php echo $linkConfig;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/setting.png"> Cấu hình website </a></li>
+                    <li><a href="<?php echo $linkConfigCompany;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/email.png"> Thông tin liên hệ </a></li>
+                    <li><a href="<?php echo $linkConfigMap;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/maps.png"> Bản đồ </a></li>
+                    <li class="active"><a href="<?php echo $linkConfigDisplay;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list3.png"> Cấu hình hiển thị </a></li>
+                    <li><a href="<?php echo $linkConfigEmail;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/setting-adve.png"> Cấu hình email </a></li>
+                    <li><a href="<?php echo $linkConfigAdvance;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/setting-adve.png"> Cấu hình nâng cao </a></li>
+                    <li><a href="<?php echo $linkConfigMaintenance;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/setting-adve.png"> Chế độ bảo trì </a></li>
+                </ul>
+                </div>
+                <div id="cph_Main_ctl00_notification_divNotice" style="padding-top:10px;">
+                <?php echo $messages ;?>  
+                </div>
+                <?php echo $messagesErrors;?>
+               
+
+                <div class="dataTables_wrapper">
+                        <!-- V? tri load datat-->
+                </div>
+        
+                <style type="text/css">
+                #tooltip { position: absolute; z-index: 10102; background-color: #FFF; padding: 5px; border: solid 3px #cccccc; display: block; width: 350px; text-align: center; }
+                </style>
+
+        </div>
+</div>
+
+
+<?php
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/display-ajax/page/".$page;
+?>
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+        var content = CKEDITOR.replace( 'content', {
+            customConfig    : 'config-05.js',
+            
+        });
+        CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+    </script>
+<script type="text/javascript">
+
+$j(document).ready(function(){
+    $j(".loading").show();
+    $j.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        //data    : {page : 1},
+        cache   : false,
+        success : function(data,status){
+            $j("div.dataTables_wrapper").html(data);
+            $j(".loading").fadeOut(1000);
+        }
+    });
+});
+
+</script>
+

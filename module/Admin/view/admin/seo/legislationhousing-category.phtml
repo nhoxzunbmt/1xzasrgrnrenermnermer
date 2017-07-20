@@ -1,0 +1,105 @@
+<?php
+$ssFilter   = $this->arrParam['ssFilter'];
+
+//==========Messages=========================//
+$messages   = $this->flashMessenger()
+                    ->setMessageOpenFormat('<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="alert alert-success">')
+                    ->setMessageSeparatorString('')
+                    ->setMessageCloseString('<button data-dismiss="alert" class="close">×</button>')
+                    ->render('success',array('success message'));
+
+
+
+
+//==========CREATE SEARCH FORM===============//
+
+
+
+
+
+//==========Select Record====================//
+
+
+$linkSeo                        = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'index'));
+$linkSeoNiceHouseCate           = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'nicehouse-category'));
+
+$linkSeoNewsCate                = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'news-category'));
+
+$linkSeoProjectCate             = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'project-category'));
+
+$linkSeoRealEstateCate          = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'realestate-category'));
+
+$linkSeoBusinessCate            = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'business-category'));
+
+$linkSeolegalhousingCate        = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'legalhousing-category'));
+
+$linkSeolegislationhousingCate  = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'legislationhousing-category'));
+
+$linkSeocontractformCate        = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'contractform-category'));
+
+$linkSeofengshuiCate            = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'seo','action'=>'fengshui-category'));
+?>
+
+<form name="appForm" method="post" action="">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+
+            <div class="widget-body">
+                <div id="cph_Main_ctl00_notification_divNotice" style="padding-top:10px;">
+                <?php echo $messages ;?>  
+                </div>
+
+               <div id="cph_Main_ctl00_TopTab_divSubMenu" class="">
+                <ul id="submenu" class="nav nav-tabs">
+                    <li><a href="<?php echo $linkSeo;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/globle.png"> Nhà đẹp </a></li>
+                   
+                    
+                    <li><a href="<?php echo $linkSeoNewsCate ;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list1.png"> Tin tức </a></li>
+                    <li><a href="<?php echo $linkSeoProjectCate  ;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list1.png"> Dự án </a></li>
+                    <li><a href="<?php echo $linkSeoRealEstateCate ;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list1.png"> Bất động sản </a></li>
+                    <li><a href="<?php echo $linkSeoBusinessCate ;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list1.png"> Doanh nghiệp </a></li>
+                    <li><a href="<?php echo $linkSeolegalhousingCate ;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list1.png"> Pháp lý nhà đất </a></li>
+                    <li class="active"><a href="<?php echo $linkSeolegislationhousingCate  ;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list1.png"> Văn bản luật </a></li>
+                    <li><a href="<?php echo $linkSeocontractformCate ;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list1.png"> Biểu mẫu </a></li>
+                    <li><a href="<?php echo $linkSeofengshuiCate ;?>"><img class="tabImage" src="<?php echo TEMPLATE_URL;?>/admin/images/list1.png"> Phong thủy </a></li>
+                </ul>
+                </div>
+
+                <div class="dataTables_wrapper">
+                        <!-- V? tri load datat-->
+                </div>
+        
+                <style type="text/css">
+                #tooltip { position: absolute; z-index: 10102; background-color: #FFF; padding: 5px; border: solid 3px #cccccc; display: block; width: 350px; text-align: center; }
+                </style>
+
+        </div>
+</div>
+
+
+<?php
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/legislationhousing-category-ajax/page/".$page;
+?>
+<script type="text/javascript">
+
+$j(document).ready(function(){
+    $j(".loading").show();
+    $j.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        //data    : {page : 1},
+        cache   : false,
+        success : function(data,status){
+            $j("div.dataTables_wrapper").html(data);
+            $j(".loading").fadeOut(1000);
+        }
+    });
+});
+
+</script>

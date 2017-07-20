@@ -1,0 +1,102 @@
+<?php
+$menuLegalHousing       = $this->url('ListLegalHousingRoute',array('controller'=>'legalhousing','action'=>'index'));
+
+$menuLegislationHousing       = $this->url('ListLegislationHousingRoute',array('controller'=>'legislationhousing','action'=>'index'));
+
+$menuContractForm       = $this->url('ListContractFormRoute',array('controller'=>'contractform','action'=>'index'));
+
+$xhtmlCategory = '';
+if(!empty($this->listItemsCategory)){
+  foreach ($this->listItemsCategory as $key => $item) {
+    $urlCategory = $this->url('CategoryLegislationHousingRoute',array(
+      'module'=>'home',
+      'controller'  =>'legislationhousing',
+      'action'      =>'category',
+      'name'        => \ZendVN\Url\FriendlyLink::filter($item['name']),
+      'page'        => '1',
+      'id'          => $item['id'],
+       'extension'  => 'html',
+    ));
+    $xhtmlCategory .= '<p><a href="'.$urlCategory.'" title="'.$item['name'].'">'.$item['name'].'</a></p>';
+  }
+}
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+    <div class="leftMainContent">
+      
+<div class="niceHouseKeyLink">
+    <div class="smallSearch" style="display: block;">
+        <div class="boxSearch">
+        <ul>
+            <li><h4><a href="<?php echo $menuLegalHousing;?> " title="Pháp lí nhà đất">Pháp lí nhà đất</a></h4></li><li class="current"><h4><a href="<?php echo $menuLegislationHousing;?>" title="Văn bản luật nhà đất">Văn bản luật nhà đất</a></h4></li><li><h4><a href="<?php echo $menuContractForm ;?>" title="Biểu mẫu hợp đồng">Biểu mẫu hợp đồng</a></h4></li>
+        </ul>
+      <div class="contentSearch bgWhite" style="display:block;">
+            <div class="quickLink"><?php echo $xhtmlCategory;?></div>
+</div>
+    </div>
+  </div>
+</div>
+
+
+ 
+ 
+    <script src="http://muabannhadat.com.vn/js/Document.js" type="text/javascript"></script>
+
+    <div class="dataTables_wrapper"><!--load--></div>
+        <?php
+        $page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+        $LinkPage   = $this->basePath()."/".$this->arrParam['module']."/legislationhousing/list/page/".$page;
+        $catid = (!empty($this->arrParam["id"])) ? $this->arrParam["id"] : "" ;
+        ?>
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+            $(".loading").show();
+            var page        = '<?php echo $page;?>';
+            var catid       = '<?php echo $catid ?>';
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {page: page, catid: catid},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    $(".loading").fadeOut(1000);
+                }
+            });
+        });
+
+        </script>
+
+    </div>
+    <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+  <?php echo $this->blkCafeLuat();?>
+
+      
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+  </div>

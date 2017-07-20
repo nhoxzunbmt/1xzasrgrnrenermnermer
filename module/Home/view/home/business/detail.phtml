@@ -1,0 +1,231 @@
+<?php
+$name               = $this->item['name'];
+$address            = $this->item['address'] .' - '.$this->item['name_ward'] . ' - '.$this->item['name_district'] . ' - '.$this->item['name_city'];
+
+$phone              = $this->item['phone'];
+$fax                = (!empty($this->item['fax'])) ? $this->item['fax'] : 'Updating...';
+$website            = (!empty($this->item['website'])) ? $this->item['website'] : '#Updating';
+$logo               = (!empty($item['logo']))  ? UPLOAD_URL .'/logo-business/'.$item['logo'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+$intro              = $this->item['intro'];
+
+$linkIntroBusiness          = $this->url('IntroBusinessRoute',array('action'=>'detail','alias'=>$this->arrParam['alias']));
+
+$linkContact        = $this->url('ContactBusinessRoute',array('action'=>'contact','alias'=>$this->arrParam['alias']));
+$linkDepartment     = $this->url('DepartmentBusinessRoute',array('action'=>'department','alias'=>$this->arrParam['alias']));
+
+$linkLandSale       = $this->url('LandSaleBusinessRoute',array('action'=>'landsale','alias'=>$this->arrParam['alias']));
+
+$linkLandForRent    = $this->url('LandForRentBusinessRoute',array('action'=>'landforrent','alias'=>$this->arrParam['alias']));
+
+$linkInvestors      = $this->url('investorsBusinessRoute',array('action'=>'investors','alias'=>$this->arrParam['alias']));
+
+$linkConstruction   = $this->url('constructionBusinessRoute',array('action'=>'construction','alias'=>$this->arrParam['alias']));
+
+$linkManagement     = $this->url('managementBusinessRoute',array('action'=>'management','alias'=>$this->arrParam['alias']));
+
+$linkDesign         = $this->url('designBusinessRoute',array('action'=>'design','alias'=>$this->arrParam['alias']));
+
+$linkDistributors   = $this->url('distributorsBusinessRoute',array('action'=>'distributors','alias'=>$this->arrParam['alias']));
+//dự án nổi bật
+$listItemLienQuan = '';
+if(!empty($this->listItemLienQuan)){
+    foreach($this->listItemLienQuan as $item){
+        $linkIntro = $this->url('IntroProjectRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'project',
+            'action'        =>  'intro',
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($item['name']),
+            'id'            =>  $item['id'],
+            'extension'     =>  'html',
+        ));
+        $image          =  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        $i = 1;
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/project/'.$image;
+                    break;
+                } 
+            }
+        }
+        
+        $listItemLienQuan      .= '<li><a href="'.$linkIntro.'" title="'.$item['name'].'"><img src="'.$image.'" width="113" alt="'.$item['name'].'" title="'.$item['name'].'"></a><h3><a href="'.$linkIntro.'" title="'.$item['name'].'">'.\ZendVN\Filter\ReadMore::create($item['name'],0,30).'</a></h3></li>';
+    }  
+}
+
+//Bds mới nhất
+$xhtmlMoiNhat = '';
+if(!empty($this->listItemBdsBusiness)){
+  foreach ($this->listItemBdsBusiness as $key => $item) {
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $image          = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
+        $name_type      = $item['name_type'];
+        $area           = $item['area'];
+        $price_m2       = $item['price_m2'];
+        $cat_id         = $item['cat_id'];
+        $i              = 1;
+       
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/real-estate/'.$image;
+                    break;
+                } 
+            }
+        }
+ 
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+
+ 
+        $xhtmlMoiNhat .= '<li><a href="'.$linkDetail.'">'.$title.'<span>( 1 ngày)</span></a><span class="price">7.9 Tỷ</span></li>';
+  }
+}
+?>
+
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+
+<div class="pageWrap">
+        <div class="leftMainContent">
+            <div class="companyDetail">
+                <div class="contentDetail">
+                    <div class="leftSmallContent">
+                        
+<div class="topObjectTitle">
+    <a href="<?php echo $website;?>" target="_blank" title="<?php echo $name;?>" class="avatar">
+        <img src="<?php echo $logo ;?>" width="95" alt="<?php echo $name;?>" title="<?php echo $name;?>"></a>
+    <div class="text">
+        <h1>
+            <?php echo $name;?><span><?php echo $address;?></span><span>ĐT:
+                <?php echo $phone ;?>
+                &nbsp;&nbsp;|&nbsp;&nbsp; Fax: <?php echo $fax;?>
+                </span></h1>
+        <a href="<?php echo $website;?>" target="_blank">
+            <?php echo $website;?></a>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".topObjectTitle img").error(function () {
+        $(this).attr("src", "http://muabannhadat.com.vn/images/users/imageUser.gif");
+    });
+});
+</script>
+                        
+<ul class="tabS">
+    <li><h4><a href="<?php echo $linkIntroBusiness;?>" title="Giới thiệu" class="current">Giới thiệu</a></h4></li>
+    <li style="display:inline-block;"><h4><a href="<?php echo $linkContact;?>" >Liên hệ</a></h4></li>   
+    <li style="display:inline-block;"><h4><a href="<?php echo $linkDepartment;?>" >Chi nhánh</a></h4></li> 
+    <li style="display:inline-block;"><h4><a href="<?php echo $linkLandSale;?>" >Nhà đất bán (<?php echo $this->countLandSale;?>)</a></h4></li>
+    <li style="display:inline-block;"><h4><a href="<?php echo $linkLandForRent;?>" >Nhà đất cho thuê (<?php echo $this->countLandForRent;?>)</a></h4></li>
+    
+     
+    
+     
+    
+    <li id="MainContent_VPMG_Leftmenu1_thongTinThem" class="moreInfo"><a href="#" title="Dự án của doanh nghiệp">
+        Dự án của DN</a>
+        <ul>
+            
+            <li><h4><a href="<?php echo $linkInvestors;?>" title="Dự án Chủ đầu tư">Dự án Chủ đầu tư (<?php echo $this->countInvestors;?>)</a></h4></li>
+            <li><h4><a href="<?php echo $linkConstruction;?>" title="Dự án Thi công">Dự án Thi công (<?php echo $this->countConstruction;?>)</a></h4></li>
+            <li><h4><a href="<?php echo $linkManagement;?>" title="Dự án Quản lý">Dự án Quản lý (<?php echo $this->countManagement;?>)</a></h4></li>
+            <li><h4><a href="<?php echo $linkDesign;?>" title="Dự án thiết kế">Dự án Thiết kế (<?php echo $this->countDesign;?>)</a></h4></li>
+            <li><h4><a href="<?php echo $linkDistributors;?>" title="Dự án Phân phối">Dự án Phân phối (<?php echo $this->countDistributors;?>)</a></h4></li>
+            
+             
+        </ul>
+    </li>
+</ul>
+
+
+
+
+                        <p style="text-align: justify;"><span style="font-size: small;">
+                            <?php echo $intro;?>
+                        </p>
+
+<p style="text-align: justify;"><!--Session data--></p>
+
+
+                    </div>
+                </div>
+            </div>
+            
+<script src="http://muabannhadat.com.vn/js/stepcarousel_Duan.js" type="text/javascript"></script>
+
+<div id="MainContent_VPMG_ConcernedProject1_cpBox" class="vipObject project">
+    <h2 class="leftTitle">
+        Dự án liên quan<a href="http://muabannhadat.com.vn/duan/" class="seeMore" title="Xem thêm các dự án khác">Xem
+            thêm</a></h2>
+    <div class="leftSmallContent">
+    <ul id="daUl" style="width: 2490px; position: relative; left: -664px;">
+    <?php echo $listItemLienQuan;?>
+    </ul>
+        <a href="javascript:" onclick="SlideCaroulse('l');" class="previousButton" title="Previous"></a>
+        <a href="javascript:" onclick="SlideCaroulse('r');" class="nextButton" title="Next"></a>
+    </div>
+</div>
+<script type="text/javascript">
+    self.setInterval("SlideCaroulse('l')", 3000);
+    var previousB = 4;
+    var noOfSlide = 4;
+    var selectedUl = 'div.leftSmallContent ul#daUl';
+    var ulWidth = $(selectedUl).width();
+    var liWidth = $('div.leftSmallContent ul#daUl li').width() + 16; 
+     
+     
+</script>
+
+            <div class="propertyLine company">
+  <h2 class="leftTitle"><b>Bất động sản mới nhất</b></h2>
+  <div class="leftSmallContent">
+    <ul>
+      <?php echo $xhtmlMoiNhat;?>
+    </ul>
+  </div>
+</div>
+            
+        </div>
+       <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+
+ 
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+    </div>

@@ -1,0 +1,80 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementTitle 		= $myForm->get('title');
+$elementFile		= $myForm->get('file');
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementTitle),
+		'input'				=>	$this->formElement($elementTitle),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tiêu đề',
+		'tooltipmessage'	=>	'Nhập Tiêu đề',
+	),
+	
+	array(
+		'label'				=>	'Danh mục',
+		'input'				=>	$this->cmsSelect('cat_id','',$this->itemsCategoryNews,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn Danh mục',
+		'tooltipmessage'	=>	'Chọn Danh mục',
+	),
+	
+	array(
+		'label'				=>	$this->formLabel($elementFile),
+		'input'				=>	$this->formElement($elementFile),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Tập tin biểu mẫu hợp đồng',
+		'tooltipmessage'	=>	'Tập tin biểu mẫu hợp đồng',
+	),
+	
+	
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'title'					=>	$elementTitle,
+	
+	
+));
+
+
+
+ 
+       
+
+
+?>
+
+
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+
+   	      	 	

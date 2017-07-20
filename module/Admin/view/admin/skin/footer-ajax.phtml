@@ -1,0 +1,43 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+
+$myForm = $this->myForm;
+$myForm->prepare();
+
+$elementContent     = $myForm->get('content');
+
+
+$elements = array(
+    array(
+        'label'             =>  $this->formLabel($elementContent),
+        'input'             =>  $this->formElement($elementContent),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Nội dung Footer',
+        'tooltipmessage'    =>  'Nội dung Footer',
+    ),
+    
+    
+);
+          
+?>
+
+<table class="admintable" style="width: 100%;">
+    <?php  echo $this->form()->openTag($myForm);
+    echo $this->partialLoop('admin/form-group.phtml',$elements);
+    echo $this->form()->closeTag();
+    ?>
+</table>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

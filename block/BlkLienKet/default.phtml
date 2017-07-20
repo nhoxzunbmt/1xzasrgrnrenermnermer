@@ -1,0 +1,14 @@
+
+<?php
+$xhtml      = '';
+$i          = 1;   
+$urlHelper  = $this->getView()->plugin('url');
+$xhtml 		=	'';
+if(!empty($this->_data)){
+	foreach ($this->_data as $item) {
+    	$name  	= $item['name'];
+    	$url 	= $item['url'];
+    	$xhtml 	.= '<a title="'.$name.'" target="_blank" href="'.$url.'">'.$name.'</a>';
+	}	
+}
+echo $xhtml;

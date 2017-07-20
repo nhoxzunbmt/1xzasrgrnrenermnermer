@@ -1,0 +1,115 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('name');
+$elementNickName 	= $myForm->get('nickname');
+$elementPhone 		= $myForm->get('phone');
+$elementEmail 		= $myForm->get('email');
+
+//Hiện trạng
+$arrOptions = array(
+   array('id'=>'yahoo','name'=>'Yahoo'),
+   array('id'=>'skype','name'=>'Skype'),
+);
+$frmType       	= $this->cmsSelect('type',$this->item->type,$arrOptions,'no-level',array('style' =>'padding: 4px 8px; width:206px;'));
+
+
+$elements = array(
+	array(
+		'label'				=>	'Nhóm',
+		'input'				=>	$frmType,
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Nick Name',
+		'tooltipmessage'	=>	'Nick Name',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementNickName),
+		'input'				=>	$this->formElement($elementNickName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Nick Name',
+		'tooltipmessage'	=>	'Nick Name',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Tên hiển thị',
+		'tooltipmessage'	=>	'Tên hiển thị',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementPhone),
+		'input'				=>	$this->formElement($elementPhone),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Điện thoại',
+		'tooltipmessage'	=>	'Điện thoại',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementEmail),
+		'input'				=>	$this->formElement($elementEmail),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Email',
+		'tooltipmessage'	=>	'Email',
+	),
+
+	
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'nickname'				=>	$elementNickName,
+	
+));
+
+
+
+ 
+       
+
+
+?>
+
+
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+	    			echo $this->formElement($elementId);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var content = CKEDITOR.replace( 'content', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+	
+
+	</script>	
+   	      	 	

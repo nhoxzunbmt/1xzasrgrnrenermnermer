@@ -1,0 +1,24 @@
+<?php
+
+
+
+$fullname  			= $this->item['fullname'];
+$email  			= $this->item['email'];
+$phone  			= $this->item['phone'];
+$title  			= $this->item['title'];
+$content  			= $this->item['content'];
+$fullname_contact 	= $item['fullname_contact'];
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh</h5>
+<p class='detail-info even'><label>Chủ Bất động sản:</label><span><?php echo $fullname_contact;?></span></p>	
+<p class='detail-info even'><label>Bất động sản:</label><span><?php echo $title;?></span></p>
+<p class='detail-info even'><label>Họ tên:</label><span><?php echo $fullname;?></span></p>
+<p class='detail-info even'><label>Email:</label><span><?php echo $email;?></span></p>
+<p class='detail-info even'><label>Điện thoại:</label><span><?php echo $phone;?></span></p>
+<p class='detail-info even'><label>Nội dung:</label><span><?php echo $content;?></span></p>
+</div>

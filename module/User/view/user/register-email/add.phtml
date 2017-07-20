@@ -1,0 +1,315 @@
+<?php
+//Loại bất động sản
+$frmTypeRealEstate          = $this->cmsSelect('type_real_estate','',$this->itemsTypeRealEstate,'no-level',array('class' =>'select'));
+
+
+//Kiểu bất động sản
+$arrOptions = array(
+  array('id'=>'','name'=>'Kiểu BĐS'),
+);
+$frmTypeRealEstateChild     = $this->cmsSelect('type_real_estate_child','',$arrOptions,'no-level',array('class' =>'select'));
+
+
+//Thành phố
+$frmcity                    = $this->cmsSelect('city','',$this->itemsCity,'no-level',array('class' =>'select'));
+
+//Quận huyện
+$arrOptions = array(
+  array('id'=>'','name'=>'Quận huyện'),
+);
+$frmDistrict                = $this->cmsSelect('district','',$arrOptions,'no-level',array('class' =>'select'));
+
+
+//Khoảng giá
+$arrOptions = array(
+  array('id'=>'','name'=>'Chọn giá'),
+  array('id'=>'0','name'=>'0'),
+  array('id'=>'500','name'=>'500 triệu'),
+  array('id'=>'1000','name'=>'1 tỷ'),
+  array('id'=>'2000','name'=>'2 tỷ'),
+  array('id'=>'3000','name'=>'3 tỷ'),
+  array('id'=>'4000','name'=>'4 tỷ'),
+  array('id'=>'6000','name'=>'6 tỷ'),
+  array('id'=>'8000','name'=>'8 tỷ'),
+  array('id'=>'10000','name'=>'10 tỷ'),
+  array('id'=>'9999999','name'=>'trên 10 tỷ'),
+);
+$frmPriceFrom               = $this->cmsSelect('pricefrom','',$arrOptions,'no-level',array('class'=>'select_price'));
+
+$frmPriceTo               	= $this->cmsSelect('priceto','',$arrOptions,'no-level',array('class'=>'select_price'));
+
+
+//Hướng
+$arrOptions = array(
+    array('id'=>'','name'=>'--Chọn--'),
+    array('id'=>'Đông','name'=>'Đông'),
+    array('id'=>'Tây','name'=>'Tây'),
+    array('id'=>'Nam','name'=>'Nam'),
+    array('id'=>'Bắc','name'=>'Bắc'),
+    array('id'=>'Đông Bắc','name'=>'Đông Bắc'),
+    array('id'=>'Đông Nam','name'=>'Đông Nam'),
+    array('id'=>'Tây bắc','name'=>'Tây bắc'),
+    array('id'=>'Tây Nam','name'=>'Tây Nam'),
+    array('id'=>'Chưa xác định','name'=>'Chưa xác định'),
+);
+$frmDirection               = $this->cmsSelect('direction','',$arrOptions,'no-level',array('class' =>'select'));
+
+//Pháp lý
+$arrOptions = array(
+    array('id'=>'','name'=>'--Chọn--'),
+    array('id'=>'1','name'=>'Sổ đổ, sổ hồng'),
+    array('id'=>'2','name'=>'Giấy tờ hợp lệ'),
+    array('id'=>'3','name'=>'GP kinh doanh'),
+    array('id'=>'4','name'=>'GP xây dựng'),
+);
+$frmJuridical               = $this->cmsSelect('juridical','',$arrOptions,'no-level',array('class' =>'select'));
+
+$myForm	= $this->myForm;
+$messagesErrors = $this->elementErrors(array(
+    'name'                 =>  $myForm->get('name'),
+    'email'                =>  $myForm->get('email'),
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+?>
+
+<?php echo $messagesErrors .$xhtmlError;?>
+<form name="appForm" method="post" action="">
+<div id="BoxSetupEmail">
+    <div class="TitleBox">
+        <h2>
+            Đăng ký để nhận email về BĐS mới nhất phù hợp</h2>
+    </div>
+    <div class="DesBoxSetupEmail">
+        <div style="width: 96%; background-color: #EEEFE3; margin: 5px 5px 5px 10px; padding: 5px;">
+            "Bạn có thể nhập yêu cầu tìm kiếm BĐS vào mẫu điền thông tin bên dưới, hệ thống
+            sẽ email bạn các bất động sản phù hợp."
+        </div>
+        <table cellspacing="5" cellpadding="0" border="0" class="FeatureMain">
+            <tbody><tr class="Bgform">
+                <td colspan="6">
+                    <table cellspacing="5" cellpadding="0" border="0">
+                        <tbody><tr>
+                            <td width="18%" rowspan="4" class="td_borright">
+                                <label>
+                                    Chọn</label>
+                                <ul class="TypeRegister">
+                                    <li>
+                                        <input type="radio" checked="checked" name="transaction" id="RadioGroup1_0" value="1">Tìm
+                                        mua</li>
+                                    <li>
+                                        <input type="radio" name="transaction" id="RadioGroup1_1" value="2">Tìm
+                                        thuê</li>
+                                </ul>
+                            </td>
+                            <td width="28%">
+                                <label>
+                                    Loại BĐS</label><span class="ColorStyle_1">*</span>
+                            </td>
+                            <td width="28%">
+                                <label>
+                                    Tỉnh/Thành phố</label><span class="ColorStyle_1">*</span>
+                            </td>
+                            <td width="26%">
+                                <label>
+                                    Giá từ (triệu)</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <?php echo $frmTypeRealEstate;?>
+                            </td>
+                            <td>
+                                <?php echo $frmcity;?>
+                            </td>
+                            <td>
+                               <?php echo $frmPriceFrom;?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>
+                                    Chọn kiểu BĐS:</label>
+                            </td>
+                            <td>
+                                <label>
+                                    Quận/Huyện</label>
+                            </td>
+                            <td>
+                                <label>
+                                    đến (triệu)</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <?php echo $frmTypeRealEstateChild;?>
+                            </td>
+                            <td>
+                                <?php echo $frmDistrict;?>
+                            </td>
+                            <td>
+                               <?php echo $frmPriceTo  ;?>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+       
+       
+        <div class="FeatureRS">
+            <h3>
+                • Đặc tính nhà đất</h3>
+            <table cellspacing="5" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td height="13">
+                        </td>
+                        <td width="27%">
+                        </td>
+                        <td width="27%" valign="top" rowspan="4">
+                            <label>
+                                Hướng nhà đất:</label>
+                            <?php echo $frmDirection  ;?>
+                        </td>
+                        <td width="22%" valign="top" rowspan="4">
+                            <label>
+                                Tình trạng pháp lý:</label>
+                            <?php echo $frmJuridical;?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="24%" align="right">
+                            <label>
+                                DT tối thiểu (m<sup>2</sup>):</label>
+                        </td>
+                        <td>
+                            <?php  echo $this->formText($myForm->get('area'));?>
+                        </td>
+                    </tr>
+                   
+                    <tr>
+                        <td align="right">
+                            <label>
+                                Kích thước đường tối thiểu:</label>
+                        </td>
+                        <td>
+                            <?php  echo $this->formText($myForm->get('road'));?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="ReceiveNewLetter">
+            <div class="TitleBox">
+                <h2>
+                    Nhận thư báo</h2>
+            </div>
+            <table cellspacing="5" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td width="26%" align="right">
+                            <label>
+                                Tên thư báo:</label>
+                        </td>
+                        <td width="74%" colspan="5">
+                            <?php  echo $this->formText($myForm->get('name'));?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" align="right">
+                            <label>
+                                Email nhận thư báo:</label>
+                        </td>
+                        <td colspan="5">
+                            <?php  echo $this->formText($myForm->get('email'));?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td colspan="5">
+                           
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="Btform">
+            <li>
+                <div class="Bgbutton">
+                    
+
+                    <a href="#" onclick="OnSubmitForm('<?php echo $this->basePath('/user/register-email/add/');?>')" id="MainContent_ctl00_btnDongY"><div id="btnLabel">Đăng ký nhận email</div></a>
+                </div>
+            </li>
+            <li>
+                
+            </li>
+        </ul>
+        <br>
+    </div>
+</div>
+
+
+ <?php 
+        $linkLoadTypeRealEstate = $this->url(null,array('module'=>'user','controller'=>'register-email','action'=>'load-select-type-real-estate'));
+        $linkLoadDistrict       = $this->url(null,array('module'=>'user','controller'=>'register-email','action'=>'load-select-district'));
+        
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //Load kiểu bất động sản
+            $("#type_real_estate").change(function(){
+                var type_real_estate = $("#type_real_estate option:selected").val();
+                loadTypeRealEstate(type_real_estate);
+            });
+
+            //Load quận huyện
+            $("#city").change(function(){
+                var city = $("#city option:selected").val();
+                loadDistrict(city);
+            });
+
+            
+           
+
+        })
+
+        function loadTypeRealEstate(type_real_estate){
+            $.ajax({
+                url     : '<?php echo $linkLoadTypeRealEstate;?>',
+                type    : 'GET',
+                data    : {type : type_real_estate},
+                success: function(data){
+                    $("#type_real_estate_child").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+       
+
+
+
+
+       
+        
+    </script>
+
+</form>

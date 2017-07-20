@@ -1,0 +1,38 @@
+<?php
+$linkIntro = $this->url('IntroProjectRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'project',
+            'action'        =>  'intro',
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($this->item['name']),
+            'id'            =>  $this->item['id'],
+            'extension'     =>  'html',
+        ));
+
+$urlDetail   = $this->url('DetailProjectRoute',array(
+            'controller'        => 'project',
+            'action'            => 'detail',
+            'namecategory'      => \ZendVN\Url\FriendlyLink::filter($this->item['name_category']),
+            'title'             => \ZendVN\Url\FriendlyLink::filter($this->item['name']),
+            'cid'               => $this->item['cat_id'],
+            'id'                => $this->item['id'],
+            'extension'         => 'html',
+        ));
+
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+	<div class="leftMainContent projectDetailOverview">
+        <div id="MainContent_EstateDetail1_divMenuEstateHtmlTab" class="boxTab">
+        	<ul>
+            	<li id="MainContent_EstateDetail1_liEstateHtml_1" class="current"><h4><a href="<?php echo  $linkIntro;?>" id="MainContent_EstateDetail1_hrfEstateHtml_1">Xem tổng quan</a></h4></li>
+                <li id="MainContent_EstateDetail1_liEstateHtml_2"><h4><a href="<?php echo $urlDetail;?>" id="MainContent_EstateDetail1_hrfEstateHtml_2">Xem chi tiết</a></h4></li>
+            </ul>
+        </div>
+        <div id="MainContent_EstateDetail1_divEstateHtml" class="projectVIP"><?php echo $this->item['overview'];?></div>
+         
+    </div>
+                   
+                  
+</div>

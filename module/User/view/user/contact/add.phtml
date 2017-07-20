@@ -1,0 +1,107 @@
+<?php
+$myForm = $this->myForm;
+$messagesErrors = $this->elementErrors(array(
+    'title'                 =>  $myForm->get('title'),
+    'fullname'              =>  $myForm->get('fullname'),
+    'email'                 =>  $myForm->get('email'),
+    'content'               =>  $myForm->get('content'),
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+?>
+
+<?php echo $messagesErrors .$xhtmlError;?>
+<form name="appForm" method="post" action="">
+
+<div id="BoxFormContact">
+    <div class="TitleBox">
+        <h2>
+            Hỗ trợ</h2>
+    </div>
+    <div class="DesBoxFormContact">
+        <table cellspacing="5" cellpadding="0" border="0">
+            <tbody>
+               
+                <tr>
+                    <td colspan="2">
+                        <h3>
+                            <span>Hỗ trợ/ Góp ý</span></h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <span id="MainContent_ctl00_lblThongBao" style="color:Red;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" class="Title">
+                        <label>
+                            Họ tên:</label>
+                        <span class="star">*</span>
+                    </td>
+                    <td>
+                        <?php  echo $this->formText($myForm->get('fullname'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" class="Title">
+                        <label>
+                            Địa chỉ Email:</label>
+                        <span class="star">*</span>
+                    </td>
+                    <td>
+                        <?php  echo $this->formText($myForm->get('email'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" class="Title">
+                        <label>
+                            Số điện thoại:</label>
+                    </td>
+                    <td>
+                        <?php  echo $this->formText($myForm->get('phone'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" class="Title">
+                        <label>
+                            Loại thông tin:</label>
+                    </td>
+                    <td>
+                        <?php  echo $this->formText($myForm->get('title'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" align="left" class="Title">
+                        <label>
+                            Nội dung:</label>
+                        <span class="star">*</span>
+                    </td>
+                    <td>
+                        <?php  echo $this->formTextarea($myForm->get('content'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td align="left">
+                        <ul class="Btform">
+                            <li>
+                                <div class="Bgbutton">
+                                    <div>
+                                         <a href="#" onclick="OnSubmitForm('<?php echo $this->basePath('/user/contact/add/');?>')" id="MainContent_ctl00_btnDongY">Gửi yêu cầu</a>
+
+                                    </div>
+                                </div>
+                                </li><li>
+                                    
+                                </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</form>

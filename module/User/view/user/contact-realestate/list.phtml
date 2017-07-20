@@ -1,0 +1,83 @@
+
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+	$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+    	$fullname 	= $item['fullname'];
+    	$email 		= $item['email'];
+    	$phone 		= $item['phone'];
+    	$id 		= $item['id'];
+    	$title 		= $item['title'];
+    	$cat_id 	= $item['rcat_id'];
+    	$rid 		= $item['rid'];
+    	$name_type 	= $item['name_type'];
+    	$linkEdit   = $this->basePath('/user/contact-realestate/view/' . $id); 
+    	
+    	//Icon status
+        if($item['status'] == 1){
+            $linkStatus = $this->basePath($this->currentController . '/status/'.$id.'/0'); 
+            $btnStatus  = $this->cmsIconButton('Hoạt động', TEMPLATE_URL . '/admin/images/star_list.png',$linkStatus,'link'); 
+        }else{
+            $linkStatus = $this->basePath($this->currentController . '/status/'.$id.'/1'); 
+            $btnStatus  = $this->cmsIconButton('Ngừng hoạt động', TEMPLATE_URL . '/admin/images/star_unlist.png',$linkStatus,'link');
+        }
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $rid,
+            'extension'     =>  'html',
+        ));
+
+    	$xhtml .= '<tr>
+					<td align="center">
+						'.$id.'
+					</td>	
+					<td><a class="link" target="_BLANK" href="'.$linkDetail.'">'.$title .'</a></td> 
+					<td><a class="link" href="mailto:'.$email.'">'.$fullname.'</a></td>			      
+					<td><br>'.$phone.'</td>			      
+					<td align="center">
+					
+					'.$btnStatus.'
+					</td>			      
+					<td class="clr_borright"><ul class="Alter"><li><a href="'.$linkEdit.'">Xem</a></li><li><a href="javascript:;" onclick="deleteStaff('.$id.')">Xóa</a></li></ul></td>		     
+					        
+				</tr> ';
+    }
+}    	
+?>	
+
+<table cellspacing="0" cellpadding="0" border="0">
+	<tbody>
+		<tr class="Bgform">
+			<td width="4%" align="center">
+				ID
+			</td>		
+			<td width="32%"><label>Bất động sản</label></td>
+			<td width="26%"><label>Khách hàng</label></td>
+			<td width="14%"><label>Điện thoại</label></td>
+			<td width="14%"><label>Trạng thái</label></td>
+			<td width="10%" class="clr_borright"><label>Chức năng</label></td>
+		</tr>
+		<?php echo $xhtml;?>		
+
+	</tbody>	
+</table>
+
+<?php
+    
+    $currentUrl =  $this->basePath('/user/real-estate/index/page/');
+    echo $this->paginationControl($this->paginator , 'sliding' , 'user/paginator.phtml', array('currentUrl'=>$currentUrl)); 
+ ?>
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

@@ -1,0 +1,102 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementName        = $myForm->get('name');
+$elementSlogan      = $myForm->get('slogan');
+$elementAddress     = $myForm->get('address');
+$elementPhone       = $myForm->get('phone');
+$elementFax         = $myForm->get('fax');
+$elementEmail       = $myForm->get('email');
+$elementWebsite     = $myForm->get('website');
+$elements = array(
+    array(
+        'label'             =>  $this->formLabel($elementName),
+        'input'             =>  $this->formElement($elementName),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Tên công ty',
+        'tooltipmessage'    =>  'Tên công ty',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementSlogan),
+        'input'             =>  $this->formElement($elementSlogan),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '',
+        'tooltiptitle'      =>  'Slogan',
+        'tooltipmessage'    =>  'Slogan',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementAddress),
+        'input'             =>  $this->formElement($elementAddress),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Địa chỉ',
+        'tooltipmessage'    =>  'Địa chỉ',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementPhone),
+        'input'             =>  $this->formElement($elementPhone),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Điện thoại',
+        'tooltipmessage'    =>  'Điện thoại',
+    ),
+
+   
+
+    array(
+        'label'             =>  $this->formLabel($elementFax),
+        'input'             =>  $this->formElement($elementFax),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '',
+        'tooltiptitle'      =>  'Fax',
+        'tooltipmessage'    =>  'Fax',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementEmail),
+        'input'             =>  $this->formElement($elementEmail),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '*',
+        'tooltiptitle'      =>  'Email',
+        'tooltipmessage'    =>  'Email',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementWebsite),
+        'input'             =>  $this->formElement($elementWebsite),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '',
+        'tooltiptitle'      =>  'website',
+        'tooltipmessage'    =>  'website',
+    ),
+    
+    
+);
+          
+?>
+
+<table class="admintable" style="width: 100%;">
+    <?php  echo $this->form()->openTag($myForm);
+    echo $this->partialLoop('admin/form-group.phtml',$elements);
+    echo $this->form()->closeTag();
+    ?>
+</table>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

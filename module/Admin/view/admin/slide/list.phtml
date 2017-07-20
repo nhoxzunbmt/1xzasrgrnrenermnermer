@@ -1,0 +1,292 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/list/page/".$page;
+
+
+
+$ssFilter               = $this->arrParam['ssFilter'];
+$action_link            = $this->basePath($this->currentController . '/filter/order');
+$lblID                  = $this->cmsLinkSort('ID','id',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+                                        
+$lblName                = $this->cmsLinkSort('Tiêu đề','title',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+    
+$lblDateRegister        = $this->cmsLinkSort('Date Time','date_time',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+                                        
+$lblStatus              = $this->cmsLinkSort('Hiển thị','status',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+                                                    
+$lblOrder               = $this->cmsLinkSort('Order','order',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+
+$lblCheckAll            = $this->cmsInput('checkbox','checkbox','checkbox',array('onclick'=>'checkedAll()'));           
+?>
+
+<div class="row-fluid">
+    <div class="span3">
+        <div style="margin-top:18px;">
+            Tổng số sản phẩm: <span style='color: #A52A2A;'><?php echo $ssFilter['record'] ;?></span> / <span style='color: #333;'><?php echo $this->totalItem;?></span>
+        </div>
+    </div>
+ 
+        
+<?php
+    $currentUrl =  $this->currentController.'/index/page/';
+    echo $this->paginationControl($this->paginator , 'sliding' , 'paginator.phtml', array('currentUrl'=>$currentUrl)); 
+ ?>
+
+
+
+
+<?php
+
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+     
+        $id             = $item->id;
+        $title          = $item->title;
+        
+        
+        
+        $image          = (!empty($item->images))  ? UPLOAD_URL .'/slide/'.$item->images :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        
+        
+        
+        $dateTime       = date('d-m-Y',strtotime($item->date_time));
+
+        //Icon chỉnh sửa
+        $linkEdit       = $this->basePath($this->currentController . '/edit/' . $id);
+        $btnEdit        = $this->cmsIconButton('Chỉnh sửa',TEMPLATE_URL.'/admin/images/edit.png',$linkEdit,'link');
+
+        //Icon Coppy
+        $linkCoppy      = $this->basePath($this->currentController . '/coppy/id/' . $id);
+        $btnCoppy       = $this->cmsIconButton('Sao chép',TEMPLATE_URL.'/admin/images/coppy.png',$linkCoppy,'link');
+
+        
+        $cid                = $this->cmsInput('cid[]','cid','checkbox',array('value'=>$id));
+        $linkDelete         = "javascript:deleteItem(".$id.")";
+        $btnDelete          = $this->cmsIconButton('Xóa',TEMPLATE_URL . '/admin/images/delete.png',$linkDelete,'link');
+        
+       
+
+        //Icon Coppy
+        //$linkView       = $this->basePath($this->currentController . '/view/id/' . $id);
+        $linkView       = 'onclick="javascript:return PopupHelp(&#39;'.$this->basePath($this->currentController . '/preview/' . $id).'&#39;);"';
+        $btnView        = $this->cmsIconButton('Xem thông tin',TEMPLATE_URL.'/admin/images/view.png',$linkView,'event');
+
+        //Button action
+        $ButtonAction   =$btnEdit .' ' .$btnDelete;
+
+        //Icon status
+        if($item->status == 1){
+            $linkStatus = $this->basePath($this->currentController . '/status/'.$id.'/0'); 
+            $btnStatus  = $this->cmsIconButton('Active', TEMPLATE_URL . '/admin/images/kh.png',$linkStatus,'link'); 
+        }else{
+            $linkStatus = $this->basePath($this->currentController . '/status/'.$id.'/1'); 
+           $btnStatus  = $this->cmsIconButton('Active', TEMPLATE_URL . '/admin/images/kkh.png',$linkStatus,'link');
+        }
+
+       
+        
+        
+        $frmOrder       = $this->cmsInput('order['.$id.']','order-'.$id,'text',array('value'=>$item->order,'class'=>'change-order','style'=>'width: 30px;','title'=>$id));
+
+        $xhtml .= sprintf('<tr class="row0" id="item-%s">
+                            <td align="center" style="width:8px;">%s</td>
+                            <td class="text-center thumb-image" align="center" style="width:30px;"><img src="%s"  title="%s"/></td>
+                            <td class="Code" align="center" style="width:35px;">%s</td>
+                            <td><a href="%s">%s</a></td>
+                            <td class="Code" align="center" style="width:100px;">%s</td>
+                     
+                            <td class="OrderNumber" align="center" style="width:55px;text-align:center;">%s</td>
+                            <td class="OrderNumber" align="center" style="width:55px;">%s</td>
+                            <td class="text-center" align="center" style="width:150px;">%s</td>
+
+                        </tr>
+                            ',$id,$cid,$image,$title,$id,$linkEdit,$title ,$dateTime,$btnStatus,$frmOrder,$ButtonAction);                    
+
+                             
+    }
+}
+
+?>
+
+
+
+    <div id="dialog-confirm" title="Thông báo!'" style="display: none;">
+        <p>Bạn có chắc muốn xóa phần tử này hay không?</p>
+    </div> 
+     <div id="dialog-confirm-all" title="Thông báo!'" style="display: none;">
+        <p>Bạn có chắc muốn những phần tử được chọn này hay không?</p>
+    </div> 
+    
+    <table class="table table-striped table-bordered dataTable table-hover" cellspacing="0" id="cph_Main_ctl00_ctl00_grvProducts" style="border-collapse:collapse;">
+        <tr>
+            <th scope="col"><?php echo $lblCheckAll ;?></th>
+            <th scope="col">Ảnh</th>
+            <th scope="col"><?php echo $lblID;?></th>
+            <th scope="col"><?php echo $lblName ;?></th>
+            
+            <th scope="col">Date Time</th>
+            <th scope="col"><?php echo $lblStatus;?></th>
+            <th scope="col"><?php echo $lblOrder;?></th>
+
+            <th scope="col">Thao tác</th>
+        </tr>
+
+       <?php  echo $xhtml;?>
+    </table>
+</div>
+
+<?php
+    $currentUrl =  $this->currentController.'/index/page/';
+    echo $this->paginationControl($this->paginator , 'sliding' , 'paginator.phtml', array('currentUrl'=>$currentUrl)); 
+
+ ?>
+</div>
+
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui-1.10.3.custom.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_URL;?>/admin/css/jquery-ui-1.10.3.custom.min.css">
+
+<script type="text/javascript">
+function checkAdmin(id){
+    alert("Tài khoản admin không thể xóa");
+}
+//Xóa dữ liệu
+function deleteItem(id) {
+    $j("#dialog-confirm").dialog({
+        resizable : false,
+        height : 200,
+        modal : true,
+        buttons : {
+            "Yes" : function() {
+             
+                $j(this).dialog("close");
+                <?php $urlDelete = $this->currentController.'/delete/';?>
+                window.location.href ='<?php echo $urlDelete;?>' + id;
+                
+            },
+            Cancel : function() {
+                $j(this).dialog("close");
+            }
+        }
+    });
+    
+}
+//Xóa những item đã chọn
+function deleteItemChanged(){
+    $j("#dialog-confirm-all").dialog({
+        resizable : false,
+        height : 200,
+        modal : true,
+        buttons : {
+            "Yes" : function() {
+                var strId = '';
+                $j('input[id=cid]:checked').each( function(index,element) {
+                   
+                    if(index == 0){
+                        strId += $j(this).val();
+                    }else{
+                        strId += ',' + $j(this).val();
+                    }
+                    
+                   
+                });
+                $j(this).dialog("close");
+                <?php $urlMutiDelete = $this->currentController.'/multi-delete/';?>
+                window.location.href ='<?php echo $urlMutiDelete;?>' + strId;
+                
+            },
+            Cancel : function() {
+                $j(this).dialog("close");
+            }
+        }
+    });
+}
+function statusItemChanged(option){
+    var strId = '';
+    $j('input[id=cid]:checked').each( function(index,element) {
+        if(index == 0){
+            strId += $j(this).val();
+        }else{
+            strId += ',' + $j(this).val();
+        }     
+    });
+    <?php $urlMutiStatus = $this->currentController.'/multi-status/';?>
+    window.location.href ='<?php echo $urlMutiStatus;?>' + strId + '/' + option;
+}
+//Chọn xóa
+function Confirm(option) {
+    var strId = '';
+    $j('input[type=checkbox]:checked').each( function(index,element) {
+        if($j(this).val() != 'on'){
+            if(index == 1){
+                strId += $j(this).val();
+            }else{
+                strId += ',' + $j(this).val();
+            }
+        }
+       
+    });
+    if(strId == ''){
+        alert('Hãy chọn ít nhất 1 Item để thao tác');
+    }else{
+        if(option == 'multi-delete'){
+            deleteItemChanged();
+        }if(option == 'multi-active'){
+            statusItemChanged('multi-active');
+        }if(option == 'multi-in-active'){
+            statusItemChanged('multi-in-active');
+        }
+    }
+    return false;
+}
+
+
+
+$j(document).ready(function(){
+
+    /*Thay đổi thứ tự*/
+    $j(".change-order").change(function(){
+        var link    = $j(this).attr("rel");
+        var idItem  = $j(this).attr('title');
+        var val     = $j(this).val();
+        var pattern = /[0-9]+$/;
+        if(!pattern.test(val)){
+            alert('Vui lòng nhập số');
+        }else{
+            $j.ajax({
+            url     : '<?php echo $LinkPage;?>',
+            type    : 'GET',
+            data    : {id : idItem,  value : val, option : 'order'},
+            cache   : false,
+            success : function(data,status){
+                $j("div.dataTables_wrapper").html(data);
+            }
+        });
+        }
+    });
+
+        
+    
+});   
+</script>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

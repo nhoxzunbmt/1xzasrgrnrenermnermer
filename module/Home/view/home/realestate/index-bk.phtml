@@ -1,0 +1,310 @@
+<?php
+//BDS nổi bật
+$xhtmlHighlight = '';
+if(!empty($this->itemRealestateHighlight)){
+  foreach ($this->itemRealestateHighlight as $key => $item) {
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $image          = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
+        $name_type      = $item['name_type'];
+        $area           = $item['area'];
+        $price_m2       = $item['price_m2'];
+        $cat_id         = $item['cat_id'];
+        $i              = 1;
+       
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/real-estate/'.$image;
+                    break;
+                } 
+            }
+        }
+ 
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+
+ 
+        $xhtmlHighlight .= '<li><a href="'.$linkDetail.'" title="'.$title.'"><img src="'.$image.'" width="150" height="112" alt="'.$title.'" title="'.$title.'"></a><h3><a href="'.$linkDetail.'" title="'.$title.'">'.\ZendVN\Filter\ReadMore::create($title,0,50).'</a><span>'.$price_m2.' tr/m2, <i>'.$area.'m<sup>2</sup></i></span></h3></li>';
+  }
+}
+
+//BDS chính chủ
+$xhtmlChinhChu = '';
+$xhtmlChinhChuToolTip = '';
+if(!empty($this->itemRealestateChinhChu)){
+  foreach ($this->itemRealestateChinhChu as $key => $item) {
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $content        = $item['content'];
+        $image          = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
+        $date_start     = $item['date_start'];
+        $date_end       = $item['date_end'];
+        $date_modifi    = $item['date_modifi'];
+        $name_city      = $item['name_city'];
+        $name_district  = $item['name_district'];
+        $name_ward      = $item['name_ward'];
+        $name_juridical = (!empty($item['name_juridical'])) ? $item['name_juridical'] : 'Đang cập nhật';
+        $name_type      = $item['name_type'];
+
+        $floor          = $item['floor'];
+        $bedroom        = $item['bedroom'];
+        $bathroom       = $item['bathroom'];
+        $direction      = (!empty($item['direction'])) ? $item['direction'] : 'Đang cập nhật';
+        $area           = $item['area'];
+        $type_news      = $item['type_news'];
+        $status         = $item['status'];
+        $cat_id         = $item['cat_id'];
+        $i              = 1;
+       
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/real-estate/'.$image;
+                    break;
+                } 
+            }
+        }
+ 
+        $price  = $item['price'];
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+
+ 
+        $xhtmlChinhChu .= '<li>
+                            <a href="'.$linkDetail.'" onmouseover="ddrivetipvip(\'divTootipBdsCc_'.$id.'\');" onmouseout="hideddrivetip();">
+                              <b>'.$name_city.':</b> '.$title.'
+                            </a>
+                            <span class="price"><font class="ColorStyle_1">'.\ZendVN\Convert\Price::convert($price).'</font></span>
+                          </li>';
+
+
+        $xhtmlChinhChuToolTip .='<div id="divTootipBdsCc_'.$id.'" class="propertyToolTip" style="display:none;">
+                                  <div class="ColImgs">
+                                    <img width="100" height="75" title="'.$title.'" alt="311201421586488.jpg - ," src="'.$image.'">
+                                   </div>
+                                   <div class="ColDes">
+                                    <h3>'.$title.'</h3>
+                                    <h4><span><b>'.$bedroom.'</b>PN, <b>'.$bathroom.'</b>WC, '.$direction.'&nbsp;&nbsp;|&nbsp;&nbsp;  '.\ZendVN\Convert\Price::convert($price).'  </span><span>ID: '.$id.'</span></h4>
+                                  <p>Địa chỉ:<span>'.$name_ward.', '.$name_district.', '.$name_city.'</span></p>
+                                   </div>
+                                   <ul>
+                                    <li><span>Diện tích:</span><span>'.$area.'m<sup>2</sup> </span></li>
+                                    
+                                    <li><span>Pháp lý:</span><span>'.$name_juridical.'</span></li>
+                                    <li><span>Hướng:</span><span>'.$direction.'</span></li>
+                                   </ul>   
+                                </div>';
+  }
+}
+
+//Bds mới nhất
+$xhtmlMoiNhat = '';
+if(!empty($this->itemRealestateMoiNhat)){
+  foreach ($this->itemRealestateMoiNhat as $key => $item) {
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $image          = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
+        $name_type      = $item['name_type'];
+        $area           = $item['area'];
+        $price_m2       = $item['price_m2'];
+        $cat_id         = $item['cat_id'];
+        $i              = 1;
+        $price          = $item['price'];
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/real-estate/'.$image;
+                    break;
+                } 
+            }
+        }
+ 
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+
+ 
+        $xhtmlMoiNhat .= '<li><a href="'.$linkDetail.'">'.$title.'<span></span></a><span class="price">'.\ZendVN\Convert\Price::convert($price).'</span></li>';
+  }
+}
+
+//Bất động sản thành phố
+$xhtmlCity = '';
+if(!empty($this->listCity)){
+    foreach($this->listCity as $item){
+        $urlCity   = $this->url(
+            'CityBatDongSanRoute',
+            array('controller'=>'realestate','action'=>'city','cityname'=>\ZendVN\Url\FriendlyLink::filter($item['name']),'page'=>1,'cityid'=>$item['id']
+        ));
+        $xhtmlCity      .= '<li>  <a href="'.$urlCity.'" title="'.$item['name'].'">'.$item['name'].' <span></span>  </a></li>';
+    }  
+}
+
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+	<div class="leftMainContent">
+	    
+  <script type="text/javascript">
+      $("#ulDaVipMainMnu img").error(function (event) {
+          $(this).attr("src", "http://muabannhadat.com.vn/images/du-an-noi-bat.jpg");
+      })
+  </script> 
+  <script type="text/javascript">
+      //    $(function () {
+      //        LoadNextTopEstate();
+      //    });
+      var esi = 4;
+      function LoadNextTopEstate() {
+
+          $("#ulDaVipMainMnu").html("");
+
+          var countes = 1;
+          while (esi < listtopestate.length) {
+              if (countes > 4)
+                  break;
+              var htmlinner = listtopestate[esi].es;
+              esi++;
+              $("#ulDaVipMainMnu").append(htmlinner);
+              countes++;
+              if (esi > listtopestate.length - 1)
+                  esi = 0;
+          }
+
+          setTimeout("LoadNextTopEstate()", 10000);
+          $("#ulDaVipMainMnu img").error(function(event) {
+              $(this).attr("src", "http://muabannhadat.com.vn/images/du-an-noi-bat.jpg");
+          });
+      }    
+      if(listtopestate.length>4)
+          setTimeout("LoadNextTopEstate()", 10000);
+  </script>
+		
+  <div class="vipObject property">
+      <h2 class="leftTitle"><b>
+          Bất động sản nổi bật</b></h2>
+      <div class="leftSmallContent">
+          <div id="divListBdsVip"><ul>
+            <?php echo $xhtmlHighlight;?>
+
+          </ul></div>
+      </div>
+      <a name="searchbox"></a>
+  </div>
+  <script type="text/javascript">
+      $("#divListBdsVip img").error(function (event) {
+          $(this).attr("src", "http://muabannhadat.com.vn/images/bat-dong-san-noi-bat.jpg");
+      })
+      </script> 
+
+      <script type="text/javascript">
+          var j = 0;
+          function LoadNextTopPro() {
+              if (j == 4) j = 1;
+              if (j == 0) j = 1;
+              var htmlinnerpro = "";
+              if (j == 1)
+                  htmlinnerpro = listTopPro.p1;
+              if (j == 2)
+                  htmlinnerpro = listTopPro.p2;
+              if (j == 3)
+                  htmlinnerpro = listTopPro.p3;
+
+              $("#divListBdsVip").html(htmlinnerpro);
+              j++;
+              setTimeout("LoadNextTopPro()", 20000);
+
+              $("#divListBdsVip img").error(function (event) {
+                  $(this).attr("src", "http://muabannhadat.com.vn/images/bat-dong-san-noi-bat.jpg");
+              })
+          }
+
+          setTimeout("LoadNextTopPro()", 20000);
+  </script>
+	<div id="MainContent_OwnerProperty1_divBDS_noibat_index" class="M_Box_1 mar_b10"><div class="propertyLine myself">
+      <h2 class="leftTitle"><b>Bất động sản chính chủ</b>
+      </h2>
+      <div class="leftSmallContent">
+        <ul>
+          <?php echo $xhtmlChinhChu;?>
+        </ul>
+         
+      </div>
+    </div>
+  </div>
+
+  <?php echo $xhtmlChinhChuToolTip;?>
+
+
+  <script>
+  ga('send' ,'timing', 'Home', 'Sql time OwnerProperty', 25);
+  </script>
+
+  <script src="<?php echo TEMPLATE_URL;?>/default/js/tooltipDoanhNghiep.js" type="text/javascript"></script>
+
+    			
+  <div class="propertyLine newest">
+  	<h2 class="leftTitle"><b>
+  		Nhà đất mới nhất</b></h2>
+  	<div class="leftSmallContent">
+  		<ul id="ListPiNewest">
+        <?php echo $xhtmlMoiNhat;?>
+      </ul>
+  		
+  	</div>
+  </div>
+
+
+  <script type="text/javascript">
+  	//<!--
+  	nvgData.ListPropertyNewest('28', '241', '', '');
+  	//-->
+  </script>
+
+	<div class="catalogDistrict">
+      <h2 class="leftTitle"><b>Nhà đất  tại các thành phố</b></h2>
+        <div class="leftSmallContent">
+            <ul class="leftLine">
+
+              <?php echo $xhtmlCity;?>
+            </ul>
+    	</div>
+    </div>
+	</div>
+
+  <div class="rightMainContent">  
+    <?php echo $this->columnRightSearchRealEstate;?>
+    <?php echo $this->contentRightColumn;?>
+  </div>
+</div>

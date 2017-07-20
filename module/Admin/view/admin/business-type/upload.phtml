@@ -1,0 +1,9 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+	$file         = (!empty($this->fileName))  ? $this->fileName :  'Updating...';
+	echo $file.'<input name="image_hidden" type="hidden" value="'.$this->fileName.'"/>';
+}else{
+	echo 'No ajax';
+}
+?>

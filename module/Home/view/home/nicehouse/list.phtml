@@ -1,0 +1,95 @@
+
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+       
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $description    = $item['description'];   
+        $date_time      = $item['date_time'];
+        $image          = (!empty($item['images']))  ? UPLOAD_URL .'/nice-house/'.$item['images'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        
+        $urlDetail   = $this->url('DetailNiceHouseRoute',array(
+            'controller'        => 'nicehouse',
+            'action'            => 'detail',
+            'namecategory'      => \ZendVN\Url\FriendlyLink::filter($item['name_category']),
+            'title'             => \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'               => $item['cat_id'],
+            'id'                => $item['id'],
+            'extension'         => 'html',
+        ));
+
+        $xhtml .= '  <li>
+                    <h3>
+                        <a title="'.$title.'" href="'.$urlDetail.'">
+                        <img width="204" height="153" title="'.$title.'" src="'.$image.'"></a>
+                        <a title="'.$title.'" href="'.$urlDetail.'">'.$title.'</a> 
+                    </h3>
+                </li>';
+
+                    
+
+                             
+    }
+}
+$xhtmlCategory = '';
+if(!empty($this->listItemsCategory)){
+    foreach ($this->listItemsCategory as $key => $item) {
+        $urlCategory = $this->url('CategoryNiceHouseRoute',array(
+          'module'=>'home',
+          'controller'  =>'nicehouse',
+          'action'      =>'category',
+          'name'        => \ZendVN\Url\FriendlyLink::filter($item['name']),
+          'page'        => '1',
+          'id'          => $item['id'],
+           'extension'  => 'html',
+        ));
+        $xhtmlCategory .= '<a title="'.$item['name'].'" href="'.$urlCategory.'">'.$item['name'].'</a>';
+    }
+}
+
+?>
+<div id="MainContent_ArticleList1_niceHouseId" class="niceHouseList margined">
+    <div class="leftSmallContent">
+        
+        
+        <input id="hCurrentPage" type="hidden" value="1"><input id="hTotalRows" type="hidden" value="210"><input id="hTotalRowsAgent" type="hidden" value=""><ul class="leftListing3">
+        <?php echo $xhtml;?>
+        </ul>
+        
+        <?php
+            $paramsUrl  = array(
+               'module'        => 'home',
+                'controller'        => 'nicehouse',
+                'action'            => 'category',
+                'name'              => $this->arrParam['name'],
+                'page'              => '1',
+                'id'                => $this->arrParam['cat_id'],
+                'extension'         => 'html',
+            );
+            echo $this->paginationControl($this->paginator , 'sliding' , 'home/business/paginator.phtml', array(
+                'router'    => 'CategoryNiceHouseRoute',
+                'arrParam'  =>$paramsUrl,
+            )); 
+         ?>
+        <div id="MainContent_ArticleList1_SubMenu2_divContent" class="moreBox"><?php echo $xhtmlCategory;?></div>
+    </div>
+</div>
+
+  
+ 
+
+
+
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

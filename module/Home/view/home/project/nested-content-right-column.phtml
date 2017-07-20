@@ -1,0 +1,209 @@
+<?php
+//Loại bất động sản
+$frmItemsProjectCategory          = $this->cmsSelect('project_cat','',$this->itemsProjectCategory,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+
+
+
+
+//Tỉnh
+$frmCityProject            = $this->cmsSelect('city_project','',$this->itemsCity,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+//Quận huyện
+$arrOptions = array(
+     array('id'=>'','name'=>'Quận/Huyện'),
+);
+$frmDistrictProject        = $this->cmsSelect('district_project','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+
+
+$arrOptions = array(
+  array('id'=>'','name'=>'Diện tích'),
+  array('id'=>'100-150','name'=>'100 - 150 m2'),
+  array('id'=>'150-250','name'=>'150 - 250 m2'),
+  array('id'=>'250-500','name'=>'250 - 500 m2'),
+  array('id'=>'500-1000','name'=>'500 - 1000 m2'),
+  array('id'=>'1000-1500','name'=>'1000 - 1500 m2'),
+  array('id'=>'1500-3000','name'=>'1500 - 3000 m2'),
+  array('id'=>'3000-5000','name'=>'3000 - 5000 m2'),
+  array('id'=>'5000-10000','name'=>'5000 - 10000 m2'),
+  array('id'=>'10000-20000','name'=>'10000 - 20000 m2'),
+  array('id'=>'20000-30000','name'=>'20000 - 30000 m2'),
+  array('id'=>'30000-100000000','name'=>'trên 30000 m2'),
+);
+$frmAreaRangeProject               = $this->cmsSelect('area_range_project','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+
+
+$linkSearchProject         = $this->url('MVC_HomeRouter/action',array('controller'=>'project','action'=>'search'));
+
+$linkLoadTypeRealEstate = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'realestate','action'=>'load-select-type-real-estate'));
+$linkLoadDistrict       = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'realestate','action'=>'load-select-district'));
+$linkLoadProject        = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'realestate','action'=>'load-select-project'));
+
+?>
+
+<script src="http://muabannhadat.com.vn/js/rightsearch.js?v=23072014" type="text/javascript"></script>
+
+<div class="rightSearch nvgFst">
+    <div class="boxSearch ">
+        <ul>
+            <li class="current" id="liBan"><h4><a href="javascript:;" onclick="$('#txtText').show();$('#txtTextThue').hide();NvgFst.ActiveTab(this, '.tabBan');LoadLoaiBDSFolTranClass('sale');SetValueQH('txtTranClass', 'sale');LoadGia();WriteTextCondition();" title="Nhà đất bán"><b>Dự án</b></a></h4></li>
+            
+        </ul>
+    </div>
+    <div class="padded tabBan" style="display: block;">
+        
+          <form action="<?php echo $linkSearchProject;?>" method="get" name="search-project-form" id="search-project-form">
+        <div class="boxSearch">
+            <ol>
+                
+                <li>
+                    <div class="selectedValues marB5 upZ180">
+                        <?php echo $frmItemsProjectCategory ;?>
+                    <div class="clearBoth"></div>
+                </li>
+               
+                <li>
+                    <div class="selectedValues marB5 upZ140">
+                         <?php echo $frmCityProject ;?>
+                    </div>
+                    <div class="clearBoth"></div>
+                </li>
+                <li>
+                              
+                    <div class="selectedValues marB5 upZ120">
+                        <?php echo $frmDistrictProject;?> 
+                        
+                    </div>
+                    <div class="clearBoth"></div>
+                </li>
+               
+                <li>
+                              
+                    <div class="selectedValues marB5 upZ120">
+                        <?php echo $frmAreaRangeProject;?> 
+                        
+                    </div>
+                    <div class="clearBoth"></div>
+                </li>
+               
+               
+                <li>
+                    
+
+                    <input type="button" id="search-submit-project" name="submit" style="float:right;background:url('<?php echo TEMPLATE_URL.'/default/images/search-real-estate.png';?>');width:113px;height:32px;">
+
+                    
+                    <div class="clearBoth"></div>
+                </li>
+                
+            </ol>
+        </div>
+    </div>
+    </form>
+   
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+
+           
+            //Load quận huyện
+            $("#search-project-form #city_project").change(function(){
+                var city = $("#search-project-form #city_project option:selected").val();
+                loadDistrict(city);
+            });
+
+            //Load xã phường và dự án
+            $("#search-project-form #district_project").change(function(){
+                var district = $("#search-project-form #district_project option:selected").val();
+                loadProject(district);
+            });
+
+
+            $("#search-project-form #search-submit-project").click(function(){
+                
+                var city        = $("#search-project-form #city_project option:selected").val();
+                var district    = $("#search-project-form #district_project option:selected").val();
+                var cat         = $("#search-project-form #project_cat option:selected").val();
+                var area_range         = $("#search-project-form #area_range_project option:selected").val();
+                
+                var linkSearchProject = '<?php echo $linkSearchProject;?>?cat=' + cat + '&city=' + city + '&district=' + district + '&area=' + area_range + '&page=1';
+
+
+
+                //Tìm kiếm tất cả thông tin
+                if(cat != '' || city != ''  || district != ''||  area_range != ''){
+                    window.location = linkSearchProject;
+                }else if(cat == '' && city == ''  && district == '' && area_range == '' ){
+                     alert("Bạn phải nhập từ khóa, hoặc chọn các tiêu chí");
+                }
+
+            });
+        });
+
+        function loadTypeRealEstate(type_real_estate){
+            $.ajax({
+                url     : '<?php echo $linkLoadTypeRealEstate;?>',
+                type    : 'GET',
+                data    : {type : type_real_estate},
+                success: function(data){
+                    $("#search-project-form #type_real_estate_child").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#search-project-form #district_project").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        
+        
+    </script>
+   
+</div>
+            
+<script type="text/javascript">
+    //<!--
+    // nvgData.LoadTtqt();
+    $('#txtGiaTu').val("");
+    //-->
+</script>
+
+<!--<script type="text/javascript">BindFormSearch();</script>-->
+			
+
+<?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+
+ 
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 

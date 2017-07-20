@@ -1,0 +1,61 @@
+<?php
+$xhtml                  = '';
+$i                      = 1;   
+$urlHelper              = $this->getView()->plugin('url');
+$linkHome               = $urlHelper('home',array('module'=>'home','controller'=>'index','action'=>'index'));
+if(!empty($this->_data)){
+   foreach ($this->_data as $item) {
+
+        $fullname       = $item['fullname'];
+        $phone          = $item['phone'];
+        $introduced     = $item['introduced'];
+        $content        = $item['content'];
+        
+        $xhtml       .= '<div class="panel" style="float: none; position: absolute; left: 0px;"><div class="rightQuote"><blockquote><b>'.$content.'</b><span class="quote_end"></span></blockquote><div class="rightCustomerName"><h4>'.$fullname.'('.$phone.')<span>'.$introduced.'</span></h4></div></div></div>';
+        
+    } 
+}
+
+?>
+
+
+<div class="customerComment">
+              <h4 class="rightTitle">Nhận xét của khách hàng</h4>
+                <div id="nodegallery_Node" class="stepcarousel_Node">
+                    <div class="belt" style="width: 4470px; left: -1788px;">
+                        <?php echo $xhtml;?>
+                    </div>
+                </div>
+                <input type="hidden" value="15" id="hdnCount">
+                <a href="javascript:stepcarousel_Node.stepBy('nodegallery_Node', 1)" class="previousButton" title="Previous" id="forward"></a>
+                <a href="javascript:stepcarousel_Node.stepBy('nodegallery_Node', -1)" class="nextButton" title="Next" id="back"></a>
+                <div class="rightSmallContent">
+                    <div class="slogan">
+                      <a href="<?php echo $linkHome;?>" title="Website bất động sản"></a>
+                        <p><b>Chúng tôi cam kết</b><span>Luôn vì khách hàng</span></p>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                //<!--
+                if(typeof  stepcarousel_Node !== 'undefined')
+                {
+                    stepcarousel_Node.setup({
+                        galleryid: 'nodegallery_Node', //id of carousel DIV
+                        beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
+                        panelclass: 'panel', //class of panel DIVs each holding content
+                        autostep: { enable: true, moveby: 1, pause: 8000 },
+                        panelbehavior: { speed: 500, wraparound: false, wrapbehavior: 'slide', persist: true },
+                        defaultbuttons: { enable: false, moveby: 1, leftnav: [pathClient + 'images/scroll_previous.gif', -7, 0], rightnav: [pathClient + 'images/scroll_next.gif', -15, 0] },
+                        statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
+                        contenttype: ['inline'],//content setting ['inline'] or ['ajax', 'path_to_external_file']
+                        ForwardID:'forward',        //(optional) the unique ID name of the object to rotate the elements forward on mouseup.          (string, default = inline event calls)
+                        BackID:'back'              //(optional) the unique ID name of the object to rotate the elements back on mouseup.             (string, default = inline event calls)
+
+                    })
+                }
+
+                //-->
+</script><style type="text/css">
+#nodegallery_Node{overflow: hidden;}
+</style>

@@ -1,0 +1,187 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('name');
+$xhtml = '';
+if(!empty($this->item_answer)){
+	foreach($this->item_answer as $item){
+
+		$xhtml .= '<tr class="even">						
+					<td align="left"> <input type="text" name="options['.$item['id'].']" id="options-'.$item['id'].'" value="'.$item['answer'].'" style="width:500px;">
+					
+					</td>
+
+					<td align="center">'.$item['votes'].' Vote</td>
+					</tr>';
+
+	}
+}
+													
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Câu hỏi thăm dò',
+		'tooltipmessage'	=>	'Câu hỏi thăm dò',
+	),
+	
+	array(
+		'label'				=>	'Câu trả lời',
+		'input'				=>	'<table class="adminlist">
+								<thead>
+								    <tr>
+								    <th width="500">Lựa chọn</th>                                  				
+								    <th width="50">Votes</th>	                                                                      
+								    </tr>
+								    </thead>
+								   	'.$xhtml.'            
+													
+													
+			
+									</table>',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Câu trả lời',
+		'tooltipmessage'	=>	'Câu trả lời',
+	),
+
+	
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'name'				=>	$elementName,
+	
+	
+));
+
+
+ 
+       
+
+
+?>
+
+<style type="text/css">
+/** Table styles **/
+
+table.adminlist {
+	width: 100%;
+	border-spacing: 1px;
+	background-color: #e7e7e7;
+	/*color: #4973d7;*/
+}
+
+table.adminlist td,
+table.adminlist th { padding: 4px; }
+
+table.adminlist thead th {
+	text-align: center;
+	background: #f0f0f0;
+	color: #4973d7;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #fff;
+}
+
+table.adminlist thead a:hover { text-decoration: none; }
+
+table.adminlist thead th img { vertical-align: middle; }
+
+table.adminlist tbody th { font-weight: bold; }
+
+table.adminlist tbody tr			{ background-color: #fff;  text-align: left; }
+table.adminlist tbody tr.row1 	{ background: #f9f9f9; border-top: 1px solid #fff; }
+
+table.adminlist tbody tr.row0:hover td,
+table.adminlist tbody tr.row1:hover td  { background-color: #ffd ; }
+
+table.adminlist tbody tr td 	   { height: 25px; background: #fff; border: 1px solid #fff; }
+table.adminlist tbody tr.row1 td { background: #f9f9f9; border-top: 1px solid #FFF; }
+
+table.adminlist tfoot tr { text-align: center;  color: #333; }
+table.adminlist tfoot td,
+table.adminlist tfoot th { background-color: #f3f3f3; border-top: 1px solid #999; text-align: center; }
+
+table.adminlist td.order 		{ text-align: center; white-space: nowrap; }
+table.adminlist td.order span { float: left; display: block; width: 20px; text-align: center; }
+
+table.adminlist .pagination { display:table; padding:0;  margin:0 auto;	 }
+
+table.admintable td{ padding: 2px 5px; }
+table.admintable td.key,
+table.admintable td.paramlist_key {
+	background-color: #f6f6f6;
+	text-align: right;
+	width:200px;
+	color: #666;
+	font-weight: bold;
+	border-bottom: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+	vertical-align: top;
+	padding-top:4px;
+}
+
+table.paramlist td.paramlist_description {
+	background-color: #f6f6f6;
+	text-align: left;
+	width: 170px;
+	color: #333;
+	font-weight: normal;
+	border-bottom: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+}
+
+table.admintable td.key.vtop { vertical-align: top; }
+
+table.admintable{background-color:#FFF; border-spacing:2px;}
+
+
+.sub-head{ background: #EFEFEF; border-bottom: 1px solid #777; color: #444; font-weight: bold; padding: 2px 5px; text-align: left; height: 25px; }
+.key-summary{ width: 140px; }
+.textbox-price{ text-align: right; }
+.summary{ font-weight: bold; }
+
+</style>
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+	    			echo $this->formElement($elementId);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var content = CKEDITOR.replace( 'content', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+	
+
+	</script>	
+   	      	 	

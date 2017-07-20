@@ -1,0 +1,276 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('name');
+$elementAlias		= $myForm->get('alias');
+$elementAddress 	= $myForm->get('address');
+$elementFile		= $myForm->get('image');
+$elementPhone		= $myForm->get('phone');
+$elementFax			= $myForm->get('fax');
+$elementWebsite		= $myForm->get('website');
+$elementIntro		= $myForm->get('intro');
+$elementContact		= $myForm->get('contact');
+$elementDepartment	= $myForm->get('department');
+
+//Quận huyện
+$arrOptions = array(
+  
+);
+$frmDistrict       	= $this->cmsSelect('district','',$arrOptions,'no-level',array('style' =>'padding: 4px 8px; width:206px;'));
+  
+//Xã phường
+$arrOptions = array(
+  
+);
+$frmWard           	= $this->cmsSelect('ward','',$arrOptions,'no-level',array('style' =>'padding: 4px 8px; width:206px;'));
+
+
+$logo        = (!empty($this->item->logo))  ? UPLOAD_URL .'/logo-business/'.$this->item->logo :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tên doanh nghiệp',
+		'tooltipmessage'	=>	'Nhập Tên doanh nghiệp',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementAlias),
+		'input'				=>	$this->formElement($elementAlias),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tên Alias',
+		'tooltipmessage'	=>	'Tên Alias viết liền không dấu, chữ thường, chữ số, chấp nhận dấu _',
+	),
+	array(
+		'label'				=>	'Loại hình doanh nghiệp',
+		'input'				=>	$this->cmsSelect('type_business',$this->item->type_business,$this->itemsTypeBusinesss,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn Loại hình doanh nghiệp',
+		'tooltipmessage'	=>	'Chọn Loại hình doanh nghiệp',
+	),
+	
+	array(
+		'label'				=>	$this->formLabel($elementPhone),
+		'input'				=>	$this->formElement($elementPhone),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Số điện thoại',
+		'tooltipmessage'	=>	'Nhập Số điện thoại',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementFax),
+		'input'				=>	$this->formElement($elementFax),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Fax',
+		'tooltipmessage'	=>	'Nhập Fax',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementWebsite),
+		'input'				=>	$this->formElement($elementWebsite),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Website',
+		'tooltipmessage'	=>	'Nhập Website',
+	),
+	array(
+		'label'				=>	'Thành phố',
+		'input'				=>	$this->cmsSelect('city',$this->item->city,$this->itemsCity,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn thành phố',
+		'tooltipmessage'	=>	'Chọn thành phố',
+	),
+
+	array(
+		'label'				=>	'Quận/huyện',
+		'input'				=>	$frmDistrict,
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Quận/huyện',
+		'tooltipmessage'	=>	'Chọn Quận/huyện',
+	),
+
+	array(
+		'label'				=>	'Xã/phường',
+		'input'				=>	$frmWard ,
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Xã/phường',
+		'tooltipmessage'	=>	'Chọn Xã/phường',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementAddress),
+		'input'				=>	$this->formElement($elementAddress),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Địa chỉ',
+		'tooltipmessage'	=>	'Nhập Địa chỉ',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementFile),
+		'input'				=>	'<div id="load-avatar"><img src="'.$logo.'" width="150" height="150">
+								<input name="image_hidden" type="hidden" value="'.$this->item->logo.'"/>
+								</div><br>
+								
+								<input name="image" type="file" />
+								<button class="Button btn btn-small">Tải lên</button>
+								',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Avatar',
+		'tooltipmessage'	=>	'Avatar',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementIntro),
+		'input'				=>	$this->formElement($elementIntro),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Giới thiệu',
+		'tooltipmessage'	=>	'Nhập vào Giới thiệu',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementContact),
+		'input'				=>	$this->formElement($elementContact),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Liên hệ',
+		'tooltipmessage'	=>	'Liên hệ',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementDepartment),
+		'input'				=>	$this->formElement($elementDepartment),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Chi nhánh',
+		'tooltipmessage'	=>	'Chi nhánh',
+	),
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'name'					=>	$elementName,
+	'alias'					=>	$elementAlias,
+	'phone'					=>	$elementPhone,
+	'address'				=>	$elementAddress,
+	'intro'					=>	$elementIntro,
+	'contact'				=>	$elementContact,
+));
+
+
+
+ 
+       
+$linkLoadDistrict       = $this->url(null,array('module'=>'admin','controller'=>'business','action'=>'load-select-district'));
+$linkLoadWard           = $this->url(null,array('module'=>'admin','controller'=>'business','action'=>'load-select-ward'));
+       
+
+
+?>
+
+
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+	    			echo $this->formElement($elementId);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+		$(function() {
+			
+
+		    //upload avatar
+			$("#appForm").submit(function(){
+			    var formData = new FormData($(this)[0]);
+			    
+			    $.ajax({
+			        url: "<?php echo $this->url(null,array('module'=>'admin','controller'=>'business','action'=>'upload'));?>",
+			        type: 'POST',
+			        data: formData,
+			        async: false,
+			        success: function (data) {
+			        	$j("#load-avatar").html(data);
+			        },
+			        cache: false,
+			        contentType: false,
+			        processData: false
+			    });
+
+			    return false;
+			});
+
+			 _city = $("#city option:selected").val();
+            loadDistrict(_city);
+
+            _district = <?php echo $this->item->district;?>;
+            loadWard(1);
+
+            //Load quận huyện
+            $("#city").change(function(){
+                _city = $("#city option:selected").val();
+                loadDistrict(_city);
+            });
+
+            //Load xã phường và dự án
+            $("#district").change(function(){
+                _district = $("#district option:selected").val();
+                loadWard(_district);
+            });
+
+		});
+
+		function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city, currentDistrict : <?php echo $this->item->district;?>},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        function loadWard(district){
+            $.ajax({
+                url     : '<?php echo $linkLoadWard;?>',
+                type    : 'GET',
+                data    : {district : district, currentWard : <?php echo $this->item->ward;?>},
+                success: function(data){
+                    $("#ward").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+	  </script>   	      	 	

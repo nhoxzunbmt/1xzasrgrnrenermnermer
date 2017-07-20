@@ -1,0 +1,111 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('name');
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Câu hỏi thăm dò',
+		'tooltipmessage'	=>	'Câu hỏi thăm dò',
+	),
+	
+	array(
+		'label'				=>	'Số lượng câu trả lời ',
+		'input'				=>	'
+							<input type="text" name="number" id="number" value="" style="width:100px;"><button name="btn" id="btn" type="button" value="Đồng ý" style="width:80px;height:30px;">Đồng ý</button><br>
+							<div id="load_form">
+
+							</div>
+							',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Câu hỏi thăm dò',
+		'tooltipmessage'	=>	'Câu hỏi thăm dò',
+	),
+	
+	
+	
+);
+
+//$messagesErrors = $this->elementErrors(array(
+//	'name'				=>	$elementName,
+//
+//));
+
+
+
+ 
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/form-option"; 
+
+
+?>
+
+
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+ 
+<script type="text/javascript">
+$j(document).ready(function(){
+      $j("#btn").click(function(){
+         var number = $j("#number").val();
+         if(number == ''){
+            alert('Vui lòng nhập số lượng câu trả lời');
+         }else{            
+            $j.ajax({
+		        url     : '<?php echo $LinkPage;?>',
+		        type    : 'GET',
+		        data    : {number : number},
+		        cache   : false,
+		        success : function(data,status){
+		            $j("#load_form").html(data);
+		            
+		        }
+		    });
+         }
+      });
+      
+   })
+</script>
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var content = CKEDITOR.replace( 'content', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+	
+
+	</script> 
+
+
+   	      	 	

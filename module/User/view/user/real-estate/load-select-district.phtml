@@ -1,0 +1,20 @@
+<?php
+$isXmlHttpRequest 	= $this->isXmlHttpRequest;
+$data  				= $this->data;
+$xhtml 				= '';
+if($isXmlHttpRequest == true){
+	$xhtml		=	'<option value="0">--Chọn--</option>';
+	
+	foreach ($data as $key => $value) {
+		$strSelect 	= '';
+		if($this->currentDistrict != null){
+			if($value['id'] == $this->currentDistrict){
+				$strSelect = 'selected="selected"';
+			}
+		}
+		$xhtml .= sprintf('<option value="%s" %s>%s</option>',$value['id'],$strSelect,$value['name']);
+	}
+	
+}
+echo $xhtml;
+?>

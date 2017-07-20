@@ -1,0 +1,610 @@
+<?php
+$linkIntroProject = $this->url('IntroProjectRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'project',
+            'action'        =>  'intro',
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($this->item['name']),
+            'id'            =>  $this->item['id'],
+            'extension'     =>  'html',
+        ));
+
+$urlDetail   = $this->url('DetailProjectRoute',array(
+            'controller'        => 'project',
+            'action'            => 'detail',
+            'namecategory'      => \ZendVN\Url\FriendlyLink::filter($this->item['name_category']),
+            'title'             => \ZendVN\Url\FriendlyLink::filter($this->item['name']),
+            'cid'               => $this->item['cat_id'],
+            'id'                => $this->item['id'],
+            'extension'         => 'html',
+        ));
+
+
+$name           = $this->item['name'];
+$address        = $this->item['address'] . ' - '. $this->item['name_district'] . ' - '. $this->item['name_city'];
+$name_category  = $this->item['name_category'];
+$area           = $this->item['area'];
+$floor          = (!empty($this->item['floor'])) ? $this->item['floor'] : 'Đang cập nhật';
+$workstart      = (!empty($this->item['workstart'])) ? $this->item['workstart'] : 'Đang cập nhật';
+$workend        = (!empty($this->item['workend'])) ? $this->item['workend'] : 'Đang cập nhật';
+$name_investors = (!empty($this->item['name_investors'])) ? $this->item['name_investors'] : 'Đang cập nhật';
+$link_investors = $this->url('IntroBusinessRoute',array('action'=>'detail','alias'=>$this->item['alias_investors']));
+
+$name_construction  = (!empty($this->item['name_construction'])) ? $this->item['name_construction'] : 'Đang cập nhật';
+$name_management    = (!empty($this->item['name_management'])) ? $this->item['name_management'] : 'Đang cập nhật';
+$name_design        = (!empty($this->item['name_design'])) ? $this->item['name_design'] : 'Đang cập nhật';
+$intro              = $this->item['intro'];
+$nameother          = $this->item['nameother'];
+$service            = $this->item['service'];
+$location           = $this->item['location'];
+$siteplan           = $this->item['siteplan'];
+
+//nhà phân phối
+$link_distributors = $this->url('IntroBusinessRoute',array('action'=>'detail','alias'=>$this->item['alias_distributors']));
+$logo           = (!empty($this->$item['logo_distributors']))  ? UPLOAD_URL .'/logo-business/'.$this->$item['logo_distributors'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+$xhtml_distributors = ' <li>
+                      <a href="'.$link_distributors.'" title="'.$this->item['name_distributors'].'">
+                        <img src="'.$logo.'" width="120" height="60" alt="'.$this->item['name_distributors'].'">
+                        '.$this->item['name_distributors'].'
+                      </a>
+                        
+                    </li>';
+
+
+$xImage         = '';
+$xImageLi       = '';
+$images         = $this->item['images'];
+
+//Hình ảnh slide
+$i              =   0;
+if(!empty($images)){
+    $images     = \Zend\Json\Json::decode($images);
+    
+    foreach ($images as $key => $image) {
+        $event       = '';
+        $image       = UPLOAD_URL .'/project/'.$image;
+        $xImage     .= '<a href="'.$image.'" id="imgDetail_'.$i.'" class="lightbox-2 galleryDetail boxSlide" rel="flowers"><img src="'.$image.'" width="648px" border="0" alt="'.$title.'"></a>              
+            ';
+        if($i == 0){
+            $event = 'class="current"';
+        }
+        $xImageLi   .= '<li id="imgli'.$i.'" '.$event.' onclick="ImgNode('.$i.');"><a href="javascript:"></a></li>';   
+        $i++;
+    }
+}
+
+//dự án nổi bật
+$listItemHighlight = '';
+if(!empty($this->listItemHighlight)){
+    foreach($this->listItemHighlight as $item){
+        $linkIntro = $this->url('IntroProjectRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'project',
+            'action'        =>  'intro',
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($item['name']),
+            'id'            =>  $item['id'],
+            'extension'     =>  'html',
+        ));
+        $image          =  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        $i = 1;
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/project/'.$image;
+                    break;
+                } 
+            }
+        }
+        
+        $listItemHighlight      .= '<li><a href="'.$linkIntro.'" title="'.$item['name'].'"><img src="'.$image.'" width="113" alt="'.$item['name'].'" title="'.$item['name'].'"></a><h3><a href="'.$linkIntro.'" title="'.$item['name'].'">'.\ZendVN\Filter\ReadMore::create($item['name'],0,30).'</a></h3></li>';
+    }  
+}
+
+//Dự án thành phố
+$xhtmlCity = '';
+if(!empty($this->listCity)){
+    foreach($this->listCity as $item){
+        $urlCity   = $this->url(
+            'CityProjectRoute',
+            array('controller'=>'project','action'=>'city','cityname'=>\ZendVN\Url\FriendlyLink::filter($item['name']),'page'=>1,'cityid'=>$item['id']
+        ));
+        $xhtmlCity      .= '<li>  <a href="'.$urlCity.'" title="'.$item['name'].'">'.$item['name'].' <span></span>  </a></li>';
+    }  
+}
+
+//Dự án quận huyện
+$xhtmlDistrict = '';
+if(!empty($this->listDistrict)){
+    foreach($this->listDistrict as $item){
+        $urlDistrict   = $this->url('DistrictProjectRoute',array(
+            'controller'        => 'Project',
+            'action'            => 'district',
+            'cityname'          => \ZendVN\Url\FriendlyLink::filter($this->item['name_city']),
+            'districtname'      => \ZendVN\Url\FriendlyLink::filter($item['name']),
+            'page'              => '1',
+            'cityid'            => $this->item['city'],
+            'iddistrict'        =>  $item['id'],
+            'extension'         => 'html',
+        ));
+        $xhtmlDistrict      .= '<li>  <a href="'.$urlDistrict.'" title="'.$item['name'].'">'.$item['name'].' <span></span>  </a></li>';
+    }  
+}
+?>
+  <script src="<?php echo TEMPLATE_URL;?>/default/js/stepcarousel_DuAn.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery-ui/jquery.lightbox_PropertyDetail.js"></script>
+
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/estatedetail.js?v=3"></script>
+<script src="<?php echo TEMPLATE_URL;?>/default/js/jquery.autoheight.js" type="text/javascript" ></script>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->breadcrumb,array('task'=>'data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+
+<div class="pageWrap">
+        <div class="leftMainContent ">
+            <div id="MainContent_EstateDetail1_divMenuEstateHtmlTab" class="boxTab">
+                <ul>
+                    <li id="MainContent_EstateDetail1_liEstateHtml_1"><h4><a href="<?php echo $linkIntroProject;?>" id="MainContent_EstateDetail1_hrfEstateHtml_1">Xem tổng quan</a></h4></li>
+                    <li id="MainContent_EstateDetail1_liEstateHtml_2" class="current"><h4><a href="<?php echo $urlDetail;?>" id="MainContent_EstateDetail1_hrfEstateHtml_2">Xem chi tiết</a></h4></li>
+                </ul>
+            </div>
+            
+             <div id="MainContent_EstateDetail1_divEstateMbnd" class="projectDetail">
+                <div class="contentDetail">
+                    <div class="leftSmallContent">
+                        <h1><?php echo $name;?><span><?php echo $address;?></span></h1>
+<div class="likeThisContent top"> 
+<small>Chia sẻ thông qua:</small>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo ZendVN\Url\CurrentUrl::get();?>" id="linkShareFacebook" class="facebook rvnfacebook" title="Kết nối chúng tôi trên facebook">
+    <img src="<?php echo TEMPLATE_URL;?>/default/images/facebook.png" alt="Facebook" title="Facebook">
+  </a>
+  
+</div>
+
+
+ <ul class="tabS marB20">
+                <li><a href="javascript:" title="Giới thiệu" class="current" id="tabBasicInfo">Giới thiệu</a></li>
+                <li><a href="javascript:" title="Hạ tầng - Dịch vụ" id="tabMoreInfo" class="">Hạ tầng - Dịch vụ</a></li>
+                <li><a href="javascript:" title="Vị trí" id="tabFengShui" class="">Vị trí</a></li>
+             
+                <li><a href="javascript:" title="Sơ đồ mặt bằng" id="tabContact" class="">Sơ đồ mặt bằng</a></li>
+            </ul>
+            <!--  thong tin co ban -->
+            <div class="basicInfo" style="display: block;">
+               
+                  <div style="display:none;" id="divMapInfo">
+                            <h2>Bản đồ</h2>
+                             <div class="mediaWrap">
+                                <div class="map">
+                                    <a id="MainContent_EstateDetail1_hrfLinkBando" class="logo">
+                                        <img width="138" height="39" title="Bản đồ nhà đất" alt="Bản đồ nhà đất" src="http://images.videonhadat.com.vn/bandonhadat.png">
+                                    </a>                                    
+                                    <div id="MainContent_EstateDetail1_ifrMap">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="divImageSlide">
+                <div class="slideShow" style="">
+                    <?php echo $xImage;?>
+                   
+                    <input id="hdfTotalImg" type="hidden" value="11"><input id="hdfCurrentImg" type="hidden" value="0">
+                    <a href="javascript:;" class="previousButton" title="Previous" onclick="PreviousImg();">
+                    </a>
+                    <a href="javascript:;" class="nextButton" title="Next" onclick="NextImg();">
+                    </a>
+
+                    <ul id="imgul" class="slideControl">
+                        <?php echo $xImageLi;?>
+                    </ul>
+                </div>
+            </div>
+    
+                
+
+                
+                
+
+
+                
+                <h2>Thông tin cơ bản</h2>
+<ul class="basicInfo">
+    <li><span>Loại hình:</span><span><?php echo $name_category;?></span></li>
+    <li><span>Địa chỉ:</span><span><?php echo $address;?></span></li>
+    <li><span>Diện tích tổng thể:</span><span><?php echo $area ;?> m2</span></li>
+    <li><span>Số tầng:</span><span><?php echo $floor ;?></span></li>
+    <li><span>Ngày khởi công:</span><span><?php echo $workstart;?></span></li>
+    <li><span>Ngày hoàn thành:</span><span><?php echo $workend;?></span></li>
+    <li><span>Hiện trạng:</span><span>Đang triển khai</span></li>
+    <li><span>Chủ đầu tư:</span><span><a href="<?php echo $link_investors;?>"><?php echo $name_investors;?></a><br></span></li>
+    <li><span>Đơn vị thi công:</span><span><?php echo $name_construction;?></span></li>
+    <li><span>Đơn vị quản lý:</span><span><?php echo $name_management;?></span></li>
+    <li><span>Đơn vị thiết kế:</span><span><?php echo $name_design;?></span></li>
+</ul>
+
+                
+                
+                
+                <h2><?php echo $name;?></h2>
+                <?php echo $intro;?>                               
+                
+                <h2>Tên gọi khác</h2><p><?php echo $nameother;?></p>
+            </div>
+
+            <!--Xem bản đồ-->
+            <div class="dataGrid2" style="display: none;">   
+                    
+                <?php echo $service;?>
+
+            </div>    
+            <!--end Xem bản đồ-->
+        <!--Xem phong thủy-->
+         
+        <div class="fengshuiBox" style="display: none;">                        
+           <?php echo $location;?>
+           <div id="map-canvas" style="margin-bottom:50px;"></div>
+                                 
+       </div>
+        
+
+                
+        <!-- LIÊN HỆ -->
+                   
+            
+            <div class="contactInfo" style="display: none;">
+            <?php echo $siteplan;?>
+
+            </div>
+            
+            
+            
+     <script type="text/javascript" src="/public/templates/default/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/templates/default/js/jquery.form.js"></script>
+
+  
+
+
+    
+    <script type="text/javascript">
+        //<!--
+            function HideDivTab(){
+                $(".fengshuiBox").hide();
+                $(".basicInfo").hide();
+                $(".dataGrid2").hide();
+                $(".contactInfo").hide();
+
+                $("#tabBasicInfo").removeClass("current");
+                $("#tabMoreInfo").removeClass("current");
+                $("#tabFengShui").removeClass("current");
+                $("#tabContact").removeClass("current");
+            }
+          $(document).ready(function () {
+               HideDivTab();
+               $("#tabBasicInfo").addClass("current");
+               $(".basicInfo").show();
+               $( "#tabBasicInfo" ).click(function() {
+                    HideDivTab();
+                    $(".basicInfo").show();
+                    $(this).addClass("current");
+                    ga('send', 'event', 'button', 'click', 'info-buttons');
+                });
+                $( "#tabMoreInfo" ).click(function() {
+                    HideDivTab();
+                    $(".dataGrid2").show();
+                    $(this).addClass("current");
+                    ga('send', 'event', 'button', 'click', 'more-info-buttons');
+                });
+                $( "#tabFengShui" ).click(function() {
+                    HideDivTab();
+                    $(".fengshuiBox").show();
+                     $(this).addClass("current");
+                     ga('send', 'event', 'button', 'click', 'phongthuy-buttons');
+                });
+                $( "#tabCalAccounting" ).click(function() {
+                    ga('send', 'event', 'button', 'click', 'tinhtoan-tc-buttons');
+                });
+                $( "#tabContact" ).click(function() {
+                    HideDivTab();
+                    $(".contactInfo").show();
+                     $(this).addClass("current");
+                     ga('send', 'event', 'button', 'click', 'lienhe-buttons');
+                });
+
+                if ($('#hdfTotalImg').val() != "0") {
+                    var total = parseInt($('#hdfTotalImg').val());
+
+                    function ImgNode(par) {
+                        $('#hdfCurrentImg').val(par);
+                        $('.galleryDetail').hide();
+                        $('#imgDetail_' + par).show();
+                        var curImg = $('#hdfCurrentImg').val();
+                        $('#imgul li').removeClass();
+                        $('#imgli' + curImg).addClass('current');
+                    }
+                    function NextImg() {
+                        var current = parseInt($('#hdfCurrentImg').val());
+                        if (current < total) {
+                            current++;
+                            $('#hdfCurrentImg').val(current);
+                            $('.galleryDetail').hide();
+                            $('#imgDetail_' + current).show();
+                            ImgNode(current);
+                        }
+                    }
+
+                    function PreviousImg() {
+                        var current = parseInt($('#hdfCurrentImg').val());
+                        if (current > 0) {
+                            current--;
+                            $('#hdfCurrentImg').val(current);
+                            $('.galleryDetail').hide();
+                            $('#imgDetail_' + current).show();
+                            ImgNode(current);
+                        }
+                    }
+        }
+
+               
+        });
+
+        
+        
+ 
+        
+       
+       
+
+    
+  
+
+    
+    </script>
+
+
+                        
+                      
+
+
+
+
+               
+  
+<h2>Nhà phân phối <?php echo $name;?></h2>
+    <ul class="distributor">
+       <?php echo $xhtml_distributors;?>
+    </ul>
+        
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div id="dvTopEstate" class="vipObject project">
+   
+    <div class="vipObject company">
+            <h2 class="leftTitle"><b>Dự án nổi bật</b></h2>
+            <div class="leftSmallContent">
+                <div id="nodegalleryDa" style="left:0;"><ul style="width: 1197px; position: relative; left: -283.0664157292731px;">
+                    <?php echo $listItemHighlight;?>
+
+                </ul><a onclick="SlideCaroulse(&quot;l&quot;);" href="javascript:" class="previousButton grey" title="Previous"></a><a onclick="SlideCaroulse(&quot;r&quot;);" href="javascript:" class="nextButton grey" title="Next"></a></div>
+                
+            </div>
+        </div>
+         <script type="text/javascript">
+             self.setInterval("SlideCaroulse('l')", 3000);
+             var previousB = 5;
+             var noOfSlide = 5;
+             var selectedUl = 'div#nodegalleryDa ul';
+             var ulWidth = $(selectedUl).width();
+             var liWidth = 133;
+             
+             
+        </script>
+<script type="text/javascript">
+    $("#ulDaVipMainMnu img").error(function (event) {
+        $(this).attr("src", "http://muabannhadat.com.vn/images/du-an-noi-bat.jpg");
+    })
+</script> 
+<script type="text/javascript">
+    //    $(function () {
+    //        LoadNextTopEstate();
+    //    });
+    var esi = 4;
+    function LoadNextTopEstate() {
+
+        $("#ulDaVipMainMnu").html("");
+
+        var countes = 1;
+        while (esi < listtopestate.length) {
+            if (countes > 4)
+                break;
+            var htmlinner = listtopestate[esi].es;
+            esi++;
+            $("#ulDaVipMainMnu").append(htmlinner);
+            countes++;
+            if (esi > listtopestate.length - 1)
+                esi = 0;
+        }
+
+        setTimeout("LoadNextTopEstate()", 10000);
+        $("#ulDaVipMainMnu img").error(function(event) {
+            $(this).attr("src", "http://muabannhadat.com.vn/images/du-an-noi-bat.jpg");
+        });
+    }    
+    if(listtopestate.length>4)
+        setTimeout("LoadNextTopEstate()", 10000);
+</script>
+</div>
+
+
+<script type="text/javascript">
+    $("#ulDaVipMainMnu img").error(function (event) {
+        $(this).attr("src", "http://muabannhadat.com.vn/images/du-an-noi-bat.jpg");
+    })
+</script> 
+<script type="text/javascript">
+    //    $(function () {
+    //        LoadNextTopEstate();
+    //    });
+    var esi = 4;
+    function LoadNextTopEstate() {
+
+        $("#ulDaVipMainMnu").html("");
+
+        var countes = 1;
+        while (esi < listtopestate.length) {
+            if (countes > 4)
+                break;
+            var htmlinner = listtopestate[esi].es;
+            esi++;
+            $("#ulDaVipMainMnu").append(htmlinner);
+            countes++;
+            if (esi > listtopestate.length - 1)
+                esi = 0;
+        }
+
+        setTimeout("LoadNextTopEstate()", 10000);
+        $("#ulDaVipMainMnu img").error(function(event) {
+            $(this).attr("src", "http://muabannhadat.com.vn/images/du-an-noi-bat.jpg");
+        });
+    }    
+    if(listtopestate.length>4)
+        setTimeout("LoadNextTopEstate()", 10000);
+</script>
+            <div class="relationProject">
+    <h2 class="leftTitle"><b>Bất động sản thuộc dự án <?php echo $name;?></b></h2>
+    <div class="leftSmallContent">
+        <div class="dataTables_wrapper"><!--load--></div>
+        <?php
+        $page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+        $LinkPage   = $this->basePath()."/".$this->arrParam['module']."/realestate/realestate-of-project/page/".$page;
+        ?>
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+            $(".loading").show();
+            var project = '<?php echo $this->item["id"];?>';
+            var page = '<?php echo $page;?>';
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {page: 1, project: project},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    $(".loading").fadeOut(1000);
+                }
+            });
+        });
+
+        </script>
+
+
+    </div>
+</div>
+        
+            <div class="leftDistrict">
+    <h2 class="leftTitle"><b>Dự án tại các quận/huyện <?php echo $this->item['name_city'];?></b></h2>
+    <div class="leftSmallContent">
+        <ul class="leftLine">
+            <?php echo $xhtmlDistrict;?>
+        </ul>
+    </div>
+</div>
+            <div class="projectProvince">
+  <h2 class="leftTitle"><b>Dự án ở các Tỉnh/Thành</b></h2>
+  <div class="leftSmallContent">
+    <ul class="leftLine">
+      <?php echo $xhtmlCity;?>
+
+    
+    </ul>
+  </div>
+</div>
+
+
+        </div>
+        <div id="MainContent_EstateDetail1_divEstateMbnd_right" class="rightMainContent">
+            
+
+            <?php echo $this->contentRightColumn;?>
+        </div>
+    </div>
+
+
+    <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzt_2S45qa9J9Eo0KP5ltMxtxJXZv6vKU&sensor=false&
+          language=vi&
+          region=GB">
+    </script>
+    <script type="text/javascript">
+      var geocoder;
+      var map;
+      var marker;
+      var infowindow;
+
+      function toggleBounce(){
+        if(marker.getAnimation() != null){
+          marker.setAnimation(null);
+        }else{
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      };
+
+      function codeAddress(){
+        var address = document.getElementById('address').value;
+        geocoder.geocode({
+          'address': address
+        },function(results, status){
+            if(status == google.maps.GeocoderStatus.OK){
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+
+              document.getElementById('latitude').value = latitude;
+              document.getElementById('longitude').value = longitude;
+              map.setCenter(results[0].geometry.location);
+              marker = new google.maps.Marker({
+                  map: map,
+                  animation: google.maps.Animation.DROP,
+                  position: results[0].geometry.location,
+                  title: results[0].address_components[0].long_name
+              });
+              google.maps.event.addListener(marker, 'click', toggleBounce);
+              
+              var content = 'Name: ' + results[0].address_components[0].long_name + '<br/>'
+                       + 'Address: ' + results[0].formatted_address + '<br/>';
+              
+              infowindow = new google.maps.InfoWindow({
+                    map: map,
+                    position: results[0].geometry.location,
+                    content: content//JSON.stringify(results)
+              });
+            }else{
+              alert('Không tìm thấy địa điểm: ' + status);
+            }
+        });
+      };
+      function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(21.033333, 105.85000000000002);
+        var mapOptions = {
+          zoom: 15,
+          center: latlng
+        }
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+      }
+
+  
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>

@@ -1,0 +1,324 @@
+<?php
+$ssFilter   = $this->arrParam['ssFilter'];
+
+//==========Messages=========================//
+$messages   = $this->flashMessenger()
+                    ->setMessageOpenFormat('<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="alert alert-success">')
+                    ->setMessageSeparatorString('')
+                    ->setMessageCloseString('</div>')
+                    ->render('success',array('success message'));
+
+
+
+
+//==========CREATE SEARCH FORM===============//
+
+
+$frmTextBox = $this->cmsInput('keywords','keywords','text',array('value'=>$ssFilter['keywords'],'maxlength'=>'100','placeholder'=>'Nhập ID','class'=>'input_id','style'=>'height:22px;'));
+
+$linkSearch = $this->basePath($this->currentController . '/filter/search/null/null/1');
+$frmSubmit  = $this->cmsInput('search','search','button',array('value'=>'Lọc','class'=>'Bgbutton','onclick'=>'OnSubmitForm(\''.$linkSearch.'\')','style'=>'width:50px;height:30px;'));
+
+$linkClear  = $this->basePath($this->currentController . '/filter/search/null/null/0');
+$frmClear   = $this->cmsInput('clear','clear','button',array('value'=>'Bỏ lọc','class'=>'btn','onclick'=>'OnSubmitForm(\''.$linkClear.'\')','style'=>'width:50px;height:30px;'));
+
+
+//Tìm kiếm theo thành phố
+
+
+$frmCity    = $this->cmsSelect('city','',$this->itemsCity,'no-level',array('class' =>'sltTinhThanh'));
+
+
+//Quận huyện
+$arrOptions = array(
+  
+);
+$frmDistrict= $this->cmsSelect('district','',$arrOptions,'no-level',array('class' =>'sltQuanHuyen'));
+  
+
+
+//Tìm kiếm theo tình trạng
+$arrOptions = array(
+    array('id'=>'','name'=>'-- Tình trạng --'),
+    array('id'=>1,'name'=>'Chưa kích hoạt'),
+    array('id'=>2,'name'=>'Chờ duyệt'),
+    array('id'=>3,'name'=>'Không giao dịch'),
+    array('id'=>4,'name'=>'Hết hạn'),
+    array('id'=>5,'name'=>'Đang giao dịch'),
+);
+$frmStatus  = $this->cmsSelect('status',$ssFilter['status'],$arrOptions,'no-level',array('class' =>'select_status'));
+
+
+//Tìm kiếm theo tình trạng
+$arrOptions = array(
+    array('id'=>'','name'=>'-- Loại tin --'),
+    array('id'=>1,'name'=>'BĐS Thường'),
+    array('id'=>2,'name'=>'BĐS Chính chủ'),
+    array('id'=>3,'name'=>'BĐS VIP'),
+    array('id'=>4,'name'=>'BĐS HOT'),
+    array('id'=>5,'name'=>'BĐS Miễn phí'),
+);
+$frmTypeNews  = $this->cmsSelect('type_news',$ssFilter['status'],$arrOptions,'no-level',array('class' =>'select_typenews'));
+
+
+//Loại giao dịch
+$arrOptions = array(
+    array('id'=>'','name'=>'-- Loại giao dịch --'),
+    array('id'=>'1','name'=>'Cho thuê'),
+    array('id'=>'2','name'=>'Bán'),
+);
+$frmTypeTransaction  = $this->cmsSelect('type_transaction','',$arrOptions,'no-level',array('class' =>'select_typetrans'));
+
+//Loại bất động sản
+$frmTypeRealEstate          = $this->cmsSelect('type_real_estate','',$this->itemsTypeRealEstate,'no-level',array('class' =>'select_typepro'));
+
+
+//==========Select Record====================//
+$arrOptions = array(
+    array('id'=>5,'name'=>'5 Bản ghi / Trang'),
+    array('id'=>10,'name'=>'10 Bản ghi / Trang'),
+    array('id'=>20,'name'=>'20 Bản ghi / Trang'),
+    array('id'=>30,'name'=>'30 Bản ghi / Trang'),
+    array('id'=>50,'name'=>'50 Bản ghi / Trang'),
+    array('id'=>100,'name'=>'100 Bản ghi / Trang'),
+);
+$linkReoord   = $this->currentController . '/filter/record';
+$frmRecord    = $this->cmsSelect('record',$ssFilter['record'],$arrOptions,'no-level',array('style' =>'width:150px','onchange'=>'OnSubmitForm(\''.$linkReoord.'\')'));
+
+?>
+<form name="appForm" method="post" action="">
+
+                     
+                <?php echo $messages;?>
+
+<script type="text/javascript" src="http://muabannhadat.com.vn/js/SearchAdsUsers.js?v=23072014.16"></script>
+<script type="text/javascript" src="http://muabannhadat.com.vn/js/tooltip.js"></script>
+<link type="text/css" rel="stylesheet" href="http://muabannhadat.com.vn/Calendar/dhtmlgoodies_calendar.css?random=20051112" media="screen">
+<script type="text/javascript" src="http://muabannhadat.com.vn/Calendar/dhtmlgoodies_calendar.js?random=04102013"></script>
+
+<div id="BoxYourProperty">
+
+    <div class="Formselected">
+        <ul>
+            <li class="col1">                
+               <?php echo $frmTextBox;?>
+            </li>
+            <li class="col2">
+                <?php echo $frmStatus;?>
+            </li>
+            <li class="col3">
+                <?php echo $frmTypeRealEstate ;?>
+            </li>
+
+            <li class="col4">
+                <?php echo $frmTypeTransaction;?>
+            </li>
+            <li class="col5">
+                <?php echo $frmTypeNews;?>
+            </li>
+            
+            <li class="col7">
+                <?php echo $frmCity ;?>
+            </li>
+            <li class="col7">
+                <?php echo $frmDistrict;?>
+            </li>
+            
+            <li class="col7">
+                <input type="text" style="height:22px;" name="date_start" placeholder="Từ ngày" readonly="readonly"  class="input_detafrom" id="UCFromDate" value="<?php echo $ssFilter['date_start'];?>">
+                <a href="javascript:void(0);" onclick="displayCalendar(window.document.getElementById('UCFromDate'),'dd/mm/yyyy',this, '0')">
+                    <img src="<?php echo TEMPLATE_URL;?>/user/images/b_date.gif" alt=""></a> </li>
+            <li class="col8">
+                <input type="text" readonly="readonly" name="date_end" style="height:22px;" placeholder="Đến ngày" class="input_detato" id="UCToDate" value="<?php echo $ssFilter['date_end'];?>">
+                <a href="javascript:void(0);" onclick="displayCalendar(window.document.getElementById('UCToDate'),'dd/mm/yyyy',this, '0')">
+                    <img src="<?php echo TEMPLATE_URL;?>/user/images/b_date.gif" alt=""></a> </li>
+        </ul>
+       
+        <div class="BTViewPro">
+            
+                        <?php echo $frmSubmit. '  '. $frmClear;?>
+                
+           
+        </div>
+    </div>
+    <div class="ListProSelected">
+        <ul>
+            <li>Danh sách BĐS</li>
+        </ul>
+        <ul style="display: none;">
+            <li><span id="spStt0" style="font-weight: bold; color: #CC0000;"></span><a href="javascript:;" onclick="LoadListAsdGuest(1,'0');">Đang đăng</a>,</li>
+            <li><span id="spStt8" style="font-weight: bold; color: #CC0000;"></span><a href="javascript:;" onclick="LoadListAsdGuest(1,'8');">Hết hạn</a>,</li>
+            <li><span id="spStt5" style="font-weight: bold; color: #CC0000;"></span><a href="javascript:;" onclick="LoadListAsdGuest(1,'5');">Chưa kích hoạt</a>,</li>
+            <li><span id="spStt6" style="font-weight: bold; color: #CC0000;"></span><a href="javascript:;" onclick="LoadListAsdGuest(1,'6');">Không đăng</a></li>
+        </ul>
+        <div class="StatusExchange">
+            <table cellspacing="5" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            Hiển thị (tin)
+                        </td>
+                        <td>
+                            <?php echo $frmRecord;?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="width: 100%; float: left; margin-bottom: 10px;">
+            <span id="MainContent_ctl00_lblMesUptPi" style="color:Red;font-weight:bold;"></span>
+        </div>
+    </div>
+
+    <div class="dataTables_wrapper"><!--load--></div>
+
+
+     
+</div>
+
+<div style="left: 25%; top: 100px; width: 510px; position: fixed;display:none;" class="signInNewDialog pDialog" id="showViewBds">
+
+     <div id="viewBdsAjax">
+     </div>   
+</div>
+
+
+            
+    
+
+<?php
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/real-estate/list/page/".$page;
+$staffId    = (!empty($this->arrParam['id'])) ? $this->arrParam['id'] : 0;
+?>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(".loading").show();
+    $.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        data    : {page : <?php echo $page;?>, staffId : <?php echo $staffId;?>},
+        cache   : false,
+        success : function(data,status){
+            
+            $("div.dataTables_wrapper").html(data);
+            $(".loading").fadeOut(1000);
+        }
+    });
+});
+
+</script>
+
+
+<?php 
+       
+        $linkLoadDistrict       = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-select-district'));
+        $linkLoadViewBds        = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-view-bds'));
+        $linkTransactionHistory        = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-transaction-history'));
+     
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        
+            //Load quận huyện
+            $("#city").change(function(){
+                var city = $("#city option:selected").val();
+                loadDistrict(city);
+            });
+
+           
+
+        })
+        function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+      
+        function unTradeableBDS(id)
+        {   
+            if(!confirm("Bạn có chắc ngừng đăng tin này không?")) return;
+            else
+            {
+                window.location = '<?php echo $this->url(null,array("module"=>"user","controller"=>"real-estate","action"=>"untradeable"));?>' + id;
+            }   
+        }
+
+        function deleteBDS(id)
+        {   
+            if(!confirm("Bạn có chắc xóa tin này không?")) return;
+            else
+            {
+                window.location = '<?php echo $this->url(null,array("module"=>"user","controller"=>"real-estate","action"=>"delete"));?>' + id;
+            }   
+        }
+
+        function showViewBds(id){
+
+            $("#showViewBds").removeAttr('style')
+                            .css({'left': '25%', 'top': '100px', 'width': '510px', 'position': 'fixed'});
+            $.ajax({
+                url     : '<?php echo $linkLoadViewBds;?>',
+                type    : 'GET',
+                data    : {id : id},
+                success: function(data){
+                    $("#viewBdsAjax").html(data);
+                },
+                complete: function(){
+
+                }
+            });                
+        }
+
+         function showViewDate(id){
+            var date = $("#UCFromDateView").val();
+           
+            $.ajax({
+                url     : '<?php echo $linkLoadViewBds;?>',
+                type    : 'GET',
+                data    : {id : id, date : date},
+                success: function(data){
+                    $("#viewBdsAjax").html(data);
+                },
+                complete: function(){
+
+                }
+            });                
+        }
+
+        function showTransactionHistory(id){
+            $("#showViewBds").removeAttr('style')
+                            .css({'left': '25%', 'top': '100px', 'width': '510px', 'position': 'fixed'});
+            $.ajax({
+                url     : '<?php echo $linkTransactionHistory;?>',
+                type    : 'GET',
+                data    : {id : id},
+                success: function(data){
+                    $("#viewBdsAjax").html(data);
+                },
+                complete: function(){
+
+                }
+            });      
+        }
+
+        function hideViewBds(){
+
+            $("#showViewBds").removeAttr('style')
+                            .css({'left': '25%', 'top': '100px', 'width': '510px', 'position': 'fixed', 'display':'none'});
+                   
+        }
+       
+        
+    </script>
+
+</form>

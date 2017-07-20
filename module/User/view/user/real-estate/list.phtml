@@ -1,0 +1,182 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+     
+        
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $cat_id         = $item['cat_id'];
+        $image          = TEMPLATE_URL .'/user/images/nen-up-hinh.jpg';
+        $date_start     = $item['date_start'];
+        $date_end       = $item['date_end'];
+        $date_modifi    = $item['date_modifi'];
+        $name_city      = $item['name_city'];
+        $name_district  = $item['name_district'];
+        $name_ward      = $item['name_ward'];
+        $name_type      = $item['name_type'];
+        $name_project   = $item['name_project'];
+        $floor          = $item['floor'];
+        $bedroom        = $item['bedroom'];
+        $bathroom       = $item['bathroom'];
+        $direction      = $item['direction'];
+        $area           = $item['area'];
+        $type_news      = $item['type_news'];
+        $status         = $item['status'];
+        $i              = 1;
+        $xNoticeNoImage ='';
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/real-estate/'.$image;
+                    break;
+                } 
+            }
+        }else{
+            $xNoticeNoImage = '<div class="Warning"><span>Lưu ý</span> Hãy sử dụng Up hình ảnh để nâng cao mức độ tin cậy đối với người mua. Xin cảm ơn!</div>';
+        } 
+
+        
+        $price          = $item['price'];
+           
+        
+        $linkEdit           = $this->basePath('/user/real-estate/edit/' . $id);
+        $linkActive         = $this->basePath('/user/real-estate/active/' . $id);
+        $linkrefresh        = $this->basePath('/user/real-estate/refresh/' . $id);
+        $linkUntradeable    = $this->basePath('/user/real-estate/untradeable/' . $id);  
+        $xlinkEdit          = '<li><a href="'.$linkEdit.'" onmouseover="ddrivetip(NvgPayEvenTipDesc.hieuchinhtin,\'150\');" onmouseout="hideddrivetip();"><span>Hiệu chỉnh tin</span></a></li>';
+
+        if(empty($type_news) || $status == 1 || $status == 3){
+            //Chưa kích hoạt tin
+            $xLinkActive    = '<li><span><a onmouseover="ddrivetip(NvgPayEvenTipDesc.kichhoattin,\'150\');" onmouseout="hideddrivetip();" href="'.$linkActive.'">Kích hoạt tin</a></span></li>';
+
+            $xLamMoiTin     = '<li><span>Làm mới tin</span></li>';
+
+            $xLinkNgungDang = '<li><span>Ngừng đăng/</span><a href="javascript:;" onmouseover="ddrivetip(NvgPayEvenTipDesc.xoa,\'150\');" onmouseout="hideddrivetip();" onclick="deleteBDS('.$id.');">Xóa </a></li>';
+
+            $xLuotXem       = '<li><span>Lượt xem</span></li>';
+
+            $xLichSuGD      = '<li><span>Lịch sử giao dịch</span></li>';
+
+        }else{
+            //Đã kích hoạt tin
+            $xLinkActive    = '<li><span>Đã kích hoạt</span></li>';
+
+            $xLamMoiTin     = '<li><span><a href="'.$linkrefresh.'" onmouseover="ddrivetip(NvgPayEvenTipDesc.lammoitin,\'150\');" onmouseout="hideddrivetip();">Làm mới tin</a></span></li>';
+
+            $xLinkNgungDang = '<li><span><a href="javascript:;" onmouseover="ddrivetip(NvgPayEvenTipDesc.ngungdang,\'150\');" onmouseout="hideddrivetip();" onclick="unTradeableBDS('.$id.');">Ngừng đăng/</a></span><a href="javascript:;" onmouseover="ddrivetip(NvgPayEvenTipDesc.xoa,\'150\');" onmouseout="hideddrivetip();" onclick="deleteBDS('.$id.');">Xóa </a></li>';
+
+            $xLuotXem       = '<li><a onclick="showViewBds('.$id.');" href="#usrTop"><span>Lượt xem</span></a></li>';
+
+            $xLichSuGD      = '<li><span><a href="javascript:;" onmouseover="ddrivetip(NvgPayEvenTipDesc.diemdadung,\'150\');" onmouseout="hideddrivetip();" onclick="showTransactionHistory('.$id.');">Lịch sử giao dịch</a></span></li>';
+
+        }
+
+        $xAction            = $xLinkActive.$xLamMoiTin.$xlinkEdit.$xLuotXem.$xLinkNgungDang.$xLichSuGD;
+
+
+        
+        $xStatus    =   $item['name_status'];
+        
+
+        $xFloor         = '';
+        $xBedroom       = '';
+        $xBathroom      = '';
+        $xDirection     = '';
+        $xArea          = '';
+
+        if(!empty($floor)){
+            $xFloor     = '<span><b>'.$floor.'</b> Tầng </span> |';
+        }
+        if(!empty($bedroom)){
+            $xBedroom   = '<span><b>'.$bedroom.'</b> Phòng Ngủ </span> |';
+        }
+        if(!empty($bathroom)){
+            $xBathroom  = '<span><b>'.$bathroom.'</b> WC </span> |';
+        }
+        if(!empty($direction)){
+            $xDirection = 'Hướng '.$direction.' |';
+        }
+        if(!empty($area)){
+            $xArea = '<span><b>'.$area.'</b> m<sup>2</sup></span>';
+        }
+
+        $xinfoOther = ' ('.$xFloor.' '.$xBedroom.' '.$xBathroom.'  '.$xDirection.'  '.$xArea .' )'; 
+
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+
+
+        $xhtml .= '<li class="ItemsPostPro clr_bortop">
+                    <div class="col_imgages">ID:<a href="http://muabannhadat.com.vn/bds-'.$id.'.html" target="_blank"><span>'.$id.'</span></a><a href="http://muabannhadat.com.vn/bds-'.$id.'.html" target="_blank"><img src="'.$image.'" width="100" height="75" title="'.$title.'"></a>
+                    </div>
+
+                    <div class="col_description">
+                            <div class="Furniture"><h3><span class="BgPriceProperty"><h3 class="Bold_d50">'.\ZendVN\Convert\Price::convert($price).'</h3></span></h3>  '.$xinfoOther.'         </div>
+                            <div class="Title">'.\ZendVN\Filter\ReadMore::create($title,0,50).'</div>
+                            <div class="LocationPro">
+                                <span class="Districts">'.$name_city.'</span>
+                                <span class="Districts">'.$name_district.'</span>
+                                <span class="Districts">'.$name_ward.'</span>
+                                <span class="AddPro">'.$name_type.'</span><span>: '.$name_project.'</span>
+                                <span class="Status" id="spStt_3042687">('.$xStatus.')</span>
+                            </div>
+                            <ul class="Date">
+                                <li><span>Đăng:</span>'.$date_start.'</li>
+                                <li><span>Cập nhật:</span>'.$date_modifi.'</li>
+                                <li class="clr_borright" id="dtmNgayKT_3042687"><span>Kết thúc:</span> <font class="star">'.$date_end.'</font></li>
+                            </ul>
+                            <div class="viewVersion"><a title="Xem tin trên MBND" target="_blank" href="'.$linkDetail.'">Xem chi tiết tin </a></div>
+                    </div>
+                    <div class="col_gadget">
+                        <ul>
+                            '.$xAction.'  
+                        </ul>
+                    </div>
+                    '.$xNoticeNoImage.'
+                </li>';                
+
+                             
+    }
+}
+
+?>
+           
+
+
+<div class="ListProperty" id="txtHints"><input id="hCurrentPage" type="hidden" value="1"><input id="hTotalRows" type="hidden" value="2">
+    <ul>
+        <?php echo $xhtml;?>
+    </ul>
+    <div id="dvPaging"></div><div class="clr_both"></div></div>
+<?php
+    
+    $currentUrl =  $this->basePath('/user/real-estate/index/page/');
+    echo $this->paginationControl($this->paginator , 'sliding' , 'user/paginator.phtml', array('currentUrl'=>$currentUrl)); 
+ ?>
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

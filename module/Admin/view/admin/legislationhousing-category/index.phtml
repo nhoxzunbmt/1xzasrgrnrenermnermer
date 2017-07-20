@@ -1,0 +1,135 @@
+<?php
+$ssFilter   = $this->arrParam['ssFilter'];
+
+//==========Messages=========================//
+$messages   = $this->flashMessenger()
+                    ->setMessageOpenFormat('<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="alert alert-success">')
+                    ->setMessageSeparatorString('')
+                    ->setMessageCloseString('<button data-dismiss="alert" class="close">×</button>')
+                    ->render('success',array('success message'));
+
+
+
+
+//==========CREATE SEARCH FORM===============//
+
+
+$frmTextBox = $this->cmsInput('keywords','keywords','text',array('value'=>$ssFilter['keywords'],'maxlength'=>'100','placeholder'=>'Nhập keywords','style'=>'width:20%;'));
+
+$linkSearch = $this->basePath($this->currentController . '/filter/search/null/null/1');
+$frmSubmit  = $this->cmsInput('search','search','button',array('value'=>'Lọc','class'=>'btn','onclick'=>'OnSubmitForm(\''.$linkSearch.'\')','style'=>'width:5%;'));
+
+$linkClear  = $this->basePath($this->currentController . '/filter/search/null/null/0');
+$frmClear   = $this->cmsInput('clear','clear','button',array('value'=>'Bỏ lọc','class'=>'btn','onclick'=>'OnSubmitForm(\''.$linkClear.'\')','style'=>'width:8%;'));
+
+
+//Tìm kiếm theo field
+$arrOptions = array(
+    array('id'=>'name','name'=>'Tìm kiếm theo tên'),
+    array('id'=>'id','name'=>'Tìm kiếm theo ID'),
+);
+$frmField   = $this->cmsSelect('field',$ssFilter['field'],$arrOptions,'no-level',array('style' =>'width:15%;'));
+
+
+
+//Tìm kiếm theo tình trạng
+$arrOptions = array(
+    array('id'=>'','name'=>'-- Tình trạng --'),
+    array('id'=>1,'name'=>'Hiển thị'),
+    array('id'=>2,'name'=>'Không hiển thị'),
+);
+$frmStatus  = $this->cmsSelect('status',$ssFilter['status'],$arrOptions,'no-level',array('style' =>'width:15%;'));
+
+//Tìm kiếm theo tình trạng
+$arrOptions = array(
+    array('id'=>'','name'=>'-- Level --'),
+    array('id'=>1,'name'=>'Level 1'),
+    array('id'=>2,'name'=>'Level 2'),
+    array('id'=>3,'name'=>'Level 3'),
+    array('id'=>4,'name'=>'Level 4'),
+    array('id'=>5,'name'=>'Level 5'),
+    array('id'=>6,'name'=>'Level 6'),
+    array('id'=>7,'name'=>'Level 7'),
+    array('id'=>8,'name'=>'Level 8'),
+    array('id'=>9,'name'=>'Level 9'),
+    array('id'=>10,'name'=>'Level 10'),
+);
+$frmLevel  = $this->cmsSelect('level',$ssFilter['level'],$this->itemsLevel,'no-level',array('style' =>'width:15%;'));
+
+
+
+$frmSearch  = $frmTextBox . ' ' .$frmField . '  ' .$frmStatus . ' ' .$frmLevel .' ' .$frmSubmit . ' '.$frmClear;
+
+
+//==========Select Record====================//
+$arrOptions = array(
+    array('id'=>5,'name'=>'5 Bản ghi / Trang'),
+    array('id'=>10,'name'=>'10 Bản ghi / Trang'),
+    array('id'=>20,'name'=>'20 Bản ghi / Trang'),
+    array('id'=>30,'name'=>'30 Bản ghi / Trang'),
+    array('id'=>50,'name'=>'50 Bản ghi / Trang'),
+    array('id'=>100,'name'=>'100 Bản ghi / Trang'),
+);
+$linkReoord   = $this->currentController . '/filter/record';
+$frmRecord    = $this->cmsSelect('record',$ssFilter['record'],$arrOptions,'no-level',array('style' =>'width:60%','onchange'=>'OnSubmitForm(\''.$linkReoord.'\')'));
+
+?>
+
+<form name="appForm" method="post" action="">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+
+            <div class="widget-body">
+                <div id="cph_Main_ctl00_notification_divNotice" style="padding-top:10px;">
+                <?php echo $messages ;?>  
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span3">
+                        <div id="sample_1_length" class="dataTables_length">    
+                        <?php echo $frmRecord;?>
+                        </div>
+                    </div>
+                    <div class="span9 form-search pull-right text-right">
+                       <?php echo $frmSearch;?>
+                    </div>
+                </div>
+
+                <div class="dataTables_wrapper">
+                        <!-- V? tri load datat-->
+                </div>
+        
+                <style type="text/css">
+                #tooltip { position: absolute; z-index: 10102; background-color: #FFF; padding: 5px; border: solid 3px #cccccc; display: block; width: 350px; text-align: center; }
+                </style>
+
+        </div>
+</div>
+
+
+<?php
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/list/page/".$page;
+?>
+<script type="text/javascript">
+
+$j(document).ready(function(){
+    $j(".loading").show();
+    $j.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        //data    : {page : 1},
+        cache   : false,
+        success : function(data,status){
+            $j("div.dataTables_wrapper").html(data);
+            $j(".loading").fadeOut(1000);
+        }
+    });
+});
+
+</script>

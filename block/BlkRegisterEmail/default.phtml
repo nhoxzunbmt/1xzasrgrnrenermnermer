@@ -1,0 +1,32 @@
+<?php
+$xhtml                  = '';
+$i                      = 1;   
+$urlHelper              = $this->getView()->plugin('url');
+$linkPost               = $urlHelper('MVC_HomeRouter/action',array('module'=>'home','controller'=>'index','action'=>'email-newsletter'));
+ 
+?>
+
+    <div id="MainContent_UserBoxUpdate1_mbndEmailAlert" class="mbndTrensMore">
+    <h4 class="rightTitle">
+        Cập nhật xu hướng BĐS</h4>
+    <div class="rightSmallContent newsletter">
+        <div class="padded">
+            <small>Đăng ký để nhận bản tin thị trường mới nhất</small>
+            <div class="agreeBox">
+                <form name="appForm" id="appForm" method="post" action="">
+                <input type="text" id="txtEmailNL" name="email" value="Email của bạn" onfocus="if(this.value=='Email của bạn') this.value='';DisplayMe('infoDiv');"
+                    onblur="if(this.value=='') this.value='Email của bạn';" />
+                         <a href="#" onclick="OnSubmitForm('<?php echo $linkPost;?>')" id="MainContent_ctl00_btnDongY">Đồng ý</a>
+                <div class="clearBoth">
+                </div>
+                <div class="typeName" id="infoDiv" style="display: none;">
+                    <input type="text" id="txtFullName" name="fullname" value="Họ và tên" onfocus="if(this.value=='Họ và tên') this.value='';"
+                        onblur="if(this.value=='') {this.value='Họ và tên'; $('#txtEmailNL').css('display','')}" />
+                    <span id="spnAlert" style="display: none;">Vui lòng nhập họ tên !</span>
+                </div>
+            </form>
+            </div>
+        </div>
+        
+    </div>
+</div>

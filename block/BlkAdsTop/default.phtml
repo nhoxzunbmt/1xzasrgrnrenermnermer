@@ -1,0 +1,10 @@
+<?php
+if(!empty($this->_data)){
+	$xhtml = '';
+	foreach ($this->_data as $item) {
+		$image        = (!empty($item['flash_image']))  ? UPLOAD_URL .'/ads/'.$item['flash_image'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+		$item['width'] = (int)($item['width']) > 800 ? 800 : $item['width'];
+		$xhtml .= '<a href="'.$item['url'].'" target="_BLANK" title="'.$item['name'].'" alt ="'.$item['name'].'"><img src="'.$image.'" width="'.$item['width'].'" height="'.$item['height'].'" title="'.$item['name'].'" alt ="'.$item['name'].'"></a>';
+	}
+	echo $xhtml;
+}

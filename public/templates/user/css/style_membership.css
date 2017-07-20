@@ -1,0 +1,3018 @@
+body {
+	font-family:Arial, Helvetica, Tahoma, Verdana,sans-serif;
+	font-size:12px;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	text-align:left;
+	color:#333;
+}
+
+html,body,div,p,ul,ol,li,table,tr,td,h1,h2,h3,h4,h5,span,input { padding:0px; margin:0px; outline:hidden;}
+
+ul,ol,li{ list-style-image:none; list-style-position:outside; list-style-type:none; margin:0;}
+
+fieldset,img { border:0px; outline:hidden;}
+
+select, input, textarea { padding-left:2px; border: 1px solid #dddddd;}
+input { height:16px;}
+select { height:22px;}
+
+p { margin-top:5px;}
+
+.fl { float:left;}
+.fr { float:right;}
+
+.clr_both { clear:both;}
+.clr_left { clear:left;}
+.clr_right { clear:right;}
+.clr_borright { border-right:none !important;}
+.clr_borleft { border-left:none !important;}
+
+.clr_bg { background:none !important;}
+
+.tl { text-align:left;}
+.tc { text-align:center;}
+.tr { text-align:right;}
+
+.mar_t10 { margin-top:10px;}
+.mar_b10 { margin-bottom: 10px;}
+
+a:link, a:visited, a:active, a:hover { text-decoration:none; outline:none;}
+a:link { cursor: pointer;}
+a:hover, a:active { }
+
+a.link { color:#0099cc;}
+a.link:hover { color:#0066cc;}
+
+ul.Alter li a { color:#0099cc;}
+ul.Alter li a:hover { color:#df3832;}
+
+.star { color:#df3832 !important;}
+/*.update { color:#0099cc;}*/
+.note { color:#777;}
+.highlight { color:#0066cc;}
+.follow { font-style:italic; color:#df3832; font-weight:bold;}
+
+.button_exchange { width:90px; padding:2px 0; margin-top:2px; height:26px;}
+.input_button { padding:2px 5px; margin-top:2px; height:26px;}
+.textarea_about { width:500px; height:80px;}
+
+a.linkback { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1826px no-repeat; display:block; width:13px; height:15px; float:right; margin-top:3px; _margin-top:-18px; *margin-top:-18px;}
+
+.BgAvatar_top { background:#FFF url(http://images.videonhadat.com.vn/users/bg_avatar.png) no-repeat; display:block; width:210px; height:2px;}
+.BgAvatar_bottom { background:#FFF url(http://images.videonhadat.com.vn/users/bg_avatar.png) no-repeat 0 -2px; display:block; width:210px; height:9px;}
+
+table { width:100%; line-height:16px; border-top:1px #e4e3f4 solid;}
+table tr.Bgform { background-color:#efefef;}
+table td { padding:5px; *padding:5px; border-right:1px #e4e3f4 solid; border-bottom:1px #e4e3f4 solid; vertical-align:top;}
+table td.clr_borright { border-right:none;}
+table tr.Bgtitle { background-color:#FEFAD1;}
+
+
+ul.Formsearch { overflow:hidden; padding:10px; background-color:#e9e7b1; _float:left; width:730px;}
+ul.Formsearch li { display:inline; float:left; margin-right:5px;}
+
+
+
+.Bgbutton { background-color:#df3832; color:#fff; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+.Bgbutton:hover{ background: #cf352f;}
+.Bgbutton a { color:#fff;}
+.Bgbutton a:hover {}
+.Bgbutton div { padding: 8px 15px; font-weight:bold;}
+.DesStatisticRS .Bgbutton div{ padding: 4px 15px;}
+
+.Bgbutton_reset { background-color:#e4e4e4; color:#000000;transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s; padding: 0 15px;}
+.Bgbutton_reset:hover{ background: #dbdbdb;}
+.Bgbutton_reset a { color:#000000;}
+.Bgbutton_reset a:hover {}
+.Bgbutton_reset div { padding:8px 15px; font-weight:bold;}
+
+.Btform .Bgbutton div{ padding: 8px 15px;}
+
+.TitleBox { background-color:#f6f6f6; padding: 8px 0; text-align:left; border-bottom:1px #d7d6e7 solid; position:relative;}
+.TitleBox h2 { font-size:16px; font-weight:bold; color:#df3832
+; padding:0 10px;}
+
+label { font-weight:bold;}
+
+.PagesNumber { width:100%;}
+.PagesNumber ul { overflow:hidden; float:right; padding:8px 6px 8px 0;}
+.PagesNumber li { float:left; display:block; font-weight:bold; margin:0 1px; border: 1px solid #CCCCCC; padding:1px 5px !important;}
+.PagesNumber li a { color:#000; text-decoration:none;}
+.PagesNumber li a:hover, .PagesNumber li a.current { color:#df3832;}
+.PagesNumber li.PagesPrivious { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1081px no-repeat;  border:0;}
+.PagesNumber li.PagesPrivious a { cursor:pointer; display:block; width:10px; height:17px;}
+.PagesNumber li.PagesNext { background:url(http://images.videonhadat.com.vn/users/iconform.png) -26px -1081px no-repeat; border:0;}
+.PagesNumber li.PagesNext a {display:block; width:10px; height:17px;}
+
+.Furniture { position:absolute; top:0; right:0; font-weight:bold; color:#0099cc;}
+.Furniture h3 { font-size:14px; color:#df3832; text-align:right;}
+.Furniture span { font-weight:normal;}
+
+.LocationPro { padding-top:5px; margin-top:5px; background:url(http://images.videonhadat.com.vn/users/linedot.png) repeat-x;}
+.LocationPro span a { color:#333;}
+.LocationPro span a:hover { color:#0099cc;}
+
+.Status { color:#df3832; font-style:italic;}
+
+.AddPro { padding-left:10px; margin-top:5px; font-weight:bold; background:url(http://images.videonhadat.com.vn/users/iconform.png) -13px -100px no-repeat;}
+.AddPro a { color:#333;}
+.AddPro a:hover { color:#0099cc;}
+
+.id a { color:#0099cc;}
+.id a:hover { color:#df3832;}
+
+.Title { font-weight:bold;}
+/****************************************************cau truc moi*************************************************************/
+/* PUBLIC */
+.ColImgs { float:left;}
+.ColDes { float:left; margin-left:10px;}
+.update { color:#808080; font-size:11px;}
+
+/* color style 1 */
+	.ColorStyle_1 { color:#CF2127;}
+
+/* img bor style 1 */	
+.Img_Style_1 {border: 1px solid #eee;padding: 3px;}
+.Img_Style_2 {border: 1px solid #eee;}
+.Img_Style_3 {background:#fff;padding:10px;_width:93%;}
+.Img_Style_4 { -moz-box-shadow: inset 0 0 10px #666; -webkit-box-shadow: inset 0 0 10px #666;box-shadow: inner 0 0 10px #666; position:absolute;}	
+
+/* icon message */
+	.icon_result { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1169px; display:block; width:48px; height:48px;}
+	.icon_file { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1070px; display:block; width:28px; height:32px;}
+	.icon_error { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1115px; display:block; width:46px; height:44px;}
+	.icon_submit { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1225px; display:block; width:46px; height:45px;}
+	.icon_warning { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1282px; display:block; width:46px; height:40px;}
+	.icon_welcome { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1331px; display:block; width:48px; height:40px;}
+	
+/*button bg*/
+	.bt_dropdown {background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -25px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -25px; width:21px; height:21px;}
+	.bt_post { background:url(http://images.videonhadat.com.vn/button_bg.png) no-repeat; _background:url(http://images.videonhadat.com.vn/button_bg.gif) no-repeat; width:80px; height:26px;}
+	.bt_close_1 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -56px -91px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -56px -91px; width:12px; height:12px;}
+	.bt_close_2 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -56px -106px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -56px -106px; width:12px; height:12px;}
+	.bt_close_3 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -51px -71px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -51px -71px; width:15px; height:15px;}
+	.bt_search { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat; display:block; width:17px; height:17px;}
+	.bt_email_receive { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1683px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -1683px; width:15px; height:14px; display:block;}
+	.bt_view_all {float:right;display:block;width:18px;height:17px;z-index:1; background:url(http://images.videonhadat.com.vn/icon_button.png) 0 -71px no-repeat; _background:url(http://images.videonhadat.com.vn/icon_button.gif) 0 -71px no-repeat;}
+	.bt_refresh {float:right;display:block;width:13px;height:22px;z-index:1; background:url(http://images.videonhadat.com.vn/icon_button.png) 0 -196px no-repeat; _background:url(http://images.videonhadat.com.vn/icon_button.gif) 0 -196px no-repeat;}
+	.bt_focus { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -164px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -164px; width:17px; height:23px; display:block;}
+	.bt_rssale { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -226px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -226px; width:14px; height:14px; display:block; float:left;}
+	.bt_rsrent { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -247px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -247px; width:14px; height:14px; display:block; float:left;}
+	.bt_law { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -269px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -269px; width:21px; height:18px; display:block; float:left;}
+	.bt_fengshui { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -296px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -296px; width:16px; height:18px; display:block; float:left;}
+	.bt_faq { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -320px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -320px; width:24px; height:21px; display:block; float:left;}
+	.bt_news { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -349px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -349px; width:16px; height:16px; display:block; float:left;}
+	.bt_media { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat  0 -373px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat  0 -373px; width:14px; height:15px; display:block; float:left;}
+	.bt_price { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -396px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -396px; width:16px; height:16px; display:block; float:left;}
+	.bt_price_x { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -559px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -559px; width:16px; height:16px; display:block; float:left;}
+	.bt_map { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -420px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -420px; width:18px; height:17px; display:block; float:left;}
+	.bt_phone { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -496px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -496px; width:15px; height:14px; display:block; float:left;}
+	.bt_register { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -518px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -518px; width:15px; height:14px; display:block; float:left;}
+	.bt_point { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -538px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -538px; width:15px; height:14px; display:block; float:left;}
+	.bt_blog { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -579px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -579px; width:15px; height:14px; display:block; float:left;}
+	.bt_star { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -444px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -444px; width:16px; height:16px; display:block; float:left;}
+	.bt_consultant { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -468px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -468px; width:16px; height:20px; display:block; float:left;}
+	.bt_expand { background: url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -114px; _background: url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -114px; float: right; height: 18px; margin-left: 5px; width: 8px;}
+	.bt_compact { background: url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -97px; _background: url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -97px; float: right; height: 18px; margin-left: 5px; width: 8px;}
+	.bt_up { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -819px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -819px; display:block; width:19px; height:12px; margin-bottom:2px; _margin-bottom:0;}
+	.bt_down { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -834px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -834px; display:block; width:19px; height:12px;}
+	/**/
+	.bt_up_2 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat; display:block; width:19px; height:18px; margin-bottom:2px; _margin-bottom:0;}
+	.bt_down_2 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat; display:block; width:19px; height:18px;}
+	/**/
+	.bt_message_1 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1010px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -1010px; display:block; width:30px; height:40px; float:left}
+	
+	
+	/**/
+	.bt_next_1 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -14px -112px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -14px -112px; display:block; width:9px; height:16px; margin-left:5px;}
+	.bt_previous_1 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -112px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -112px; display:block; width:9px; height:16px;}
+	/**/
+	.bt_next_2 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -14px -137px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -14px -137px; display:block; width:9px; height:16px;}
+	.bt_previous_2 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -137px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -137px; display:block; width:9px; height:16px;}
+	/**/
+	.bt_next_3 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -134px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -134px; display:block; width:7px; height:15px;}
+	/**/
+	.bt_next_4 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -22px -1517px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -22px -1517px; display:block; width:20px; height:20px;}
+	.bt_previous_4 { background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -1517px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -1517px; display:block; width:20px; height:20px;}
+	/**/
+	.bt_next_5 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -242px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -242px; display:block; width:7px; height:15px;}
+	/**/
+	.quote_head { background: url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -600px; _background: url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -600px; display:inline-block; float:left; height:11px; margin-right:5px; width: 13px;}
+	.quote_end { background: url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -15px -600px; _background: url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -15px -600px; display:inline-block; height:11px; margin-left:5px; width: 13px;}
+	.quote_head_2 { background: url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -663px; _background: url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -663px; display:inline-block; float:left; height:11px; margin-right:5px; width: 13px;}
+	.quote_end_2 { background: url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -15px -663px; _background: url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -15px -663px; display:inline-block; height:11px; margin-left:5px; width: 13px;}
+
+/*bullet*/
+	.bullet { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -162px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -162px; width:10px; height:12px; display:block;}
+	.bullet_right { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -215px; _ background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -215px; width:10px; height:15px;}
+	.bullet_down { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -190px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -190px; width:12px; height:12px;}
+	.bullet_1 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -41px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -41px; display:block; width:3px; height:6px; float:left;}
+	.bullet_2 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat -3px -50px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat -3px -50px; display:block; width:5px; height:6px; float:left;}
+	.bullet_3 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -12px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -12px; display:block; width:3px; height:6px; float:left;}
+	.bullet_4 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -62px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -62px; display:block; width:3px; height:6px; float:left;}
+	.bullet_5 { background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat 0 -81px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat 0 -81px; display:block; width:3px; height:6px; float:left;}
+
+
+.bg_button_1 {font-size:18px;}
+.bg_button_1, .bg_button_2, .bg_button_3 {
+	height:20px;background:red;
+	box-shadow:inset 0 1px 0 0 #f29c93;-moz-box-shadow:inset 0 1px 0 0 #f29c93;-webkit-box-shadow:inset 0 1px 0 0 #f29c93;
+	background-color:#fe1a00;
+	background:-moz-linear-gradient( center top,#fe1a00 5%,#ce0100 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00',endColorstr='#ce0100');
+	border-radius:6px;-moz-border-radius:6px;-webkit-border-radius:6px;
+	border:1px solid #d83526;
+	display:inline-block;
+	color:#fff;
+	font-family:arial;	
+	font-weight:bold;	
+	text-shadow:1px 1px 0 #b23e35;
+	padding:2px 10px 8px 10px
+}
+.bg_button_1:hover, .bg_button_2:hover, .bg_button_3:hover {
+	background-color:#ce0100;
+	background:-moz-linear-gradient( center top,#ce0100 55%,#fe1a00 00% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce0100',endColorstr='#fe1a00');
+	}
+.bg_button_1:active, .bg_button_2:active, .bg_button_3:active {position:relative;top:1px;}	
+.bg_button_1 a, .bg_button_2 a, .bg_button_3 a  { color:#fff;}
+	.bg_button_2 {padding:6px 5px 2px 5px; width:auto; margin-left:0px; font-size:14px;}
+	
+/* middle box logo 1*/	
+	.M_BoxLogo_1 { background-color:#F2F2F2; border:1px #efefef solid;}
+	.M_BoxLogo_1 table { width:100%; border:none;}
+	.M_BoxLogo_1 td { background-color:#fff; text-align:center; border:none; padding:0; vertical-align:middle;}
+	
+/* right box 2*/
+	.R_Box_2 .Img_Style_1 { float:left; width:130px;}
+	.R_Box_2 .ColDes { font-size:14px; font-style:italic; width:50%; line-height:18px;}
+	.R_Box_2 .caption { clear:both; font-size:14px; font-weight:bold; padding-top:6px; *padding-top:2px; overflow:hidden;}
+	.R_Box_2 .caption div { font-size:12px; color:#808080; font-weight:normal;}
+
+/* Dialog 1*/
+	.Dialog_1 { position:absolute; border:1px #696969 solid; background-color:#fff; z-index:10000; box-shadow:2px 6px 10px #666;-moz-box-shadow:2px 6px 10px #666; -webkit-box-shadow:2px 6px 10px #666; text-align:left;}
+	.Dialog_1 ul.col { float:left; width:33%;}
+	.Dialog_1 li { _margin-bottom:-14px;}
+	.Dialog_1 li a { padding:6px 5px 4px; *padding:4px 5px; display:block; color:#333;}
+	.Dialog_1 li a:hover{ background:#FEE8E3; color:#0066cc;}
+	.Dialog_1 li.header { color:#df3832
+; font-weight:bold; padding:4px 5px; _margin:2px 0;}
+	.Dialog_1 span { font-weight:bold;}
+
+/* Dialog 7*/
+	.Dialog_7 {
+	z-index:2;
+}
+.Dialog_7 .Tab {
+	position:absolute;
+	right:-27px;
+	top:0;
+}
+.Dialog_7 .Tab a {
+	display:block;
+	width:30px;
+	height:144px;
+	background:url(http://images.videonhadat.com.vn/corner_button.png) no-repeat 0 -118px; _background:url(http://images.videonhadat.com.vn/corner_button.gif) no-repeat 0 -118px;
+}
+.BoxIdea_P1 {
+	padding:15px;
+	width:310px;
+	border-width:1px;
+	border-color:#60af65;
+	border-style:solid;
+	background:#e5e5e5 /*url(http://images.videonhadat.com.vn/repeat_bottom_1.png) repeat-x bottom */;
+	text-align:left;
+	overflow:hidden;
+	display:none;
+}
+.BoxIdea_P1 a.PopupBox_closer { top:6px; right:6px;}
+.BoxIdea_P1 .Content {
+	width:310px;
+}
+.BoxIdea_P1 p {
+	font-weight:bold;
+	line-height:18px;
+	font-size:13px;
+}
+.BoxIdea_P1 .input_text {
+	width:307px;
+	height:24px;
+	margin-top:10px;
+	border-width:1px;
+	border-style:solid;
+	border-color:#d2d2d2 #f9f2eb #f9f2eb #d2d2d2;
+	padding:0;
+	background-color:#fff;
+}
+.BoxIdea_P1 .input_text input {
+	width:96%;
+	border:1px solid #fff;
+	padding: 2px 5px;
+	color:#555;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+}
+.BoxIdea_P1 .input_text input:focus {
+	background:#fff;
+	border-color:#fff;
+}/*de css dien dan*/
+/*.BoxIdea_P1 .select { color:#555;width:307px; height:20px; margin-top:5px;font-family:Arial, Helvetica, sans-serif;border-width:1px; border-style:solid; border-color:#d2d2d2 #f9f2eb #f9f2eb #d2d2d2;background-color:#fff;}
+	.BoxIdea_P1 .select select { width:100%; border:none; background:none;}*/
+	
+	.BoxIdea_P1 .SelectedValues {
+	border-width:1px;
+	border-style:solid;
+	border-color:#d2d2d2 #f9f2eb #f9f2eb #d2d2d2;
+	height: 24px;
+	width: 307px;
+	margin-top:5px;
+}
+.BoxIdea_P1 .SelectedValues a {
+	color:#555;
+}
+.BoxIdea_P1 .bt_dropdown {
+	cursor: pointer;
+	position: absolute;
+	right: 1px;
+	top: 2px;
+}
+.BoxIdea_P1 .Dropdown {
+	margin-top:3px;
+	font-size:12px;
+}
+.BoxIdea_P1 .Dropdown li a {
+	margin:0;
+}
+.BoxIdea_P1 textarea {
+	color:#555;
+	width:297px;
+	height:100px;
+	margin-top:5px;
+	padding:3px 5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	border-width:1px;
+	border-style:solid;
+	border-color:#d2d2d2 #f9f2eb #f9f2eb #d2d2d2;
+}
+.BoxIdea_P1 .Button p {
+	float:left;
+	margin-top:5px;
+}
+.BoxIdea_P1 .btn_on {
+	margin-top:5px;
+	margin-right: 2px;
+}
+		
+
+/* box tin nhan M1
+*************************************************/
+.BoxMessage_M1 { background:#FCFAE2; padding:10px; overflow:hidden; position:relative; display:block; width:492px;}
+.BoxMessage_M1 h3 { font-size:16px; font-weight:normal; float:left; text-align:left; margin-left:10px; width:430px; margin-top:0;}
+.BoxMessage_M1 a { color:#000;}
+.BoxMessage_M1 a:hover { color:#0066cc;}
+.BoxMessage_M1 .UpDown { top:17px;}
+
+/* box tin nhan M2 */	
+.BoxMessage_M2 { background-color: #DDFBFE; border: 1px solid #29ABE2; overflow:hidden; width:490px; padding:10px; text-align:left;}
+.BoxMessage_M2 .ColImgs { width:90px;}
+.BoxMessage_M2 .ColDes { width:380px;}
+.BoxMessage_M2 h2 { font-size:16px; font-weight:bold;}
+.BoxMessage_M2 h2 font { font-weight:normal; color:#808080; font-size:14px;}
+.BoxMessage_M2 p span { font-size:18px; font-weight:bold;}
+.BoxMessage_M2 .icon_result { margin-top:36px; margin-left:20px;}
+.BoxMessage_M2 ul { padding:6px 0;}
+.BoxMessage_M2 li { clear:both; overflow:hidden;}
+.BoxMessage_M2 li a{ color:#df3832
+; display: inline-block; float: left; padding-left: 6px; width: 96%;}
+.BoxMessage_M2 li a:hover{ color:#0066cc;}
+.BoxMessage_M2 .bullet_1 { margin-top:4px;}
+/* box tin nhan M3 */	
+.BoxMessage_M3 { background-color: #FEEBCE; border: 1px solid #CCCCCC; overflow:hidden; width:490px; padding:10px; text-align:left;}
+.BoxMessage_M3 .icon_file { margin-top:10px; margin-left:10px;}
+.BoxMessage_M3 .bullet_4 { margin-top:4px;}
+
+.BoxMessage_M3 .ColImgs { width:50px;}
+.BoxMessage_M3 .ColDes { width:430px;}
+
+.BoxMessage_M3 li { clear:both; overflow:hidden; margin:2px 0;}
+.BoxMessage_M3 li a{ color:#000; display: inline-block; float: left; padding-left: 6px; width: 97%;}
+.BoxMessage_M3 li a:hover{ color:#0066cc;}
+
+/* box tin nhan M4 */	
+.BoxMessage_M4 { background-color: #DFF5FD; border: 1px solid #CCCCCC; overflow:hidden; width:490px; padding:10px; text-align:left;}
+.BoxMessage_M4 .highlight_text { font-weight:bold;}
+
+/* box tin nhan M5 */	
+.BoxMessage_M5 { background-color: #FFE3E3; border: 1px solid #ff0000; overflow:hidden; width:490px; padding:10px; text-align:left;}
+.BoxMessage_M5 h2 { font-weight:bold; font-size:18px; color:#df3832
+; text-transform:uppercase;}
+.BoxMessage_M5 .icon_error { margin-left:15px;}
+.BoxMessage_M5 .ColImgs { width:70px;}
+.BoxMessage_M5 .ColDes { width:410px;}
+
+/* box tin nhan M6 */	
+.BoxMessage_M6 { background-color: #DDFBFE; border: 1px solid #29ABE2; overflow:hidden; width:490px; padding:10px; text-align:left;}
+.BoxMessage_M6 h2 { font-weight:bold; font-size:18px; color:#808080;}
+.BoxMessage_M6 .icon_result { margin-left:12px;}
+.BoxMessage_M6 .ColImgs { width:70px;}
+.BoxMessage_M6 .ColDes { width:410px;}
+
+/* box tin nhan M7 */	
+.BoxMessage_M7 { background-color: #D9FFD7; border: 1px solid #84C341;overflow:hidden; width:490px; padding:10px; text-align:left;}
+.BoxMessage_M7 h2 { font-weight:bold; font-size:18px; color:#669D41;}
+.BoxMessage_M7 .icon_submit { margin-left:12px;}
+.BoxMessage_M7 .ColImgs { width:70px;}
+.BoxMessage_M7 .ColDes { width:410px;}
+
+/* box tin nhan M8 */	
+.BoxMessage_M8 { background-color: #FEFDCC; border: 1px solid #FBB03B; overflow:hidden; width:490px; padding:10px; text-align:left;}
+.BoxMessage_M8 h2 { font-weight:bold; font-size:18px; color:#FBB03B;}
+.BoxMessage_M8 .icon_warning { margin-left:12px;}
+.BoxMessage_M8 .ColImgs { width:70px;}
+.BoxMessage_M8 .ColDes { width:410px;}
+
+/* box tin nhan M9 */	
+.BoxMessage_M9 { background-color: #FFE9C6; border: 1px solid #F06222; overflow:hidden; width:490px; padding:10px; text-align:left;}
+.BoxMessage_M9 h2 { font-weight:bold; font-size:18px; color:#F06222;}
+.BoxMessage_M9 .icon_welcome { margin-left:12px;}
+.BoxMessage_M9 .ColImgs { width:70px;}
+.BoxMessage_M9 .ColDes { width:410px;}
+
+
+
+/* box du an M1
+*************************************************/
+.BoxProject_M1 { overflow:hidden; padding:0 3px 10px 3px; _padding:0 0 10px 0; text-align:center; position:relative; _height:160px; _max-height:175px;}
+.BoxProject_M1 ul { overflow:hidden; z-index:1; margin:0 -1px;}
+.BoxProject_M1 li { float:left !important; width:160px; /*margin:0 4px; _margin:0 4px;*/ overflow:hidden;}
+.BoxProject_M1 li h5{ font-size:12px; color:#333;}
+.BoxProject_M1 li div { overflow:hidden; padding-top:6px; }
+.BoxProject_M1 li a { color:#EC1C24; font-size:14px; font-weight:bold;}
+.BoxProject_M1 li a:hover{ color:#0066cc;}
+
+.BoxProject_M1 a.bt_next_2 { position:absolute; right:6px; bottom:22px;}
+.BoxProject_M1 a.bt_previous_2 { position:absolute; left:6px; bottom:22px;}
+
+/* middle box tin tuc trang chu */	
+.M_BoxNews_1 { overflow:hidden; text-align:left;}
+.M_BoxNews_1 .Group_2 { float:left; width:128px; margin-left:7px; background:#fdfbe4; /*border:1px #ddd solid;*/ padding:0 10px 10px 10px;}
+.M_BoxNews_1 .Group_2 h2 { font-size:17px; font-weight:bold;}
+.M_BoxNews_1 .Group_2 li { margin-top:10px; overflow:hidden;}
+.M_BoxNews_1 .Group_2 li a { color:#0099d4;} 
+.M_BoxNews_1 .Group_2 li a:hover { color:#000;}
+
+	.Groups_News_1 { overflow:hidden; float:left; width:355px;}
+	.Groups_News_1 .ColImgs { width:128px;}
+	.Groups_News_1 .ColImgs img { width:120px; border: 1px solid #B2B2B2; padding:3px;}
+	
+	.Groups_News_1 .ColDes { width:222px; margin-left:5px; position: relative;}
+	.Groups_News_1 h4 { font-size: 14px; font-weight: bold; z-index:10;}
+	.Groups_News_1 h4 a { color:#000; }
+	.Groups_News_1 h4 a:hover{ color:#0066cc;}
+	.Groups_News_1 .update { padding-top:4px;}
+	.Groups_News_1 a.bt_next_1 { position: absolute; right:0; top:83px;}
+	.Groups_News_1 a.bt_next_1:hover{ background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat -14px -137px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat -14px -137px; display:block; width:9px; height:16px;}
+	.Groups_News_1 a.bt_previous_1 { position: absolute; right:13px; top:83px;}
+	.Groups_News_1 a.bt_previous_1:hover{ background:url(http://images.videonhadat.com.vn/icon_button.png) no-repeat 0 -137px; _background:url(http://images.videonhadat.com.vn/icon_button.gif) no-repeat 0 -137px; display:block; width:9px; height:16px;}
+	
+	.Groups_News_1 ul { clear:both; float:left; width:100%; border-top: 3px solid #DDDDDD; margin-top:10px;}
+	.Groups_News_1 li { padding: 5px 0; background: url(http://images.videonhadat.com.vn/linedot.png) repeat-x bottom;}
+	.Groups_News_1 li span { color:#808080;} 
+	.Groups_News_1 li a { color:#000; background:url(http://images.videonhadat.com.vn/icon_mbnd.png) no-repeat -3px -47px; _background:url(http://images.videonhadat.com.vn/icon_mbnd.gif) no-repeat -3px -47px; padding-left:10px;}
+	.Groups_News_1 li a:hover { color:#0066cc;}	
+
+
+/* format top header
+*********************************************/
+.hotnew { position:absolute; top:1px; left:332px;}
+	
+/* format header
+*********************************************/
+.pageWrap{ width: 1000px; margin: 0 auto; overflow: hidden;}
+	
+/* thua ke mbnd.css */
+
+/* format menu main 
+*********************************************/
+/* thua ke mbnd.css */
+
+.MGiaCaTT .bg_button_2 {width:168px;margin-left:-11px;}
+
+/* format Bar Navigator
+*************************************************/
+/********/
+.breadCrumb{ float: left; margin-top: 15px; overflow: hidden;}
+.breadCrumb div{ float: left;}
+.breadCrumb a{ font-size: 13px; color: #5f5f5f;}
+.breadCrumb a span{ color: #5f5f5f;}
+.breadCrumb span.mark{ padding: 0 6px;}
+.breadCrumb .current{ font-weight: bold; color: #5f5f5f;}
+
+.accountGroup{ float: right; margin-top: 15px; color: #5f5f5f;}
+.accountGroup a{ font-size: 13px; color: #5f5f5f;}
+.accountGroup a:hover{ text-decoration: underline;}
+.accountGroup a.createNew{ background: url(../images/mbnd-icon.png) no-repeat 98px -159px; padding-left: 17px; padding-right: 25px;}
+.accountGroup a.signIn{ background: url(../images/mbnd-icon.png) no-repeat 83px -197px; padding-left: 17px; padding-right: 25px;}
+.accountGroup a.signOut{ background: url(../images/mbnd-icon.png) no-repeat 80px -235px; padding-left: 17px; padding-right: 23px;}
+.accountGroup a.account{ background: url(../images/mbnd-icon.png) no-repeat 77px -273px; padding-left: 17px; padding-right: 19px;}
+	
+/* format bottom footer
+*********************************************/
+.mainProvinces { background: #e4e4e4; text-align: left;}
+.mainProvinces .contentFooter { width: 1000px; overflow:hidden; margin: 0 auto; padding: 24px 0;}
+.mainProvinces .contentFooter div {float: left;}
+.mainProvinces h4 { padding-bottom: 10px;}
+.mainProvinces h4 a{ color:#000000; font-size:13px; font-weight:bold;}
+.mainProvinces li { font-size: 11px;}
+.mainProvinces a {color: #919191; line-height: 18px;}
+.mainProvinces a:hover { color: #000000;}
+.footer{ background: #797979; margin-top: 40px; *position: relative; *z-index: 10;}
+.footer .pageWrap{ font-size: 13px; padding: 20px 0; text-align: left;}
+.footer .pageWrap a { color: #ffffff;}
+.footer .pageWrap a:hover { text-decoration: underline;}
+.footer .pageWrap li{ display: inline; border-right: 1px solid #ffffff; padding-right: 7px; padding-left: 7px;}
+.footer p { padding: 0; margin-top: 0; color: #b6b6b6; line-height: 18px;}
+.footer p a { color: #b6b6b6 !important; font-weight: bold;}
+ul.linkS b{ margin-right: 5px; color: #ffffff;}
+ul.navFooter{ padding-bottom: 10px;}
+ul.navFooter li:last-child, ul.linkS li:last-child{ border-right: 0;}
+ul.navFooter li:first-child{ border-left: 0; padding-left: 0;}
+ul.linkS li:first-child{ border-left: 0; padding-left: 0; border-right: 0;}
+
+ul.headOffice{ overflow: hidden; color: #ffffff; padding: 15px 0;}
+ul.headOffice li{ padding-left: 0 !important; padding-right: 30px !important; margin-right: 30px; float: left;}
+ul.headOffice li.last{ padding-right: 0; margin-right: 0; border-right: 0;}
+
+	
+/* popup 2*/
+.PopupBox_2 {  background-color: #FFF2E4;
+    border: 2px solid #ce0000;
+    padding: 15px; position:relative;
+    text-align: left;
+	 /*box-shadow:2px 6px 10px #666; -moz-box-shadow:2px 6px 10px #666; -webkit-box-shadow:2px 6px 10px #666;*/ -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; behavior: url(js/ie-css3.htc); }
+	.close_popup { background:url(http://images.videonhadat.com.vn/img_close_2.png) no-repeat; width:20px; height:20px; position:absolute; right:-10px; top:-11px; display:block;}
+.PopupBox_2 .ColImgs { width:90px;}
+.PopupBox_2 .ColDes { width:470px; font-size:13px;}
+.PopupBox_2 h2 { font-size:16px; font-weight:bold;}
+.PopupBox_2 h2 span { color:#df3832;}
+.PopupBox_2 h4 { font-size:13px; font-weight:normal; padding:3px 0;}
+.PopupBox_2 h4 a { color:#0066cc; text-decoration:underline !important;}
+
+.PopupBox_2 p { margin-top:15px; line-height:18px;}
+.PopupBox_2 p span { font-size:18px; font-weight:bold; }
+.PopupBox_2 .icon_result { margin-top:24px; margin-left:20px;}
+.PopupBox_2 ul { padding:15px 0 0 0;}
+.PopupBox_2 li { clear:both; overflow:hidden;}
+.PopupBox_2 li a{ color:#df3832; display: inline-block; float: left; padding-left: 6px; width: 96%; font-weight:bold;}
+.PopupBox_2 li a:hover{ color:#0066cc;}
+.PopupBox_2 .bullet_1 { margin-top:4px;}	
+
+/* Popup */
+	.PopupBox {}
+	.PopupBox table { width:100%; border-top:none; line-height:normal;}
+	.PopupBox td { border:none; padding:0; vertical-align:baseline;}
+	
+	.PopupBox_shadowtop { background: transparent url(http://images.videonhadat.com.vn/top_box_popup.png) no-repeat top left; _background:transparent url(http://images.videonhadat.com.vn/ds_ie.png) repeat;}
+	.PopupBox_shadowbottom { background: transparent url(http://images.videonhadat.com.vn/bottom_box_popup.png) no-repeat top left; _background:transparent url(http://images.videonhadat.com.vn/ds_ie.png) repeat;}
+
+	.PopupBox_shadow { background: transparent url(http://images.videonhadat.com.vn/img_tranparent_grey.png) repeat top left; _background:transparent url(http://images.videonhadat.com.vn/ds_ie.png) repeat;}
+
+	.PopupBox_topleft { background-position: top left; font-size:1px;height:6px;}
+	.PopupBox_topright { background-position: top right; height:6px;font-size:1px;width:10px;}
+
+	.PopupBox_bottomleft { background-position:left bottom; font-size:1px;height:6px;}
+	.PopupBox_bottomright { background-position: bottom right; height:6px;font-size:1px;width:6px;}
+
+	.PopupBox_background { background:#eee; margin:4px 0 4px 10px;padding:10px 0;}
+
+	.PopupBox_content { color:#000; background-color: #fff; border: 1px solid #ddd; line-height: 14px; margin: 0px 10px; display:block; overflow:hidden;}
+
+	.PopupBox_header { color:#000; font-size:18px;font-weight:normal;padding:0 10px 5px;position:relative; }
+
+	.PopupBox_closer { background-position: 0 -840px;}
+	a.PopupBox_closer{ height:15px;width:15px;float:right;position:absolute;top:0;right:10px;background:url(http://images.videonhadat.com.vn/img_close.png) no-repeat; }
+
+	.btn_on, a.btn_on:hover {background-color:#eb5e00; border:1px solid #eb5e00; color:#FFFFFF;}
+	a.btn_off { color:#df3832; display:block; padding-top:8px;}
+	a.btn_off:hover {}
+	.btn_on, .btn_off { float:right;}
+	.btn_on { font-weight:bolder; margin-left:10px;}
+	.btn_on div, .btn_on input { background-color:#df3832; color:#FFFFFF; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+	.btn_on div:hover, .btn_on input:hover{ background: #cf352f;}
+	.btn_on div, .fake_btn_off div { padding: 6px 15px;}
+
+/* popup kich hoat tin 1
+*************************************************/
+.BoxActivation_P1{ overflow: hidden; padding:10px 15px 15px 15px; _width: 93.4%;}
+.BoxActivation_P1 h5 { font-size:13px; font-weight:bold; margin-top:10px;}
+.BoxActivation_P1 a{ color: #0099cc;}
+
+.BoxActivation_P1 .Block1 {overflow:hidden;}
+.BoxActivation_P1 .Block1 h2 { font-size:13px; font-weight:bold; padding-top:4px;}
+.BoxActivation_P1 .Block1 h2 span { color:#CF2127;}
+.BoxActivation_P1 .Block1 p { margin-top:10px; line-height:20px; font-size:13px;}
+.BoxActivation_P1 .Block1 span{ margint:0 3px; font-weight: bold;}
+.BoxActivation_P1 .Block1 h3{ float:left; color: #CF2127; font-size:13px; font-weight: bold; padding-top: 7px;}
+
+.BoxActivation_P1 .Block1 .Button{ float:right; width:180px;}
+.BoxActivation_P1 .Block1 .Groups { overflow:hidden; margin-top:5px; _position:relative; _width:95.5%; margin-bottom:0px;}
+
+.BoxActivation_P1 .Block2{ background: #fbfaef; border: 1px solid #dbd9c1;  margin-top: 15px; position:relative; padding:10px;}
+.BoxActivation_P1 .Block2 h2{ padding: 8px 0 5px 0; font-size: 14px;}
+.BoxActivation_P1 .Block2 p{ padding-left: 25px;}
+.BoxActivation_P1 .Block2 h3{ color:#df3832; padding: 10px 0 5px 25px; font-size: 16px;}
+
+.BoxActivation_P1 .Block3{ background: #fbfaef; border: 1px solid #dbd9c1; padding:10px; margin-top:10px;}
+.BoxActivation_P1 .Block3 h2 { font-size:16px; font-weight:bold; }
+.BoxActivation_P1 .Block3 a { font-size:13px; font-weight:normal;}
+
+.BoxActivation_P1 .OrBox{ position: absolute; top: -22px; left: 200px; background: #f4f2e2; border: 1px solid #dbd9c1;}
+.BoxActivation_P1 .OrBox div{ color: #df3832; text-transform: capitalize; font-size: 18px; font-weight: bold; padding: 8px 12px 10px 12px;}
+
+.BoxActivation_P1 ul{ padding-left: 25px;}
+.BoxActivation_P1 li{ list-style: square !important; margin: 3px 0;}
+.signInNewDialog .BoxActivation_P1 li{ list-style: none !important; margin: 0 0 0 10px;}
+hr{ height: 0;-moz-box-sizing: content-box;box-sizing: content-box;  margin-top: 12px;margin-bottom: 12px;border: 0;border-top: 1px dashed #ddd;}
+
+.BoxActivation_P1 .Notes{ font-size: 11px; color: #808080;}
+.BoxActivation_P1 .Notes p{ padding-left: 0;}
+.BoxActivation_P1 .Notes ul{ padding: 0 0 0 25px;}
+.BoxActivation_P1 .Notes li{list-style: square !important;}
+.signInNewDialog .BoxActivation_P1 .Notes li{list-style: none !important;}
+.signInNewDialog .BoxActivation_P1{ padding: 0;}
+.BoxActivation_P1 .Notes h5 { margin:50px 0 0 10px; color:#df3832; font-size:13px; font-weight:bold; margin-bottom:6px;}
+
+.BoxActivation_P1 .BoxMessage_M8 { margin-top:10px; width: 457px;}
+.BoxActivation_P1 .BoxMessage_M8 .ColDes {width: 366px;}
+.BoxActivation_P1 .BoxMessage_M8 p { margin:0; color:#FF5E00; font-weight:bold;}
+
+/* Popup xem phong thuy
+*************************************************/
+.BoxTopAgent_P1 {
+	overflow:hidden;
+	_width:572px;
+*padding-bottom:10px;
+	_padding-bottom:0;
+}
+.BoxTopAgent_P1 .Groupmain {
+	float:left;
+	width:265px;
+	padding:10px;
+	line-height:20px;
+}
+.BoxTopAgent_P1 .Groupmain a {
+	color:#0099cc;
+	text-decoration:underline;
+}
+.BoxTopAgent_P1 .Groupmain a:hover {
+	color:#0066cc;
+}
+.BoxTopAgent_P1 .Groupmain h2 {
+	font-size:16px;
+	font-weight:bold;
+	color:#CF2127;
+	margin-top:34px;
+}
+.BoxTopAgent_P1 .Groupmain h4 {
+	margin-top:10px;
+	font-size:12px;
+	font-weight:normal;
+}
+.BoxTopAgent_P1 .Groupmain p {
+	margin-top:30px;
+}
+.BoxTopAgent_P1 .Groupmain p span {
+	font-weight:bold;
+}
+.BoxTopAgent_P1 span.ColorStyle_1 {
+	font-size:16px;
+	font-weight:bold;
+}
+.BoxTopAgent_P1 .Group_1 {
+	float:left;
+	width:240px;
+	margin:10px;
+	background:#FFF2E4;
+	padding:10px;
+	overflow:hidden;
+	border:3px #e1e1e1 solid;
+}
+.BoxTopAgent_P1 .Title {
+	font-size:16px;
+	font-weight:bold;
+	color:#CF2127;
+}
+.BoxTopAgent_P1 .Title div {
+	font-size:12px;
+	font-weight:bold;
+	padding-top:5px;
+	color:#000;
+}
+.BoxTopAgent_P1 .Group_1 ul {
+	margin:20px 0 10px 0;
+}
+.BoxTopAgent_P1 .Group_1 h4 {
+	font-size:16px;
+	font-weight:bold;
+}
+.BoxTopAgent_P1 .Group_1 h4 span {
+	font-size:18px;
+	color:#CF2127;
+}
+.BoxTopAgent_P1 .Group_1 li {
+	overflow:hidden;
+	margin-top:10px;
+*margin-top:6px;
+	_margin-top:-5px;
+}
+.BoxTopAgent_P1 .Group_1 li span {
+	float:left;
+	display:inline-block;
+	width:224px;
+	margin-left:5px;
+}
+.BoxTopAgent_P1 .Button {
+	margin:15px 0 0 76px;
+	overflow:hidden;
+}
+.BoxTopAgent_P1 a.PopupBox_closer {
+	top:10px;
+}
+
+/**************************************************end cau truc moi*********************************************************/	
+
+/*PAGES
+******************************************************************/
+.WidthPages { width:1000px;}
+.LogoHeader { text-align:left;}
+.Header { position:relative;}
+
+.ContentsBody { width:1000px; margin-top:15px; overflow:hidden;}
+.ColLeft { float:left; width:228px;}
+.ColRight { float:left; width:752px; margin-left:20px;}
+
+.ColRight .Back { clear:both; margin-top:5px; text-align:right;}
+.ColRight .Back a { color:#000; background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1826px no-repeat; padding-left:16px; font-size:13px;}
+.ColRight .Back a:hover { color:#0099cc;}
+
+#dhtmltooltip{position:absolute;left:-300px;width:390px;padding:3px;visibility:hidden;z-index:100; background-color:#e9e7b1;}
+#dhtmlpointer{position:absolute;left:-300px;z-index:101;visibility:hidden;}
+
+
+/*BOX CONTACT ADVERTISING
+*******************************************************/
+
+.YahooAdv a { float:left; display:block; height:24px; width:32px; margin:0 6px 0 60px; _margin:0 6px 0 30px; background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1519px no-repeat;}
+.SkypeAdv a { float:left; display:block; height:24px; width:24px; margin-right:6px;background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1549px no-repeat;}
+.EmailAdv a { float:left; display:block; height:24px; width:24px;background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1573px no-repeat;}
+
+.HotlinAdv a { font-size:16px; font-weight:bold; padding-top:5px;color:#107b10 !important; background:url(http://images.videonhadat.com.vn/users/linedot.png) repeat-x top;}
+
+
+.Bold_d50 { font-weight:bold; color:#df3832;}
+
+h1, .font_18 { font-size:18px;}
+h2, .font_16 { font-size:16px;}
+h3, .font_14 { font-size:14px;}
+h4, .font_12 { font-size:12px;}
+h5, .font_11 { font-size:11px;}
+
+/*MENU MAIN
+*******************************************************/
+#MainMenu {}
+#MainMenu ul { border:1px #eeeeee solid; border-top: 0; text-align:left;}
+#MainMenu li.menuheaders { font-size:14px; font-weight:bold; color:#000; position:relative;}
+/*#MainMenu li.menuheaders a { background:url(http://images.videonhadat.com.vn/users/bg_menuheaders.png) no-repeat; display:block; width:226px; color:#000;}*/
+#MainMenu li.menuheaders a { background: #e4e4e4; display:block; width:226px; color:#000; height: 30px; line-height: 30px; border-top: 2px solid #e4e4e4;}
+/*#MainMenu li.menuheaders a:hover, #MainMenu li.menuheaders a:hover label, #MainMenu li.menuheaders a.current { background-position: 0 -29px; color:#000;}*/
+#MainMenu li.menuheaders a:hover, #MainMenu li.menuheaders a.current{ border-top: 2px solid #cccccc;}
+#MainMenu li.menuheaders span { padding:0 0 0 30px;}
+#MainMenu ul.menucontents { border:0;}
+#MainMenu ul.menucontents li { border-bottom:1px #f2f2f8 solid; line-height: 18px; font-weight:normal; font-size:12px;}
+#MainMenu ul.menucontents li a, #MainMenu ul.menucontents li a label { color:#000; background:#fff; border-top: 0;}
+/*#MainMenu ul.menucontents li a:hover, #MainMenu ul.menucontents li a.current { color:#df3832; background:url(http://images.videonhadat.com.vn/users/arrow_menucontents.png) 14px 10px no-repeat;}*/
+#MainMenu ul.menucontents li a:hover, #MainMenu ul.menucontents li a.current { background: #dffffb; color: #000000; border-top: 0;}
+#MainMenu li.menuheaders label { color:#df3832; font-weight:normal; font-size:11px;}
+#MainMenu ul.menucontents span { font-weight:norma; padding:0 0 0 30px;}
+
+
+#MainMenu ul.menucontents li.AddCategory a { color:#0099cc;}
+#MainMenu ul.menucontents li.AddCategory a:hover, #MainMenu ul.menucontents li.AddCategory a:hover label, #MainMenu ul.menucontents li.AddCategory a.current { color:#df3832;}
+
+#MainMenu .logoanz{ position:absolute; top:5px; right:2px;}
+
+/*BOX INFOMATION NEWS FROM MUABANNHADAT
+*******************************************************/
+#BoxInfoNews_mbnd { margin-top:10px; background:#fff url(http://images.videonhadat.com.vn/users/note_mbnd.png) no-repeat; display:block; width:752px; height:120px; color:#000;}
+
+#BoxInfoNews_mbnd .DesBoxInfoNews { padding:10px; text-align:left;}
+#BoxInfoNews_mbnd .DesBoxInfoNews ul { overflow:hidden;}
+
+#BoxInfoNews_mbnd li.ItemsNews {}
+
+#BoxInfoNews_mbnd .ImgItemsNews { float:left; width:120px;}
+
+#BoxInfoNews_mbnd .DesItemsNews { float:left; width:600px; margin-left:10px;}
+#BoxInfoNews_mbnd .DesItemsNews .Title { font-size:16px; color:#000;}
+#BoxInfoNews_mbnd .DesItemsNews .Title a { color:#000;}
+#BoxInfoNews_mbnd .DesItemsNews .Title a:hover { color:#0099cc;}
+#BoxInfoNews_mbnd .DesItemsNews .DesInfo { padding-top:6px; line-height:16px; color:#333;}
+
+#BoxInfoNews_mbnd .DesInfo span.City { font-weight:bold;}
+#BoxInfoNews_mbnd .DesInfo span.Datetime { color:#0099cc; font-size:11px;}
+
+#BoxInfoNews_mbnd .Viewdetail { float:right; padding-top:4px;}
+#BoxInfoNews_mbnd .Viewdetail a { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -129px no-repeat; padding-left:16px;color:#df3832;}
+#BoxInfoNews_mbnd .Viewdetail a:hover { color:#0099CC;}
+
+/*BOX DICH VU TU MUABANNHADAT
+*******************************************************/
+#BoxServices_mbnd {}
+#BoxServices_mbnd ul.Services_mbnd { overflow:hidden; text-align:left;}
+#BoxServices_mbnd ul.Services_mbnd li { display:inline; float:left; width:357px; margin:10px 10px 0 0; overflow:hidden; border:1px #56BFBF solid; background-color:#008080; padding:6px;}
+
+#BoxServices_mbnd .col_imgages { float:left; width:130px; margin-right:10px;}
+#BoxServices_mbnd .col_description { float:left; width:217px; color:#fff;}
+#BoxServices_mbnd .col_description .Title a { color:#ffff00; font-size:16px;}
+#BoxServices_mbnd .col_description .Title a:hover { color:#fff;}
+#BoxServices_mbnd .col_description p { line-height:16px; padding:0; margin:5px 0 0 0;}
+
+#BoxServices_mbnd ul.Services_mbnd li.clr_marright { margin-right:0;}
+
+/*#BoxServices_mbnd { border:1px #d7d6e7 solid; margin-top:10px;}
+
+
+#BoxServices_mbnd .DesBoxServices { text-align:left; _padding-left:2px; }
+#BoxServices_mbnd .DesBoxServices ul { overflow:hidden; padding:0; margin:0;}
+#BoxServices_mbnd .DesBoxServices li { float:left; width:240px; background:#fff url(http://images.videonhadat.com.vn/users/bg_services.png) no-repeat; margin:5px; _margin:5px 4px 5px 3px; }
+#BoxServices_mbnd .DesBoxServices li.ItemsServices { padding:10px; width:343px; background-color:#F33;}
+#BoxServices_mbnd li.ItemsServices .Title { font-size:16px;}
+#BoxServices_mbnd li.ItemsServices .Title a { color:#000;}
+#BoxServices_mbnd li.ItemsServices .Title a:hover { color:#0099cc;}
+
+#BoxServices_mbnd li.ItemsServices p { margin:0; padding:0; line-height:16px; padding-top:6px;}
+#BoxServices_mbnd li.ItemsServices .Viewdetail { float:right; padding-top:4px;}
+#BoxServices_mbnd li.ItemsServices .Viewdetail a { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -129px no-repeat; padding-left:16px;color:#df3832;}
+#BoxServices_mbnd li.ItemsServices .Viewdetail a:hover { color:#0099CC;}*/
+
+/*BOX YOUR PROPERTY
+*******************************************************/
+#BoxYourProperty { position:relative; z-index:0;}
+#BoxYourProperty .SearchDetail { padding:10px;}
+#BoxYourProperty .SearchDetail table { text-align:left;}
+
+#BoxYourProperty .BTViewPro{ position: absolute; right: 13px; top: 40px; _position: static; _margin-left: 292px; _margin-top: -34px;}
+#BoxYourProperty .Formselected { clear:both; overflow:hidden; display:block; position: relative;}
+#BoxYourProperty .Formselected li{ float: left;}
+
+#BoxYourProperty .Formselected li.col6{ margin-right: 10px;}
+#BoxYourProperty li.col7 label, #BoxYourProperty li.col8 label { float:left;}
+#BoxYourProperty li.col7 input, #BoxYourProperty li.col8 input { float:left; margin-left:3px;}
+#BoxYourProperty .Formselected li.col7{ margin-right: 10px;}
+#BoxYourProperty .Formselected li.col7 a, #BoxYourProperty .Formselected li.col8 a{ margin-left: 2px;}
+#BoxYourProperty .Formselected li.col6, #BoxYourProperty .Formselected li.col7, #BoxYourProperty .Formselected li.col8{ margin-top: 10px;}
+#BoxYourProperty .Formselected li.col2, #BoxYourProperty .Formselected li.col3, #BoxYourProperty .Formselected li.col4, #BoxYourProperty .Formselected li.col5{ margin-left: 10px;}
+
+#BoxYourProperty .Formselected input{ width: 132px;}
+#BoxYourProperty .Formselected select{ width: 138px;}
+.BTPostPro .Bgbutton div { padding: 28px 15px;}
+.BTViewPro .Bgbutton div { padding: 5px 15px;}
+
+#BoxYourProperty .Formselected { clear:both; overflow:hidden; display:block;}
+#BoxYourProperty .Formselected ul { width:732px; background-color:#e9e7b1; padding:10px; overflow: hidden;}
+
+#BoxYourProperty .BTPostPro { float:left; width:11%; margin-left: 10px;}
+
+.Formselected  div { float:left; margin-right:0;}
+.Formselected .input_text { width:150px;}
+.Formselected select { width:150px;}
+.Formselected label { padding-top:2px;}
+#BoxYourProperty .Formselected  a, #BoxYourProperty .Formselected  a:hover{ color: white;}
+
+#BoxYourProperty .ListProSelected { clear:both;}
+#BoxYourProperty .ListProSelected .StatusExchange { float:right; margin-top: 8px; margin-right: 2px;}
+#BoxYourProperty .StatusExchange table { margin-right:0px; margin-left: 5px; margin-bottom: 10px; border:none; *width: 30%;*margin-right: -5px;}
+#BoxYourProperty .StatusExchange td { border:none; padding:0; vertical-align: middle;}
+
+#BoxYourProperty .ListProSelected ul { float:left; display:inline;}
+#BoxYourProperty .ListProSelected li { float:left; display:inline; font-weight:bold; font-size:16px; margin-right:5px; padding-top:10px;}
+#BoxYourProperty .ListProSelected li a { color:#df3832;}
+#BoxYourProperty .ListProSelected li a:hover { color:#0099cc;}
+
+#BoxYourProperty .ListProperty { clear:both; overflow:hidden; border:1px #d7d6e7 solid; _margin-top:2px; background: #ffffff;}
+#BoxYourProperty .ListProperty ul { overflow:hidden;}
+#BoxYourProperty .ListProperty li { overflow:hidden; border-top:1px #ececec solid; padding:10px; text-align:left; vertical-align:bottom;}
+
+
+#BoxYourProperty li.ItemsPostPro { clear:both;}
+#BoxYourProperty li.ItemsPostPro .col_imgages { position:relative; float:left; width:100px; text-align:center; margin-right:10px;}
+#BoxYourProperty .Warning { clear:both; }
+#BoxYourProperty .Warning span { background:url(http://images.videonhadat.com.vn/users/iconform.png) no-repeat 0 -1874px; padding-left:20px; font-weight: bold; color:#df3832;}
+#BoxYourProperty .Warning a { color:#0099CC;}
+#BoxYourProperty .Warning a:hover { color:#df3832;}
+
+#BoxYourProperty .Pointmap { background: url(http://images.videonhadat.com.vn/users/nha.png) no-repeat scroll 0 0 transparent; bottom:0; _bottom:3px; *bottom:3px; left:0;
+position:absolute; display: block; width: 24px; height: 30px;}
+#BoxYourProperty .Pointmap div { color: #FFFFFF; font-weight: bold; padding-top: 5px; text-align: center;}
+
+#BoxYourProperty .col_imgages span a { color:#df3832; }
+#BoxYourProperty .col_imgages span a:hover { color:#0099cc;}
+
+#BoxYourProperty li.ItemsPostPro .col_description { float:left; width:360px; position:relative;}
+#BoxYourProperty .col_description .Title { font-size: 14px; width: 275px; height:32px;}
+#BoxYourProperty .col_description .Title a { color:#333;}
+#BoxYourProperty .col_description .Title a:hover { color:#0099cc;}
+#BoxYourProperty .col_description p { line-height:16px;}
+
+#BoxYourProperty span { font-weight:normal;}
+#BoxYourProperty span a { color:#333;}
+#BoxYourProperty span a:hover { color:#0099cc;}
+
+#BoxYourProperty span.Districts { font-size:12px; font-weight:bold; padding-left:10px; margin-top:5px; background:url(http://images.videonhadat.com.vn/users/iconform.png) -13px -100px no-repeat;}
+#BoxYourProperty span.Districts a { color:#333;}
+#BoxYourProperty span.Districts a:hover { color:#0099cc;}
+
+
+#BoxYourProperty ul.Date { border:1px #ddd solid; clear:both; overflow:hidden; margin-top:10px; color:#555; padding:3px 0; font-size:11px;} 
+#BoxYourProperty ul.Date li { display:inline; border-right:1px #333 solid; padding:0 8px 0 8px; _padding:0 7px 0 8px; *padding:0 7px 0 8px; margin:0; border-top:0;}
+#BoxYourProperty ul.Date li.clr_borright { border-right:none;}
+
+#BoxYourProperty ul.Date li span { font-weight:bold;}
+
+#BoxYourProperty li.ItemsPostPro .col_gadget { float:left; width:230px; margin:0 0 10px 10px; background-color:#efefef; padding:5px 10px; *padding:5px 10px 10px 10px; _padding:5px 10px 10px 10px;}
+
+#BoxYourProperty .col_gadget ul { overflow:hidden; }
+#BoxYourProperty .col_gadget li { float:left; width:110px; padding-left:10px; margin:4px 0; border:0; padding:0; color:#686868;}
+
+#BoxYourProperty .col_gadget li span { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1502px no-repeat; padding-left:10px;}
+
+#BoxYourProperty .col_gadget li a { color:#000;}
+#BoxYourProperty .col_gadget li a:hover { color:#0099cc;}
+
+#BoxYourProperty .PagesNumber { border-top:1px #ececec solid; _margin-top:10px;}
+#BoxYourProperty .PagesNumber ul { _padding:0 6px 8px 0;}
+#BoxYourProperty .PagesNumber li { border: 1px solid #CCCCCC; padding:1px 5px;}
+#BoxYourProperty li.PagesPrivious { border:0;}
+#BoxYourProperty li.PagesNext { border:0;}
+
+/*
+#BoxYourProperty { border:1px #d7d6e7 solid; margin-top:10px;}
+
+
+#BoxYourProperty .DesBoxServices { text-align:left; overflow:hidden;}
+#BoxYourProperty .FormSelected { overflow:hidden; border-bottom:1px #dbdae9 solid; padding:5px;}
+#BoxYourProperty .FormSelected table { width:100%; } 
+#BoxYourProperty .FormSelected table img { float:left;}
+
+
+#BoxYourProperty .FormSelected .AddProperty { float:left; padding:7px 0px 7px 7px; border-left:1px #dbdae9 solid;}
+
+
+
+
+
+#BoxYourProperty .ViewSelected { padding:10px; overflow:hidden; _padding:10px 10px 10px 5px;}
+#BoxYourProperty .ViewSelected ul { float:left; overflow:hidden; padding-top:5px;  _padding-top:0px;}
+#BoxYourProperty .ViewSelected li { display:block; float:left; margin-right:20px; font-weight:bold;}
+
+#BoxYourProperty .ButtonAddPro { float:right;}
+
+
+
+#BoxYourProperty .ListProperty { clear:both;}
+#BoxYourProperty .ListProperty table { width:100%; border:1px #dbdae9 solid; border-left:0; border-right:0; border-collapse:collapse;}
+#BoxYourProperty .ListProperty tr.BgLabel { background-color:#e6e6e6;}
+#BoxYourProperty .ListProperty td { vertical-align:top; padding:5px; border-right:1px #ccc solid; border-bottom:1px #ccc solid;}
+
+
+
+#BoxYourProperty .ListProperty .ID { font-weight:bold; color:#df3832;}
+#BoxYourProperty .ListProperty .Typepro span { font-weight:bold;}
+#BoxYourProperty .ListProperty .Titlepro { padding-top:5px;}
+#BoxYourProperty .ListProperty .price { font-weight:bold; color:#df3832;}
+#BoxYourProperty .ListProperty .note { color:#df3832;}
+
+#BoxYourProperty .ListProperty li { line-height:18px;}
+#BoxYourProperty .ListProperty li a { color:#555; text-decoration:underline;}
+#BoxYourProperty .ListProperty li a:hover { color:#0099cc;}
+ */
+
+/*BOX DEVELOPMENT DISTRIBUTE
+*******************************************************/
+.stepcarousel {
+    border: 0 solid black;
+    height: 170px;
+    overflow: scroll;
+    padding: 0px;
+    position: relative;
+    }
+.belt{position:absolute;}
+
+#BoxDevDistribute { border:1px #d7d6e7 solid; margin-top:10px;}
+
+
+#BoxDevDistribute .DesBoxDevDistribute { text-align:left;  position:relative; padding:10px; _padding:10px 10px 10px 0px; height:153px;}
+
+#BoxDevDistribute .DesBoxDevDistribute ul { /*overflow:hidden;*/ padding:0 0 0 15px; _padding:0 0 0 21px;}
+#BoxDevDistribute .DesBoxDevDistribute li { float:left; display:block; margin:0 5px;}
+
+#BoxDevDistribute li.ItemsDev .TitleDev { font-size:14px; font-weight:bold; text-align:center;}
+#BoxDevDistribute li.ItemsDev .TitleDev a { color:#df3832;}
+#BoxDevDistribute li.ItemsDev .TitleDev a:hover { color:#0099cc;}
+
+#BoxDevDistribute li.ItemsDev .Dicstrict { color:#333; font-size:14px; font-weight:bold; text-align:center;}
+
+#BoxDevDistribute .BtScroll_Previous { display:block; width:24px; height:123px; position:absolute; top:10px; left:10px;background:transparent url(http://images.videonhadat.com.vn/users/scroll_previous.png) no-repeat;}
+#BoxDevDistribute .BtScroll_Next { display:block; width:24px; height:123px; position:absolute; top:10px; right:10px; background:transparent url(http://images.videonhadat.com.vn/users/scroll_next.png) no-repeat;}
+
+/*BOX HIEU CHINH THONG TIN TAI KHOAN
+*******************************************************/
+
+#BoxInfoAccount { border:1px #d7d6e7 solid; position:relative; z-index:0; background: #ffffff;}
+
+.ListAlter a { position:absolute; top:6px; right:10px; font-weight:bold; color:#373737; z-index:1;}
+.ListAlter a:hover { color:#df3832;}
+
+#BoxInfoAccount .DesBoxInfoAccount { text-align:left; padding: 20px 10px;}
+#BoxInfoAccount .DesBoxInfoAccount h3 { color:#0099cc; font-weight:normal; font-size:14px; text-align:center; padding:10px 0;}
+#BoxInfoAccount .DesBoxInfoAccount label { font-weight:bold; color:#333;}
+
+#BoxInfoAccount .DesBoxInfoAccount table { border:none; width:93%; margin-left:30px;}
+#BoxInfoAccount .DesBoxInfoAccount td { padding:4px; border:none;}
+
+#BoxInfoAccount div.TitleSub { margin-bottom:15px; border-bottom:1px #dadada solid; height:15px; _position:relative;}
+#BoxInfoAccount div.TitleSub span { background-color:#fff; font-size:14px; font-weight:bold; color:#333; padding-right:8px; text-transform:uppercase; _position:absolute;}
+
+#BoxInfoAccount .Imglogo { text-align:center;}
+#BoxInfoAccount .Imglogo img { padding-bottom:5px;}
+#BoxInfoAccount a.Passexchange { color:#808080; text-decoration:underline;}
+#BoxInfoAccount a.Passexchange:hover { color:#0099cc;}
+
+#BoxInfoAccount .UploadLogo {}
+#BoxInfoAccount .UploadLogo .Title { border-bottom:1px #d8d7e7 solid; position:relative; height:12px;}
+#BoxInfoAccount .UploadLogo .Title h4 { color:#000; background-color:#FFF; padding-right:8px; font-size:12px; position:absolute;}
+
+#BoxInfoAccount ul.Btform {}
+#BoxInfoAccount ul.Btform li { display:inline; float:left; margin-right:5px;}
+
+#BoxInfoAccount p.aboutus { font-size:14px; padding:0; margin:0; line-height:18px;}
+#BoxInfoAccount span { }
+#BoxInfoAccount span.name { font-size:14px;}
+#BoxInfoAccount span.namecompany { font-size:16px; color:#0099CC; font-weight:bold;}
+#BoxInfoAccount span.email a { color: #df3832;}
+
+#BoxInfoAccount input { height:inherit;}
+#BoxInfoAccount .input_text { width:250px;}
+#BoxInfoAccount select { width:256px;}
+#BoxInfoAccount .textarea_about { width:250px; height:100px;}
+
+/*BOX DOI MAT KHAU
+*******************************************************/
+#BoxExchangePass { position:relative; z-index:0;}
+#BoxExchangePass { border:1px #d7d6e7 solid; background: #ffffff;}
+
+#BoxExchangePass .DesBoxExchangePass { padding:10px; text-align:left;}
+#BoxExchangePass .DesBoxExchangePass table { border:none;}
+#BoxExchangePass .DesBoxExchangePass td { border:none; padding: 2px 0; vertical-align: middle;}
+
+#BoxExchangePass .DesBoxExchangePass label { font-weight:bold; color:#333; padding-right: 3px;}
+
+
+#BoxExchangePass ul.Btform {}
+#BoxExchangePass ul.Btform li { display:inline; float:left; margin-right:5px;}
+
+#BoxExchangePass .input_password { width:250px; margin-bottom: 5px; height: 28px; line-height: 28px;}
+
+/*BOX FORM DANG TIN
+*******************************************************/
+#BoxPostProperty { border:1px #d7d6e7 solid; position:relative; z-index:0; *overflow: hidden;}
+
+#BoxPostProperty table { border:none; width:100%; *border-collapse: collapse; border-spacing: 0;}
+#BoxPostProperty table tr.BgAreaTitle { background-color:#efefef;}
+#BoxPostProperty table tr td.AreaTitle { font-weight:bold; padding:8px 10px; font-size: 14px; color:#333; border-top: 1px solid #d7d6e7; border-bottom: 1px solid #d7d6e7;}
+#BoxPostProperty table tr td.Col1 { text-align:left; padding-left: 55px;}
+#BoxPostProperty table tr td.Col2 { text-align:left; vertical-align: middle;}
+#BoxPostProperty table tr td a.LinkHelp { color:#0099CC;}
+#BoxPostProperty table tr td a.LinkHelp:hover { color:#ff6600;}
+
+
+
+#BoxPostProperty .note { color:#ff6600;}
+#BoxPostProperty .input_button { height:28px; line-height: 28px; padding: 0 5px; margin-top: -1px; _margin-top: -1px; *margin-top: 0;}
+#BoxPostProperty input[type="button"]{ padding-left: 0; height: 28px !important; line-height: 28px; cursor: pointer;}
+#BoxPostProperty td.Col1 li.Reset{ margin-right: 0px;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+#BoxPostProperty input[type="button"]{ padding-left: 5px; padding-right: 5px;}
+#BoxPostProperty .PositionMap{ width: 740px;}
+#BoxPostProperty ul.Btform{ margin-right: 7px;}
+}
+*+html #BoxPostProperty .PositionMap{ width: 730px;}
+*+html #BoxPostProperty ul.Btform{ margin-right: 19px;}
+
+#BoxPostProperty .input_title { width:542px; *width:537px; height: 28px; line-height: 28px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box } /*400*/
+#BoxPostProperty .input_text { width:143px;*width:133px; height: 28px; line-height: 28px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box}    /*194*/
+#BoxPostProperty .textarea { width:542px; *width:537px; height:100px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; -ms-box-sizing: border-box}
+ /*400*/
+#BoxPostProperty .input_address_long{ width: 88%; height: 28px; line-height: 28px;}
+#BoxPostProperty .DesBoxPostProperty td { border:none; padding:4px 5px 4px 5px; vertical-align: middle;}
+#BoxPostProperty .select, .DesBoxPostProperty .select{ width:143px;*width:133px; height: 28px; *height: 31px; line-height: 28px; padding: 3px;} /*200*/
+#BoxPostProperty .DesBoxPostProperty { padding:10px 0px 5px 0px; text-align:left; background: #ffffff;}
+
+
+#BoxPostProperty .BoxUpload { width:100%;}
+#BoxPostProperty .BoxUpload .SelectOption { padding:10px 0 0 0; text-align:center;}
+#BoxPostProperty .BoxUpload .SelectOption span { padding:0 20px; *padding-right:36px; font-size:14px;}
+#BoxPostProperty input { height:inherit;}
+
+
+
+#BoxPostProperty .BoxUpload .Option1, #BoxPostProperty .BoxUpload .Option2, #BoxPostProperty .BoxUpload .Option3 { padding:10px 0 0 0;}
+#BoxPostProperty .BoxUpload .Option1 .Title, #BoxPostProperty .BoxUpload .Option2 .Title, #BoxPostProperty .BoxUpload .Option3 .Title { font-size:14px; background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -43px no-repeat; display:block; padding-left:10px;}
+#BoxPostProperty .BoxUpload .note { font-weight:normal; color:#FF6600; font-size:12px;}
+
+
+#BoxPostProperty .BoxUpload .Upload { padding:0 0 15px 0; position:relative;}
+#BoxPostProperty .BoxUpload .BtUpload { position:absolute; top:10px; _top:11px; *top:11px; left:47%;}
+#BoxPostProperty .BoxUpload .input_text { width:47%; height:18px;}
+#BoxPostProperty .BoxUpload .ListPhotos { width:100%; overflow:hidden; margin-left:-8px;}
+#BoxPostProperty .BoxUpload .PhotoItems { float:left; width:116px; display:inline; margin:8px;}
+#BoxPostProperty .BoxUpload .Control { height:16px; padding:2px 0;}
+#BoxPostProperty .BoxUpload .PhotoItems .Photo { border:1px #ccc solid; padding:2px;}
+#BoxPostProperty .BoxUpload .PhotoItems span { padding-right:9px;}
+#BoxPostProperty .BoxUpload .PhotoItems span.bor_right { border-right:1px #ccc solid;}
+
+
+#BoxPostProperty .PositionMap .Title { text-align:center; font-size:14px;}
+#BoxPostProperty .PositionMap .Search { text-align:center; padding-top:5px; position:relative;}
+#BoxPostProperty .PositionMap .Search span { padding-right:5px;}
+#BoxPostProperty .PositionMap .input_text { width:354px; height:18px;}
+#BoxPostProperty .PositionMap a { position:absolute; top:5px; left:550px;}
+#BoxPostProperty .PositionMap .example { padding:3px 0 0 56px; font-size:11px;}
+
+
+
+
+#BoxPostProperty .Map { padding-top:15px;}
+#BoxPostProperty .PositionMap .PolicyApprove { background-color:#dffffb; margin-top:0px; margin-bottom: 15px; padding:30px; font-size:13px;}
+#BoxPostProperty .PositionMap .PolicyApprove h3 { font-size:16px; font-weight:bold;}
+#BoxPostProperty .PositionMap .PolicyApprove h4 { padding-top:5px; font-weight:normal; font-size:13px;}
+#BoxPostProperty .PositionMap .PolicyApprove ul { padding-top:15px;}
+#BoxPostProperty .PositionMap .PolicyApprove ul li { list-style: disc; margin-left:13px; line-height:16px; padding:7px 0;}
+
+#BoxPostProperty ul.Btform { float:right; padding-top:5px;}
+#BoxPostProperty ul.Btform li { display:inline; float:left; margin-left:5px; background: #df3832; border: 0;transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+#BoxPostProperty ul.Btform li:hover{ background: #cf352f;}
+
+#BoxPostProperty ul.Btform input { background:none; border: 0; font-size:13px; font-weight:bold; font-family:Arial, Helvetica, sans-serif; cursor:pointer; color: #FFFFFF;padding: 8px 20px;}
+#BoxPostProperty ul.Btform li.Reset div{ padding: 9px 20px; font-size:13px;}
+ul.Btform li.Reset { border: 0 !important; background: #e4e4e4; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+ul.Btform li.Reset div { background: #e4e4e4; border: 0; color: #000000; font-weight:bold; padding: 6px 15px 7px 15px; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+ul.Btform li.Reset div:hover{ background: #dbdbdb;}
+
+.DesBoxPostProperty ul.Btform li.Reset{ margin-right: 5px;}
+.DesBoxPostProperty .chosen{ padding-left: 35px !important; padding-right: 35px !important;}
+.DesBoxPostProperty .chosen h4{ margin: 20px 0 10px 0; }
+.DesBoxPostProperty .chosen li{ margin-bottom: 5px; overflow: hidden;}
+.DesBoxPostProperty .chosen input{ float: left; padding-right: 10px; display: block; margin-right: 5px; margin-top: 1px; border: 0;}
+.DesBoxPostProperty .chosen h4 + ul + h4{ font-size: 16px; font-weight: normal; border-top: 1px dotted #d7d6e7; padding-top: 15px;}
+.DesBoxPostProperty .chosen i{ display: block; float: left; width: 300px; font-size: 13px;}
+.DesBoxPostProperty .chosen b{ display: block; float: left; font-size: 13px;}
+.BoxUpload div.UploadImg {width: 222px;height: 38px;line-height: 38px;text-align: center;overflow: hidden;position: relative;color: #ffffff;font-size: 13px;font-weight: bold;background: #df3832; border: 0;transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+.BoxUpload div.UploadImg:hover{ background: #cf352f ;}
+.BoxUpload div.UploadImg input {display: block;width: 222px;height: 38px;opacity: 0;filter: alpha(opacity=0);overflow: hidden;position: absolute;top:0;left: 0;cursor: pointer;}
+.BoxUpload .BgTitleBox{position: relative; margin-bottom: 10px; margin-top: 5px; width: 542px;}
+.BoxUpload .BgTitleBox .TitleBox{ border-bottom: 0; font-weight: bold; padding-left: 10px;}
+.light{ float: right; position: relative;}
+.light img{ cursor: help; position: absolute; top: 0; *top: -30px; right: 15px; right: 40px\0/; *right: -5px;}
+@media screen and (-webkit-min-device-pixel-ratio:0) { .light{ right: -15px;}/* Safari only override */::i-block-chrome, .light{ right: 0px;}}
+x:-o-prefocus, .light{ right: -15px;}
+.toolTipAcc{ background: #fcf9d9; padding: 15px; width: 300px; border: 1px solid #fff3ab;}
+.illustrationPara{ margin-top: 5px; width: 380px; font-size: 11px; font-weight: bold; font-style: italic; line-height: 16px;}
+.illustrationPara img{ cursor: help; vertical-align: middle; position: relative; top: -2px;}
+.preview{ position: absolute; width: 450px; background: #ffffff; border: 1px solid #dddddd; *padding-bottom: 10px;}
+.preview h6{ color: #ffffff; background: #df3832; padding: 0 0 0 10px; font-weight: normal; font-size: 11px; height: 25px; line-height: 25px;}
+.preview h6 b{ font-weight: bold; display: inline-block; margin-right: 268px;}
+.preview h6 span{ text-decoration: underline;}
+.preview ul{ overflow: hidden; padding-top: 10px;}
+.preview li{ float: left; width: 90px; padding-left: 5px; padding-right: 5px; height: 75px; background: #dddddd; margin-left: 10px; margin-bottom: 10px; color: #ffffff; font-weight: bold; text-align: center;}
+.preview li span{ padding-top: 20px; display: none;}
+.preview li.active span{ display: block;}
+.preview li.active{ background: #919191;}
+
+/*BOX RECENT SEARCH
+*******************************************************/
+#BoxRecentSearch { text-align:left; position:relative; z-index:0;}
+
+#BoxRecentSearch h1 { font-size:18px; font-weight:normal; color:#000;}
+#BoxRecentSearch h4 { font-size:12px; font-weight:normal; color:#555; padding:2px 0 10px 0;}
+
+#BoxRecentSearch .ResultSearch { position:relative;}
+
+#BoxRecentSearch ul.SaveSearch { position:absolute; top:5px; right:0;}
+#BoxRecentSearch ul.SaveSearch li { display:inline; padding-left:5px;}
+#BoxRecentSearch ul.SaveSearch li a { color:#333;}
+#BoxRecentSearch ul.SaveSearch li a:hover { color:#0099cc;}
+#BoxRecentSearch ul.SaveSearch li a span.SaveThis { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -65px no-repeat; padding-left:20px;}
+#BoxRecentSearch ul.SaveSearch li a span.NewSearch { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -84px no-repeat; padding-left:20px;}
+
+#BoxRecentSearch ul.TabMenuList { display:block; border-bottom: 3px solid #df3832; text-align:left; _margin-bottom:-2px;}
+#BoxRecentSearch ul.TabMenuList li { display:inline; padding:0; height:25px; margin-right:2px; }
+#BoxRecentSearch ul.TabMenuList li a { padding:7px 10px 3px 0;display:inline-block;text-decoration:none;margin-bottom:0px;background:transparent url(http://images.videonhadat.com.vn/users/right_tab_over.png) no-repeat right top;}
+#BoxRecentSearch ul.TabMenuList li a span { padding:7px 0 3px 10px; background:transparent url(http://images.videonhadat.com.vn/users/left_tab_over.png) no-repeat left top; font-weight:bold; color:#df3832;}
+
+#BoxRecentSearch ul.TabMenuList li a:hover, #BoxRecentSearch ul.TabMenuList li a.current{ background:transparent url(http://images.videonhadat.com.vn/users/right_tab.png) no-repeat right top;}
+#BoxRecentSearch ul.TabMenuList li a:hover span, #BoxRecentSearch ul.TabMenuList li a.current span { padding:7px 0 0 10px;background:transparent url(http://images.videonhadat.com.vn/users/left_tab.png) no-repeat left top; color:#fff;}
+
+
+#BoxRecentSearch .SearchDetail { padding:10px;}
+#BoxRecentSearch .SearchDetail table { text-align:left; border:none;}
+#BoxRecentSearch .SearchDetail td { border:none; padding:0;}
+
+#BoxRecentSearch .select_arrange { width:150px; height:20px;}
+#BoxRecentSearch .select_show { width:50px; height:20px;}
+#BoxRecentSearch .select_exchangeprice { width:150px; height:20px;}
+
+#BoxRecentSearch .ListProperty { clear:both; overflow:hidden; border:1px #d7d6e7 solid; _margin-top:2px; background: #ffffff;}
+#BoxRecentSearch .ListProperty ul { overflow:hidden;}
+#BoxRecentSearch .ListProperty li { overflow:hidden; border-top:1px #ececec solid; padding:10px; text-align:left; vertical-align:bottom; _margin-top:10px;}
+
+#BoxRecentSearch li.Vip { background-color:#ffe2e2;  _float: left;_position: relative;}
+
+#BoxRecentSearch li.ItemsPostPro { clear:both;}
+#BoxRecentSearch li.ItemsPostPro .col_imgages { position:relative; float:left; width:100px; margin-right:10px; text-align:center;}
+
+#BoxRecentSearch .Pointmap { background: url(http://images.videonhadat.com.vn/users/nha.png) no-repeat scroll 0 0 transparent; bottom:0; _bottom:3px; *bottom:3px; left:0;
+position:absolute; display: block; width: 24px; height: 30px;}
+#BoxRecentSearch .Pointmap div { color: #FFFFFF; font-weight: bold; padding-top: 5px; text-align: center;}
+
+#BoxRecentSearch .col_imgages span a { color:#df3832; }
+#BoxRecentSearch .col_imgages span a:hover { color:#0099cc;}
+
+#BoxRecentSearch li.ItemsPostPro .col_description { float:left; width:620px; position:relative;}
+#BoxRecentSearch .col_description .Title { font-size: 14px; font-weight: bold; width: 430px; min-height:32px;}
+#BoxRecentSearch .col_description .Title a { color:#333;}
+#BoxRecentSearch .col_description .Title a:hover { color:#0099cc;}
+
+
+#BoxRecentSearch ul.Toolcontrol { position:absolute; bottom:0px; right:0px; background-color:#efefef;}
+#BoxRecentSearch ul.Toolcontrol li { display:inline; border-right:1px #ccc solid; padding:0 10px; line-height:20px;}
+#BoxRecentSearch ul.Toolcontrol li a { color:#df3832;}
+#BoxRecentSearch ul.Toolcontrol li a:hover { color:#0099cc;}
+#BoxRecentSearch ul.Toolcontrol li.clr_borright { border-right:0px;}
+
+
+#BoxRecentSearch span { font-weight:normal;}
+#BoxRecentSearch span a { color:#333;}
+#BoxRecentSearch span a:hover { color:#0099cc;}
+
+#BoxRecentSearch span.Districts { font-size:12px; font-weight:bold; padding-left:10px; margin-top:5px; background:url(http://images.videonhadat.com.vn/users/iconform.png) -13px -100px no-repeat;}
+#BoxRecentSearch span.Districts a { color:#333;}
+#BoxRecentSearch span.Districts a:hover { color:#0099cc;}
+
+#BoxRecentSearch .PagesNumber { border-top:1px #ececec solid; _margin-top:10px;}
+#BoxRecentSearch .PagesNumber ul { _padding:0 6px 8px 0;}
+#BoxRecentSearch .PagesNumber li { border: 1px solid #CCCCCC; padding:1px 5px;}
+#BoxRecentSearch li.PagesPrivious { border:0;}
+#BoxRecentSearch li.PagesNext { border:0;}
+
+
+
+/*BOX GOP Y LIEN HE
+*******************************************************/
+
+#BoxFormContact { border:1px #d7d6e7 solid; position:relative; z-index:0; background: #ffffff;}
+
+#BoxFormContact .DesBoxFormContact { padding:10px 5px; text-align:left;}
+#BoxFormContact .DesBoxFormContact table { border:none;}
+#BoxFormContact .DesBoxFormContact td.Title { padding-left: 40px;}
+#BoxFormContact .DesBoxFormContact td { border:none; padding:0;}
+#BoxFormContact .DesBoxFormContact label { font-weight: normal; color:#333;}
+#BoxFormContact .DesBoxFormContact p{ margin-bottom: 5px;}
+
+#BoxFormContact .input_name { width:330px; margin-bottom: 5px;}
+#BoxFormContact .input_phone { width:330px; margin-bottom: 5px;}
+#BoxFormContact .input_email { width:330px; margin-bottom: 5px;}
+#BoxFormContact select { width:256px; height:20px; margin-bottom: 5px;}
+#BoxFormContact textarea { width:330px; height:70px; margin-bottom: 5px;}
+
+#BoxFormContact h3 { margin-bottom:5px; margin-top: 15px; height:15px; _position:relative; background: url(http://images.videonhadat.com.vn/users/iconform.png) no-repeat 0 -27px; padding-left: 15px;}
+#BoxFormContact h3 span { background-color:#fff; font-size:14px; color:#333; padding-right:8px; _position:absolute;}
+
+ul.OnlineSupport li {clear:both; padding-top:8px;}
+ul.OnlineSupport li span.YahooAdv a { float:left; display:block; height:24px; width:32px; background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1519px no-repeat; margin:0; padding-left: 35px; color: #df3832; padding-bottom: 5px; *padding-bottom: 0px;}
+ul.OnlineSupport li span.SkypeAdv a { float:left; display:block; height:24px; width:24px; margin-right:6px;background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1549px no-repeat; margin-left: 110px; _margin-left: 30px; padding-left: 30px; color: #df3832;}
+ul.OnlineSupport li span.Hotline { font-size:20px; font-weight:bold; padding-top:5px;color:#107b10 !important;background:url(http://images.videonhadat.com.vn/users/linedot.png) repeat-x top;}
+
+#BoxFormContact a.link { color:#df3832;}
+
+#BoxFormContact ul.Btform { float:left; margin-right:-5px;}
+#BoxFormContact ul.Btform li { display:inline; float:left; margin-right:5px;}
+
+
+/*BOX CAI DAT THU BAO
+*******************************************************/
+#BoxSetupEmail { border:2px #0088cc solid;overflow:hidden; display:block; position:relative; z-index:0; background: #ffffff;}
+#BoxSetupEmail .TitleBox { border-bottom:none; background:none; padding:5px 0 0 0;}
+#BoxSetupEmail .DesBoxSetupEmail { text-align:left; overflow:hidden; display:block; _padding-bottom:45px;}
+#BoxSetupEmail .DesBoxSetupEmail table { border:none;}
+#BoxSetupEmail .DesBoxSetupEmail td { border:none; padding:0;}
+
+.Selectprice { position:absolute; right:20px; padding-top:5px;}
+.Selectprice a { color:#df3832; text-decoration:underline;}
+.Selectprice a:hover { color:#0066cc;}
+
+table.FeatureMain { border:none; margin:5px 5px 0 5px; width:98.6%;}
+table.FeatureMain td { border-bottom:none; padding:0;}
+table.FeatureMain td.td_borright { background:url(http://images.videonhadat.com.vn/users/linedot_ver.png) repeat-y 114px 0;}
+table.FeatureMain tr.Bgform { background-color:#efefef;}
+table.FeatureMain tr.Bgform table{ padding: 5px;}
+table.FeatureMain label { font-weight:bold; color:#333;}
+table.FeatureMain select { width:180px;}
+table.FeatureMain .input_text { width:174px;}
+
+
+#BoxSetupEmail input { height:inherit;}
+#BoxSetupEmail ul.TypeRegister { padding:10px 0 0 20px;}
+#BoxSetupEmail ul.TypeRegister li { padding:5px 0;}
+
+#BoxSetupEmail ul.Btform { clear:both; float:right; padding:10px 5px 10px 0;}
+#BoxSetupEmail ul.Btform li { display:inline; float:left; margin-right:5px;}
+
+ul.listbox_typepro, ul.listbox_district { border: 1px solid #DADADA; overflow-y: scroll; padding: 3px; width:172px; height:62px; margin-top:2px;}
+/**/
+.checkdev { padding:0 10px; font-weight:bold;}
+
+/**/
+.FeatureDev { padding:0 10px; margin-top:15px; display:block; overflow:hidden; }
+.FeatureDev h3 { font-size:13px; margin-bottom:10px; color:#0066cc;}
+.FeatureDev .checkall { font-weight:bold; padding-left:14px;}
+
+.FeatureDev ul.Button { float:left; margin:50px 10px 0 20px;}
+.FeatureDev ul.Button li { padding:2px 0;}
+.FeatureDev .input_button { width:40px; height:30px;}
+
+.FeatureDev div.listbox { display:block; overflow:hidden; float:left; width:319px; padding-left:10px;}
+.FeatureDev ul.listbox_dev{ border: 1px solid #DADADA; overflow-y: scroll; padding:3px; width:312px; height:160px; margin-top:2px;}
+.FeatureDev ul.listbox_dev li { float:inherit;}
+
+.FeatureAdv { margin-top:15px;}
+.FeatureAdv h3 {margin:0 10px; font-size:13px; color:#0066cc;}
+.FeatureAdv ul { padding:10px 10px 10px 20px; display:block; overflow:hidden; float:left; width:53%;}
+.FeatureAdv ul li { display:inline; float:left; width:130px;}
+.FeatureAdv div { float:left; width:42%; padding-top:10px;}
+
+/**/
+.FeatureRS { padding-top:15px; clear:both; overflow:hidden; display:block;}
+.FeatureRS h3 { margin:0 10px; font-size:13px; color:#0066cc;}
+.FeatureRS table { margin:0 5px 0 15px; width:97.3%;}
+
+.FeatureRS ul.listbox_law, .FeatureRS ul.listbox_direct { border: 1px solid #DADADA; overflow-y: scroll; padding: 3px; width:149px; height:62px; margin-top:2px;}
+.FeatureRS ul.listbox_dev li, .FeatureRS ul.listbox_direct { float:inherit;}
+
+.FeatureRS .input_text { width:135px;}
+
+
+
+/**/
+.ReceiveNewLetter { clear:both; display:block; overflow:hidden; margin-top:10px;  background-color:#eeefe3;}
+.ReceiveNewLetter table { border:none; text-align:left; padding:5px; *margin:5px; _margin:0px;}
+.ReceiveNewLetter table td { border:none; padding:0;}
+
+.ReceiveNewLetter ul.Btform { float:left; margin-right:-5px;}
+.ReceiveNewLetter ul.Btform li { display:inline; float:left; margin-right:5px;}
+
+.ReceiveNewLetter ul.FrequencyLetter { padding-top:5px; *padding-top:2px;}
+.ReceiveNewLetter ul.FrequencyLetter li { display:inline; padding-right:20px;}
+.ReceiveNewLetter input { height:inherit;}
+.ReceiveNewLetter .input_text { width:400px; margin-bottom: 5px;}
+
+/****************************/
+.DesBoxSetupEmail label{ padding-right: 3px;}
+
+/**/
+.RSFit { display:block; overflow:hidden; margin-top:10px; border:1px #e4e3f4 solid; border-top:none; background: #ffffff;}
+.RSFit table { width:100%; line-height:16px; text-align:center; color:#333;}
+.RSFit tr.Bgform { background-color:#efefef;}
+.RSFit td { padding:5px; *padding:5px; border-right:1px #e4e3f4 solid; border-bottom:1px #e4e3f4 solid; vertical-align:middle;}
+.RSFit td.clr_borright { border-right:0px;}
+
+ul.ConditionSelect li { padding:2px 0;}
+ul.ConditionSelect li span { font-weight:bold;}
+
+.RSFit ul.Alter li { text-align:left; padding:4px 0;}
+
+/*BOX DANH SACH NHAN VIEN
+*******************************************************/
+#BoxListStaff { border:1px #d7d6e7 solid;margin-top:10px;}
+
+#BoxListStaff .DesBoxListStaff { overflow:hidden; text-align:left;}
+#BoxListStaff .DesBoxListStaff table { clear:both;}
+
+#BoxListStaff ul.Formsearch li.BtAdd { float:right; width:125px; margin-right:0px;}
+
+#BoxListStaff li.BtSearch .Bgbutton div { padding:4px 15px; font-weight:bold;}
+
+#BoxListStaff select{ height: 28px !important; line-height: 28px !important; *height: 31px !important; padding: 3px !important;}
+#BoxListStaff .select_criteria { width:120px;}
+#BoxListStaff .input_search { width:200px; height:28px; line-height: 28px;} 
+
+#BoxListStaff .PagesNumber { _margin-top:10px;}
+#BoxListStaff .PagesNumber ul { _padding:0 6px 8px 0;}
+#BoxListStaff .PagesNumber li { border: 1px solid #CCCCCC; padding:1px 5px;}
+#BoxListStaff li.PagesPrivious { border:0;}
+#BoxListStaff li.PagesNext { border:0;}
+
+/*BOX TIM KIEM DA LUU
+*******************************************************/
+#BoxSaveSearch { border:1px #d7d6e7 solid; position:relative; z-index:0;}
+
+#BoxSaveSearch .DesBoxSaveSearch { overflow:hidden; text-align:left;}
+#BoxSaveSearch .DesBoxSaveSearch table { width:100%; border:none; line-height:inherit;}
+#BoxSaveSearch .DesBoxSaveSearch td { line-height:18px; padding:9px; border-right:inherit;}
+
+#BoxSaveSearch ul.criteria {}
+#BoxSaveSearch ul.criteria li { display:inline; padding-right:3px;}
+
+#BoxSaveSearch .PagesNumber { _margin-top:10px;}
+#BoxSaveSearch .PagesNumber ul { _padding:0 6px 8px 0;}
+#BoxSaveSearch .PagesNumber li { border: 1px solid #CCCCCC; padding:1px 5px;}
+#BoxSaveSearch li.PagesPrivious { border:0;}
+#BoxSaveSearch li.PagesNext { border:0;}
+
+#BoxSaveSearch ul.Btform { float:left;}
+#BoxSaveSearch ul.Btform li { display:inline; float:left; margin:0 3px;}
+
+/*POPUP
+*******************************************************/
+.popup_table_gadget { position: absolute; width:550px; text-align:left; border: 0;}
+.popup_content_gadget { display:block; overflow:hidden; margin: 0px 10px 0 10px;padding: 10px 20px 15px 20px; color:#000; background-color: #fff; border: 1px solid #8aa653;}
+.popup_content_gadget table tr td { vertical-align:middle; border: 0;}
+
+
+.ScoreCurrent { font-size:18px;  font-weight:bold;}
+.Score { font-weight:bold; color:#df3832; border-bottom:1px #666 dashed;}
+.ScoreProduct { font-size:14px; margin-top:6px;}
+.Expiry { font-size:14px; margin-top:6px;}
+.Expiry span { color:#df3832; font-weight:bold;}
+.NoteWarning { font-size:15px; font-weight:bold; color:#F75D00; line-height:18px;}
+
+.MethodsUsed { font-size:14px; padding-top:10px; overflow:hidden;}
+.Methods { clear:both; padding-top:10px; _padding-top:5px; *padding-top:5px;}
+.MethodsSMS { float:left; width:204px; }
+.Or { float:left; width:48px; background:url(http://images.videonhadat.com.vn/users/bgform.png) 0 -128px no-repeat; height:16px; margin-left:12px; margin-top:28px}
+.MethodsDirect { float:left; width:204px;}
+
+.TitleMethods { font-size:14px; font-weight:bold; text-align:center;}
+.DesMethodsSMS { text-align:center; font-size:12px; border:1px solid #ccc; padding:5px;}
+.SyntaxSMS { text-align:center; font-size:18px; padding-top:5px;}
+.SyntaxMethods{ text-align:center; font-size:14px; border:1px solid #ccc; padding:5px; height:58px;}
+.DesMethodsDirect { padding-top:10px;}
+.DesMethodsDirect a { color:#000;}
+.DesMethodsDirect a:hover { color:#0099cc;}
+.MethodUsing { float:left; font-weight:bold; font-size:13px;}
+.Button_gadget { padding-top:10px; padding-left:313px;}
+.red { color:#df3832;}
+
+
+.BoxNoticeWarning table{ border: 0;}
+table.popup_table_gadget td{ padding: 0;}
+
+
+/*BOX NOTICE 
+*******************************************************/
+.Icofile { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -768px no-repeat;display:block; width:28px; height:35px;} 
+.Icoerror { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -815px no-repeat;display:block; width:45px; height:45px;}
+.Icoresult { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -869px no-repeat;display:block; width:46px; height:46px;}
+.Icosubmit { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -926px no-repeat;display:block; width:45px; height:45px;}
+.Icowarning { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -981px no-repeat;display:block; width:48px; height:40px;}
+.Icowelcome { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -1032px no-repeat;display:block; width:48px; height:40px;}
+
+.BoxNoticeResult { background-color:#DFF5FD; border:1px #ccc solid;}
+.ContentNoticeResult { padding:10px;}
+
+.BoxNoticeProperties { background-color:#DDFBFE; border:1px #29ABE2 solid;}
+.PadNoticeProperties { padding:10px;}
+
+.BoxNoticeError { background-color:#FFE3E3; border:1px #FF0000 solid;}
+.PadNoticeError { padding:10px;}
+
+.BoxNoticeSubmit { background-color:#D9FFD7; border:1px #84C341 solid;}
+.PadNoticeSubmit { padding:10px;}
+
+.BoxNoticeWarning { background-color:#FEFDCC; border:1px #FBB03B solid; margin-top:15px;}
+.PadNoticeWarning{ padding:10px;}
+
+.BoxNoticeWelcome { background-color:#FFE9C6; border:1px #F06222 solid; padding:10px;}
+.BoxNoticeWelcome table { border-top:none; line-height:normal; width:!important; text-align:left;}
+.BoxNoticeWelcome table td { border:none !important; padding:0; vertical-align:inherit;}
+.BoxNoticeWelcome h2 { font-size:18px; font-weight:bold; color:#F06222;}
+
+
+ul.ListNoticeResult { padding:8px 0;} 
+ul.ListNoticeResult li { background:url(http://images.videonhadat.com.vn/users/iconform.png) 0 -562px no-repeat; padding-left:10px; line-height:16px;} 
+ul.ListNoticeResult li a { color:#df3832;} 
+ul.ListNoticeResult li a:hover { color:#0099cc;} 
+
+/*POPUP LOGIN 
+*******************************************************/
+.popup_top_right{ border: 0;}
+.popup_table { position: absolute; width:475px; text-align:left;}
+
+.popup_shadow { background: transparent url(http://images.videonhadat.com.vn/users/img_tranparent_grey.png) repeat top left; _background:transparent url(http://images.videonhadat.com.vn/users/ds_ie.png) repeat; border: 0;}
+
+.popup_shadowtop { background: transparent url(http://images.videonhadat.com.vn/users/top_box_popup.png) no-repeat top left; _background:transparent url(http://images.videonhadat.com.vn/users/ds_ie.png) repeat;}
+
+.popup_shadowbottom { background: transparent url(http://images.videonhadat.com.vn/users/bottom_box_popup.png) no-repeat top left; _background:transparent url(http://images.videonhadat.com.vn/users/ds_ie.png) repeat;}
+
+
+.popuptop_left {font-size: 1px;height: 6px;background-position: top left; border: 0; }
+.popuptop_right {height: 6px;font-size: 1px;width: 10px;background-position: top right; border: 0;}
+
+.popup_bottom_left {font-size:1px;height:6px; background-position:left bottom; border: 0;}
+
+.popup_background { margin: 4px 0px 4px 10px; padding: 10px 0;background:#df3832;}
+
+.popup_bottom_right {height: 6px;font-size: 1px;width: 6px;background-position: bottom right; border: 0;}
+
+.popup_content {line-height: 14px;margin: 0px 10px 0 10px;padding: 10px 30px 15px 30px;color:#000; background-color: #fff; border: 1px solid #8aa653;}
+.popup_content table tr td { vertical-align:top;}
+
+.new_popup_header {font-size: 18px;font-weight: bold; padding: 0px 10px 5px 10px; position:relative;color: #fff;}
+
+a.popup_closer {height: 15px; width: 15px; float: right; position:absolute; top:0px; right:10px;background:url(http://images.videonhadat.com.vn/users/img_close.png) no-repeat; }
+
+.popup_closer { background-position: 0 -840px;}
+
+.fake_btn_dark_lolite, a.fake_btn_dark_lolite:hover { background-color:#eb5e00; border:1px solid #eb5e00; color:#FFFFFF;}
+.fake_btn_dark_lolite, .fake_btn_off { cursor:pointer; float:left;}
+.fake_btn_dark_lolite { font-weight:bolder; margin-right:10px;}
+.fake_btn_off, a.fake_btn_off:hover { background-color:#AAAAAA; border:1px solid #CCCCCC;}
+.fake_btn_dark_lolite div, .fake_btn_dark_lolite input { background-color:#df3832; border:1px solid #FFFFFF; color:#FFFFFF;}
+.fake_btn_dark_lolite div, .fake_btn_off div {padding:4px 15px;}
+.fake_btn_off div, .fake_btn_off input { background-color:#AAAAAA; border:1px solid #FFFFFF; color:#FFFFFF;}
+
+
+
+/*BOX THONG TIN DICH VU
+*******************************************************/
+#BoxInfoServices { border:1px #d7d6e7 solid; position:relative; z-index:0;}
+#BoxInfoServices .DesBoxInfoServices { padding:10px 0; text-align:left;}
+
+#BoxInfoServices .RegisterAdvs { margin-top:15px;}
+#BoxInfoServices .RegisterAdvs table { width:54%; margin:0 5px 0 175px; border-top:none;}
+#BoxInfoServices .RegisterAdvs td { border:none; padding:0;}
+#BoxInfoServices .RegisterAdvs label { font-weight:bold; color:#333;}
+#BoxInfoServices p { margin:10px;}
+#BoxInfoServices p font { color:#df3832;}
+
+
+#BoxInfoServices .DesService { padding:0 10px;}
+
+#BoxInfoServices h3 { margin:0 10px 5px 10px; border-bottom:1px #dadada solid; height:15px; _position:relative;color:#0099cc; font-weight:bold; font-size:14px; text-align:left;}
+#BoxInfoServices h3 span { background-color:#fff; font-size:14px; color:#df3832; padding-right:8px; text-transform:uppercase; _position:absolute;}
+
+#BoxInfoServices .input_name { width:250px;}
+#BoxInfoServices .input_address { width:250px;}
+#BoxInfoServices .input_phone { width:250px;}
+#BoxInfoServices .input_email { width:250px;}
+#BoxInfoServices .input_taxcode { width:250px;}
+#BoxInfoServices .textarea_about { width:250px; height:100px;}
+
+#BoxInfoServices .ImgService { padding:0 10px;}
+#BoxInfoServices .payment { background-color:#efefef; padding:10px 20px; margin:10px;}
+#BoxInfoServices .payment h4 { font-size:14px; font-weight:bold; text-transform:uppercase;}
+#BoxInfoServices .payment ul { padding-top:10px;}
+#BoxInfoServices .payment ul li { padding:4px 0; line-height:18px;}
+#BoxInfoServices .payment span { font-weight:bold;}
+#BoxInfoServices .payment input { height:inherit;}
+
+#BoxInfoServices ul.Btform { margin:10px 0 10px 304px;}
+#BoxInfoServices ul.Btform li { display:inline; float:left; margin-right:5px;}
+#BoxInfoServices .Contact { clear:both; padding:10px 10px 0 10px; *padding:0px 10px;text-align:right; font-size:14px; line-height:20px;}
+#BoxInfoServices .Contact a { color:#000000; text-decoration: underline;}
+#BoxInfoServices .Contact font { color:#df3832; font-weight:bold; font-size:13px;}
+#BoxInfoServices .Contact div { font-weight:bold; }
+
+
+.InfoScore table { width:97.2%; border-top:1px #DAD67F solid; border-left:1px #DAD67F solid; font-size:13px; margin:0 10px;}
+.InfoScore table tr.Bgform { background-color:#EFEABF;}
+.InfoScore table td { border-right:1px #DAD67F solid; border-bottom:1px #DAD67F solid; text-align:center;}
+
+/*AGENCIES
+*******************************************************/
+.InforAgencies { padding:10px 10px 0 10px;}
+.InforAgencies table { background-color:#FFFFFF; height:96px; font-size:14px; border:1px #efefef solid; border-collapse:collapse; text-align:left;}
+
+.bor_left_top { border-top:1px #efefef solid; border-left:1px #efefef solid;}
+
+a.LinkWebsite { color:#64a47e;}
+a.LinkWebsite:hover { color:#0099cc;}
+
+.pad_l10 { padding-left:10px;}
+.Normal_d50 { font-weight:normal; color:#0066cc;}
+
+/**/
+#MenuAgencies {}
+#MenuAgencies ul { border:1px #d7d6e7 solid; text-align:left;}
+#MenuAgencies li.menuheaders { font-size:12px; font-weight:bold; color:#000; line-height:28px;}
+#MenuAgencies li.menuheaders a { background:url(http://images.videonhadat.com.vn/users/bg_menuheaders.png) no-repeat; display:block; width:208px; color:#000;}
+#MenuAgencies li.menuheaders a:hover, #MenuAgencies li.menuheaders a:hover label, #MenuAgencies li.menuheaders a.current { background-position: 0 -29px; color:#fff;}
+#MenuAgencies li.menuheaders span { padding:0 0 0 30px;}
+#MenuAgencies ul.menucontents { border:0;}
+#MenuAgencies ul.menucontents li { border-bottom:1px #f2f2f8 solid; line-height:25px;}
+#MenuAgencies ul.menucontents li a, #MenuAgencies ul.menucontents li a label { color:#000; background:#fff url(http://images.videonhadat.com.vn/users/arrow_menucontents.png) 14px 10px no-repeat;}
+#MenuAgencies ul.menucontents li a:hover, #MenuAgencies ul.menucontents li a.current { color:#df3832; background:#f8f9fb url(http://images.videonhadat.com.vn/users/arrow_menucontents.png) 14px 10px no-repeat;}
+
+#MenuAgencies ul.subcontents { border:0; border-top:1px #f2f2f8 solid;}
+#MenuAgencies ul.subcontents li { border-bottom:1px #f2f2f8 solid; line-height:25px; font-weight:normal;}
+#MenuAgencies ul.subcontents li a, #MenuAgencies ul.subcontents li a label { color:#555; background:#fff;}
+#MenuAgencies ul.subcontents li a:hover, #MenuAgencies ul.subcontents li a.current { color:#0066cc; background:url(http://images.videonhadat.com.vn/users/arrow_subcontents.png) 14px 2px no-repeat;}
+
+#MenuAgencies li.menuheaders label { color:#df3832; font-weight:normal; font-size:11px;}
+#MenuAgencies ul.menucontents span { font-weight:norma; padding:0 0 0 30px;}
+
+
+
+/**/
+.BoxAgentAbout { margin-top:10px;}
+.BoxAgentAbout { border:1px #d7d6e7 solid;}
+.BoxAgentAbout .DesBoxAgentAbout { padding:10px; text-align:left; position:relative;}
+.BoxAgentAbout .DesBoxAgentAbout h1 { color:#0066cc; font-weight:bold; font-size:18px;}
+.BoxAgentAbout .DesBoxAgentAbout p { font-size:12px; padding:0; margin:15px 0 0 0; line-height:16px;}
+
+.BoxAgentAbout .EditLink { position:absolute; top:15px; right:10px;}
+.BoxAgentAbout .EditLink a { color:#0099cc; text-decoration:underline;}
+.BoxAgentAbout .EditLink a:hover { color:#df3832;}
+
+/**/
+#BoxAgentDev { margin-top:10px; text-align:left; border:1px #d7d6e7 solid;}
+
+#BoxAgentDev .DesBoxAgentDev { clear:both; overflow:hidden; _margin-top:2px;}
+
+#BoxAgentDev ul.ListDev  { overflow:hidden; _margin-top:-10px;}
+#BoxAgentDev ul.ListDev li { overflow:hidden; border-top:1px #ececec solid; padding:10px; text-align:left; vertical-align:bottom; _margin-top:10px;}
+#BoxAgentDev ul.ListDev li.clr_bortop { border-top:none;}
+
+#BoxAgentDev li.ItemsDev { clear:both;}
+#BoxAgentDev li.ItemsDev .col_imgages { position:relative; float:left; width:100px; margin-right:10px; text-align:center;}
+#BoxAgentDev li.ItemsDev .col_description { float:left; width:620px; position:relative;}
+
+#BoxAgentDev .col_description .Title a { color:#0066cc;}
+#BoxAgentDev .col_description .Title a:hover { color:#000;}
+
+#BoxAgentDev .col_description .LogoAgent { position:absolute; top:0; right:0; font-weight:bold; color:#0099cc;}
+#BoxAgentDev .col_description .LocationDev { font-size: 14px; font-weight: bold; width: 530px; min-height:40px;}
+#BoxAgentDev .Location { margin-top:3px;}
+
+#BoxAgentDev .col_description p { line-height:16px;}
+
+#BoxAgentDev span.City a { padding-top:5px; color:#333;}
+#BoxAgentDev span.City a:hover { color:#0099cc;}
+
+#BoxAgentDev span.Districts a { padding-top:5px; font-weight:normal; color:#333;}
+#BoxAgentDev span.Districts a:hover { color:#0099cc;}
+
+#BoxAgentDev ul.Toolcontrol { position:absolute; bottom:0px; right:0px; background-color:#efefef;}
+#BoxAgentDev ul.Toolcontrol li { display:inline; border-right:1px #ccc solid; padding:0 10px; line-height:20px;}
+#BoxAgentDev ul.Toolcontrol li a { color:#df3832;}
+#BoxAgentDev ul.Toolcontrol li a:hover { color:#0099cc;}
+#BoxAgentDev ul.Toolcontrol li.clr_borright { border-right:0px;}
+
+#BoxAgentDev .PagesNumber { border-top:1px #ececec solid; _margin-top:10px;}
+#BoxAgentDev .PagesNumber ul { _padding:0 6px 8px 0;}
+#BoxAgentDev .PagesNumber li { border: 1px solid #CCCCCC; padding:1px 5px;}
+#BoxAgentDev li.PagesPrivious { border:0;}
+#BoxAgentDev li.PagesNext { border:0;}
+
+/**/
+#BoxAgentNews { margin-top:10px; text-align:left; border:1px #d7d6e7 solid;}
+#BoxAgentNews .DesBoxAgentNews { clear:both; overflow:hidden; _margin-top:2px;}
+
+#BoxAgentNews ul.ListNews  { overflow:hidden; _margin-top:-10px; font-family:"Times New Roman"; font-size:14px;}
+#BoxAgentNews ul.ListNews li { overflow:hidden; border-top:1px #ececec solid; padding:10px; text-align:left; vertical-align:bottom; _margin-top:10px;}
+#BoxAgentNews ul.ListNews li.clr_bortop { border-top:none;}
+
+#BoxAgentNews li.ItemsNews { clear:both;}
+#BoxAgentNews li.ItemsNews .col_imgages { position:relative; float:left; width:100px; margin-right:10px; text-align:center;}
+#BoxAgentNews li.ItemsNews .col_description { float:left; width:620px; position:relative;}
+
+#BoxAgentNews .col_description .Title a { font-size:16px; color:#000; font-weight:bold;}
+#BoxAgentNews .col_description .Title a:hover { color:#0099cc;}
+
+#BoxAgentNews .col_description p { line-height:18px;}
+
+#BoxAgentNews span.update { color:#808080;}
+
+#BoxAgentNews span.City a { font-weight:bold; padding-top:5px; color:#333;}
+#BoxAgentNews span.City a:hover { color:#0099cc;}
+
+#BoxAgentNews ul.Toolcontrol { position:absolute; bottom:0px; right:0px; background-color:#efefef;}
+#BoxAgentNews ul.Toolcontrol li { display:inline; border-right:1px #ccc solid; padding:0 10px; line-height:20px;}
+#BoxAgentNews ul.Toolcontrol li a { color:#df3832;}
+#BoxAgentNews ul.Toolcontrol li a:hover { color:#0099cc;}
+#BoxAgentNews ul.Toolcontrol li.clr_borright { border-right:0px;}
+
+#BoxAgentNews .PagesNumber { border-top:1px #ececec solid; _margin-top:10px;}
+#BoxAgentNews .PagesNumber ul { _padding:0 6px 8px 0;}
+#BoxAgentNews .PagesNumber li { border: 1px solid #CCCCCC; padding:1px 5px;}
+#BoxAgentNews li.PagesPrivious { border:0;}
+#BoxAgentNews li.PagesNext { border:0;}
+
+/**/
+#BoxAgentPro { margin-top:10px; text-align:left; position:relative;}
+
+#BoxAgentPro ul.TabMenuList { display:block; border-bottom: 3px solid #df3832; text-align:left; _margin-bottom:-2px;}
+#BoxAgentPro ul.TabMenuList li { display:inline; padding:0; height:25px; margin-right:2px; }
+#BoxAgentPro ul.TabMenuList li a { padding:7px 10px 3px 0;display:inline-block;text-decoration:none;margin-bottom:0px;background:transparent url(http://images.videonhadat.com.vn/users/right_tab_over.png) no-repeat right top;}
+#BoxAgentPro ul.TabMenuList li a span { padding:7px 0 3px 10px; background:transparent url(http://images.videonhadat.com.vn/users/left_tab_over.png) no-repeat left top; font-weight:bold; color:#df3832;}
+
+#BoxAgentPro ul.TabMenuList li a:hover, #BoxAgentPro ul.TabMenuList li a.current{ background:transparent url(http://images.videonhadat.com.vn/users/right_tab.png) no-repeat right top;}
+#BoxAgentPro ul.TabMenuList li a:hover span, #BoxAgentPro ul.TabMenuList li a.current span { padding:7px 0 0 10px;background:transparent url(http://images.videonhadat.com.vn/users/left_tab.png) no-repeat left top; color:#fff;}
+
+#BoxAgentPro ul.TabMenuList li.More { position:relative;}
+#BoxAgentPro ul.TypeMore  { background-color:#df3832; position:absolute; left:0; text-align:left; top:20px; _top: 27px; *top: 27px;}
+#BoxAgentPro ul.TypeMore li { font-weight:bold; border-bottom:1px solid #f31e1e; line-height:18px; display: list-item !important; height:auto !important; width:150px;}
+#BoxAgentPro ul.TypeMore li a { padding:3px 10px !important; color:#fff;background:none !important;}
+#BoxAgentPro ul.TypeMore li a:hover { color:#ffff00 !important;}   
+
+#BoxAgentPro .ResultAll { overflow:hidden; border:1px solid #d7d6e7; _margin-top:2px;}
+
+#BoxAgentPro ul.ResultCity { overflow:hidden; padding:7px 10px 7px 10px; border-bottom:1px #ccc dashed; _padding-bottom:25px;}
+#BoxAgentPro ul.ResultCity li { float:left; display:block; margin:3px 5px 3px 0; _margin:1px 5px 1px 0;}
+#BoxAgentPro ul.ResultCity li span { color:#808080;}
+#BoxAgentPro ul.ResultCity li a { color:#000;}
+#BoxAgentPro ul.ResultCity li a:hover { color:#0099cc;}
+
+#BoxAgentPro ul.ResultDev { overflow:hidden; clear:both; padding:5px 10px 10px 10px; _padding-bottom:25px; }
+#BoxAgentPro ul.ResultDev li { float:left; display:block; margin:3px 5px 3px 0; _margin:1px 5px 1px 0;}
+#BoxAgentPro ul.ResultDev li span { color:#808080;}
+#BoxAgentPro ul.ResultDev li a { color:#000;}
+#BoxAgentPro ul.ResultDev li a:hover { color:#0099cc;}
+
+#BoxAgentPro ul.SubMenuResult { padding:6px 0 8px 0; text-align:right; height:16px;}
+#BoxAgentPro ul.SubMenuResult li {  display:inline; padding:0 10px; border-top:none;}
+#BoxAgentPro ul.SubMenuResult li a { color:#000;}
+#BoxAgentPro ul.SubMenuResult li a:hover, #BoxAgentPro ul.SubMenuResult li a.current { padding-bottom:25px; color:#0099cc; background:url(http://images.videonhadat.com.vn/users/bg_active.png) no-repeat center;}
+#BoxAgentPro ul.SubMenuResult li.bor_right { border-right:1px #ccc solid;}
+
+
+#BoxAgentPro .ResultSelective { clear:both; overflow:hidden; border:1px #d7d6e7 solid; margin-top:10px;}
+#BoxAgentPro ul.ListProperty  { overflow:hidden; _margin-top:-10px;}
+#BoxAgentPro ul.ListProperty li { overflow:hidden; border-top:1px #ececec solid; padding:10px; text-align:left; vertical-align:bottom; _margin-top:10px;}
+
+#BoxAgentPro li.Vip { background-color:#ffe2e2;  _float: left;_position: relative; _margin-bottom:-10px;}
+
+#BoxAgentPro li.ItemsPostPro { clear:both;}
+#BoxAgentPro li.ItemsPostPro .col_imgages { position:relative; float:left; width:100px; margin-right:10px; text-align:center;}
+
+#BoxAgentPro .Pointmap { background: url(http://images.videonhadat.com.vn/users/nha.png) no-repeat scroll 0 0 transparent; bottom:0; _bottom:3px; *bottom:3px; left:0;
+position:absolute; display: block; width: 24px; height: 30px;}
+#BoxAgentPro .Pointmap div { color: #FFFFFF; font-weight: bold; padding-top: 5px; text-align: center;}
+
+#BoxAgentPro .col_imgages span a { color:#df3832; }
+#BoxAgentPro .col_imgages span a:hover { color:#0099cc;}
+
+#BoxAgentPro li.ItemsPostPro .col_description { float:left; width:620px; position:relative;}
+#BoxAgentPro .col_description .Title { font-size: 14px; width: 430px; min-height:32px;}
+#BoxAgentPro .col_description .Title a { color:#333;}
+#BoxAgentPro .col_description .Title a:hover { color:#0099cc;}
+
+
+#BoxAgentPro ul.Toolcontrol { position:absolute; bottom:0px; right:0px; background-color:#efefef;}
+#BoxAgentPro ul.Toolcontrol li { display:inline; border-right:1px #ccc solid; padding:0 10px; line-height:20px;}
+#BoxAgentPro ul.Toolcontrol li a { color:#df3832;}
+#BoxAgentPro ul.Toolcontrol li a:hover { color:#0099cc;}
+#BoxAgentPro ul.Toolcontrol li.clr_borright { border-right:0px;}
+
+
+#BoxAgentPro span { font-weight:normal;}
+#BoxAgentPro span a { color:#333;}
+#BoxAgentPro span a:hover { color:#0099cc;}
+
+#BoxAgentPro span.Districts { font-size:12px; font-weight:bold; padding-left:10px; margin-top:5px; background:url(http://images.videonhadat.com.vn/users/iconform.png) -13px -100px no-repeat;}
+#BoxAgentPro span.Districts a { color:#333;}
+#BoxAgentPro span.Districts a:hover { color:#0099cc;}
+
+
+#BoxAgentPro .PagesNumber { border-top:1px #ececec solid; _margin-top:10px;}
+#BoxAgentPro .PagesNumber ul { _padding:0 6px 8px 0;}
+#BoxAgentPro .PagesNumber li { border: 1px solid #CCCCCC; padding:1px 5px;}
+#BoxAgentPro li.PagesPrivious { border:0;}
+#BoxAgentPro li.PagesNext { border:0;}
+
+/**/
+#BoxAgentServices { margin-top:10px;}
+#BoxAgentServices { border:1px #d7d6e7 solid;}
+#BoxAgentServices .DesBoxAgentServices { padding:10px; text-align:left; position:relative;}
+#BoxAgentServices .DesBoxAgentServices h1 { color:#0066cc; font-weight:bold; font-size:18px;}
+#BoxAgentServices .DesBoxAgentServices p { font-size:12px; padding:0; margin:15px 0 0 0; line-height:16px;}
+
+#BoxAgentServices .EditLink { position:absolute; top:15px; right:10px;}
+#BoxAgentServices .EditLink a { color:#0099cc; text-decoration:underline;}
+#BoxAgentServices .EditLink a:hover { color:#df3832;}
+
+/**/
+#BoxAgentCompany { margin-top:10px;}
+#BoxAgentCompany { border:1px #d7d6e7 solid;}
+#BoxAgentCompany .DesBoxAgentCompany { padding:10px; text-align:left; position:relative;}
+#BoxAgentCompany .DesBoxAgentCompany h1 { color:#0066cc; font-weight:bold; font-size:18px;}
+#BoxAgentCompany .DesBoxAgentCompany p { font-size:12px; padding:0; margin:15px 0 0 0; line-height:16px;}
+
+#BoxAgentCompany .EditLink { position:absolute; top:15px; right:10px;}
+#BoxAgentCompany .EditLink a { color:#0099cc; text-decoration:underline;}
+#BoxAgentCompany .EditLink a:hover { color:#df3832;}
+
+/**/
+#BoxAddCategory { border:1px #d7d6e7 solid; margin-top:10px;}
+#BoxAddCategory .DesBoxAddCategory { overflow:hidden; text-align:left;}
+#BoxAddCategory .DesBoxAddCategory table { border:none;}
+#BoxAddCategory .DesBoxAddCategory td { padding:0; border:none; vertical-align: middle;}
+#BoxAddCategory table.Formadd { width:100%; padding:5px; margin-top: 5px; _margin:5px 0; *margin:5px 0;}
+#BoxAddCategory table.Formadd label { font-size:14px;}
+#BoxAddCategory table.Formadd li { display:inline; float:left; margin-right:5px;}
+#BoxAddCategory table.Formadd .Bgbutton{ margin-bottom: 5px; margin-top: 3px; padding-top: 1px; padding-bottom: 1px;}
+#BoxAddCategory table.Formadd .Bgbutton div{ padding-top: 5px; padding-bottom: 5px;}
+
+#BoxAddCategory table.AllAdd { clear:both; width:100%; border-top:1px #e4e3f4 solid; line-height:16px;}
+#BoxAddCategory table.AllAdd tr.Bgform { background-color:#efefef;}
+#BoxAddCategory table.AllAdd td { padding:5px; *padding:5px; border-right:1px #e4e3f4 solid; border-bottom:1px #e4e3f4 solid; vertical-align:top;}
+#BoxAddCategory table.AllAdd td.clr_borright { border-right:0px;}
+
+#BoxAddCategory a.linkheader { color:#333; font-weight:bold;}
+#BoxAddCategory a.linkheader:hover { color:#df3832;}
+
+#BoxAddCategory a.linksub { color:#333; background:url(http://images.videonhadat.com.vn/users/arrow_subcontents.png) no-repeat; padding-left:15px;}
+#BoxAddCategory a.linksub:hover { color:#df3832;}
+
+#BoxAddCategory ul.Alter { margin-left:-5px;}
+#BoxAddCategory ul.Alter li { display:inline; border-right:1px #0099cc solid; padding:0 5px;}
+#BoxAddCategory ul.Alter li.clr_borright { border-right:none;}
+
+#BoxAddCategory .select_menu { width:200px; height:28px; line-height: 28px; *height: 31px; padding: 3px;}
+#BoxAddCategory .input_add { width:240px; height:28px; line-height: 28px;} 
+
+/**/
+.FormEditAbout { border:1px #d7d6e7 solid; margin-top:10px;}
+
+.FormEditAbout .DesFormEditAbout { padding:5px; text-align:left;}
+.FormEditAbout .DesFormEditAbout h3 { color:#0099cc; font-weight:normal; font-size:14px; text-align:center; padding:10px 0;}
+.FormEditAbout .DesFormEditAbout table { border:none;}
+.FormEditAbout .DesFormEditAbout td { padding:0; border:none;}
+.FormEditAbout .DesFormEditAbout label { font-weight:bold; color:#333;}
+
+.FormEditAbout ul.Btform {}
+.FormEditAbout ul.Btform li { display:inline; float:left; margin-right:5px;}
+
+.FormEditAbout .input_title { width:500px;}
+
+/*POPUP GOI MGDA
+*******************************************************/
+.popup_ServicePack { position: absolute; width:550px; text-align:left;}
+.popup_DesServicePack { margin: 0px 10px 0 10px; color:#333; background-color: #fff; border: 1px solid #8aa653;}
+.popup_DesServicePack table { text-align:center; border-top:1px #e4e3f4 solid; border-left:1px #e4e3f4 solid;}
+.popup_DesServicePack table tr.Bgform { background-color:#efefef;}
+.popup_DesServicePack table td { padding:5px; *padding:5px; border-right:1px #e4e3f4 solid; border-bottom:1px #e4e3f4 solid; vertical-align:top;}
+
+.popup_DesServicePack table a.link { color:#0099CC;}
+.popup_DesServicePack table a.link:hover { color:#0099cc;}
+
+/*MESSAGE REALSTATE
+*******************************************************/
+.MessageRS { border:1px #ccc solid; background-color:#df3832; width:300px; margin-top:10px; position:fixed; bottom:0; right:0;}
+.DesMessageRS { display:block; overflow:hidden; border:1px #fff solid; position:relative; text-align:left;}
+.DesMessageRS table { width:97%; margin:0 5px; border:none;}
+.DesMessageRS table td { text-align:left; border:none; padding:0;}
+.DesMessageRS p { font-weight:bold; color:#fff; padding:0 0 5px 5px;}
+
+.DesMessageRS .Close { position:absolute; top:5px; right:5px; background:url(http://images.videonhadat.com.vn/users/img_close.png) no-repeat; display:block; width:15px; height:15px;}
+.DesMessageRS .Icowarning { float:left; background:url(http://images.videonhadat.com.vn/users/ico_meswarning.png) no-repeat; display:block; width:50px; height:50px;}
+
+/*POPUP DETAIL RS
+*******************************************************/
+.PopupDetailRS { overflow:hidden; display:block; background-color:#ccc; border:1px solid #ccc; float:left; height:auto; width:484px; *padding-bottom:3px; _padding:0;}
+.PopupDetailRS .ImgDetailRS { float:left; margin:3px; width:147px; _margin:3px 3px 3px 2px; position:relative;}
+.PopupDetailRS .ImgTypeRS { position:absolute; top:0; left:0;}
+	
+.PopupDetailRS .DesDetailRS { background-color:#FFFFFF; float:left; font-size:11px; height:147px; margin:3px 3px 3px 2px; _margin-left:1px;
+width:326px; text-align:left;}
+
+.PopupDetailRS .IdRS{ overflow:hidden; display:block; font-size:11px; font-weight:bold; }
+.PopupDetailRS .IdRS div.id { float:left; width:80px; padding:2px 5px;}
+.PopupDetailRS .IdRS div.id span { color:#df3832;} 
+.PopupDetailRS .IdRS div.Dicstrict { float:left; width:200px; background:#e7e7e7 url(http://images.videonhadat.com.vn/users/bg_id.png) no-repeat; padding:2px 5px 2px 31px; display:block; text-align:left;}
+
+.PopupDetailRS .Furniture { position:static; display:block; overflow:hidden; font-weight:bold; color:#0099cc; background-color:#f4f4f4; width:100%; height:22px; margin-top:1px;}
+.PopupDetailRS .Furniture h3 { color:#df3832; float:left; width:110px; display:inline; font-size:12px; text-align:left; padding:3px 5px;}
+.PopupDetailRS .Furniture h3 span { font-weight:normal;}
+.PopupDetailRS .Furniture span { font-weight:normal; }
+
+.PopupDetailRS .Title { padding:5px 5px 2px 5px; font-size:12px;}
+.PopupDetailRS .Title a { color:#000;}
+.PopupDetailRS .Title a:hover { color:#0099cc;}
+.PopupDetailRS p { font-size:12px; line-height:16px;}
+
+.PopupDetailRS .LocationPro { background:none; margin-top:0; padding:0 5px;}
+
+
+.PopupDetailRS span.Districts { font-size:12px; font-weight:bold; padding-left:10px; margin-top:5px; background:url(http://images.videonhadat.com.vn/users/iconform.png) -13px -100px no-repeat;}
+.PopupDetailRS span.Districts a { color:#333;}
+.PopupDetailRS span.Districts a:hover { color:#0099cc;}
+
+/*BOX STATISTIC RS
+*******************************************************/
+#BoxStatisticRS { border:1px #d7d6e7 solid; overflow:hidden; display:block; position:relative; z-index:0; background: #ffffff;}
+#BoxStatisticRS .DesStatisticRS { overflow:hidden; display:block; text-align:center;}
+#BoxStatisticRS .DesStatisticRS ul.Formsearch input{ height: 23px; width: 146px; *width: 140px;}
+#BoxStatisticRS .TitleBox { background-color:transparent;}
+
+#BoxStatisticRS ul { text-align:left;}
+#BoxStatisticRS li { vertical-align:middle; }
+#BoxStatisticRS span { font-weight:bold; color:#df3832;}
+#BoxStatisticRS div.Viewdetail { float:right; _margin:-20px 3px 0 0; *margin:-20px 3px 0 0;}
+#BoxStatisticRS div.Viewdetail a { color:#0099cc;}
+#BoxStatisticRS div.Viewdetail a:hover { color:#df3832;}
+
+#BoxStatisticRS table.DetailStatistic { border-top:inherit; border-left:none; text-align:center;}
+#BoxStatisticRS table.DetailStatistic tr.Bgform { background-color:#EFEFEF;}
+#BoxStatisticRS table.DetailStatistic td { border-right:1px solid #E4E3F4; border-bottom:1px solid #E4E3F4;}
+#BoxStatisticRS table.DetailStatistic td.clr_borright { border-right:none;}
+
+#BoxStatisticRS ul.Formsearch{ padding-bottom: 0;  *padding-bottom: 10px;}
+#BoxStatisticRS ul.Formsearch li { margin-right:10px; margin-bottom: 10px;}
+#BoxStatisticRS ul.Formsearch label { float:left; padding-top:2px; padding-right:3px;}
+#BoxStatisticRS li div.Bgbutton { width:84px; margin-right:-9px; _margin-right:0;}
+
+
+#BoxStatisticRS select { float:left; width:135px;}
+#BoxStatisticRS input { width:100px; float:left; height:18px; margin-right:3px; _margin-right:0px;}
+
+
+#BoxStatisticRS .MesSearch h4 { font-size:13px; font-weight:normal; padding:10px; text-align:left;}
+
+#BoxStatisticRS .StatisticRS { display:block; overflow:hidden;}
+#BoxStatisticRS .BuyRS { float:left; width:40%;}
+#BoxStatisticRS .BuyRS h4 { background-color:#EFEFEF; padding:5px; border:1px solid #E4E3F4; border-left:none;}
+#BoxStatisticRS .BuyRS ul li { border-right:1px solid #E4E3F4; border-bottom:1px solid #E4E3F4; display:block; padding:5px;}
+#BoxStatisticRS .BuyRS li.clr_borright { border-bottom:none;}
+
+#BoxStatisticRS .RentRS { float:left; width:40%;}
+#BoxStatisticRS .RentRS h4 { background-color:#EFEFEF; padding:5px; border:1px solid #E4E3F4; border-left:none;}
+#BoxStatisticRS .RentRS ul li { border-right:1px solid #E4E3F4; border-bottom:1px solid #E4E3F4; display:block; padding:5px;}
+#BoxStatisticRS .RentRS li.clr_borright { border-bottom:none;}
+
+#BoxStatisticRS .StatusRS { float:left; width:20%;}
+#BoxStatisticRS .StatusRS h4 { background-color:#EFEFEF; padding:5px; border:1px solid #E4E3F4; border-left:none;}
+#BoxStatisticRS .StatusRS ul { padding:3px 5px;}
+
+
+.DesStaResult { clear:both; margin-top:10px;}
+.DesStaResult div.Title { background:url(http://images.videonhadat.com.vn/users/iconform.png) no-repeat 0 -1846px; text-align:left; padding-bottom:3px;}
+.DesStaResult div.Title h3 { font-size:14px; padding:5px 0 0 20px; text-transform:uppercase; }
+
+.DesStaResult table.DetailStatistic { border-left: 1px solid #E4E3F4; text-align:center;}
+.DesStaResult table.DetailStatistic td { vertical-align:middle;}
+
+
+/*BOX STATISTIC DEVELOPMENT
+*******************************************************/
+#BoxStatisticDev { border:1px #d7d6e7 solid; overflow:hidden; display:block; margin-top:10px;}
+#BoxStatisticDev .DesStatisticDev { overflow:hidden; display:block; text-align:center;}
+#BoxStatisticDev .TitleBox { background-color:transparent;}
+
+#BoxStatisticDev ul.Formsearch li { float:right;}
+
+/*BOX PROMOTION PASS
+*******************************************************/
+#BoxPromotionPass { border:1px #d7d6e7 solid; overflow:hidden; display:block; position:relative; z-index:0; background: #ffffff;}
+#BoxPromotionPass .DesPromotionPass { overflow:hidden; display:block; text-align:center;}
+#BoxPromotionPass .DesPromotionPass table { border:none;}
+#BoxPromotionPass .DesPromotionPass td { border:none; padding:0;}
+#BoxPromotionPass .DesPromotionPass label{ padding-right: 3px;}
+
+#BoxPromotionPass .TitleBox { background-color:transparent;}
+#BoxPromotionPass .input_text { width:250px;}
+
+#BoxPromotionPass p { text-align:left; padding:10px;}
+#BoxPromotionPass p.Activated { text-align:right; font-family: "Times New Roman"; font-size:16px;}
+#BoxPromotionPass p.Activated span { color:#df3832; font-weight:bold;}
+
+#BoxPromotionPass ul.Btform li { display:inline; float:left; margin-right:5px; margin-top: 5px;}
+
+/*BOX BLOG
+*******************************************************/
+#BoxBlog { border:1px #d7d6e7 solid; margin-top:10px;}
+#BoxBlog .DesBoxBlog { padding:10px; text-align:left; position:relative;}
+
+#BoxBlog .BtEditInfo { position:absolute; top:10px; right:10px;}
+#BoxBlog .BtEditInfo input { height:28px; width:190px;}
+
+#BoxBlog ul.InfoPersonal { overflow:hidden; display:block; width:100%; background:#fff url(http://images.videonhadat.com.vn/users/linedot.png) repeat-x top; padding-top:10px; margin-top:2px;}
+#BoxBlog ul.InfoPersonal li {}
+#BoxBlog ul.InfoPersonal li.DesInfo { float:left; width:68%;}
+#BoxBlog li.DesInfo table { width:100%; border:none;}
+#BoxBlog li.DesInfo table td { border:none; padding:3px 0;}
+
+#BoxBlog ul.InfoPersonal li.DesPersonal { float:left; width:32%;}
+#BoxBlog li.DesPersonal .Upload { _margin-top:-5px;}
+
+#BoxBlog .BgAvatar_profile { background:url(http://images.videonhadat.com.vn/users/bg_avatar_loop.png) repeat-y; _margin-top:-12px; padding:5px 0 5px 7px; display:block; overflow:hidden; _float:left;}
+
+#BoxBlog .AvatarProfile { float:left; border:2px #fff solid; width:80px;}
+#BoxBlog ul.QuoteInfo { float:left; padding-left:5px;}
+#BoxBlog ul.QuoteInfo li { line-height:16px;}
+#BoxBlog li.Username a { color:#0066cc; font-weight:bold;}
+#BoxBlog li.Username a:hover { color:#0066cc;}
+
+#BoxBlog ul.Btform { margin-top:10px; float:right;}
+#BoxBlog ul.Btform li { display:inline; float:left; margin-right:10px;}
+
+
+table.PostsManage { clear:both; padding-top:10px; text-align:center; border-top:none; color:#555;}
+table.PostsManage h2 { text-align:left; color:#df3832;}
+table.PostsManage tr { background:url(http://images.videonhadat.com.vn/users/bg_list.png) repeat-x bottom;}
+table.PostsManage tr.Bgform { background:#fff;}
+table.PostsManage tr.Bgtitle { background:#E9E7B1;}
+table.PostsManage td { vertical-align:middle; border-bottom:1px #efefef solid; border-right:none; padding:5px;}
+
+.CommentActions { font-size:11px; color:#0066cc; padding-top:3px;}
+.CommentActions span { padding-right:3px;}
+.CommentActions span.update { color:#777; }
+
+#BoxBlog ul.Alter li { text-align:right; display:inline; border:1px #ddd solid; padding:3px 5px; *padding:3px 2px 3px 5px; margin-left:1px; *margin-left:3px; _margin-left:3px;}
+
+/*BOX DIA BAN HOAT DONG
+*******************************************************/
+.BoxActiveLocal { border:1px #d7d6e7 solid; margin-top:10px; display:block; overflow:hidden;}
+.BoxActiveLocal .DesActiveLocal { text-align:left; padding:10px; line-height:18px; display:block; overflow:hidden; _width:97.2%;}
+.DesActiveLocal h4 { font-size:13px; font-weight:bold;}
+
+.BoxActiveLocal ul.Btform { float:right; margin-top:10px; display:block; overflow:hidden;}
+.BoxActiveLocal ul.Btform li { display:inline; float:left; margin-left:5px;}
+
+.BoxActiveLocal div.listbox { display:block; overflow:hidden; float:left; margin-top:10px; width:268px;}
+.BoxActiveLocal div.listbox select { width:268px;}
+
+div.listbox_result { margin-top:10px; float:left; margin-left:40px; border: 1px solid #DADADA; overflow-y: scroll; padding:5px 10px 10px 10px; width:400px; height:421px;}
+
+div.listbox_result h4 { font-style:oblique; font-size:14px; color:#df3832;}
+div.listbox_result ul { padding:10px 0 0 20px; font-weight:bold;}
+div.listbox_result ul li { padding-right:8px; list-style:circle; padding:2px 0;}
+div.listbox_result ul li div {  font-weight:normal;}
+
+.BoxActiveLocal ul.listbox_district { border: 1px solid #DADADA; overflow-y: scroll; padding: 3px; width:260px; height:400px; margin-top:8px;}
+
+/**********popup other****************/
+
+.popup_content_gadget p span{ font-weight: bold}
+.popup_content_gadget p span.email{ font-weight: normal; color: #666666;}
+.btn_exit{ padding-left: 390px; margin-top: -20px; margin-bottom: 20px;}
+.list_event .btn_exit{ padding-top: 10px; padding-left: 402px; margin-top:0px;}
+.list_event{ overflow: hidden;}
+
+.list_event table{ border: 1px solid #cccccc; border-collapse: collapse;}
+.list_event table tr td{ border-right: 1px solid #cccccc; padding: 5px; border-bottom: 1px solid #cccccc;}
+
+
+.bt_active_news { display:block; overflow:hidden; margin-top:10px; _height:55px;}
+.bt_active_news p { padding-bottom:5px;}
+
+.content_active_news{ margin-top: 10px;}
+
+
+.TitleBox h2.mark { position: absolute; top:6px; right: 0; font-weight: bold; color: black; font-size:14px;}
+#btn_view_all{ width: 120px;} 
+#chk_invisible{ float: left; margin-right: 4px;}
+
+/*******************invite friends***********************/
+.BoxInviteFriends { border:1px #d7d6e7 solid; position:relative; z-index:0; background: #ffffff;}
+
+.DesListFriends table{ border: 0; width:80%; margin-top: 20px; margin-bottom: 20px;}
+.DesListFriends table td{ border-right: 0; border-bottom: 0; padding: 5px 0 5px 0; text-align: left;}
+.DesListFriends table td label{ border-bottom: 1px solid #cccccc; display: block;}
+.DesListFriends p { text-align:left; padding:10px; border-top: 1px dashed #CCCCCC; line-height:20px; font-size:16px; font-family:"Times New Roman", Times, serif;}
+.DesListFriends .star { font-weight:bold;}
+
+.ActionInvite{ margin-top: 10px; font-weight: bold; word-spacing:2px;}
+.DesListFriends .ActionInvite a{ color: #df3832; text-decoration: underline;}
+.ActionInvite span{ color: #df3832;}
+.BoxInviteFriends img.join-now{ position: absolute; top: 20px; right: 40px;}
+.DesInviteFriends table{ width: 80%; margin: 138px 0 0 0; border-top: 1px dashed #cccccc; padding-bottom: 5px; padding-top: 10px;}
+.DesInviteFriends table td{ border: none; padding: 7px 15px;}
+.DesInviteFriends table input{ width: 99%;}
+.DesInviteFriends table textarea{ width: 99%; height: 130px;}
+.DesInviteFriends table a{
+display: block; float: right; color: #ffffff; font-weight: bold; font-size: 12px; padding: 6px 20px;
+background: #df3832; border: 0;transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;
+}
+.DesInviteFriends table a:hover{
+background: #cf352f;
+}
+
+
+
+
+.choose_contact a{ color: #0099cc;}
+.btn_invite{ padding: 10px 0 0 100px;_padding-left: 85px;}
+.choose_contact table{ border: none; margin-top: 10px;}
+.txt_search{ height: 19px; float:left; vertical-align: bottom; width: 87%;}
+.choose_contact img{ float: left; margin-right: 5px;}
+.list_friends{ border: 1px solid #cccccc; overflow:auto; margin: 10px 0; height: 200px; _width: 100%; _overflow-x: hidden;  *overflow-x: hidden;}
+.list_friends input{ margin-right: 4px; float: left;}
+.list_friends table td{ padding: 2px 5px;}
+.group_btn_invite{ margin-bottom: 10px; margin-top: 5px;}
+
+/***********  popup danh sach nhan vien  **************/
+.wrap_listmember table.popup_table_gadget{ width: 475px;}
+.wrap_listmember .Button_gadget{ padding-left: 290px;}
+.wrap_listmember ul li { margin-bottom: 5px;}
+.wrap_listmember ul li input{ margin-right: 4px; float: left;}
+
+/**********  popup sua tieu de  **************/
+.edit_title label{ margin-right: 10px;}
+.edit_title input{
+width:326px;height:20px;}
+
+
+/*HOME
+*******************************************************/
+.HomeBanner { text-align:left;}
+/*.HomeBanner .bgtop { background:url(http://images.videonhadat.com.vn/users/bn_top.png) no-repeat; display:block; width:752px; height:7px;}
+.HomeBanner .bgcenter { background:url(http://images.videonhadat.com.vn/users/bn_center.png) repeat-y; _margin-top:-10px;}
+.HomeBanner .bgbottom { background:url(http://images.videonhadat.com.vn/users/bn_bottom.png) no-repeat; display:block; width:752px; height:7px;}*/
+.DesHomeBanner { /*margin:0 7px 0 6px;*/ background-color:#dffffb; padding:10px 15px; border:1px #e1e1e1 solid; width:720px; -moz-box-shadow: inset 0 0 16px #ddd; -webkit-box-shadow: inset 0 0 16px #ddd;box-shadow: inner 0 0 16px #ddd;}
+
+.HomeBanner a { color:#0099CC;}
+.HomeBanner a:hover { color:#FF6600;}
+
+/**/
+.BoxServices { margin-top:20px; text-align:left;}
+.BoxServices .bgleft { float:left; background:url(http://images.videonhadat.com.vn/users/services_left.png) no-repeat; display:block; width:6px; height:131px;}
+.BoxServices .bgcenter { float:left; background:url(http://images.videonhadat.com.vn/users/services_center.png) repeat-x top; width:358px; _width:342px;}
+.BoxServices .bgright { float:left; background:url(http://images.videonhadat.com.vn/users/services_right.png) no-repeat; display:block; width:6px; height:131px;}
+
+.BoxServices ul { display:block; overflow:hidden; margin-left:-10px;}
+.BoxServices li { float:left; margin-left:10px; display:block; margin-bottom:15px; background: #ffffff;}
+.BoxServices .DesServices { padding:13px 14px 0 14px; _padding:12px 14px 0 14px;}
+.BoxServices .DesServices h3 { font-size:16px; font-weight:bold; color:#df3832;}
+.BoxServices ul.List { padding-top:5px; margin-left:0;}
+.BoxServices ul.List li { width:98%; background:url(http://images.videonhadat.com.vn/users/ico_listservices.png) no-repeat 0 4px; padding-left:10px; color:#000; margin:3px 0; _margin:0;}
+.BoxServices ul.List li a {  color:#000;}
+.BoxServices ul.List li a:hover { color:#0099CC;}
+
+
+/*******************   ReviewNews   ***************************/
+
+.ReviewNews{ margin: 20px;}
+.ReviewNews table{ border: none; width: 100%;}
+.ReviewNews table td{ border-right: 0; padding-bottom: 10px; padding-top: 20px; text-align: left;}
+.ReviewNews table.InfoBasic td{ padding-top: 0; border-bottom: none;}
+.ReviewNews h1 span{ margin-left: 10px; font-weight: normal; font-style: italic; color:#999999;}
+.ReviewNews .LocationPro{ background: none; margin-top: 5px;}
+.ReviewNews .Districts a, .ReviewNews .ProvinceCity a{ font-weight: bold; padding-left:10px; margin-top:5px; font-weight:bold; background:url(http://images.videonhadat.com.vn/users/iconform.png) -13px -100px no-repeat; margin-right: 5px;}
+.TypeExchange{ margin-left: 3px; color: red; font-weight: normal; margin-right: 3px;}
+ul.SizeArea li, ul.SpecPosition li, ul.SizeArea li, ul.SpecHome li, ul.ContactOwner li{ overflow: hidden; _width: 100%;}
+ul.SizeArea li span, ul.SpecPosition li span, ul.SizeArea li span, ul.SpecHome li span, ul.ContactOwner li span{ margin-right: 10px; width: 130px; display: block; float: left;}
+#BodyReviews{ background: url(http://images.videonhadat.com.vn/users/bg-body.jpg) repeat-x top;}
+
+/**********************ReviewNews2 *********************************/
+
+.ReviewNews2{ margin: 20px;}
+.ReviewNews2 table{ border: none; width: 100%;}
+.ReviewNews2 table td{ border-right: 0; padding-bottom: 10px; padding-top: 20px; text-align: left;}
+.ReviewNews2 table.InfoBasic td{ padding-top: 0; border-bottom: none;}
+.ReviewNews2 h1 span{ margin-left: 10px; font-weight: normal; font-style: italic; color:#999999;}
+.ReviewNews2 .LocationPro{ background: none; margin-top: 5px;}
+.ReviewNews2 .Districts a, .ReviewNews .ProvinceCity a{ font-weight: bold; padding-left:10px; margin-top:5px; font-weight:bold; background:url(http://images.videonhadat.com.vn/users/iconform.png) -13px -100px no-repeat; margin-right: 5px;}
+.ReviewNews2 .TypeExchange{ margin-left: 3px; color: red; font-weight: normal; margin-right: 3px;}
+.ReviewNews2 ul.SizeArea li{ float: left; margin-right: 30px; padding-right: 10px; margin-bottom: 5px; border-right: 1px solid #cccccc; width: 170px;}
+.ReviewNews2 ul.SpecPosition li{ float: left; margin-right: 30px; padding-right: 10px; margin-bottom: 5px; border-right: 1px solid #cccccc; width: 170px;}
+.ReviewNews2 ul.ContactOwner li{_width: 100%;}
+.ReviewNews2 ul.SizeArea li span, .ReviewNews2 ul.SpecPosition li span, .ReviewNews2 ul.SizeArea li span, .ReviewNews2 ul.SpecHome li span, .ReviewNews2 ul.ContactOwner li span{ margin-right: 10px; width: 100px; display: block; float: left;}
+#BodyReviews{ background: url(http://images.videonhadat.com.vn/users/bg-body.jpg) repeat-x top;}
+
+.ReviewNews2 ul.SpecHomeChk li{ float: left; margin-right: 30px;}
+.ReviewNews2 ul.SpecHomeChk li span{ margin-right: 10px; width: 130px; display: block; float: left;}
+#BodyReviews{ background: url(http://images.videonhadat.com.vn/users/bg-body.jpg) repeat-x top;}
+
+
+/******************************************/
+ul.Direction li{ margin: 5px 0; background: url(http://images.videonhadat.com.vn/users/iconform.png) no-repeat -12px -100px; padding-left: 10px;}
+.TelContactHelp{ font-weight: bold;}
+.SignUpAds{ position: absolute; top: 0px; right: 0;}
+
+
+/**/
+.BoxAdv { margin-top:10px;}
+
+/**/
+.Membersof { display:block; overflow:hidden; text-align:left; margin-top:2px; font-size:10px;}
+.Membersof a{ color:#0099CC !important;}
+
+/*Box Warmning Kich hoat ngay */
+.BoxMessage_1 { text-align: left; background: #FBFAEF;
+border: 1px solid #DBD9C1; padding: 10px;}
+.BoxMessage_1 .ColDes{ padding-top: 12px;}
+.BoxMessage_1 .Title{ background: #FEFDCC; border: 1px solid #FBB03B; overflow: hidden; padding: 10px; margin-bottom: 20px; _width: 708px;}
+.BoxMessage_1 .Content{ _clear: both;}
+.BoxMessage_1 h3 {font-size: 16px;
+color: #df3832
+; padding: 10px 10px 5px 35px;}
+.BoxMessage_1 h2{ font-size: 14px;}
+.BoxMessage_1 h2 span{ color: #df3832
+; margin-left: 5px;}
+.BoxMessage_1 .Title h2{ color: #F46016;}
+
+.BoxMessage_1 p{ padding-left: 35px;}
+.BoxMessage_1 .Notes p { padding-left: 0px;}
+.BoxMessage_1 .Notes ul { padding: 0 10px 0 15px;}
+.BoxMessage_1 ul{ padding-left: 50px;}
+.BoxMessage_1 li {list-style: square outside none !important;
+margin: 3px 0;
+}
+.BoxMessage_1 .Notes { color: #808080;
+font-size: 13px; padding-top: 10px;}
+/* X Box Warmning Kich hoat ngay X */
+
+/* X Box Nhập Mã Thẻ Và Báo Thành Công X */
+
+.Contact {
+	clear:both;
+	padding:10px 10px 0 10px;
+	margin: 20px 106px 20px 106px;
+	text-align:center;
+	font-size:14px;
+	line-height:20px;
+	border-top: 1px dotted #000;
+}
+.Contact a {
+	color:#000000; text-decoration: underline;
+}
+.Contact font {
+	color:#df3832;
+	font-weight:bold;
+	font-size:13px;
+}
+.Contact div {
+	font-weight:bold;
+}
+/* X Box Nhập Mã Thẻ Và Báo Thành Công X */
+
+/*navigator google*/
+.breadcrumb { float:left; font-size:14px; font-weight:normal; }
+.breadcrumb div{ float:left; text-align:left; margin-right:6px; overflow:hidden; padding-top:5px; }
+.breadcrumb div:hover {border:1px solid #ddd;-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; background-color:#eee;padding:3px; }
+.breadcrumb a { color:#6D6F71;}
+.breadcrumb a:hover {color:#0099cc;}
+
+
+/**/
+.BoxMessage_M10 { width:750px; overflow:hidden; -moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;
+		background: #fefefe; background: linear-gradient(top, #fefefe, #eeeeee); background: -moz-linear-gradient(top, #fefefe, #eeeeee); background: -webkit-linear-gradient(top, #fefefe, #eeeeee); background: -o-linear-gradient(top, #fefefe, #eeeeee); background: -ms-linear-gradient(top, #fefefe, #eeeeee); filter: progid:DXImageTransform.Microsoft.gradient( GradientType=0, StartColorstr=#fefefe, EndColorstr=#eeeeee);border: 1px solid #ddd;*padding-bottom:3px; _padding-bottom:0;
+		box-shadow: 0 1px 0 #9A9A9A; -moz-box-shadow: 0 1px 0 #9A9A9A; -webkit-box-shadow: 0 1px 0 #9A9A9A;}
+.BoxMessage_M10 .Content {border: 1px dashed #CCCCCC; margin:3px; float:left; width:276px; *width:275px;  *margin-left:4px; _margin-left:2px; overflow:hidden;padding: 59px 80px;}
+.BoxMessage_M10 h2 { float:left; color:#df3832
+; font-size:26px; font-weight:bold; width:131px;}
+.BoxMessage_M10 h3 { float:left; margin:6px 0 0 10px; font-size:20px; font-weight:bold; width:135px;}
+.BoxMessage_M10 h4 { clear:both; float:left; padding-top:6px; font-style:italic; font-size:27px; font-weight:normal; width:272px;}
+
+.BoxMessage_M10 .Form {border: 1px dashed #CCCCCC; margin:3px 3px 3px 1px; float:left; width:300px;text-align: left; padding:10px 0;}
+.BoxMessage_M10 .Form ul{ margin: 5px 10px;}
+.BoxMessage_M10 .Form li{ overflow: hidden; margin: 8px 0; *margin: 6px 0; _width: 100%;}
+.BoxMessage_M10 .input_text{ width: 274px; color:#555; font-family:arial;}
+.BoxMessage_M10 textarea{ display: block; float: left; width: 274px; height:60px; color:#555; font-family:arial; font-size:12px;}
+.BoxMessage_M10 .Form select{ display: block; float: left; width: 230px;}
+.BoxMessage_M10 a.bt_like { float:right;}
+	.social_network { padding-left:26px; }
+	.social_network span{ padding-left:8px; font-weight:bold; color:#3B5998;}
+	.social_network input { height:auto;}
+	
+	a.bt_like{ background:#ECEEF5; border:1px #CAD4E7 solid; color:#3B5998; display:block; padding:4px 10px;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
+	a.bt_like:hover { border:1px #9dacce solid;}
+	a.bt_like span{ background: url(http://images.videonhadat.com.vn/corner_button.png) no-repeat -126px -46px; padding-left:14px; width:10px; height:10px; }
+	
+/**/
+.logoanz { background:url(http://images.videonhadat.com.vn/logo_anz.png) no-repeat; width:64px; height:18px;}
+.FBoxMessage_1{ width: 738px; position: relative; /*height: 60px;*/ border-radius: 6px; overflow: hidden; padding:6px; text-align:left; background-color: #FFE3E3; border: 1px solid #FF0000;}
+.FBoxMessage_1 a.PopupBox_closer { top:5px; right:5px;}
+.GroupStaff {
+    height: 200px;
+    overflow-y: auto;
+}
+/* International Sites
+*************************************************/
+.InternationalS{ width: 990px; margin: 0 auto; overflow: hidden;}
+.InternationalS ul{ /*float: left; */margin: 10px 0 10px 0px; text-align: center;/* padding-left: 174px;*/}
+.InternationalS li{ /*float: left;*/ display: inline;}
+.InternationalS a{ color: #333333; border-right: 1px solid #333333; padding: 0 7px; display: inline-block; margin-top: 6px;}
+.InternationalS a:hover{ color: #A91b33;}
+.InternationalS span{ background: #eeeeee; border: 1px solid #dddddd; font-weight: bold; padding: 5px 10px; margin-right: 5px; display: inline-block;}
+
+.SubMenuMain_Groupsub_1 sup{vertical-align: baseline;position: relative;top: -4px;}
+.SubMenuMain_Groupsub_10 label{ font-size: 12px; font-weight: bold;}
+
+#UCFromDate, #UCToDate{ width: 112px !important; *width: 108px !important; width: 108px\0/ !important;}
+
+.ColLeft ins { padding-top: 10px !important;}
+.ColLeft ins + ins{ height: 10px !important;}
+.ColLeft ins + ins > ins{ height: 10px !important;}
+
+x:-o-prefocus, .ColLeft ins{
+height: 10px !important;
+}
+x:-o-prefocus, .ColLeft #google_ads_frame1{ padding-top: 10px !important;}
+
+
+
+
+
+
+/*************************** Dialog *************************************/
+.propertyToolTip{ overflow: hidden; background: #eeeeee; position: absolute; z-index: 100;}
+.propertyToolTip{ padding: 10px;}
+.propertyToolTip .ColImgs{ margin-bottom: 10px;*margin-bottom: 5px; float: left; margin-right: 10px;}
+.propertyToolTip .ColImgs img {border: 1px solid #eeeeee; width: 100px; height: 75px;}
+.propertyToolTip .ColDes{ width: 300px; height: 75px; overflow: hidden; text-align: left; margin-bottom: 5px;*margin-bottom: 0px; float: left;}
+.propertyToolTip h3{ font-size: 12px; font-weight: bold;}
+.propertyToolTip .ColDes p{ font-size: 12px;}
+.propertyToolTip .ColDes p span{ margin-left: 3px;}
+/*.propertyToolTip sup{ position: relative; top: -4px; vertical-align:baseline;}*/
+.propertyToolTip h4{ overflow: hidden; color: #919191; font-weight: normal; font-size: 12px; margin: 2px 0;}
+.propertyToolTip h4 span{ float: left;}
+.propertyToolTip h4 span + span{ float: right;}
+.propertyToolTip ul{ clear: both; font-size: 11px;}
+.propertyToolTip li{ overflow: hidden; background: #ffffff; padding: 5px 0 5px 10px;}
+.propertyToolTip li + li{ background: #f5f5f5;}
+.propertyToolTip li + li + li{ background: #ffffff;}
+.propertyToolTip li + li + li + li{ background: #f5f5f5;}
+.propertyToolTip li span{ display: block; float: left; width: 102px;}
+.propertyToolTip li span + span{width: 290px;}
+
+
+.RangePrice, .around {
+	float:left;
+	width:54%;
+*width:50%;
+	_width:49%;
+	padding:10px 10px 10px 0;
+	line-height:20px;
+}
+.RangePrice h4, .around h4{
+	font-size:13px;
+	font-weight:bold;
+}
+.RangePrice .input_text, .around .input_text {
+	width:100%;
+	height:28px;
+	border: 1px solid #dddddd;
+}
+.RangePrice div, .around div {
+	color:#000000;
+	font-weight:bold;
+}
+
+
+/* title dialog */
+	.TitleDialog {
+	overflow:hidden;
+	display:block;
+	background:#f2f2f2;
+	padding:6px 15px;
+	_height:16px;
+	_width:100%;
+}
+.TitleDialog h4 {
+	font-size:14px;
+	font-weight:bold;
+	float:left;
+	margin: 0;
+	padding: 0;
+
+}
+.TitleDialog h4 span {
+	color:#df3832;
+}
+.TitleDialog a.bt_close_1 {
+	float:right;
+	width:auto;
+	margin:2px 0;
+	background: url(../images/mbnd-icon.png) no-repeat 0 -393px;
+	text-indent: -99999px;
+	width: 14px; height: 14px;
+}
+.TitleDialog .Button {
+	position:absolute;
+	right:100px;
+}
+.TitleDialog a.bt_up_2 {
+	background: url(../images/mbnd-icon.png) no-repeat -136px -992px; position: absolute; top: 10px; right: 10px; width: 14px; height: 8px; display: block;
+}
+.TitleDialog a.bt_down_2 {
+	background: url(../images/mbnd-icon.png) no-repeat 0px -992px; position: absolute; top: 10px; right: 10px; width: 14px; height: 8px; display: block;
+}
+/* content dialog */
+.ContentDialog .TitleBox{ text-transform: uppercase; color: #df3832; padding-left: 5px; padding-top: 15px; font-size: 13px; font-weight: bold; margin-bottom: 15px;}
+.ContentDialog .block_item{ height: 453px; overflow-y: scroll;}
+.ContentDialog .colContent{ width: 443px; float: left;}
+.ContentDialog .colMenu{ float: right; width: 220px;}
+.ContentDialog .colMenu li{ float: none; width: 100%;}
+.ContentDialog .colMenu li span{ padding-left: 3px;}
+.ContentDialog .colMenu li a.current{ background: #dffffb;}
+.ContentDialog .colContent li{ width: 48%;}
+.ContentDialog input{ width: auto !important;}
+	.ContentDialog {
+	/*clear:both;*/
+	overflow: hidden;
+	padding: 5px 12px;
+	font-size:13px;
+}
+.ContentDialog h5 {
+	font-size:13px;
+	font-weight:bold;
+	border-bottom: 1px dotted #dddddd;
+	padding:4px 0 8px 5px;
+	margin-bottom:8px;
+}
+.ContentDialog h5 a {}
+.ContentDialog h5 a:hover { text-decoration: underline;}
+.ContentDialog ul {overflow:hidden;}
+.ContentDialog ul li:first-child{ border-left: 0;}
+.ContentDialog ul li:first-child a{ padding-left: 5px; padding-right: 0;}
+*+html .ContentDialog ul li:first-child a{ padding-left: 0;}
+*+html .ContentDialog ul li a{ padding-left: 0; padding-right: 0;}
+.ContentDialog .checkboxStyle li a{ background: url(../images/mbnd-icon.png) no-repeat 5px -1569px; padding-left: 22px !important;}
+.ContentDialog .checkboxStyle li a:hover{ background: #dffffb url(../images/mbnd-icon.png) no-repeat 5px -1569px !important;}
+.ContentDialog .checkboxStyle li a.current{ background: url(../images/mbnd-icon.png) no-repeat 5px -1606px;}
+.ContentDialog .checkboxStyle li a.current:hover{ background: #dffffb url(../images/mbnd-icon.png) no-repeat 5px -1606px !important;}
+
+.ContentDialog a.findNow{ margin-left: 5px; margin-bottom: 10px; margin-top: 10px; display: inline-block; position: relative; padding: 6px 50px 6px 26px; background: #df3832; filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#df3832, endColorstr=#df3832); color: #ffffff; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+.ContentDialog a.findNow:hover{ background: #cf352f;}
+.ContentDialog a.findNow span{ background: url(../images/mbnd-icon.png) no-repeat -133px -308px;; width: 18px; height: 22px; position: absolute; top: 3px; right: 25px;}
+
+.ContentDialog h3.titleSmall{ margin-left: 5px; font-size: 14px; font-weight: bold; margin-top: 10px; color: #919191;}
+.ContentDialog h5{ margin-top: 10px;}
+
+/* Dialog 0*/
+	.Dialog_0 {
+	position:absolute;
+	left: 0;
+	top: 30px;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;
+}
+.Dialog_0 ul.col {
+	width:100%%;
+}
+.Dialog_0 ul.col li { border: 0 !important; display: block !important;}
+.Dialog_0 li a {
+	padding:2px 5px !important;
+    *padding:4px 5px !important;
+	float: none !important;
+	font-size: 13px !important;
+	display: block;
+}
+
+.Dialog_0 li a:hover {background:#dffffb !important;}
+
+.Dialog_0 ul.col li.header {
+	color: #df3832 !important;
+	font-size: 13px;
+	font-weight:bold;
+	padding:4px 5px;
+	_margin:2px 0;
+}
+.Dialog_0 span {
+	font-weight:bold;
+}
+
+
+/* Dialog 1*/
+	.Dialog_1 {
+	position:absolute;
+	left: 0;
+	top: 30px;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;
+}
+.Dialog_1 ul.col {
+	float: left;
+	width:33%;
+}
+.Dialog_1 ul.col li { border: 0 !important; display: block !important;}
+.Dialog_1 li a {
+	padding:2px 5px !important;
+    *padding:4px 5px !important;
+	float: none !important;
+	font-size: 13px !important;
+}
+
+.Dialog_1 li a:hover {background:#dffffb !important;}
+
+.Dialog_1 ul.col li.header {
+	color: #df3832 !important;
+	font-size: 13px;
+	font-weight:bold;
+	padding:4px 5px;
+	_margin:2px 0;
+}
+.Dialog_1 span {
+	font-weight:bold;
+}
+
+/***********/
+.Dialog_1.sortDialog ul.col{ width: 100%;}
+.Dialog_1.sortDialog ul.col a{ display: block; color: #000000;}
+.sort .Dialog_1{ left: -221px !important;}
+.sort .Dialog_1 h4{ padding: 0; margin: 0;}
+
+/* Dialog 2*/
+	.Dialog_2 {
+	position:absolute;
+	left: 0;
+	top: 30px;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;
+}
+.Dialog_2 .ContentDialog h5 a{ float: none;}
+.Dialog_2 ul li {
+	 border: 0 !important; display: block !important;
+	 float: left; width: 32%;
+	 font-size: 13px;
+}
+/*.Dialog_2 ul li:first-child a{ padding-left: 5px;}*/
+.Dialog_2 ul li a {
+	padding:3px 5px;
+	color:#000000 !important;
+	float: none !important;
+	font-size: 13px !important;
+	display: block;
+}
+.Dialog_2 ul li a:hover {background:#dffffb !important;}
+
+.Dialog_2 li span {
+	color:#919191;
+}
+
+
+
+/* Dialog 3*/
+	.Dialog_3 {
+	position:absolute;
+	left: 0;
+	top: 30px;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;
+}
+.Dialog_3 ul.col {
+	float:left;
+	width:40%;
+	border-right: 1px dotted #DADADA;
+	margin-right: 10px;
+}
+.Dialog_3 ul.col li { /*_margin-bottom:-14px;*/
+	margin-right:10px;
+	border: 0 !important; display: block !important;
+}
+.Dialog_3 li a {
+	padding:3px 5px !important;
+    *padding:4px 5px !important;
+	color:#000000 !important;
+	float: none !important;
+	font-size: 13px !important;
+	display: block;
+}
+.Dialog_3 li a:hover {background:#dffffb !important;}
+/* Dialog 4*/
+	.Dialog_4 {
+	position:absolute;
+	left: 0;
+	top: 30px;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;
+}
+.Dialog_4 ul.col {
+	float:left;
+	width:33%;
+}
+.Dialog_4 ul.col li { border: 0 !important; display: block !important;}
+.Dialog_4 li a {
+	padding:2px 5px !important;
+    *padding:4px 5px !important;
+	color:#000000 !important;
+	float: none !important;
+	font-size: 13px !important;
+	display: block;
+}
+.Dialog_4 li a:hover, .Dialog_4 .highlight { background:#dffffb !important;}
+.Dialog_4 ul.col li.header {
+	color: #df3832 !important;
+	font-size: 13px;
+	font-weight:bold;
+	padding:4px 5px;
+	_margin:2px 0;
+}
+.Dialog_4 span {
+	font-weight:bold;
+}
+
+
+.Dialog_4.qhpopup ul.col {
+	float:left;
+	width:100% !important;
+}
+.Dialog_4.qhpopup ul.col li{ width: 33%; float: left;}
+
+/* Dialog 5*/
+	.Dialog_5 {
+	position:absolute;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index:300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;
+}
+.Dialog_5 .ContentDialog {
+	padding:0;
+}
+.Dialog_5 .BoxRS_M1{ padding-left: 10px; padding-right: 10px; padding-top: 10px;}
+.Dialog_5 .BoxRS_M1 li a {
+	width:90%; color: #000000;
+}
+.Dialog_5 .BoxRS_M1 li a:hover{ text-decoration: underline;}
+.Dialog_5 .BoxRS_M1 li a font{ color: #5f5f5f;}
+.Dialog_5 .BoxRS_M1 li:first-child a{ padding-left: 0;}
+.Dialog_5 .BoxRS_M1 li{ position: relative; padding-left: 10px;}
+.Dialog_5 .BoxRS_M1 li:before{ content: ""; width: 0; height: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; border-left: 3px solid #999999; position: absolute; top: 5px; left: 0;}
+.Dialog_5 a.seeMoreDialog{ display: block; padding-left: 10px; padding-top: 5px; padding-bottom: 5px; color: #919191; font-weight: bold; font-size: 13px;}
+.Dialog_5 a.seeMoreDialog:hover{ text-decoration: underline;}
+.Dialog_5 .TitleDialog {
+	padding:6px 10px;
+	position: relative;
+}
+.Dialog_5 .Groups {
+	padding:10px;
+	overflow:hidden;
+}
+.Dialog_5 .input_text {
+	float:left;
+	width:205px;
+	height:17px;
+}
+.Dialog_5 .Button {
+	float:left;
+	width:63px;
+}
+/* Dialog 6*/
+	.Dialog_6 {
+	position:absolute;
+	border:1px #696969 solid;
+	background-color:#FFF2E4;
+	z-index:300;
+	box-shadow:0px 0px 10px #666;
+	-moz-box-shadow:0px 0px 10px #666;
+	-webkit-box-shadow:0px 0px 10px #666;
+	text-align:left;
+}
+.Dialog_6 .ContentDialog {
+	padding:0;
+}
+.Dialog_6 .TitleDialog {
+	padding:6px 10px 0 10px;
+	background:none;
+	overflow:hidden;
+	width:95%;
+}
+.Dialog_6 .controls {
+	clear:both;
+	background-color: #fff;
+	border-top: 1px dotted #CCCCCC;
+	overflow: hidden;
+	padding: 5px 10px;
+	_width:374px;
+}
+.Dialog_6 .NextPrivious {
+	float:left;
+	padding-top:3px;
+}
+.Dialog_6 .Button {
+	float:right;
+}
+/* Dialog 7*/
+	.Dialog_7 {
+	z-index:300;
+}
+.Dialog_7 .Tab {
+	position:absolute;
+	right:-27px;
+	top:0;
+}
+.Dialog_7 .Tab a {
+	display:block;
+	width:30px;
+	height:144px;
+	background:url(http://images.videonhadat.com.vn/corner_button.png) no-repeat 0 -118px; _background:url(http://images.videonhadat.com.vn/corner_button.gif) no-repeat 0 -118px;
+}
+
+/* Dialog 8*/
+.Dialog_8 { overflow:hidden;
+	border:1px #696969 solid;
+	background-color:#FFF2E4;
+	z-index:300;
+	box-shadow:0px 0px 10px #666;
+	-moz-box-shadow:0px 0px 10px #666;
+	-webkit-box-shadow:0px 0px 10px #666;
+	text-align:left;
+}
+.Dialog_8 .ContentDialog { padding:10px 10px 0 10px;}
+.Dialog_8 .PopupBox_closer { top:5px; right:5px;}
+.Dialog_8 ul.Button { margin:10px 0;}
+.Dialog_8 ul.Button li { padding:4px 0;}
+.Dialog_8 textarea { width:99%; height:80px; font-size:12px;}
+
+
+
+/* signInNewDialog */
+	.signInNewDialog {
+	width: 450px;
+	position: absolute;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;
+}
+.signInNewDialog .ContentDialog{ padding: 15px; font-size: 13px;}
+.signInNewDialog h6{ font-size: 13px; font-weight: bold; margin: 0;}
+.signInNewDialog h6 a{ color: #df3832; padding-left: 10px; font-weight: normal;}
+.signInNewDialog h5{ text-transform: uppercase; color: #08a693; padding-left: 0; padding-bottom: 4px; padding-top: 0;}
+.signInNewDialog ol li { list-style: none; overflow: hidden; margin-top: 10px;}
+.signInNewDialog ol li b{ display: block; float: left; width: 160px; margin-top: 5px;}
+.signInNewDialog ol li span{ display: block; float: left; width: 256px;}
+.signInNewDialog ol li input{ width: 91% !important; *width: 81%; border: 1px solid #dddddd; height: 27px; line-height: 27px; color: #919191; padding-left: 10px; padding-right: 10px;}
+.signInNewDialog ol li input[type="checkbox"]{ width: auto !important; height: auto; line-height: inherit; border: 0; padding-left: 0; padding-right: 0;}
+.signInNewDialog a.inputCheckbox{ background: url(../images/mbnd-icon.png) no-repeat 0 -1573px; padding-left: 17px; color: #000000;}
+.signInNewDialog a.inputCheckbox.current{ background: url(../images/mbnd-icon.png) no-repeat 0 -1609px;}
+.signInNewDialog a.linkP{ color: #000000; font-size: 11px; padding-left: 15px; border-left: 1px solid #000000; margin-left: 15px; text-decoration: underline;}
+.signInNewDialog a.actionButton{ background: #df3832; color: #ffffff; font-size: 13px; font-weight: normal; height: 30px; line-height: 30px; padding: 0 22px; display: inline-block; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+.signInNewDialog a.actionButton:hover{ background: #cf352f;}
+.signInNewDialog a.quitLink{ height: 30px; line-height: 30px; display: inline-block; color: #df3832; padding-left: 20px;}
+.signInNewDialog ul li{ float: left; width: 186px; margin-bottom: 0; margin-right: 10px; padding-left: 11px; padding-bottom: 2px; position: relative; font-size: 11px; line-height: 18px;}
+.signInNewDialog ul li:before{ content: ""; position: absolute; width: 4px; height: 4px; background: #000000; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; top: 9px; left: 0;}
+.signInNewDialog p{ margin-top: 5px; line-height: 18px;}
+.signInNewDialog p a{ color: #000000; text-decoration: underline;}
+.signInNewDialog .groupCheck{ margin: 10px 0 20px 0;}
+.protectCode{ overflow: hidden;}
+.protectCode img{ float: left;}
+.signInNewDialog .protectCode input{ float: left; width: 150px !important;}
+
+.signInNewDialog table{ border-top: 0;}
+.signInNewDialog table td{ border-right: 0; border-bottom: 0;}
+
+.signInNewDialog .list_member{ height: 500px; *height: auto; overflow-y: scroll;}
+.signInNewDialog .list_member li{ overflow: hidden; width: 310px; padding-left: 0;}
+.signInNewDialog .list_member li:before{ background: none;}
+.signInNewDialog .list_member li span{ display: block; float: left; width: 290px; *width: 280px; padding-left: 3px;}
+.signInNewDialog .list_member li input{ display: block; float: left; border: 0;}
+.signInNewDialog .list_member a.actionButton{ margin-top: 10px;}
+
+.scrollBox{ height: 300px; overflow-y: scroll;}
+
+/****************************************/
+
+.sendEmailFriendDialog {
+	width: 450px;
+	position: absolute;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;
+}
+.sendEmailFriendDialog .ContentDialog{ padding: 15px; font-size: 13px;}
+.sendEmailFriendDialog h6{ font-size: 13px; font-weight: bold;}
+.sendEmailFriendDialog h6 a{ color: #df3832; padding-left: 10px; font-weight: normal;}
+.sendEmailFriendDialog h5{ text-transform: uppercase; color: #08a693; padding-left: 0; padding-bottom: 4px; padding-top: 0;}
+.sendEmailFriendDialog ol li { list-style: none; overflow: hidden; margin-top: 10px;}
+.sendEmailFriendDialog ol li b{ display: block; float: left; width: 160px; margin-top: 5px;}
+.sendEmailFriendDialog ol li span{ display: block; float: left; width: 256px;}
+.sendEmailFriendDialog ol li input{ width: 100% !important; *width: 90%; border: 1px solid #dddddd; height: 28px; line-height: 28px; color: #919191; padding-left: 10px; padding-right: 10px;}
+.sendEmailFriendDialog ol li input[type="checkbox"]{ width: auto !important; height: auto; line-height: inherit; border: 0; padding-left: 0; padding-right: 0;}
+.sendEmailFriendDialog a.actionButton{ background: #df3832; color: #ffffff; font-size: 13px; font-weight: normal; height: 30px; line-height: 30px; padding: 0 22px; display: inline-block; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+.sendEmailFriendDialog a.actionButton:hover{ background: #cf352f;}
+.sendEmailFriendDialog a.quitLink{ height: 30px; line-height: 30px; display: inline-block; color: #df3832; padding-left: 20px;}
+.sendEmailFriendDialog textarea{ width: 100% !important; *width: 90%; border: 1px solid #dddddd; height: 80px; color: #919191; font-family: Arial, Helvetica, sans-serif; font-size: 13px; padding-left: 10px; padding-right: 10px;}
+
+/****************************************/
+
+.fengshuiDialog{width: 600px;
+	position: absolute;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;}
+.fengshuiDialog input, .fengshuiDialog select{ border: 1px solid #dddddd; height: 28px; line-height: 28px; color: #919191; padding-left: 10px; padding-right: 10px; width: 77px !important; float: left;}
+.fengshuiDialog ul{ overflow: hidden;}
+.fengshuiDialog li{ float: left; width: 190px; overflow: hidden;}
+.fengshuiDialog li b{ display: block; float: left; margin-top: 5px; margin-right: 10px;}
+.fengshuiDialog .buttonGroup{ overflow: hidden;}
+.fengshuiDialog .buttonGroup a{ background: #df3832; color: #ffffff; font-size: 13px; font-weight: normal; height: 30px; line-height: 30px; padding: 0 26px; display: block; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s; float: right; margin-right: 28px; margin-top: 12px;}
+.fengshuiDialog .buttonGroup a:hover{ background: #cf352f;}
+.fengshuiDialog .ContentDialog{ padding: 15px;}
+
+/****************************************/
+
+.samePropertyDialog{width: 600px;
+	position: absolute;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;}
+.samePropertyDialog ul.listInfo{ overflow: hidden; margin-bottom: 15px;}
+.samePropertyDialog ul.listInfo li{ float: left; width: 260px; margin-bottom: 5px; margin-right: 10px; padding-left: 11px; position: relative;}
+.samePropertyDialog ul.listInfo li:before{ content: ""; position: absolute; width: 4px; height: 4px; background: #000000; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; top: 6px; left: 0;}
+.samePropertyDialog ul.listInfo span{ padding-right: 5px;}
+.samePropertyDialog .ContentDialog{ padding: 15px;}
+.samePropertyDialog h5{ text-transform: uppercase; color: #08a693; padding-left: 0; padding-bottom: 4px; padding-top: 0;}
+.samePropertyDialog ol li { list-style: none; overflow: hidden; margin-top: 10px;}
+.samePropertyDialog ol li b{ display: block; float: left; width: 160px; margin-top: 5px;}
+.samePropertyDialog ol li span{ display: block; float: left; width: 404px;}
+.samePropertyDialog ol li input{ width: 100% !important; *width: 90%; border: 1px solid #dddddd; height: 28px; line-height: 28px; color: #919191; padding-left: 10px; padding-right: 10px;}
+.samePropertyDialog ol li input[type="radio"]{ width: auto !important; height: auto; line-height: inherit; border: 0; padding-left: 0; padding-right: 0;}
+.samePropertyDialog a.actionButton{ background: #df3832; color: #ffffff; font-size: 13px; font-weight: normal; height: 30px; line-height: 30px; padding: 0 22px; display: inline-block; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+.samePropertyDialog a.actionButton:hover{ background: #cf352f;}
+.samePropertyDialog a.changeLink{ height: 30px; line-height: 30px; display: inline-block; color: #df3832; padding-left: 20px;}
+.samePropertyDialog ol li:last-child{ margin-top: 15px;}
+
+
+
+/*********************************************/
+
+.calculateDialog{width: 450px;
+	position: absolute;
+	border:1px #a1a1a1 solid;
+	background-color:#fff;
+	z-index: 300;
+	box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -moz-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5); -webkit-box-shadow: 1px 2px 2px 0px rgba(161,161,161,0.5);
+	text-align:left;}
+	
+.calculateDialog .ContentDialog{ padding: 15px;}
+.calculateDialog ul.tabS{ margin-bottom: 15px;}
+.calculateDialog ul.tabS li:first-child a{ padding: 5px 28px;}
+
+.calculateDialog ol{ margin-bottom: 20px;}
+.calculateDialog ol li { list-style: none; overflow: hidden; margin-top: 10px;}
+.calculateDialog ol li b{ display: block; float: left; width: 160px; margin-top: 5px;}
+.calculateDialog ol li span{ display: block; float: left; width: 256px;}
+.calculateDialog ol li input{ width: 100% !important; *width: 90%; border: 1px solid #dddddd; height: 28px; line-height: 28px; color: #919191; padding-left: 10px; padding-right: 10px;}
+.calculateDialog ol li input[type="radio"]{ width: auto !important; height: auto; line-height: inherit; border: 0; padding-left: 0; padding-right: 0;}
+.calculateDialog ol li select{ border: 1px solid #dddddd; height: 28px; line-height: 28px; line-height: 28px; color: #919191; padding-left: 10px; padding-right: 10px;}
+.calculateDialog a.actionButton{ background: #df3832; color: #ffffff; font-size: 13px; font-weight: normal; height: 30px; line-height: 30px; padding: 0 22px; display: inline-block; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+.calculateDialog a.actionButton:hover{ background: #cf352f;}
+.calculateDialog ol li:last-child{ margin-top: 15px;}
+.calculateDialog p{ margin-top: 8px;}
+.calculateDialog p input[type="text"]{ border: 1px solid #dddddd; height: 28px; line-height: 28px; color: #919191; padding-left: 10px; padding-right: 10px; width: 60px !important;}
+
+
+
+/****** top link - bottom link *****/
+/*box thong bao full
+***************************/
+.FBoxMessage_1{ width: 750px; position: relative; z-index: 0; border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; overflow: hidden; padding:6px 0; text-align:left;}
+.FBoxMessage_1 a.PopupBox_closer { top:5px; right:5px; background: url(../images/img_close.png) no-repeat; width: 15px; height: 15px; position: absolute; z-index: 0;}
+
+#kqRes{ margin-top: 5px;}
+
+/************* popup viewRating **************/
+.ContentDialog table.viewRating{ margin-top: 10px;}
+.ContentDialog table.viewRating a.actionButton{ margin-top: 10px;}
+.ContentDialog table.viewRating td{ padding: 2px 0!important; vertical-align: middle;}
+.ContentDialog ul.Formsearch{ width: 96%;}
+.ContentDialog ul.Formsearch li:before{ background: none;}
+.ContentDialog ul.Formsearch li{ padding-left: 0; width: 170px;}
+.ContentDialog ul.Formsearch li img{ padding-left: 5px; position: relative; top: 4px; *top: 0px;}
+.ContentDialog ul.Formsearch li.end{ width: 80px;}
+.ContentDialog ul.Formsearch li:first-child a{ padding-left: 0;}
+.ContentDialog ul.Formsearch input[type="text"]{ width: 84px !important; height: 23px; line-height: 23px;}
+
+/************ viewVersion ***************/
+.viewVersion{ margin-top: 10px;}
+.viewVersion a{ padding-right: 20px; color: #919191; text-decoration: underline;}
+
+.PositionMap{ width: 100%;}
+.PositionMap .input_title{ width: 290px !important;}
+.PositionMap .gMap{ margin: 0 0 0 0;}
+
+.steps{ overflow: hidden; margin-bottom: 15px; padding-top: 20px;}
+.steps .bar{ background: #dddddd; border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; -o-border-radius: 10px; -webkit-border-radius: 10px; width: 100%; height: 4px;}
+.steps p{ margin-top: 20px; font-weight: bold; font-size: 13px; color: #333333; text-align: center;}
+.step1, .step2{ width: 366px; float: left;} 
+.step1{ margin-right: 20px;}
+.step1 .bar, .step2 .bar{ background: #dddddd; position: relative;}
+.step1.active .bar, .step2.active .bar{ background: #df3832; position: relative;}
+
+.step1 .bar:before, .step2 .bar:before{ content: "1"; width: 30px; height: 30px; line-height: 30px; color: #ffffff; font-weight: bold; font-size: 20px; font-family: "Courier New", Courier, monospace; text-align: center; border-radius: 60px; -moz-border-radius: 60px; -ms-border-radius: 60px; -o-border-radius: 60px; -webkit-border-radius: 60px; background: #dddddd; position: absolute; top: -15px; left: 46%;}
+.step2 .bar:before{ content: "2";}
+
+.step1.active .bar:before, .step2.active .bar:before{ content: "1"; width: 30px; height: 30px; line-height: 30px; color: #ffffff; font-weight: bold; font-size: 20px; font-family: "Courier New", Courier, monospace; text-align: center; border-radius: 60px; -moz-border-radius: 60px; -ms-border-radius: 60px; -o-border-radius: 60px; -webkit-border-radius: 60px; background: #df3832; position: absolute; top: -15px; left: 46%;}
+.step2.active .bar:before{ content: "2";}
+
+.step1.active p, .step2.active p{ color: #df3832;}
+
+/********** Sales Product Update *************/
+/* Trang Nap The Cao */
+.BoxCardCode{ border: 1px solid #D7D6E7; overflow: hidden; _width: 750px; background: #ffffff;}
+.BoxCardCode .TitleBox { overflow: hidden; _width: 100%;}
+.BoxCardCode .Contact { clear:both;}
+.DesCardCode{ text-align: left; margin:25px 15px 15px 15px; overflow:hidden;}
+.DesCardCode ul{ overflow: hidden;}
+.DesCardCode li{ overflow: hidden; float: left; margin-left: 30px; margin-bottom: 10px;}
+*+html .DesCardCode li:first-child,*+html .DesCardCode li:first-child + li{ height: 36px;}
+.DesCardCode li span{ color: #919191; padding-top: 3px; display: block;}
+.DesCardCode li.end p{ width: auto;}
+.DesCardCode label{ width: 80px; *width: 90px; display: block; float: left; margin-top: 12px;}
+.DesCardCode input{ width: 225px; *width: 201px; height: 28px;}
+.DesCardCode select{ display: block; float: left; width: 225px; *width: 205px; height: 28px; *height: 31px; line-height: 28px; padding: 3px;}
+.DesCardCode textarea{ width: 560px; *width: 546px; height: 100px;}
+.DesCardCode .Button{ overflow: hidden; margin-right: 50px; margin-top: 10px;}	
+.DesCardCodeR{ padding: 10px; text-align: left;}
+.DesCardCodeR h3 { font-size: 18px; font-weight: bold; color: #df3832;}
+.DesCardCodeR h4 {margin: 10px 0; padding-bottom: 20px;}
+.DesCardCodeR span{ font-size: 14px; font-weight: bold; color: #df3832; border: 1px dotted #df3832; padding: 3px 5px; }
+.DesCardCode p { float: left; width: 225px;}
+.actionButtonAcc{ background: #df3832; color: #ffffff; font-size: 13px; font-weight: normal; height: 30px; line-height: 30px; padding: 0 22px; display: inline-block; transition: all .1s linear 0s; -moz-transition: all .1s linear 0s;-webkit-transition: all .1s linear 0s;-o-transition: all .1s linear 0s; -ms-transition: all .1s linear 0s;}
+.actionButtonAcc:hover{ background: #cf352f;}
+.DesCardCode .Button a.bt_off { float: right;}
+.DesCardCode .Button a.actionButtonAcc{ float: right; margin-left: 20px;}
+.cardImg{ text-align: left; margin: 0 0 25px 30px;}
+/* Trang Bao cao dich vu */
+.serviceReport{ background: #ffffff; border: 1px solid #d7d6e7; overflow: hidden; text-align: left;}
+.serviceReport ul.pageNumber{ padding-bottom: 0;}
+.inside{ padding: 45px;}
+.serviceReport h3{ font-size: 16px; font-weight: normal;}
+.serviceReport h4{ font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; margin-top: 30px;}
+table.gridAcc{ border-collapse: collapse; border: 1px solid #d7d6e7; width: 100%;}
+table.gridAcc td{ border-left: 0; border-right: 0; padding: 7px 10px; border: 1px solid #d7d6e7;}
+table.gridAcc tr.title{ font-weight: bold; font-size: 13px; background: #f5f5f5;}
+table.gridAcc.result tr.title{ background: #ffffff;}
+table.gridAcc.result{ border: 0;}
+table.gridAcc.result td{ border-left: 0; border-right: 0; border-top: 0; text-align: left;}
+.boxSearchAcc{ background: #f5f5f5; border: 1px solid #d7d6e7; padding: 20px 0; overflow: hidden; margin-bottom: 10px;}
+.boxSearchAcc ul{}
+.boxSearchAcc li{ overflow: hidden; float: left; margin-left: 30px; margin-bottom: 10px; height: 33px\0/;}
+.boxSearchAcc label{ width: 125px; display: block; float: left; margin-top: 12px;}
+.boxSearchAcc input{ width: 135px; *width: 133px; height: 28px;}
+.boxSearchAcc select{ display: block; float: left; width: 160px; height: 28px; *height: 31px; line-height: 28px; padding: 3px;}
+.boxSearchAcc p { float: left; width:160px;}
+.boxSearchAcc li img{ position: relative; top: 4px; *top: 0;}
+.boxSearchAcc .actionButtonAcc{ float: right; margin-right: 30px; margin-top: 10px;}
+.serviceReport .tabS{ margin-top: 30px; border-bottom: 0;}
+.serviceReport .tabS a{ font-weight: bold;}
+.usedMoney{ font-size: 16px; text-align: right; margin-top: 20px;}
+/* Trang Tin nhan */
+.boxContentAcc{ background: #ffffff; border: 1px solid #d7d6e7; text-align: left;}
+.messageAcc{ text-align: left; padding: 45px;}
+.messageAcc ul{ overflow: hidden; background: #f4f4f4; border: 1px solid #d7d6e7; padding: 10px; display: inline-block; border-radius: 6px; -moz-border-radius: 6px;; -ms-border-radius: 6px; -o-border-radius: 6px; -webkit-border-radius: 6px; margin-bottom: 10px;}
+.messageAcc li{ float: left; color: #9f9f9f; font-size: 13px; font-weight: bold; margin-left: 30px;}
+.messageAcc li:first-child{ margin-left: 0;}
+.messageAcc li a{ color: #9f9f9f; text-decoration: underline;}
+.messageAcc li a:hover{ text-decoration: none;}
+.messageAcc input[type="checkbox"]{ float: left; margin-right: 5px;}
+.messageAcc table.gridAcc.result td{ padding: 10px 5px;}
+.messageAcc table.gridAcc.result a{ color: #000000; text-decoration: underline;}
+.messageAcc table.gridAcc.result a:hover{ text-decoration: none;}
+.messageAcc .note{ font-style: italic; font-size: 11px; margin-top: 15px;}
+/* Trang Them thanh vien */
+#BoxInfoAccount .input_text{ width: 400px; height: 28px;}
+#BoxInfoAccount .textarea_about{ width: 400px;}
+*+html #BoxInfoAccount input + .actionButtonAcc{ position: relative; top: -6px;}
+#BoxInfoAccount .actionButtonAcc{ height: 28px; line-height: 28px; *height: 30px; *line-height: 30px;}
+#BoxInfoAccount .actionButtonAcc + a{ background: #e4e4e4; color: #000000; border: 1px solid #dddddd; *height: 28px; *line-height: 28px;}
+#BoxInfoAccount .actionButtonAcc + a:hover{ background: #dbdbdb;}
+#BoxInfoAccount ul.tabS{ margin: 10px 0 20px 30px; width: 93%;}
+#BoxInfoAccount .searchInfo{ padding: 7px 0; border-top: 1px dashed #e4e4e4; border-bottom: 1px dashed #e4e4e4; margin: 10px 0;}
+#BoxInfoAccount .searchInfo b{ display: inline-block; width: 100px;}
+/* Upload hình trang tài khoản */
+.titleUpload{ background: #efefef; overflow: hidden; width: 522px; padding: 10px;}
+.titleUpload p{ color: #000; font-weight: bold; float: right; background: url(../images/cloud.png) no-repeat; padding-left: 35px; margin-top: 0; position: relative;}
+.titleUpload p input {display: block;width: 110px;height: 16px !important;opacity: 0;filter: alpha(opacity=0);overflow: hidden;position: absolute;top:0;left: 0;cursor: pointer; padding: 0;}
+.titleUpload p:hover span{ color: #df3832;}
+.titleUpload strong{ display: block; float: left;}

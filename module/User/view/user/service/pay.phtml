@@ -1,0 +1,115 @@
+<?php
+//Loại giao dịch
+$arrOptions = array(
+	array('id'=>'','name'=>'--Chọn--'),
+    array('id'=>'1','name'=>'Thanh toán qua Ngân lượng'),
+);
+$frmPayment         = $this->cmsSelect('payment','',$arrOptions,'no-level',array('class' =>'select'));
+
+//Id dịch vụ đang chọn
+$service_account_id = $this->item->id;
+$price              = $this->item->price;
+$totalPrice         = $price * 6;
+
+
+
+if(!empty($this->itemThoiHanSuDung)){
+    //Đối với trường hợp nâng cấp, hệ thống sẽ tính toán chi phí khách hàng phải trả thêm từ thời hạn còn lại của gọi dịch vụ hiện tại của khách hàng khi nâng cấp lên gói dịch vụ khách hàng chọn.
+    //Tức là đăng kí gian hàng cao cấp hơn, nếu chọn gian hàng thấp hơn thì không tính thêm chi phí
+    if($service_account_id != $this->itemThoiHanSuDung['service_account_id'] || $service_account_id > $this->itemThoiHanSuDung['service_account_id'])
+    {
+        if(!empty($this->itemThoiHanSuDung['date_end'])){
+            $hansudung_db = explode("-",$this->itemThoiHanSuDung['date_end']);
+            //tính số ngày còn lại sử dụng dịch vụ
+
+           
+            $month  = !empty($hansudung_db[1]) ? $hansudung_db[1] : '';
+            $day    = !empty($hansudung_db[0]) ? $hansudung_db[0] : '';
+            $year   = !empty($hansudung_db[2]) ? $hansudung_db[2] : '';
+            $remain = ceil((mktime(0,0,0,$month,$day,$year) - time()) / 86400);
+                    //Nếu còn hạn sử dụng dịch vụ mà đăng kí nâng cấp gian hàng , hệ thống sẽ tính toán chi phí khách hàng phải trả thêm từ thời hạn còn lại của gọi dịch vụ hiện tại của khách hàng
+                    //khi nâng cấp lên gói dịch vụ khách hàng chọn.
+            if($remain >0)
+            {
+                $sotien1ngay =  floor($price / 30); //Số tiền 1 ngày của gói gian hàng đó
+                $sotientrathem = $sotien1ngay * $remain;//Số tiền phải trả thêm
+                $totalPrice = $totalPrice + $sotientrathem;//Tổng tiền phải thanh toán = số tiền muốn đăng kí gói dịch vụ + số tiền phải trả thêm còn lại của dịch vụ trước
+            }
+        }
+    }
+}
+
+
+
+$myForm	= $this->myForm;
+$messagesErrors = $this->elementErrors(array(
+    'name'                 =>  $myForm->get('name'),
+    'email'                =>  $myForm->get('email'),
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+?>
+<?php echo $messagesErrors .$xhtmlError;?>
+<form name="appForm" method="post" action="">
+
+<div class="BoxCardCode">
+    <div class="TitleBox">
+        <h2>
+           <?php echo $this->title;?></h2>
+    </div>
+    <div class="DesCardCode">
+    	<div class="cardImg">
+    		Hãy chỉ thanh toán qua NgânLượng.vn vì quyền lợi của chính bạn! <br>
+			An toàn: NgânLượng bảo vệ nếu không nhận được hàng, hoặc nhận hàng không đúng mô tả. <br>
+    		Nhanh chóng: Dùng thẻ hoặc tài khoản của 30 ngân hàng nội địa & quốc tế để chuyển tiền thanh toán ngay tức thì. <br>
+			Thuận tiện: Bạn cũng có thể thanh toán bằng nhiều hình thức đơn giản & phổ biến khác... <br>
+			Thẻ cào điện thoại: Mobifone, Vinaphone, Viettel.<br>
+			Chuyển khoản ngân hàng: tại quầy giao dịch, máy ATM, Internet Banking.<br>
+			Nộp tiền mặt: tại văn phòng NgânLượng.vn, điểm giao dịch bưu điện, quầy giao dịch ngân hàng. <br>
+    	</div>
+    	<ul>
+        	<li>
+                <label>Dịch vụ *:</label>
+                <p><?php  echo $this->formText($myForm->get('name'));?></p>
+            </li>
+            <li>
+                <label>Thanh toán *:</label>
+                <p><?php echo $frmPayment;?></p>
+			</li>
+            <li>
+                <label>Họ tên *:</label>
+                <p> <?php  echo $this->formText($myForm->get('fullname'));?></p>
+            </li>
+            
+            <li>
+                <label>Email *:</label>
+                <p><?php  echo $this->formText($myForm->get('email'));?></p>
+            </li>
+             <li>
+                <label>Tổng tiền:</label>
+                <p style="color:red;font-weight:bold"><?php  echo $totalPrice;?></p>
+                <input type="hidden" name="total_price" value="<?php  echo $totalPrice;?>">
+            </li>
+             <li>
+                <label>Thời hạn:</label>
+                <p style="color:red;font-weight:bold">6 Tháng</p>
+                
+            </li>
+            <li class="end">
+                <label>Nội dung *:</label>
+                <p><?php  echo $this->formTextarea($myForm->get('note'));?></p>
+            </li>
+		</ul>
+        <div class="Button">    
+              
+
+                <a href="#" class="actionButtonAcc" onclick="OnSubmitForm('<?php echo $this->basePath('/user/service/pay/'.$this->arrParam['id']);?>')" id="MainContent_ctl00_btnDongY"><div id="btnLabel">Thanh toán</div></a>
+                
+        </div>
+    </div>
+    
+
+    
+</div>
+
+</form>

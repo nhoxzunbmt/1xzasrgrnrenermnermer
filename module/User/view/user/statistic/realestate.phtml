@@ -1,0 +1,134 @@
+<?php
+$ssFilter   = $this->arrParam['ssFilter'];
+//Tìm kiếm theo thành phố
+
+
+$frmCity    = $this->cmsSelect('city',$ssFilter['city'],$this->itemsCity,'no-level',array('class' =>'sltTinhThanh'));
+
+
+//Quận huyện
+$arrOptions = array(
+  array('id'=>'','name'=>'Quận/Huyện'),
+);
+$frmDistrict= $this->cmsSelect('district',$ssFilter['district'],$arrOptions,'no-level',array('class' =>'sltQuanHuyen'));
+
+$linkLoadDistrict       = $this->url(null,array('module'=>'user','controller'=>'statistic','action'=>'load-select-district'));
+
+$linkSearch = $this->basePath($this->currentController . '/filter/search/null/null/1');
+$frmSubmit  = $this->cmsInput('search','search','button',array('value'=>'Thống kê','class'=>'Bgbutton','onclick'=>'OnSubmitForm(\''.$linkSearch.'\')','style'=>'width:80px;height:30px;'));
+
+$linkClear  = $this->basePath($this->currentController . '/filter/search/null/null/0');
+$frmClear   = $this->cmsInput('clear','clear','button',array('value'=>'Bỏ lọc','class'=>'btn','onclick'=>'OnSubmitForm(\''.$linkClear.'\')','style'=>'width:50px;height:30px;'));
+
+?>
+
+<form name="appForm" method="post" action="">
+<div id="BoxStatisticRS">
+	<div class="TitleBox"><h2>Thống kê Bất Động Sản</h2>
+	</div>
+	<div class="DesStatisticRS">
+		<ul class="Formsearch">
+			<li>
+				<?php echo $frmCity;?>
+			</li><li>
+				<?php echo $frmDistrict;?>
+			</li><li>
+				<label>Từ ngày </label> <input type="text" style="height:22px;" name="date_start" placeholder="Từ ngày" readonly="readonly"  class="input_detafrom" id="UCFromDate" value="<?php echo $ssFilter['date_start'];?>">
+                <a href="javascript:void(0);" onclick="displayCalendar(window.document.getElementById('UCFromDate'),'dd/mm/yyyy',this, '0')">
+                    <img src="<?php echo TEMPLATE_URL;?>/user/images/b_date.gif" alt=""></a>
+			</li><li>
+				<label>Đến </label> <input type="text" readonly="readonly" name="date_end" style="height:22px;" placeholder="Đến ngày" class="input_detato" id="UCToDate" value="<?php echo $ssFilter['date_end'];?>">
+                <a href="javascript:void(0);" onclick="displayCalendar(window.document.getElementById('UCToDate'),'dd/mm/yyyy',this, '0')">
+                    <img src="<?php echo TEMPLATE_URL;?>/user/images/b_date.gif" alt=""></a> 
+            </li>       <li>
+				<div class="Bgbutton"><?php echo $frmSubmit;?></div>
+			</li>
+            <li>
+				<div class="Bgbutton"><?php echo $frmClear;?></div>
+				
+				
+			</li>
+		</ul>
+		 <div class="dataTables_wrapper"><!--load--></div>
+
+	<div style="left: 25%; top: 100px; width: 510px; position: fixed;display:none;" class="signInNewDialog pDialog" id="showViewBds">
+
+    <div id="viewBdsAjax">
+    </div>   
+	</div>
+		<?php
+		$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+		$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/statistic/realestate-ajax/page/".$page;
+
+		 $linkLoadViewBds        = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-view-bds'));
+
+		?>
+		<script type="text/javascript">
+
+		$(document).ready(function(){
+		    $(".loading").show();
+		    $.ajax({
+		        url     : '<?php echo $LinkPage;?>',
+		        type    : 'GET',
+		        data    : {page : <?php echo $page;?>},
+		        cache   : false,
+		        success : function(data,status){
+		            $("div.dataTables_wrapper").html(data);
+		            $(".loading").fadeOut(1000);
+		        }
+		    });
+
+		    //Load quận huyện
+            $("#city").change(function(){
+                var city = $("#city option:selected").val();
+                loadDistrict(city);
+            });
+		});
+
+		function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+
+        function showViewBds(id){
+
+            $("#showViewBds").removeAttr('style')
+                            .css({'left': '25%', 'top': '100px', 'width': '510px', 'position': 'fixed'});
+            $.ajax({
+                url     : '<?php echo $linkLoadViewBds;?>',
+                type    : 'GET',
+                data    : {id : id},
+                success: function(data){
+                    $("#viewBdsAjax").html(data);
+                },
+                complete: function(){
+
+                }
+            });                
+        }
+
+        function hideViewBds(){
+
+            $("#showViewBds").removeAttr('style')
+                            .css({'left': '25%', 'top': '100px', 'width': '510px', 'position': 'fixed', 'display':'none'});
+                   
+        }
+
+		</script>
+
+</form>		
+
+	
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/SearchAdsUsers.js?v=23072014.16"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/tooltip.js"></script>
+<link type="text/css" rel="stylesheet" href="<?php echo TEMPLATE_URL;?>/default/css/dhtmlgoodies_calendar.css?random=20051112" media="screen">
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/dhtmlgoodies_calendar.js?random=04102013"></script>

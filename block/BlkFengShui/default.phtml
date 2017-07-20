@@ -1,0 +1,33 @@
+<?php
+$xhtml      = '';
+$i          = 1;   
+$urlHelper  = $this->getView()->plugin('url');
+
+foreach ($this->_data as $item) {
+    $title          = $item['title'];
+    $urlDetail   = $urlHelper('DetailFengshuiRoute',array(
+                                                        'controller'        => 'fengshui',
+                                                        'action'            => 'detail',
+                                                        'namecategory'      => \ZendVN\Url\FriendlyLink::filter($item['name_category']),
+                                                        'title'             => \ZendVN\Url\FriendlyLink::filter($title),
+                                                        'cid'               => $item['cat_id'],
+                                                        'id'                => $item['id'],
+                                                        'extension'         => 'html',
+                                                        ));
+    
+    $xhtml   .= '<tr>
+					<td>
+						<table>
+							<tr>
+								<td>»</td>
+								<td>
+                                    <a title="'.$title.'" class="TieudiemFull" href="'.$urlDetail.'">'.$title.'</a>
+							    </td>
+							</tr>
+						</table>
+					</td>
+				</tr>';
+    $i++;
+    
+}
+echo $xhtml;

@@ -1,0 +1,15 @@
+<?php
+$class  = ($this->messages['status'] == 'error') ? 'alert alert-error' : 'alert alert-success';
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+
+<div class="pageWrap">	
+        <div class="leftMainContent popupPage">
+        	<div class="row">
+            	<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="<?php echo $class;?>"><?php echo $this->messages['message'];?>  
+            </div>
+            </div>
+        </div>
+</div>

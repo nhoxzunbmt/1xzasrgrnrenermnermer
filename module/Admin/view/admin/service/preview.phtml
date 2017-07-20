@@ -1,0 +1,27 @@
+<?php
+
+
+
+$name  		= $this->item->name;
+$normal  	= $this->item->normal;
+$vip  		= $this->item->vip;
+$hot  		= $this->item->hot;
+$free  		= $this->item->free;
+$chinhchu  	= $this->item->chinhchu;
+$price  	= $this->item->price;
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh </h5>
+
+<p class='detail-info even'><label>Tên dịch vụ:</label><span><?php echo $name ;?></span></p>
+<p class='detail-info even'><label>Số tin thường Kích hoạt:</label><span><?php echo $normal;?></span></p>
+<p class='detail-info even'><label>Số tin VIP Kích hoạt:</label><span><?php echo $vip;?></span></p>
+<p class='detail-info even'><label>Số tin HOT Kích hoạt:</label><span><?php echo $hot ;?></span></p>
+<p class='detail-info even'><label>Số tin Miễn phí Kích hoạt:</label><span><?php echo $free ;?></span></p>
+<p class='detail-info even'><label>Số tin Chính chủ Kích hoạt:</label><span><?php echo $chinhchu ;?></span></p>
+<p class='detail-info even'><label>Giá dịch vụ / tháng:</label><span><?php echo $price ;?></span></p>
+</div>

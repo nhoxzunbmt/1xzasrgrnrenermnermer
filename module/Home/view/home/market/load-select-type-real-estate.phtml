@@ -1,0 +1,11 @@
+<?php
+$isXmlHttpRequest 	= $this->isXmlHttpRequest;
+$data  				= $this->data;
+$xhtml 				= 'Access is denied!';
+if($isXmlHttpRequest == true){
+	foreach ($data as $key => $value) {
+		$xhtml .= sprintf('<option value="%s">%s</option>',$value['id'],$value['name']);
+	}
+	echo $xhtml;
+}
+?>

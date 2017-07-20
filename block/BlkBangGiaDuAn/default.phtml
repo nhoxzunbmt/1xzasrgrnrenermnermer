@@ -1,0 +1,60 @@
+<?php
+$xhtml                  = '';
+$i                      = 1;   
+$urlHelper              = $this->getView()->plugin('url');
+$menuMarket             = $urlHelper('ListMarketRoute',array('module'=>'home','controller'=>'market','action'=>'index'));
+
+$xhtml                  = '';
+foreach ($this->_data as $item) {
+        $id                = $item['id'];
+        $name           = $item['name'];
+        $name_category  = $item['name_category'];
+        $area           = $item['area'];
+        $cat_id         = $item['cat_id'];
+        $pricem2        = $item['price_m2'];
+        $address        = $item['name_city'];
+        $image          =  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        $i              = 1;
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/project/'.$image;
+                    break;
+                } 
+            }
+        }
+
+        
+
+        $linkDetail = $urlHelper('IntroProjectRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'project',
+            'action'        =>  'intro',
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($name),
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+
+       
+
+        $xhtml .= ' <tr><td><a href="'.$linkDetail.'" target="_blank">'.$name.'</a></td><td>'.$name_category.'</td><td class="ClrBorR"><span class="ColorPrice">'.$pricem2.'</span></td></tr>';
+    
+}
+?>
+
+
+<div class="priceTag" style="">
+    <h4 class="rightTitle">Bảng giá Dự Án  T.1/2015<a class="seeMore" target="_blank" href="<?php echo $menuMarket;?>" rel="nofollow">Xem thêm</a></h4>
+    
+    <div class="rightSmallContent"><div class="padded" style="padding: 15px 0px 15px 15px; ">
+        <table id="divGda_wdgMbnd_1"><tbody><tr><th width="50%">Tên dự án</th><th width="23%">Loại BĐS</th><th width="27%" class="ClrBorR">Giá<br>(triệu/m<sup>2</sup>)</th></tr>
+
+           <?php echo $xhtml;?>
+
+        </tbody></table>
+    </div></div>
+
+    <div id="wdgBangGiaFull" class="wdgBangGiaFull" style="display:none;"></div>
+</div>
+

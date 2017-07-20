@@ -1,0 +1,38 @@
+<div id="BoxInfoAccount">
+    
+    <div class="TitleBox">
+        <h2><span id="MainContent_ctl00_lblTieuDe"><?php echo $this->title;?></span></h2>
+    </div>
+
+     <div class="dataTables_wrapper"><!--load--></div>
+
+
+		<?php
+		$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+		$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/register-email/list/page/".$page;
+
+		?>
+		<script type="text/javascript">
+
+		$(document).ready(function(){
+		    $(".loading").show();
+		    $.ajax({
+		        url     : '<?php echo $LinkPage;?>',
+		        type    : 'GET',
+		        data    : {page : <?php echo $page;?>},
+		        cache   : false,
+		        success : function(data,status){
+		            $("div.dataTables_wrapper").html(data);
+		            $(".loading").fadeOut(1000);
+		        }
+		    });
+
+		  
+		});
+
+		
+
+		</script>
+
+
+</div>

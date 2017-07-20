@@ -1,0 +1,27 @@
+<?php
+$xhtml      = '';
+if(!empty($this->item)){
+    $arrImage = \Zend\Json\Json::decode($this->item->images);
+    if(!empty($arrImage)){
+        foreach($arrImage as $key=>$value){
+            $image      = UPLOAD_URL .'/real-estate/'.$value;
+            $checkbox   = $this->cmsInput('check[]','check','checkbox',array('value'=>$key));                                                         
+            $xhtml .= '  <div id="item">
+                            <div class="img"><a href="'.$image.'" rel="facybox"><img style="" src="'.$image.'" alt="Mặc định"  width="200px" height="200"></a>                  
+                            </div>
+                            <div class="price" style="margin-top:5px;">'.$checkbox.' Chọn ảnh</div>
+                            <div style="margin-top:5px;height:20px;position:relative;font-size:12px;text-align: center;">
+                            </div>                
+                        </div>';
+                    
+        }                   
+
+    }
+}        
+?>
+                
+<div id="files" style="height: 600px; width: 700px; overflow: auto;float:right;border-left:1px solid gray;">
+    <div id="list-gallary">
+        <?php echo $xhtml;?>        
+    </div>
+</div>   

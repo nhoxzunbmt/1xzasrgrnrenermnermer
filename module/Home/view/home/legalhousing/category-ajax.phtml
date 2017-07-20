@@ -1,0 +1,79 @@
+
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+$config = new \ZendVN\Config\Config();    
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+       
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $description    = '';   
+        $date_time      = $item['date_time'];
+        $image          = (!empty($item['images']))  ? UPLOAD_URL .'/legal-housing/'.$item['images'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        
+        $urlDetail   = $this->url('DetailLegalHousingRoute',array(
+            'controller'        => 'legalhousing',
+            'action'            => 'detail',
+            'namecategory'      => \ZendVN\Url\FriendlyLink::filter($item['name_category']),
+            'title'             => \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'               => $item['cat_id'],
+            'id'                => $item['id'],
+            'extension'         => 'html',
+        ));
+
+        if ($config->descriptionLegalhousing() == 1)  $description  = $item['description'];
+
+        $xhtml .= ' <li>
+                        <a href="'.$urlDetail.'" class="illustrationPic" title="'.$title.'"><img src="'.$image.'" width="150" height="112" alt="'.$title.'" title="'.$title.'"></a>
+                        <div class="text">
+                            <h3><a href="'.$urlDetail.'" title="'.$title.'">'.$title.'</a></h3>
+                            <h4><span>('.$date_time.')</span></h4>
+                            <p>'.$description.'</p>
+                                                    
+                        </div>
+                                                
+                    </li>';
+
+                    
+
+                             
+    }
+}
+
+
+
+?>
+   <ul class="leftListing1">
+        <?php echo $xhtml;?>
+
+    </ul>
+
+  
+ <?php
+    $paramsUrl  = array(
+       'module'=>'home',
+        'controller'  =>'legalhousing',
+        'action'      =>'category',
+        'name'        => $this->arrParam['name'],
+        'page'        => '1',
+        'id'          => $this->arrParam['cat_id'],
+        'extension'  => 'html',
+    );
+    echo $this->paginationControl($this->paginator , 'sliding' , 'home/business/paginator.phtml', array(
+        'router'    => 'CategoryLegalHousingRoute',
+        'arrParam'  =>$paramsUrl,
+    )); 
+ ?>
+
+
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

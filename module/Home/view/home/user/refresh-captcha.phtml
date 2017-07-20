@@ -1,0 +1,10 @@
+<?php
+$isXmlHttpRequest 	= $this->isXmlHttpRequest;
+$xhtml 				= 'Access is denied!';
+if($isXmlHttpRequest == true){
+	$xhtml = '<img width="200" height="50" alt="" src="'.$this->imageUrl.'" id="inputCaptcha-image"><input name="captcha[id]" class="form-control" id="inputCaptcha-hidden" type="hidden" value="'.$this->captchaID.'"><input name="captcha[input]" class="form-control" id="inputCaptcha" type="text">';
+	
+}
+
+echo $xhtml;
+?>

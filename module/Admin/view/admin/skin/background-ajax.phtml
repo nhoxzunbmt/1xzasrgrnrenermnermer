@@ -1,0 +1,226 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+$ssFilter               = $this->arrParam['ssFilter'];
+
+//Loại giao dịch
+$arrOptions = array(
+    array('id'=>'1','name'=>'Logo Text'),
+    array('id'=>'2','name'=>'Logo Images'),
+    array('id'=>'3','name'=>'Không hiển thị Logo'),
+);
+$frmType         = $this->cmsSelect('type','',$arrOptions,'no-level',array('style' =>'padding: 4px 8px; width:206px;'));
+
+
+$arrConfigBackground = \Zend\Json\Json::decode($this->item->config_background);
+
+$xhtml  = '';
+foreach ($arrConfigBackground->listBackground as $key => $item) {
+    $xhtml .= '<option value="'.UPLOAD_URL .'/skin/'.$item->name.'">'.$item->name.'</option>';
+}
+
+
+$curentBackground = UPLOAD_URL .'/skin/'.$arrConfigBackground->curentBackground->background;           
+          
+?>
+<style type="text/css">
+.bg_title{ width: 600px; padding: 5px; background-color: #F6F6F6; border-bottom: 1px solid #E9E9E9; border-right: 1px solid #E9E9E9; color: #666666; font-weight: bold; }
+.bg_combo{ width: 200px; }
+.bg_textbox{ border: solid 1px #C4C4C4; padding: 2px 4px; width: 55px; text-align: center; }
+.bg_color{ border: solid 1px #000; padding: 2px 4px; text-align: center; width: 100px; background: #FFF; }
+.bg_content{ vertical-align: top; }
+#colorContainer table tr { margin-bottom: 0; }
+.hidden{ display: none !important; }
+</style>
+
+<table class="admintable" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td class="key">
+            Đang sử dụng:
+        </td>
+        <td>
+            <div id="cph_Main_ctl00_ctl00_plCurrentUse" style="padding: 3px; line-height: 2.0;"><img src='<?php echo $curentBackground;?>' alt='' style='width: 50px; height: 50px; border: double 3px #C4C4C4;' /></div>
+        </td>
+    </tr>
+    <tr>
+        <td class="key">
+            Chọn nền:
+        </td>
+        <td>
+            <div class="bg_title">
+                <select name="ctl00$cph_Main$ctl00$ctl00$cbBackgroundType" id="cph_Main_ctl00_ctl00_cbBackgroundType" class="bg_combo">
+                    <option value="upload">Upload h&#236;nh nền</option>
+                    <option selected="selected"  value="system">H&#236;nh nền hệ thống</option>
+                   
+                </select>
+                <span style="font-weight: normal;">
+                    <img id="helpBackground" alt="" border="0" style="margin-top: 5px;" src="<?php echo TEMPLATE_URL;?>/admin/images/help.png"
+                        onmouseover="ShowHelp('helpBackground', 'Hình nên website', 'Mỗi một giao diện sẽ có 1 hình nền mặc định ngoài ra có thể lựa chọn theo màu nền, hình nền theo hệ thống, hình nền theo sự kiện nổi bật trong năm, hoặc có thể tự upload hình nền từ máy tính cá nhân.')"
+                        onmouseout="HideHelp('helpBackground');" /></span>
+                &nbsp;&nbsp; 
+                <span id="cph_Main_ctl00_ctl00_plImage_Option" style="font-weight: normal;">
+                    <span class="fixed_bg"><input id="cph_Main_ctl00_ctl00_chkBgOption" type="checkbox" name="fixed_bg" checked="checked" /><label for="cph_Main_ctl00_ctl00_chkBgOption">Hình nền cố định (không thay đổi khi kéo trang xuống dưới)</label></span>
+                </span>
+            </div>
+        </td>
+    </tr>
+    <tr id="plColor" class="item hidden">
+        <td class="key">
+        </td>
+        <td class="bg_content">
+            
+            
+        </td>
+    </tr>
+    <tr id="plUpload" class="item hidden">
+        <td class="key">
+        </td>
+        <td class="bg_content">
+            
+<table id="tblUpload" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+        <td>
+            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="load-avatar">
+                                
+                                </div><br>
+                                
+                                <input name="image" type="file" />
+                                <button class="Button btn btn-small">Tải lên</button>
+        </td>
+    </tr>
+</table>
+<input type="hidden" name="ctl00$cph_Main$ctl00$ctl00$usBackground$hdImageUpload" id="cph_Main_ctl00_ctl00_usBackground_hdImageUpload" />
+
+        </td>
+    </tr>
+    <tr id="plImage" class="item hidden">
+        <td class="key">
+
+        </td>
+        <td class="bg_content">
+            <div style="float: left; width: 200px; margin-right: 10px;">
+                <select size="4" name="background" id="cph_Main_ctl00_ctl00_lbImages" style="height:256px;width:100%;">
+                    <?php echo $xhtml;?>
+
+                </select>
+                <input type="hidden" name="ctl00$cph_Main$ctl00$ctl00$hfImage" id="cph_Main_ctl00_ctl00_hfImage" />
+            </div>
+            <div style="float: left; width: 429px; height: 286px; overflow: hidden;">
+                <img id="cph_Main_ctl00_ctl00_imgImage" src="<?php echo $curentBackground;?>" style="height:286px;width:429px;" />
+            </div>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    $j(function () {
+        // Initialize
+        document.cookie = "Background=#FFFFFF";
+        switch ($j("[id$='cbBackgroundType']").val()) {
+            case "default": break;
+            case "color": $j('#plColor').removeClass('hidden'); break;
+            case "upload": $j('#plUpload').removeClass('hidden'); break;
+            default: $j('#plImage').removeClass('hidden'); break;
+        }
+
+        // Events
+        $j("[id$='cbBackgroundType']").change(function () {
+            var cbItem = $j(this).find("option:selected");
+            if (cbItem != null)
+            {
+                $j('.item').addClass('hidden');
+                switch ($j(cbItem).val())
+                {
+                    case "default": break;
+                    case "color":
+                        $j('#plColor').removeClass('hidden');
+                        break;
+                    case "upload":
+                        $j('#plUpload').removeClass('hidden');
+                        break;
+                    default:
+                        $j('#plImage').removeClass('hidden');
+                        var folderName = $j(cbItem).val();
+                        if (folderName == 'system') folderName = '';
+                        $j.ajax({
+                            type: "GET",
+                            dataType: "text",
+                            url: '/Admin/Services/GetBackgroundImages.ashx',
+                            data: "folderName=" + folderName + "&siteId=100560",
+                            success: function (text) {
+                                var jsonList = JSON.parse(text);
+                                $j("[id$='lbImages']").empty();
+                                $j(jsonList).each(function (i, jsonItem) {
+                                    $j("<option />", { val: jsonItem.Value, text: jsonItem.Name }).appendTo($j("[id$='lbImages']"));
+                                });
+                            },
+                            error: function (e) { console.log(e.message); }
+                        });
+                        break;
+                }
+            }
+        });
+        $j("[id$='lbImages']").change(function () {
+            $j("[id$='hfImage']").val($j(this).val());
+            $j("[id$='imgImage']").attr('src', $j(this).val());
+        });
+        $j("[id$='lbImages']").click(function () {
+            $j("[id$='hfImage']").val($j(this).val());
+            $j("[id$='imgImage']").attr('src', $j(this).val());
+        });
+    });
+</script>
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $j(document).ready(function(){
+      
+           
+
+             //upload avatar
+            $("#appForm").submit(function(){
+                var formData = new FormData($(this)[0]);
+                
+                $.ajax({
+                    url: "<?php echo $this->url(null,array('module'=>'admin','controller'=>'skin','action'=>'upload-background'));?>",
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        $j("#load-avatar").html(data);
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+
+                return false;
+            });
+
+        })
+
+       
+        
+    </script>
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

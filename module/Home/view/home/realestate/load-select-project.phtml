@@ -1,0 +1,20 @@
+<?php
+$isXmlHttpRequest 	= $this->isXmlHttpRequest;
+$data  				= $this->data;
+$xhtml 				= 'Access is denied!';
+
+if($isXmlHttpRequest == true){
+	foreach ($data as $key => $value) {
+		$strSelect 			= '';
+		if($this->currentProject != null){
+			if($value['id'] == $this->currentProject){
+				$strSelect = 'selected="selected"';
+			}
+		}
+		$xhtml .= sprintf('<option value="%s" %s>%s</option>',$value['id'],$strSelect,$value['name']);
+	}
+	
+}
+echo $xhtml;
+
+?>

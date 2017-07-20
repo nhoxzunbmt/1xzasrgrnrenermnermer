@@ -1,0 +1,193 @@
+<?php
+//dự án nổi bật
+$listItemHighlight = '';
+if(!empty($this->listItemHighlight)){
+    foreach($this->listItemHighlight as $item){
+        $linkIntro = $this->url('IntroProjectRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'project',
+            'action'        =>  'intro',
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($item['name']),
+            'id'            =>  $item['id'],
+            'extension'     =>  'html',
+        ));
+        $image          =  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        $i = 1;
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/project/'.$image;
+                    break;
+                } 
+            }
+        }
+        
+        $listItemHighlight      .= '<li><a href="'.$linkIntro.'" title="'.$item['name'].'"><img src="'.$image.'" width="113" alt="'.$item['name'].'" title="'.$item['name'].'"></a><h3><a href="'.$linkIntro.'" title="'.$item['name'].'">'.\ZendVN\Filter\ReadMore::create($item['name'],0,30).'</a></h3></li>';
+    }  
+}
+
+//Danh mục
+$xhtmlCategory = '';
+if(!empty($this->listItemCategory)){
+  foreach($this->listItemCategory as $item){
+     $urlCategory = $this->url('CategoryProjectRoute',array(
+      'module'=>'home',
+      'controller'  =>'project',
+      'action'      =>'category',
+      'name'        => \ZendVN\Url\FriendlyLink::filter($item['name']),
+      'page'        => '1',
+      'id'          => $item['id'],
+       'extension'  => 'html',
+    )); 
+    $xhtmlCategory .= '<li><a href="'.$urlCategory.'" title="'.$item['name'].'">'.$item['name'].'</a></li>';
+  }
+}
+
+//Dự án thành phố
+$xhtmlCity = '';
+if(!empty($this->listCity)){
+    foreach($this->listCity as $item){
+        $urlCity   = $this->url(
+            'CityProjectRoute',
+            array('controller'=>'project','action'=>'city','cityname'=>\ZendVN\Url\FriendlyLink::filter($item['name']),'page'=>1,'cityid'=>$item['id']
+        ));
+        $xhtmlCity      .= '<li>  <a href="'.$urlCity.'" title="'.$item['name'].'">'.$item['name'].' <span></span>  </a></li>';
+    }  
+}
+
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+    <div class="leftMainContent">
+      
+    <div class="vipObject company">
+            <h2 class="leftTitle"><b>Dự án nổi bật</b></h2>
+            <div class="leftSmallContent">
+                <div id="nodegalleryDa" style="left:0;"><ul style="width: 1197px; position: relative; left: -283.0664157292731px;">
+                    <?php echo $listItemHighlight;?>
+
+                </ul><a onclick="SlideCaroulse(&quot;l&quot;);" href="javascript:" class="previousButton grey" title="Previous"></a><a onclick="SlideCaroulse(&quot;r&quot;);" href="javascript:" class="nextButton grey" title="Next"></a></div>
+                
+            </div>
+        </div>
+         <script type="text/javascript">
+             self.setInterval("SlideCaroulse('l')", 3000);
+             var previousB = 5;
+             var noOfSlide = 5;
+             var selectedUl = 'div#nodegalleryDa ul';
+             var ulWidth = $(selectedUl).width();
+             var liWidth = 133;
+             
+             
+        </script>
+<script type="text/javascript">
+    $("#ulDaVipMainMnu img").error(function (event) {
+        $(this).attr("src", "http://muabannhadat.com.vn/images/du-an-noi-bat.jpg");
+    })
+</script> 
+<script type="text/javascript">
+    //    $(function () {
+    //        LoadNextTopEstate();
+    //    });
+    var esi = 4;
+    function LoadNextTopEstate() {
+
+        $("#ulDaVipMainMnu").html("");
+
+        var countes = 1;
+        while (esi < listtopestate.length) {
+            if (countes > 4)
+                break;
+            var htmlinner = listtopestate[esi].es;
+            esi++;
+            $("#ulDaVipMainMnu").append(htmlinner);
+            countes++;
+            if (esi > listtopestate.length - 1)
+                esi = 0;
+        }
+
+        setTimeout("LoadNextTopEstate()", 10000);
+        $("#ulDaVipMainMnu img").error(function(event) {
+            $(this).attr("src", "http://muabannhadat.com.vn/images/du-an-noi-bat.jpg");
+        });
+    }    
+    if(listtopestate.length>4)
+        setTimeout("LoadNextTopEstate()", 10000);
+</script>
+            
+
+
+      <div id="MainContent_ListItems1_divNoData" class="projectList" style="display: none">
+</div>
+<div id="MainContent_ListItems1_divBoxContent" class="projectList">
+    <h2 class="leftTitle"><b>Danh sách dự án </b></h2>
+    <div class="leftSmallContent" id="divEstateList">
+        
+      
+
+      <div class="dataTables_wrapper"><!--load--></div>
+        <?php
+        $page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+        $LinkPage   = $this->basePath()."/".$this->arrParam['module']."/project/list/page/".$page;
+        $catid = (!empty($this->arrParam["id"])) ? $this->arrParam["id"] : "" ;
+        ?>
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+            $(".loading").show();
+            var page        = '<?php echo $page;?>';
+            var catid       = '<?php echo $catid ?>';
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {page: page, catid: catid},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    $(".loading").fadeOut(1000);
+                }
+            });
+        });
+
+        </script>
+<script type="text/javascript">
+  _ITEMS_PAGES=$("#idItemPage").val();
+  var tps = (parseInt($("#hTotalRows").val())%_ITEMS_PAGES)!=0?(parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES))+1):parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES));
+  nvgPaging.mjDrawLbPageListingPiNoAjaxLi(tps, $("#hCurrentPage").val(), "dvPagingDefault",$("#idPage").val(),$("#idQs").val(),$('#pPath').val());
+  nvgPaging.loadMiddleListBanner("divMiddleListBanner","middlelistbanner");
+</script>
+
+    </div>
+</div>
+
+      
+<div class="projectKind">
+    <h2 class="leftTitle"><b>Dự án theo từng loại</b></h2>
+    <div class="leftSmallContent">
+        <ul class="leftLine">
+            <?php echo $xhtmlCategory;?>
+        </ul>
+    </div>
+</div>
+
+      <div class="projectProvince">
+  <h2 class="leftTitle"><b>Dự án ở các Tỉnh/Thành</b></h2>
+  <div class="leftSmallContent">
+    <ul class="leftLine">
+      <?php echo $xhtmlCity ;?>
+  
+    </ul>
+  </div>
+</div>
+
+
+    </div>
+    <div class="rightMainContent">
+        
+
+      <?php echo $this->contentRightColumn;?>
+    </div>
+  </div>

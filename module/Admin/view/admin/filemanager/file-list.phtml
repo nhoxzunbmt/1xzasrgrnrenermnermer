@@ -1,0 +1,297 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/list/page/".$page;
+
+
+
+$ssFilter               = $this->arrParam['ssFilter'];
+$action_link            = $this->basePath($this->currentController . '/filter/order');
+$lblID                  = $this->cmsLinkSort('ID','id',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+                                        
+$lblName                = $this->cmsLinkSort('Thư mục','name',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+    
+$lblDateRegister        = $this->cmsLinkSort('Ngày tạo','date_time',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+                                        
+$lblStatus              = $this->cmsLinkSort('Public','status',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+                                                    
+$lblOrder               = $this->cmsLinkSort('Order','order',$ssFilter,
+                                        TEMPLATE_URL . '/admin/images/',$action_link);
+
+$lblCheckAll            = $this->cmsInput('checkbox','checkbox','checkbox',array('onclick'=>'checkedAll()'));           
+  
+?>
+
+<div class="row-fluid">
+    <div class="span3">
+      
+    </div>
+    
+<?php
+    $currentUrl =  $this->currentController.'/index/page/';
+    echo $this->paginationControl($this->paginator , 'sliding' , 'paginator.phtml', array('currentUrl'=>$currentUrl)); 
+ ?>
+
+
+
+
+<?php
+
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+        $id         =   $item['id'];
+        $name       =   $item['name'];
+        $file_name  =   $item['filename'];
+        preg_match("/\.([^\.]+)$/", $file_name, $matches);
+        
+        switch($matches[1]){
+            case 'zip':
+                $img = TEMPLATE_URL.'/admin/images/zip_file.png';
+                break;
+            case 'rar':
+                $img = TEMPLATE_URL.'/admin/images/rar-file.png';
+                break;
+            case 'exe':
+                $img = TEMPLATE_URL.'/admin/images/file_exe.png';
+                break;
+            case 'txt':
+                $img = TEMPLATE_URL.'/admin/images/file_txt.jpg';
+                break;
+            case 'doc':
+                $img = TEMPLATE_URL.'/admin/images/doc_256.png';
+                break;
+            case 'docx':
+                $img = TEMPLATE_URL.'/admin/images/file_docx.jpg';
+                break;
+            case  'xls':
+                $img = TEMPLATE_URL.'/admin/images/file_xls.png';
+                break;
+            case 'pdf':
+                $img = TEMPLATE_URL.'/admin/images/file_pdf.jpg';
+                break;
+            case ($matches[1] == 'jpg' || $matches[1] == 'png' || $matches[1] == 'gif'):
+                $img = FILE_MANAGER_URL.'/'.$item['name_folder'].'/'.$file_name;
+                break;                         
+        }
+        
+
+        $folder = FILE_MANAGER_URL_CODINH .'/'.$item['name_folder'];
+        
+        $fileSize =  @filesize($folder.'/'.$item['filename']);
+        $fileSize = \ZendVN\File\ConvertSize::convert($fileSize,2,' ');
+        
+
+        //--------Lấy thông tin domain------------
+        $Url = \ZendVN\Url\CurrentUrl::get();
+        $infoUrl    = parse_url($Url);
+        $domain = $infoUrl['scheme'] .'://'.$infoUrl['host'];
+        //--------Lấy thông tin domain------------
+        
+       
+         //Icon Coppy
+        $linkDownload   = $this->basePath($this->currentController . '/download/' . $id);
+        
+
+
+        $urlFile = $domain.'/'.$folder .'/'.$item['filename'];
+        //$frmUrl = $this->formText('url',$urlFile,array('style'=>'width:150px'));
+
+        $cid                = $this->cmsInput('cid[]','cid','checkbox',array('value'=>$id));
+
+       
+
+        $xhtml .= '<div id="item">
+                    <div class="img"><a href="#" rel="facybox"><img style="border-radius:7px;-moz-border-radius:7px;-webkit-border-radius:7px;box-shadow:0 0 5px black;-webkit-box-shadow:0 0 5px black;" src="'.$img.'" alt="Mặc định" title="'.$name .'" width="160px" height="160"></a>
+                                    
+                </div>
+                <div style="height:20px;position:relative;font-size:12px;text-align: center;margin-bottom:8px;">
+                <input type="text" name="url" id="url" value="'.$urlFile.'" style="width:150px"></div>
+
+                <div style="height:20px;position:relative;font-size:12px;text-align: center;">
+                <a href="'.$linkDownload.'"><img src="'.TEMPLATE_URL.'/admin/images/download_1.png"></a>
+                </div>
+                <div style="height:20px;position:relative;font-size:12px;text-align: center;"> '.$fileSize.'</div>
+
+                <div style="height:20px;position:relative;font-size:12px;text-align: center;"> <span>'.$name.'</span></div>                
+                <div class="price">'.$cid.' Chọn File</div>
+                </div>';                    
+
+                             
+    }
+}
+
+?>
+
+<style>
+#list-gallary{}
+#list-gallary #item{width:170px;float:left;margin-bottom:10px;margin-left:7px;margin-right:5px;background:#FFFFFF;}
+#list-gallary #item .img{height:170px;position:relative;text-align:center;margin-top:5px;}
+#list-gallary #item .title-p{height:20px;position:relative;text-align:center;font-size:12px;font-weight:bold;}
+#list-gallary #item .price{text-align:center;height:20px;position:relative;font-size:12px;font-weight:bold;color:red;}
+</style>
+
+    <div id="dialog-confirm" title="Thông báo!'" style="display: none;">
+        <p>Bạn có chắc muốn xóa phần tử này hay không?</p>
+    </div> 
+     <div id="dialog-confirm-all" title="Thông báo!'" style="display: none;">
+        <p>Bạn có chắc muốn những phần tử được chọn này hay không?</p>
+    </div> 
+    
+    <div id="list-gallary" style="clear:both;float:left;">
+        <?php echo $xhtml;?>         
+
+    </div>
+
+<?php
+    $currentUrl =  $this->currentController.'/index/page/';
+    echo $this->paginationControl($this->paginator , 'sliding' , 'paginator.phtml', array('currentUrl'=>$currentUrl)); 
+
+ ?>
+</div>
+
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui-1.10.3.custom.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_URL;?>/admin/css/jquery-ui-1.10.3.custom.min.css">
+
+<script type="text/javascript">
+function checkAdmin(id){
+    alert("Tài khoản admin không thể xóa");
+}
+//Xóa dữ liệu
+function deleteItem(id) {
+    $j("#dialog-confirm").dialog({
+        resizable : false,
+        height : 200,
+        modal : true,
+        buttons : {
+            "Yes" : function() {
+             
+                $j(this).dialog("close");
+                <?php $urlDelete = $this->currentController.'/delete/';?>
+                window.location.href ='<?php echo $urlDelete;?>' + id;
+                
+            },
+            Cancel : function() {
+                $j(this).dialog("close");
+            }
+        }
+    });
+    
+}
+//Xóa những item đã chọn
+function deleteItemChanged(){
+    $j("#dialog-confirm-all").dialog({
+        resizable : false,
+        height : 200,
+        modal : true,
+        buttons : {
+            "Yes" : function() {
+                var strId = '';
+                $j('input[id=cid]:checked').each( function(index,element) {
+                   
+                    if(index == 0){
+                        strId += $j(this).val();
+                    }else{
+                        strId += ',' + $j(this).val();
+                    }
+                    
+                   
+                });
+                $j(this).dialog("close");
+                <?php $urlMutiDelete = $this->currentController.'/multi-delete/';?>
+                window.location.href ='<?php echo $urlMutiDelete;?>' + strId;
+                
+            },
+            Cancel : function() {
+                $j(this).dialog("close");
+            }
+        }
+    });
+}
+function statusItemChanged(option){
+    var strId = '';
+    $j('input[id=cid]:checked').each( function(index,element) {
+        if(index == 0){
+            strId += $j(this).val();
+        }else{
+            strId += ',' + $j(this).val();
+        }     
+    });
+    <?php $urlMutiStatus = $this->currentController.'/multi-status/';?>
+    window.location.href ='<?php echo $urlMutiStatus;?>' + strId + '/' + option;
+}
+//Chọn xóa
+function Confirm(option) {
+    var strId = '';
+    $j('input[type=checkbox]:checked').each( function(index,element) {
+        if($j(this).val() != 'on'){
+            if(index == 1){
+                strId += $j(this).val();
+            }else{
+                strId += ',' + $j(this).val();
+            }
+        }
+       
+    });
+    if(strId == ''){
+        alert('Hãy chọn ít nhất 1 Item để thao tác');
+    }else{
+        if(option == 'multi-delete'){
+            deleteItemChanged();
+        }if(option == 'multi-active'){
+            statusItemChanged('multi-active');
+        }if(option == 'multi-in-active'){
+            statusItemChanged('multi-in-active');
+        }
+    }
+    return false;
+}
+
+
+
+$j(document).ready(function(){
+
+    /*Thay đổi thứ tự*/
+    $j(".change-order").change(function(){
+        var link    = $j(this).attr("rel");
+        var idItem  = $j(this).attr('title');
+        var val     = $j(this).val();
+        var pattern = /[0-9]+$/;
+        if(!pattern.test(val)){
+            alert('Vui lòng nhập số');
+        }else{
+            $j.ajax({
+            url     : '<?php echo $LinkPage;?>',
+            type    : 'GET',
+            data    : {id : idItem,  value : val, option : 'order'},
+            cache   : false,
+            success : function(data,status){
+                $j("div.dataTables_wrapper").html(data);
+            }
+        });
+        }
+    });
+
+        
+    
+});   
+</script>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

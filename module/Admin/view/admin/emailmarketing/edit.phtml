@@ -1,0 +1,140 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('name');
+$elementFile		= $myForm->get('file');
+$elementContent		= $myForm->get('content');
+$elementEmail		= $myForm->get('email');
+
+$file 				= (!empty($this->item->file)) ? $this->item->file : 'Updating...';
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tiêu đề chiến dịch email',
+		'tooltipmessage'	=>	'Tiêu đề chiến dịch email',
+	),
+	
+	array(
+		'label'				=>	$this->formLabel($elementEmail),
+		'input'				=>	$this->formElement($elementEmail) .'<br><font color="red">Lưu ý: Mỗi email các nhau bởi dấu phẩy (,). Và mỗi lần chỉ được nhập tối đa 3 email. Các email không được trùng nhau.</font>',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Gửi đến - địa chỉ email',
+		'tooltipmessage'	=>	'Gửi đến - địa chỉ email',
+	),
+	
+	array(
+		'label'				=>	$this->formLabel($elementFile),
+		'input'				=>	'<div id="load-avatar">'.$file.'
+								<input name="image_hidden" type="hidden" value="'.$this->item->file.'"/>
+								</div><br>
+								
+								<input name="file" type="file" />
+								<button class="Button btn btn-small">Tải lên</button><br><font color="red">Lưu ý: Chỉ được đính kèm file định dạng jpg, png, gif, doc, docx và không quá 500KB.</font>
+								',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Tập tin biểu mẫu hợp đồng',
+		'tooltipmessage'	=>	'Tập tin biểu mẫu hợp đồng',
+	),
+	
+
+	array(
+		'label'				=>	$this->formLabel($elementContent),
+		'input'				=>	$this->formElement($elementContent),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Nội dung',
+		'tooltipmessage'	=>	'Nội dung',
+	),
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'name'					=>	$elementName,
+	'email'					=>	$elementEmail,
+	'content'				=>	$elementContent,
+	
+));
+
+
+
+?>
+
+
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+	    			echo $this->formElement($elementId);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+		$(function() {
+			
+
+		    //upload avatar
+			$j("#appForm").submit(function(){
+			    var formData = new FormData($(this)[0]);
+			    
+			    $j.ajax({
+			        url: "<?php echo $this->url(null,array('module'=>'admin','controller'=>'emailmarketing','action'=>'upload'));?>",
+			        type: 'POST',
+			        data: formData,
+			        async: false,
+			        success: function (data) {
+			        	$j("#load-avatar").html(data);
+			        },
+			        cache: false,
+			        contentType: false,
+			        processData: false
+			    });
+
+			    return false;
+			});
+
+
+		});
+
+	  </script>   	
+
+	 <script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+	<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+	<script>
+			var content = CKEDITOR.replace( 'content', {
+				customConfig	: 'config-05.js',
+				
+			});
+			CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+		
+
+	</script>
+  	      	 	

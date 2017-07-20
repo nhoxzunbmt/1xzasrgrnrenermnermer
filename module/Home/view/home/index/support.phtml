@@ -1,0 +1,100 @@
+<?php
+  
+$myForm = $this->myForm;
+echo $this->form()->openTag($this->myForm);
+$messagesErrors = $this->elementErrors(array(
+    'contact-me-fullname'     =>  $myForm->get('contact-me-fullname'),
+    'contact-me-email'        =>  $myForm->get('contact-me-email'),
+    'contact-me-phone'        =>  $myForm->get('contact-me-phone'),
+    'contact-me-content'      =>  $myForm->get('contact-me-content'),
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+
+//==========Messages=========================//
+$messages   = $this->flashMessenger()
+                    ->setMessageOpenFormat('<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="alert alert-success">')
+                    ->setMessageSeparatorString('')
+                    ->setMessageCloseString('</div>')
+                    ->render('success',array('success message'));
+
+
+$arrConfig  = \Zend\Json\Json::decode($this->item->company);
+
+
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+  <div class="leftMainContent">
+        
+ 
+<div class="support">
+    <h2 class="leftTitle">
+        <b>Trợ giúp</b></h2>
+    <div class="leftSmallContent">
+        
+        <h3>
+            Trụ sở chính</h3>
+        <ul>
+            <li>Tên công ty: <?php echo $arrConfig->name;?></li>
+            <li>Địa chỉ: <?php echo $arrConfig->address;?></li>
+            <li>Điện thoại: <?php echo $arrConfig->phone;?></li>
+            <li>Fax: <?php echo $arrConfig->fax;?></li>
+            <li>Email: <?php echo $arrConfig->email;?></li>
+            <li>Website: <?php echo $arrConfig->website;?></li>
+        </ul>
+       
+        <h3>
+            Góp ý</h3>
+      
+      
+          <?php echo $messages ;?>  
+      
+       <?php echo $messagesErrors .$xhtmlError;?>
+           <div class="formSendEmail">
+                <div id="contact-me-success" style="display: none;"><b>&nbsp;</b>
+                        <span><div id="contact-me-message-success"></div></span>
+                </div>
+
+                <div class="selectedValues marB15">
+                    
+                    <?php echo  $this->formText($myForm->get('contact-me-fullname'));?>                    <span class="btDropdown del" title="Xóa" onclick="$('#contact_me_txtName').val('');"></span>
+                    
+                </div>
+                <div class="selectedValues marL15 marB15">
+                    
+                    <?php echo  $this->formText($myForm->get('contact-me-phone'));?>                    <span class="btDropdown del" title="Xóa" onclick="$('#contact_me_txtName').val('');"></span>
+                    
+                </div>
+                
+               <div class="selectedValues marL15 marB15">
+                    <?php echo  $this->formText($myForm->get('contact-me-email'));?>                   <span class="btDropdown del" title="Xóa" onclick="$('#contact_me_txtEmail').val('');"></span>
+                    
+                </div>
+
+                <?php echo  $this->formTextarea($myForm->get('contact-me-content'));?>  
+                               
+              <div id="btSendMail">
+                                                        <?php  echo $this->formSubmit($myForm->get('contact-me-submit'));?>              </div>
+            </div>    
+   
+
+    </div>
+</div>
+
+  
+  
+
+
+  </div>
+  <div class="rightMainContent">
+  
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+</div>
+

@@ -1,0 +1,145 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementTitle 		= $myForm->get('title');
+$elementContent		= $myForm->get('content');
+$elementNumber		= $myForm->get('number');
+$elementPlaceissued		= $myForm->get('placeissued');
+$elementDateissued		= $myForm->get('dateissued');
+$elementEffectivedate		= $myForm->get('effectivedate');
+$elementExpirydate		= $myForm->get('expirydate');
+$elementEffect		= $myForm->get('effect');
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementTitle),
+		'input'				=>	$this->formElement($elementTitle),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tiêu đề',
+		'tooltipmessage'	=>	'Nhập Tiêu đề',
+	),
+	
+	array(
+		'label'				=>	'Danh mục',
+		'input'				=>	$this->cmsSelect('cat_id','',$this->itemsCategoryNews,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn Danh mục',
+		'tooltipmessage'	=>	'Chọn Danh mục',
+	),
+	
+	array(
+		'label'				=>	$this->formLabel($elementNumber),
+		'input'				=>	$this->formElement($elementNumber),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Số hiệu',
+		'tooltipmessage'	=>	'Nhập vào Số hiệu',
+	),
+
+	array(
+		'label'				=>	$this->formLabel($elementPlaceissued),
+		'input'				=>	$this->formElement($elementPlaceissued),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Nơi ban hành',
+		'tooltipmessage'	=>	'Nhập vào Nơi ban hành',
+	),
+
+	array(
+		'label'				=>	$this->formLabel($elementDateissued),
+		'input'				=>	$this->formElement($elementDateissued),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Ngày ban hành',
+		'tooltipmessage'	=>	'Nhập vào Ngày ban hành',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementEffectivedate),
+		'input'				=>	$this->formElement($elementEffectivedate),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Ngày hiệu lực',
+		'tooltipmessage'	=>	'Nhập vào Ngày hiệu lực',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementExpirydate),
+		'input'				=>	$this->formElement($elementExpirydate),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Ngày hết hạn hiệu lực',
+		'tooltipmessage'	=>	'Nhập vào Ngày hết hạn hiệu lực',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementEffect),
+		'input'				=>	$this->formElement($elementEffect),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Hiệu lực',
+		'tooltipmessage'	=>	'Nhập vào Hiệu lực',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementContent),
+		'input'				=>	$this->formElement($elementContent),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Nội dung',
+		'tooltipmessage'	=>	'Nội dung',
+	),
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'title'					=>	$elementTitle,
+	'content'				=>	$elementContent,
+	
+));
+
+
+
+ 
+       
+
+
+?>
+
+
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var content = CKEDITOR.replace( 'content', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+	
+
+	</script>  	
+   	      	 	

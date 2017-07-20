@@ -1,0 +1,86 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementUsername 	= $myForm->get('username');
+$elementIp 			= $myForm->get('register_ip');
+$elementNguyenNhan 	= $myForm->get('nguyennhan');
+$elements = array(
+	
+	array(
+		'label'				=>	$this->formLabel($elementUsername),
+		'input'				=>	$this->formElement($elementUsername),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Cấm thành viên',
+		'tooltipmessage'	=>	'Cấm thành viên',
+	),
+
+	array(
+		'label'				=>	$this->formLabel($elementIp),
+		'input'				=>	$this->formElement($elementIp),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Cấm thành địa chỉ IP',
+		'tooltipmessage'	=>	'Cấm thành địa chỉ IP',
+	),
+
+	array(
+		'label'				=>	$this->formLabel($elementNguyenNhan),
+		'input'				=>	$this->formElement($elementNguyenNhan),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Cấm thành địa chỉ IP',
+		'tooltipmessage'	=>	'Cấm thành địa chỉ IP',
+	),
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'username'				=>	$elementUsername,
+));
+
+
+
+
+
+?>
+
+
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var introduced = CKEDITOR.replace( 'introduced', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( introduced, 'plugins/ckfinder/' );
+
+	
+
+	</script>

@@ -1,0 +1,160 @@
+<?php
+$page                = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage            = $this->basePath()."/".$this->arrParam['module']."/agency/list/page/".$page;
+$linkLoadDistrict    = $this->url('MVC_HomeRouter/action',array(
+    'module'=>'home',
+    'controller'=>'agency',
+    'action'=>'load-select-district'
+));
+
+//Môi giới nổi bật
+$itemAgencyHighlight = '';
+
+if(!empty($this->items)){
+        foreach ($this->items as $key => $item) {
+            $fullname       = $item['fullname'];
+            $avatar         = (!empty($item['avatar']))  ? UPLOAD_URL .'/avatar/'.$item['avatar'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+            $linkDetail     = $this->url('DetailAgencyRoute',array(
+                'module'    =>  'home',
+                'controller'=>  'agency',
+                'action'    =>  'detail',
+                'name'      =>  \ZendVN\Url\FriendlyLink::filter($fullname),
+                'id'        =>  $item['id'],
+            ));
+            $itemAgencyHighlight      .= '<li><a href="'.$linkDetail.'" title="'.$fullname.'"><img src="'.$avatar.'" width="113" alt="'.$fullname.'" title="'.$fullname.'" height="128"></a><h3><a href="'.$linkDetail.'" title="'.$fullname.'">'.\ZendVN\Filter\ReadMore::create($fullname,0,10).'</a></h3></li>';
+        }
+    }
+
+//Search Name
+$linkSearch         = $this->url('MVC_HomeRouter/action',array('controller'=>'agency','action'=>'search'));    
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+        <div class="leftMainContent">
+            
+            <?php echo $this->formSearchAgency;?>
+
+            <div class="vipObject company">
+            <h2 class="leftTitle"><b>Môi giới nổi bật</b></h2>
+            <div class="leftSmallContent">
+                <div id="nodegalleryDa" style="left:0;"><ul style="width: 1197px; position: relative; left: -665px;">
+                    <?php echo $itemAgencyHighlight;?>
+                </ul><a onclick="SlideCaroulse(&quot;l&quot;);" href="javascript:" class="previousButton grey" title="Previous"></a><a onclick="SlideCaroulse(&quot;r&quot;);" href="javascript:" class="nextButton grey" title="Next"></a></div>
+                
+            </div>
+        </div>
+        <script type="text/javascript">
+             self.setInterval("SlideCaroulse('l')", 3000);
+             var previousB = 5;
+             var noOfSlide = 5;
+             var selectedUl = 'div#nodegalleryDa ul';
+             var ulWidth = $(selectedUl).width();
+             var liWidth = 133;
+             
+             
+        </script>
+            <div class="dataTables_wrapper"><!--load--></div>
+       
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+
+             //Load quận huyện
+            $("#city").change(function(){
+                var city = $("#city option:selected").val();
+                
+                loadDistrict(city);
+            });
+
+            $(".loading").show();
+           
+            
+            var page       = '<?php echo $page;?>';
+            var cityid     = '<?php echo $this->arrParam["cityid"];?>';
+            var cityname     = '<?php echo $this->arrParam["cityname"];?>';
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {page : page, cityid: cityid, cityname: cityname},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    $(".loading").fadeOut(1000);
+                }
+            });
+
+            $("#search-submit").click(function(){
+                var q           = $("#txtName").val();
+                var city        = $("#city option:selected").val();
+                var district    = $("#district option:selected").val();
+
+                var linkSearchProject = '<?php echo $linkSearch;?>?q='+ q + '&city=' + city + '&district=' + district + '&page=1';
+
+                //Tìm kiếm tất cả thông tin
+                if(q != '' || city != ''  || district != ''){
+                    window.location = linkSearchProject;
+                }else if(q == '' && city == ''  && district == ''){
+                     alert("Bạn phải nhập từ khóa, hoặc chọn các tiêu chí");
+                }
+                
+            });
+        });
+
+         function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+
+        </script>
+
+<script type="text/javascript">
+                // <!--
+                if($('#hdfName').val()!='' && $('#hdfName').val()!='Từ khóa') $('#txtName').val($('#hdfName').val());
+                FSTopAgent.LoadTinhThanh();
+                // -->
+                </script>
+<script type="text/javascript">
+    $(".btDropdown").click(function () {
+        $("#txtName").val('');
+    });
+</script>
+
+        </div>
+          <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+
+ 
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+    </div>

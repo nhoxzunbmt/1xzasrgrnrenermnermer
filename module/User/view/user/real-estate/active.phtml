@@ -1,0 +1,308 @@
+<?php
+
+$frmTypeNews    = $this->cmsSelect('sltEventType','',$this->listItemTypeNews,'no-level',array('class' =>'select'));
+
+$frmDateStart   = $this->cmsInput('txtStartDate','txtStartDate','text',array('value'=>$this->item->date_start,'class'=>'input_text','disabled'=>'disabled','readonly'=>'readonly'));
+
+$frmDateEnd     = $this->cmsInput('txtEndDate','txtEndDate','text',array('value'=>'','class'=>'input_text hasDatepicker','readonly'=>'readonly'));
+
+$frmSubmit      = $this->cmsInput('btnKichHoatNgay','btnKichHoatNgay','submit',array('value'=>'Kích hoạt ngay'));
+
+//Back
+$linkBack       = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'edit','id'=>$this->arrParam['id']));
+
+//id
+$frmid          = $this->cmsInput('id','id','hidden',array('value'=>$this->arrParam['id']));
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+
+
+
+?>
+<form action="" method="POST" class="form-horizontal" role="form" name="appForm" id="appForm" enctype="multipart&#x2F;form-data"> 
+
+
+
+                <?php echo $xhtmlError ;?>     
+
+                    
+
+<script src="<?php echo TEMPLATE_URL;?>/user/js/jquery.ui.datepicker.js?v=23072014.16" type="text/javascript"></script>
+
+
+
+<div class="steps">
+    	<div class="step1">
+        	<div class="bar"></div>
+            <p>THÔNG TIN BẤT ĐỘNG SẢN</p>
+        </div>
+        <div class="step2 active">
+        	<div class="bar"></div>
+            <p>KÍCH HOẠT TIN ĐĂNG</p>
+        </div>
+    </div>
+    <div id="BoxPostProperty">
+     <div class="TitleBox">
+        <h2>
+            <span id="lblPropertyRV">Kích hoạt tin đăng</span>
+            
+        </h2>
+    </div>
+    
+     <div class="DesBoxPostProperty">
+        <table border="0" cellpadding="0" cellspacing="5" width="100%">
+            <tbody>
+            	<tr>
+                        <td width="20%"></td>
+                        <td width="22%"></td>
+                        <td width="27%"></td>
+                        <td width="31%"></td>
+                    </tr>
+            	<tr>
+                	<td colspan="4">
+                    	
+                    </td>
+                </tr>
+                
+            	<tr>
+                    <td class="Col1">
+                        <span>Loại tin</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                    	<?php echo $frmTypeNews.$frmid;?>
+                    </td>
+                    <td class="Col2" colspan="2" style="vertical-align: top;">
+                        <div id="vip_cofig_info_explain" class="illustrationPara" style=""></div>
+                    </td>
+            	</tr><tr>
+                    <td class="Col1">
+                        <span>Ngày bắt đầu</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmDateStart ;?>
+                    </td>
+                    <td class="Col2 enddate" colspan="3">
+                        <span>Ngày kết thúc</span>&nbsp;&nbsp;&nbsp;
+                        <?php echo $frmDateEnd;?>
+                        &nbsp;&nbsp;&nbsp; <span style="font-size: 11px;font-weight: bold;font-style: italic" id="mtotalDays"></span>
+                    </td>
+                </tr>
+                <tr>
+                	<td class="Col2 chosen" colspan="4">
+                   
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Col1" colspan="4">
+                        <ul class="Btform">
+                           
+                            <li id="btnKH">
+                                <?php echo $frmSubmit;?>
+                            </li>
+                           	 <li class="Reset"><a href="<?php echo $linkBack;?>">
+                                <div>
+                                   Quay lại</div>
+                            </a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            try {
+                $('.date-picker').datepicker({
+                    dateFormat: "dd/mm/yy",
+                    yearRange: "-90:+0",
+                    changeMonth: true,
+                    changeYear: true
+                });
+
+            } catch (ex) {
+                //c/onsole.log(ex);
+            }
+        });
+        $(function () {
+            $("#txtEndDate").change(function () {
+                //if ($('#hdfExtendsType').val() == "")
+                    ResetEndDate();
+                //else resetDate(1);
+                // ChangePaymentResult();
+                ChangePromotionResult();
+                CalculateSubTotal();
+            });
+            $("#txtEndDate").datepicker({
+                dateFormat: 'dd/mm/yy'
+            });
+            $("#txtEndDate").keypress(function (event) {
+                event.preventDefault();
+            });
+            $("#sltEventType").change(function () {
+                ChonLoaiTin();
+            });
+
+        });
+
+        ResetEndDate();
+        
+       
+    </script>
+    
+    
+  <div id="divPreviewImg" class="preview" style="top: 550px; left: 57%; display: none;"><img width="450" height="180" alt="" src="<?php echo TEMPLATE_URL;?>/user/images/tin-thuong.jpg"></div>
+           
+
+</form>
+
+<script type="text/javascript">
+
+function ChonLoaiTin() {
+    var eventType = $('#sltEventType').children('option:selected').val();
+    //$('#btnKichHoatNgay').attr("disabled", true);
+    $('#btnKichHoatNgay').val('Kích hoạt ngay');
+    var str = '';
+    switch (eventType) {
+        case '5':
+            var sDate = new Date(VNDateTimeToUTCDateTime($('#txtStartDate').val(), '/'));
+            var newMaxDate = new Date(sDate);
+           
+            newMaxDate.setDate(newMaxDate.getDate() + <?php echo $this->listItemTypeNews[5]['day'];?>);
+            $('#txtEndDate').val(UTCDateTimeToVNDateTime(newMaxDate, '/'));
+            $('#txtEndDate').attr("disabled", false);
+            $('#khuyenmai').show();
+            $('#vip_cofig_info_explain').html("<?php echo $this->listItemTypeNews[5]['description'];?> <img width=\"24\" height=\"24\" alt=\"\" onmouseover=\"ShowdivPreviewImgHelp('tin-chinh-chu.jpg')\" onmouseout=\"HidedivPreviewImgHelp()\" src=\"" + pathClientTemplate + "/images/light.png\" />");
+            $('#vip_cofig_info_explain').show();
+            $('#hd_LoaiTin').val(eventType);
+           
+            $('#hd_PackageTypeId').val(0);
+            CalculateSubTotal();
+            break;
+        case '3':
+            var sDate = new Date(VNDateTimeToUTCDateTime($('#txtStartDate').val(), '/'));
+            var newMaxDate = new Date(sDate);
+            newMaxDate.setDate(newMaxDate.getDate() + <?php echo $this->listItemTypeNews[3]['day'];?>);
+            $('#txtEndDate').val(UTCDateTimeToVNDateTime(newMaxDate, '/'));
+            $('#txtEndDate').attr("disabled", false);
+            $('#khuyenmai').show();
+            $('#vip_cofig_info_explain').html("<?php echo $this->listItemTypeNews[3]['description'];?><img width=\"24\" height=\"24\" alt=\"\" onmouseover=\"ShowdivPreviewImgHelp('tin-vip.jpg')\" onmouseout=\"HidedivPreviewImgHelp()\" src=\"" + pathClientTemplate + "/images/light.png\" />");
+            $('#vip_cofig_info_explain').show();
+            $('#hd_LoaiTin').val(eventType);
+            
+            CalculateSubTotal();
+            break;
+        case '4':
+            var sDate = new Date(VNDateTimeToUTCDateTime($('#txtStartDate').val(), '/'));
+            var newMaxDate = new Date(sDate);
+            newMaxDate.setDate(newMaxDate.getDate() + <?php echo $this->listItemTypeNews[4]['day'];?>);
+            $('#txtEndDate').val(UTCDateTimeToVNDateTime(newMaxDate, '/'));
+            $('#txtEndDate').attr("disabled", false);
+            $('#khuyenmai').show();
+            $('#vip_cofig_info_explain').html("<?php echo $this->listItemTypeNews[4]['description'];?> <img width=\"24\" height=\"24\" alt=\"\" onmouseover=\"ShowdivPreviewImgHelp('tin-hot.jpg')\" onmouseout=\"HidedivPreviewImg()\" src=\"" + pathClientTemplate + "/images/light.png\" />");
+            $('#vip_cofig_info_explain').show();
+            $('#hd_LoaiTin').val(eventType);
+            
+            CalculateSubTotal();
+            break;
+        case '2':
+            var sDate = new Date(VNDateTimeToUTCDateTime($('#txtStartDate').val(), '/'));
+            var newMaxDate = new Date(sDate);
+            
+            newMaxDate.setDate(newMaxDate.getDate() + <?php echo $this->listItemTypeNews[2]['day'];?>);
+            $('#txtEndDate').val(UTCDateTimeToVNDateTime(newMaxDate, '/'));
+            $('#txtEndDate').attr("disabled", false);
+            $('#khuyenmai').show();
+           
+            $('#vip_cofig_info_explain').html("<?php echo $this->listItemTypeNews[2]['description'];?> <img width=\"24\" height=\"24\" alt=\"\" onmouseover=\"ShowdivPreviewImgHelp('tin-thuong.jpg')\" onmouseout=\"HidedivPreviewImgHelp()\" src=\"" + pathClientTemplate + "/images/light.png\" />");
+            $('#vip_cofig_info_explain').show();
+            $('#hd_LoaiTin').val(eventType);
+          
+            CalculateSubTotal();
+            break;
+        case '1':
+            var sDate = new Date(VNDateTimeToUTCDateTime($('#txtStartDate').val(), '/'));
+            var newMaxDate = new Date(sDate);
+            newMaxDate.setDate(newMaxDate.getDate() + <?php echo $this->listItemTypeNews[1]['day'];?>);
+            $('#txtEndDate').val(UTCDateTimeToVNDateTime(newMaxDate, '/'));
+            $('#txtEndDate').attr("disabled", false);
+            $('#khuyenmai').hide();
+            
+            $('#vip_cofig_info_explain').html("<?php echo $this->listItemTypeNews[1]['description'];?><img width=\"24\" height=\"24\" alt=\"\" onmouseover=\"ShowdivPreviewImgHelp('tin-mien-phi.jpg')\" onmouseout=\"HidedivPreviewImgHelp()\" src=\"" + pathClientTemplate + "/images/light.png\" />");
+            $('#vip_cofig_info_explain').show();
+            $('#hd_LoaiTin').val(eventType);
+            $('#btnKichHoatNgay').attr("disabled", false);
+            $('#btnKichHoatNgay').removeAttr('disabled');
+            
+            CalculateSubTotal();
+            break;
+        
+    }
+    $('#resultPayment').html(str);
+    $('#resultPayment').show();
+}
+
+function HidedivPreviewImgHelp() {
+    $('#divPreviewImg').hide();
+}
+function ShowdivPreviewImgHelp(ovb) {
+    $('#divPreviewImg').html("<img width=\"450\" height=\"180\" alt=\"\" src=\"" + pathClientTemplateDefault + "/images/" + ovb + "\" />");
+    $('#divPreviewImg').show();
+}
+function CalculateSubTotal() {
+    var d = new Date();
+    var hrs = d.getHours(); // => 9
+    var min = d.getMinutes(); // =>  30
+    var sec = d.getSeconds(); // => 51
+    var t = hrs + ":" + min + ":" + sec;
+    var sDate = new Date(VNDateTimeToUTCDateTime($('#txtStartDate').val(), '/') + " " + t);
+    var eDate = new Date(VNDateTimeToUTCDateTime($('#txtEndDate').val() , '/') + " " + t);
+    var newStartDate = new Date(sDate);
+    var newEndDate = new Date(eDate);
+    
+    var tDate = 7;
+    var ONE_DAY = 1000 * 60 * 60 * 24;
+    // Convert both dates to milliseconds
+    var date1_ms = newStartDate.getTime();
+    var date2_ms = newEndDate.getTime();
+    // Calculate the difference in milliseconds
+    var difference_ms = Math.abs(date1_ms - date2_ms);
+
+    // Convert back to days and return
+    var mtotalDays = Math.round(difference_ms / ONE_DAY);
+    
+    $('#mtotalDays').html(mtotalDays +" ngày");
+    
+}
+function ResetEndDate() {
+    if ($('#txtEndDate').val().length == 0) {
+        var tmpdate = new Date();
+        tmpdate.setMonth(tmpdate.getMonth() + 1);
+        $('#txtEndDate').val(UTCDateTimeToVNDateTime(tmpdate, '/'));
+    }
+
+    var sDate = new Date(VNDateTimeToUTCDateTime($('#txtStartDate').val(), '/'));
+    var eDate = new Date(VNDateTimeToUTCDateTime($('#txtEndDate').val(), '/')); 
+
+    var newMaxDate = new Date(sDate);
+    var newMinDate = new Date(sDate);
+
+    newMaxDate.setMonth(newMaxDate.getMonth() + 6);
+    var newMaxStartDate = new Date(eDate);
+
+    newMinDate.setDate(newMinDate.getDate() + 7);
+    newMaxStartDate.setDate(newMaxStartDate.getDate() - 7);
+
+    if (newMaxStartDate < new Date()) {
+        newMaxStartDate = new Date();
+        eDate = newMinDate;
+        $('#txtEndDate').val(UTCDateTimeToVNDateTime(eDate, '/'));
+    }
+    
+    $("#txtEndDate").datepicker("option", "maxDate", newMaxDate);
+    $("#txtEndDate").datepicker("option", "minDate", newMinDate);
+}
+</script>    

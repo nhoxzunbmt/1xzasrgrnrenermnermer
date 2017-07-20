@@ -1,0 +1,67 @@
+<?php
+  
+$myForm = $this->myForm;
+echo $this->form()->openTag($this->myForm);
+$messagesErrors = $this->elementErrors(array(
+    'fullname'                 =>  $myForm->get('fullname'),
+    'email'                     =>  $myForm->get('email'),
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+
+//==========Messages=========================//
+$messages   = $this->flashMessenger()
+                    ->setMessageOpenFormat('<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="alert alert-success">')
+                    ->setMessageSeparatorString('')
+                    ->setMessageCloseString('</div>')
+                    ->render('success',array('success message'));
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+  <div class="leftMainContent">
+        
+ 
+
+
+  <div id="MainContent_ucDefaultNewsList_divDefaultNewsList" class="niceHouseList margined">
+    <div class="leftSmallContent" style="padding:10px;">
+      
+          <?php echo $messages ;?>  
+      
+       <?php echo $messagesErrors .$xhtmlError;?>
+           <div class="formSendEmail">
+                <div id="contact-me-success" style="display: none;"><b>&nbsp;</b>
+                        <span><div id="contact-me-message-success"></div></span>
+                </div>
+
+                <div class="selectedValues marB15">
+                    
+                    <?php echo  $this->formText($myForm->get('fullname'));?>                    <span class="btDropdown del" title="Xóa" onclick="$('#contact_me_txtName').val('');"></span>
+                    
+                </div>
+                
+                <div class="selectedValues marL15 marB15">
+                    <?php echo  $this->formText($myForm->get('email'));?>                   <span class="btDropdown del" title="Xóa" onclick="$('#contact_me_txtEmail').val('');"></span>
+                    
+                </div>
+                               
+              <div id="btSendMail">
+                                                        <?php  echo $this->formSubmit($myForm->get('submit'));?>              </div>
+            </div>    
+    </div>
+  </div>
+
+  
+
+
+  </div>
+  <div class="rightMainContent">
+  
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+</div>

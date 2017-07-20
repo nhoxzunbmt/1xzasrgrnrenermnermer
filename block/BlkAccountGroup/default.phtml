@@ -1,0 +1,26 @@
+<?php
+$urlHelper        = $this->getView()->plugin('url');
+
+$linkLogin        = $urlHelper('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'login'));
+$linkLogout       = $urlHelper('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'logout'));
+
+$linkRegister     = $urlHelper('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'register'));
+$linkInfoAccount  = $urlHelper('MVC_UserRouter/action',array('module'=>'user','controller'=>'account','action'=>'index'));
+$actionUser = '';
+if(empty($authenticate->id)){
+    $actionUser = '<p><i class="ico-sty i-reg"></i>
+                        <a href="'.$linkLogin.'" rel="nofollow" title="Đăng nhập tài khoản">Đăng nhập</a>
+                    </p>
+                    <p><i class="ico-sty i-reg"></i>
+                        <a href="'.$linkRegister.'" rel="nofollow" title="Tạo tài khoản ">Đăng Ký</a>
+                    </p>';
+}else{
+    $actionUser = '<p><i class="ico-sty i-reg"></i>Chào bạn: '.$authenticate->fullname.'</p>
+                    <p><i class="ico-sty i-reg"></i>
+                        <a href="'.$linkInfoAccount.'" rel="nofollow" title="Tài khoản">Tài khoản</a>
+                    </p>
+                    <p><i class="ico-sty i-reg"></i>
+                        <a href="'.$linkLogout.'" rel="nofollow" title="Đăng xuất tài khoản">Đăng xuất</a>
+                   </p>';
+}
+echo $actionUser;

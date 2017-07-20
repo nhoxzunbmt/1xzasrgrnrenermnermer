@@ -1,0 +1,39 @@
+<?php
+
+$avatar  = (!empty($this->item->avatar))  ? UPLOAD_URL .'/avatar/'.$this->item->avatar :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+$username  	= $this->item->username;
+$email  	= $this->item->email;
+$fullname  	= $this->item->fullname;
+$website  	= $this->item->website;
+$phone	 	= $this->item->phone;
+$diachi  	= $this->item->diachi;
+$introduced	= $this->item->introduced;
+$info_service_account = $this->item->info_service_account;
+
+$arrInfoService = \Zend\Json\Json::decode($info_service_account);
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Thông tin khách hàng</h5>
+<p class='detail-info even'><span><img style="border-radius: 1px;-moz-border-radius: 1px;-webkit-border-radius: 1px;box-shadow: 0 0 5px black;-webkit-box-shadow: 0 0 5px black;" src="<?php echo $avatar;?>" width="200px" height="100"></span></p>
+<p class='detail-info even'><label>Tên đăng nhập:</label><span><?php echo $username;?></span></p>
+<p class='detail-info even'><label>Loại dịch vụ:</label><span><?php echo $arrInfoService->service_account;?></span></p>
+<p class='detail-info even'><label>Số tin thường kích hoạt:</label><span><?php echo $arrInfoService->normal;?></span></p>
+<p class='detail-info even'><label>Số tin VIP kích hoạt:</label><span><?php echo $arrInfoService->vip;?></span></p>
+<p class='detail-info even'><label>Số tin HOT kích hoạt:</label><span><?php echo $arrInfoService->hot;?></span></p>
+<p class='detail-info even'><label>Số tin Miễn phí kích hoạt:</label><span><?php echo $arrInfoService->free;?></span></p>
+<p class='detail-info even'><label>Số tin Chính chủ kích hoạt:</label><span><?php echo $arrInfoService->chinhchu;?></span></p>
+<p class='detail-info even'><label>Ngày đăng kí:</label><span><?php echo $arrInfoService->date_start;?></span></p>
+<p class='detail-info even'><label>Ngày hết hạn:</label><span><?php echo $arrInfoService->date_end;?></span></p>
+<p class='detail-info even'><label>Email:</label><span><?php echo $email;?></span></p>
+<p class='detail-info even'><label>Họ tên:</label><span><?php echo $fullname;?></span></p>
+<p class='detail-info even'><label>Điện thoại:</label><span><?php echo $phone;?></span></p>
+<p class='detail-info even'><label>website:</label><span><?php echo $website;?></span></p>
+<p class='detail-info even'><label>Địa chỉ:</label><span><?php echo $diachi;?></span></p>
+
+<p class='detail-info even'><label>Giới thiệu:</label><span><?php echo $introduced;?></span></p>
+</div>

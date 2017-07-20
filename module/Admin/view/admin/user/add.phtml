@@ -1,0 +1,177 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementFullname 	= $myForm->get('fullname');
+$elementUsername 	= $myForm->get('username');
+//$elementEmail 		= $myForm->get('user')->get('email');
+$elementEmail 		= $myForm->get('email');
+$elementDiachi    	= $myForm->get('diachi');
+//$elementGroup		= $myForm->get('group_id');
+$elementFile		= $myForm->get('image');
+$elementSkype		= $myForm->get('website');
+$elementPhone		= $myForm->get('phone');
+$elementPassword	= $myForm->get('password');
+$elementConfirmPass	= $myForm->get('confirm-password');
+$elementIntroduced	= $myForm->get('introduced');
+
+$avatar         = (!empty($this->item->avatar))  ? UPLOAD_URL .'/avatar/'.$this->item->avatar :  UPLOAD_URL .'/avatar/NoImage.jpg';
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementFullname),
+		'input'				=>	$this->formElement($elementFullname),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Họ và tên',
+		'tooltipmessage'	=>	'Nhập họ và tên',
+	),
+	
+	array(
+		'label'				=>	$this->formLabel($elementUsername),
+		'input'				=>	$this->formElement($elementUsername),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tên đăng nhập',
+		'tooltipmessage'	=>	'Nhập Tên đăng nhập',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementEmail),
+		'input'				=>	$this->formElement($elementEmail),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Email',
+		'tooltipmessage'	=>	'Nhập email',
+	),
+	array(
+		'label'				=>	'Thành phố',
+		'input'				=>	$this->cmsSelect('city_id','',$this->itemsCity,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn thành phố',
+		'tooltipmessage'	=>	'Chọn thành phố',
+	),
+
+	array(
+		'label'				=>	$this->formLabel($elementDiachi),
+		'input'				=>	$this->formElement($elementDiachi),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Địa chỉ',
+		'tooltipmessage'	=>	'Địa chỉ liên hệ của khách hàng',
+	),
+	array(
+		'label'				=>	'Chọn nhóm',
+		'input'				=>	$this->cmsSelect('group_id','',$this->itemsGroup,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Nhóm thành viên',
+		'tooltipmessage'	=>	'Nhóm thành viên',
+	),
+
+	array(
+		'label'				=>	$this->formLabel($elementFile),
+		'input'				=>	$this->formElement($elementFile),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Avatar',
+		'tooltipmessage'	=>	'Avatar',
+	),
+	
+	
+	array(
+		'label'				=>	$this->formLabel($elementSkype),
+		'input'				=>	$this->formElement($elementSkype),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'website',
+		'tooltipmessage'	=>	'Thông tin tài khoản website',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementPhone),
+		'input'				=>	$this->formElement($elementPhone),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Số điện thoại',
+		'tooltipmessage'	=>	'Thông tin số điện thoại',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementIntroduced),
+		'input'				=>	$this->formElement($elementIntroduced),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Giới thiệu',
+		'tooltipmessage'	=>	'Thông tin Giới thiệu',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementPassword),
+		'input'				=>	$this->formElement($elementPassword),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Mật khẩu',
+		'tooltipmessage'	=>	'Nhập vào mật khẩu',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementConfirmPass),
+		'input'				=>	$this->formElement($elementConfirmPass),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'nhập lại Mật khẩu',
+		'tooltipmessage'	=>	'Nhập vào mật khẩu',
+	),
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'fullname'				=>	$elementFullname,
+	'username'				=>	$elementUsername,
+	'email'					=>	$elementEmail,
+	'phone'					=>	$elementPhone,
+	'password'				=>	$elementPassword,
+	'confirm-password'		=>	$elementConfirmPass,
+));
+
+
+
+
+
+?>
+
+
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var introduced = CKEDITOR.replace( 'introduced', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( introduced, 'plugins/ckfinder/' );
+
+	
+
+	</script>

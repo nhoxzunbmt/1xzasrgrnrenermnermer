@@ -1,0 +1,50 @@
+<?php
+$xhtml      = '';
+$i          = 1;   
+$urlHelper  = $this->getView()->plugin('url');
+
+$menuLegislationHousing         = $urlHelper('ListLegislationHousingRoute',array('controller'=>'legislationhousing','action'=>'index'));
+$menuLegalHousing               = $urlHelper('ListLegalHousingRoute',array('controller'=>'legalhousing','action'=>'index'));
+$menuContractForm               = $urlHelper('ListContractFormRoute',array('controller'=>'contractform','action'=>'index'));
+foreach ($this->_data as $item) {
+    $id             = $item['id'];
+    $title          = $item['title'];
+    $description    = $item['description'];   
+    $date_time      = $item['date_time'];
+
+    $image          = (!empty($item['images']))  ? UPLOAD_URL .'/legal-housing/'.$item['images'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+    
+    $urlDetail   = $urlHelper('DetailLegalHousingRoute',array(
+        'controller'        => 'legalhousing',
+        'action'            => 'detail',
+        'namecategory'      => \ZendVN\Url\FriendlyLink::filter($item['name_category']),
+        'title'             => \ZendVN\Url\FriendlyLink::filter($title),
+        'cid'               => $item['cat_id'],
+        'id'                => $item['id'],
+        'extension'         => 'html',
+    ));
+    if($i == 1){
+    $xhtmlFirst = ' <h3><a href="'.$urlDetail.'" title="'.$title.'">'.$title.'</a><a href="'.$urlDetail.'" title="'.$title.'"><img src="'.$image.'" width="266" height="199" alt="'.$title.'" title="'.$title.'"></a></h3>';
+    }else{
+        $xhtml      .= '<li><a href="'.$urlDetail.'" title="'.$title.'">'.$title.'<span> ('.$date_time.')</span></a></li>';
+    }
+    $i++;
+    
+}
+?>
+
+<div class="minorElement">
+    <h5 class="rightTitle">
+        Cafe luật</h5>
+    <div class="rightSmallContent">
+        <?php echo $xhtmlFirst;?>
+        <ul class="rightLine">
+            <?php echo $xhtml;?>
+        </ul>
+        <div class="otherChosen">
+            <a href="<?php echo $menuLegalHousing ;?>">Tư vấn pháp lí</a><a href="<?php echo $menuContractForm ;?>">Biểu mẫu hợp đồng</a><a href="<?php echo $menuLegislationHousing ;?>">Văn bản luật nhà đất</a>
+            
+        </div>
+    </div>
+</div>
+

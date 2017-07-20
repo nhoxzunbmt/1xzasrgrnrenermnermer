@@ -1,0 +1,67 @@
+<div id="BoxRecentSearch">
+	
+	<div id="MainContent_ctl00_divResultSearch" class="ResultSearch">
+		<ul class="TabMenuList">
+			<li>
+				<a id="MainContent_ctl00_ali2" class="current"><span>Có tất cả (<?php echo $this->totalItem;?>)</span></a></li>
+		</ul>
+		<div class="ListProperty">
+			<div class="SearchDetail">
+				
+			</div>
+            <div class="dataTables_wrapper"><!--load--></div>
+			<?php
+            $page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+            $LinkPage   = $this->basePath()."/".$this->arrParam['module']."/real-estate/favorite-ajax/page/".$page;
+            
+            ?>
+            <script type="text/javascript">
+
+            $(document).ready(function(){
+                $(".loading").show();
+                $.ajax({
+                    url     : '<?php echo $LinkPage;?>',
+                    type    : 'GET',
+                    data    : {page : <?php echo $page;?>},
+                    cache   : false,
+                    success : function(data,status){
+                        $("div.dataTables_wrapper").html(data);
+                        $(".loading").fadeOut(1000);
+                    }
+                });
+            });
+
+            </script>
+
+			<div class="PagesNumber" id="dvPagingDefault"></div>
+			<input type="hidden" id="idPage" value="users/main">
+<input type="hidden" id="idQs" value="&amp;tab=rv&amp;ctl=6&amp;itm=5">
+<input type="hidden" id="idItemPage" value="20">
+<input type="hidden" id="pPath" value="http://muabannhadat.com.vn">
+<script type="text/javascript">
+	_ITEMS_PAGES=$("#idItemPage").val();
+	var tps = (parseInt($("#hTotalRows").val())%_ITEMS_PAGES)!=0?(parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES))+1):parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES));
+	nvgPaging.DrawPageListBdsUsersNoAjax(tps, $("#hCurrentPage").val(), "dvPagingDefault",$("#idPage").val(),$("#idQs").val(),$('#pPath').val());
+	nvgPaging.loadMiddleListBanner("divMiddleListBanner","middlelistbanner");
+</script>
+	
+			<div class="clr_both"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+       
+
+        function deleteBDSFavorite(id)
+        {   
+            if(!confirm("Bạn có chắc xóa tin này khỏi danh sách yêu thích không?")) return;
+            else
+            {
+                window.location = '<?php echo $this->url(null,array("module"=>"user","controller"=>"real-estate","action"=>"delete-favorite"));?>' + id;
+            }   
+        }
+
+       
+        
+    </script>

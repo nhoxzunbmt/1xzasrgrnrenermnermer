@@ -1,0 +1,282 @@
+<?php
+
+
+$linkFilterBDSNew       = $this->url('CategoryBatDongSanRoute',array(
+    'module'        =>  'home',
+    'controller'    =>  'realestate',
+    'action'        =>  'category',
+    'type'          =>  'tin-moi-nhat',
+    'name'          =>  $this->arrParam['name'],
+    'page'          =>  1,
+    'transaction'   =>  $this->arrParam['transaction'],
+    'id'            =>  $this->arrParam['id'],
+    'extension'     =>  'html',
+));
+
+$linkFilterBDSPriceMax  = $this->url('CategoryBatDongSanRoute',array(
+    'module'        =>  'home',
+    'controller'    =>  'realestate',
+    'action'        =>  'category',
+    'type'          =>  'gia-cao-nhat',
+    'name'          =>  $this->arrParam['name'],
+    'page'          =>  1,
+    'transaction'   =>  $this->arrParam['transaction'],
+    'id'            =>  $this->arrParam['id'],
+    'extension'     =>  'html',
+));
+
+$linkFilterBDSPriceMin  = $this->url('CategoryBatDongSanRoute',array(
+    'module'        =>  'home',
+    'controller'    =>  'realestate',
+    'action'        =>  'category',
+    'type'          =>  'gia-thap-nhat',
+    'name'          =>  $this->arrParam['name'],
+    'page'          =>  1,
+    'transaction'   =>  $this->arrParam['transaction'],
+    'id'            =>  $this->arrParam['id'],
+    'extension'     =>  'html',
+));
+
+$linkFilterBDSAreaMax  = $this->url('CategoryBatDongSanRoute',array(
+    'module'        =>  'home',
+    'controller'    =>  'realestate',
+    'action'        =>  'category',
+    'type'          =>  'dien-tich-lon-nhat',
+    'name'          =>  $this->arrParam['name'],
+    'page'          =>  1,
+    'transaction'   =>  $this->arrParam['transaction'],
+    'id'            =>  $this->arrParam['id'],
+    'extension'     =>  'html',
+));
+
+$linkFilterBDSAreaMin  = $this->url('CategoryBatDongSanRoute',array(
+    'module'        =>  'home',
+    'controller'    =>  'realestate',
+    'action'        =>  'category',
+    'type'          =>  'dien-tich-nho-nhat',
+    'name'          =>  $this->arrParam['name'],
+    'page'          =>  1,
+    'transaction'   =>  $this->arrParam['transaction'],
+    'id'            =>  $this->arrParam['id'],
+    'extension'     =>  'html',
+));
+
+$linkFilterAll          = $this->url('CategoryBatDongSanRoute',array(
+    'module'        =>  'home',
+    'controller'    =>  'realestate',
+    'action'        =>  'category',
+    'type'          =>  'tat-ca',
+    'name'          =>  $this->arrParam['name'],
+    'page'          =>  1,
+    'transaction'   =>  $this->arrParam['transaction'],
+    'id'            =>  $this->arrParam['id'],
+    'extension'     =>  'html',
+));
+
+$linkFilterChinhChu     = $this->url('CategoryBatDongSanRoute',array(
+    'module'        =>  'home',
+    'controller'    =>  'realestate',
+    'action'        =>  'category',
+    'type'          =>  'chinh-chu',
+    'name'          =>  $this->arrParam['name'],
+    'page'          =>  1,
+    'transaction'   =>  $this->arrParam['transaction'],
+    'id'            =>  $this->arrParam['id'],
+    'extension'     =>  'html',
+));
+$linkFilterCohinh  = $this->url('CategoryBatDongSanRoute',array(
+    'module'        =>  'home',
+    'controller'    =>  'realestate',
+    'action'        =>  'category',
+    'type'          =>  'co-hinh',
+    'name'          =>  $this->arrParam['name'],
+    'page'          =>  1,
+    'transaction'   =>  $this->arrParam['transaction'],
+    'id'            =>  $this->arrParam['id'],
+    'extension'     =>  'html',
+));
+
+
+//Doanh nghiệp thành phố lớn
+$xhtmlCity = '';
+if(!empty($this->listCity)){
+    foreach($this->listCity as $item){
+        $urlCity   = $this->url(
+            'CityBatDongSanRoute',
+            array('controller'=>'realestate','action'=>'city','cityname'=>\ZendVN\Url\FriendlyLink::filter($item['name']),'page'=>1,'cityid'=>$item['id']
+        ));
+        $xhtmlCity      .= '<li>  <a href="'.$urlCity.'" title="'.$item['name'].'">'.$item['name'].' <span></span>  </a></li>';
+    }  
+}
+
+
+?>
+
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->breadcrumb,array('task'=>'data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+		<div class="leftMainContent">
+		    
+
+        <div class="boxTab">
+            <ul>
+                
+                <li id="MainContent_ListItems1_srchli2"><h4><a href="<?php echo $linkFilterAll;?> "id="MainContent_ListItems1_ali2">Tất cả <span>(<?php echo $this->totalItem;?>)</span></a></h4></li>                    	    
+                
+                <li id="MainContent_ListItems1_srchli4"><h4><a href="<?php echo $linkFilterChinhChu;?>" id="MainContent_ListItems1_ali4">Chính chủ <span>(<?php echo $this->totalItemChinhChu;?>)</span></a></h4></li>
+           
+                <li id="MainContent_ListItems1_srchli5"><h4><a href="<?php echo $linkFilterCohinh;?>" id="MainContent_ListItems1_ali5">Có hình <span>(<?php echo $this->totalItemIsImage;?>)</span></a></h4></li>
+
+            </ul>
+             
+        </div>
+
+        <div class="resultList">
+            <div class="contentDetail">
+            <div class="leftSmallContent">
+                <div class="sort">
+                    <div class="Groups">
+                        <div class="selectedValues">
+                            <div onclick="$('#divSapXepPopup').toggle();" style="width: 100%;">
+                                <a href="javascript:;" id="MainContent_ListItems1_hrfSapXepText" title="Chọn kiểu sắp xếp">Chọn kiểu sắp xếp</a>
+                                <span class="btDropdown" title="Chọn kiểu sắp xếp"></span>
+                            </div>
+                            <div class="Dialog_1 sortDialog" id="divSapXepPopup" style="width: 400px; display: none;">
+        					    <div class="TitleDialog">
+                                    <h4>Chọn kiểu sắp xếp</h4>
+                                    <a title="Đóng" href="javascript:;" onclick="$('#divSapXepPopup').hide();" class="bt_close_1">Đóng</a>
+                                </div>
+        						<div class="ContentDialog">
+                                    <ul id="MainContent_ListItems1_ulSapXepTin" class="col">
+                                        
+                                        <li><a href="javascript:void(0);" onclick="window.location=&quot;<?php echo $linkFilterBDSNew;?>&quot;;">Tin mới nhất</a></li>
+                                        <li><a href="javascript:void(0);" onclick="window.location=&quot;<?php echo $linkFilterBDSPriceMax;?>&quot;;">Giá cao nhất</a></li>
+                                        <li><a href="javascript:void(0);" onclick="window.location=&quot;<?php echo $linkFilterBDSPriceMin;?>&quot;;">Giá thấp nhất</a></li>
+                                        <li><a href="javascript:void(0);" onclick="window.location=&quot;<?php echo $linkFilterBDSAreaMax;?>&quot;;">Diện tích lớn nhất</a></li>
+                                        <li><a href="javascript:void(0);" onclick="window.location=&quot;<?php echo $linkFilterBDSAreaMin;?>&quot;;">Diện tích nhỏ nhất</a></li>
+                                    </ul>
+                                </div>
+        			        </div>
+                        </div>
+                        <div class="clearBoth"></div>
+                        
+                    </div>
+                </div>
+                
+                <div class="dataTables_wrapper"><!--load--></div>
+                <?php
+                $page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+                $LinkPage   = $this->basePath()."/".$this->arrParam['module']."/realestate/list/page/".$page;
+                ?>
+                <script type="text/javascript">
+
+                $(document).ready(function(){
+
+                    $(".loading").show();
+                    var type        = '<?php echo $this->arrParam["type"];?>';
+
+                    if(type == 'tat-ca'){
+                        $("#MainContent_ListItems1_srchli2").addClass("current");
+                    }
+                    if(type == 'chinh-chu'){
+                        $("#MainContent_ListItems1_srchli4").addClass("current");
+                    }
+                    if(type == 'co-hinh'){
+                        $("#MainContent_ListItems1_srchli5").addClass("current");
+                    }
+                    var transaction = '<?php echo $this->arrParam["transaction"];?>';
+                    var id          = '<?php echo $this->arrParam["id"];?>';
+                    var name        = '<?php echo $this->arrParam["name"];?>';
+                    var page        = '<?php echo $page;?>';
+                    $.ajax({
+                        url     : '<?php echo $LinkPage;?>',
+                        type    : 'GET',
+                        data    : {page: page, type : type,  id : id, transaction: transaction, name: name},
+                        cache   : false,
+                        success : function(data,status){
+                            $("div.dataTables_wrapper").html(data);
+                            $(".loading").fadeOut(1000);
+                        }
+                    });
+                });
+
+                </script>
+
+
+                
+                 <script>
+        ga('send' ,'timing', 'SearchResult', 'Sql time', 408);
+        </script>
+                 
+            </div>
+        </div>
+        </div>
+
+        <script language="javascript" type="text/javascript">
+            //<!--
+            SetLstSearch('#tab=rv&tck=res-sale-home&z=nha-ban');
+            //-->
+	   </script>
+
+
+
+    <input name="ctl00$MainContent$ListItems1$hdOderBy" type="hidden" id="MainContent_ListItems1_hdOderBy"> 
+        <input name="ctl00$MainContent$ListItems1$hdDtqc" type="hidden" id="MainContent_ListItems1_hdDtqc">
+        <input name="ctl00$MainContent$ListItems1$hdMaxPage" type="hidden" id="MainContent_ListItems1_hdMaxPage" value="20">
+    	<input name="ctl00$MainContent$ListItems1$hdPriceType" type="hidden" id="MainContent_ListItems1_hdPriceType">
+    	<script language="javascript" type="text/javascript">
+    	    //<!--
+    	    var _ctrRes = "MainContent_ListItems1_";
+    	    if (document.getElementById(_ctrRes + 'hdDtqc').value != "")
+    	        $('#li_dtqc').addClass("current");
+    	    else if (document.getElementById(_ctrRes + 'hdOderBy').value != "") {
+    	        $('#li_' + document.getElementById(_ctrRes + 'hdOderBy').value).addClass("current");
+    	    }
+    //	    else {
+    //	        $('#li_ranking').addClass("current");
+    //	    }
+
+    	    if (document.getElementById(_ctrRes + 'hdMaxPage').value != "") document.getElementById('cbDisplay').value = document.getElementById(_ctrRes + 'hdMaxPage').value;
+
+
+    	    $("#" + _ctrRes + "DivPropertyList1 img").error(function () {
+    	        $(this).attr("src", "http://muabannhadat.com.vn/images/noimages.gif");
+    	    });
+    	    //-->
+    	    $('#MainContent_ListItems1_ali5').on('click', function () {
+    	        ga('send', 'event', 'category-listing', 'click', 'co-hinh-buttons');
+    	    });
+
+    	    $('#MainContent_ListItems1_ali4').on('click', function () {
+    	        ga('send', 'event', 'category-listing', 'click', 'chinh-chu-buttons');
+    	    });
+
+    	    $('.acceptEmail').on('click', function () {
+    	        ga('send', 'event', 'category-listing', 'click', 'nhan-bds-email-buttons');
+    	    });
+
+    	    $('.saveProperty').on('click', function () {
+    	        ga('send', 'event', 'category-listing', 'click', 'luu-bds-buttons');
+    	    });
+
+    	</script>
+
+
+
+
+        <div class="catalogDistrict">
+            <h2 class="leftTitle"><b>Nhà đất ở các tỉnh thành</b></h2>
+            <div class="leftSmallContent">
+                <ul class="leftLine">
+                    <?php echo  $xhtmlCity;?>
+                </ul>
+        	</div>
+        </div>
+
+
+	</div>
+	<div class="rightMainContent">
+        <?php echo $this->contentRightColumn;?>
+	</div>
+</div>

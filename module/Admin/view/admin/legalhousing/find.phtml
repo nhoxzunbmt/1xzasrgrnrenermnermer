@@ -1,0 +1,36 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+
+$elementEmail = $myForm->get('my-email');
+$elementSubmit = $myForm->get('my-button-submit');
+$elementReset = $myForm->get('my-button-reset');
+
+$elements = array(
+	array(
+		'label'	=>	$this->formLabel($elementEmail),
+		'input'	=>	$this->formElement($elementEmail),
+		'class'	=>	'col-sm-9',
+		//'error'	=>	$this->elementError($elementEmail),
+	),
+	array(
+		'label'	=>	null,
+		'input'	=>	$this->formElement($elementSubmit) . ' ' .$this->formElement($elementReset),
+		'class'	=>	'col-sm-9',
+	
+	),
+);
+
+echo $this->form()->openTag($myForm);
+echo $this->partialLoop('form-group.phtml',$elements);
+echo $this->form()->closeTag();
+
+
+
+if(!empty($this->items)){
+	foreach($this->items as $item){
+		echo '<pre>';
+		print_r(sprintf($item->username));
+		echo '</pre>';
+	}
+}

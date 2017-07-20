@@ -1,0 +1,40 @@
+<?php
+	$linkStart 		= $this->currentUrl . $this->first;
+	$linkEnd 		= $this->currentUrl . $this->last;
+	$linkNext 		= $this->currentUrl . $this->next;
+	$linkPrevious 	= $this->currentUrl . $this->previous;
+	$startXhtml 	= '';
+	$previousXhtml 	= '';
+	$endXhtml 		= '';
+	$nextXhtml		= '';
+	if($this->current != 1){
+		$startXhtml 	= sprintf('<li><a id="cph_Main_ctl00_ctl00_PagingBottom_hplFirst"  href="%s">Trang đầu</a></li>',$linkStart);
+
+		$previousXhtml 	= sprintf('<li><a id="cph_Main_ctl00_ctl00_PagingBottom_hplPrevPage"  href="%s">«</a></li>',$linkPrevious);
+	}
+	if($this->current != $this->last){
+		$endXhtml 		= sprintf('<li><a id="cph_Main_ctl00_ctl00_PagingBottom_hplLast"  href="%s">Trang cuối</a></li>',$linkEnd);
+
+		$nextXhtml 		= sprintf('<li><a id="cph_Main_ctl00_ctl00_PagingBottom_hplNextPage"  href="%s">»</a></li>',$linkNext);
+	}
+	$pagesInRange = '';
+	foreach($this->pagesInRange as $key){
+		$linkPage = $this->currentUrl . $key;
+		if($this->current == $key){
+			$pagesInRange .= sprintf('<li><a class="current" href="%s">%s</a></li>',$linkPage,$key);
+		}else{
+			$pagesInRange .= sprintf('<li><a id="cph_Main_ctl00_ctl00_PagingBottom_rptPaging_hplPaging_1" href="%s">%s</a></li>',$linkPage,$key);
+		}
+		
+	}
+	
+?>
+
+
+    <ul id="dvPagingDefault" class="pageNumber">
+        <?php echo $startXhtml;?>
+       	<?php echo $previousXhtml;?>             
+        <?php echo $pagesInRange;?>    
+        <?php echo $nextXhtml;?>
+       	<?php echo $endXhtml;?>
+    </ul>

@@ -1,0 +1,36 @@
+<?php
+$menuHome       = $this->url('home',array('module'=>'home','controller'=>'index','action'=>'index'));
+$menuBds        = $this->url('ListBatDongSanRoute',array('controller'=>'realestate','action'=>'index'));
+$menuProject    = $this->url('ListProjectRoute',array('module'=>'home','controller'=>'project','action'=>'index'));
+
+?>
+
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+
+<div class="pageWrap">
+        <div class="leftMainContent">
+            <div id="MainContent_DetailItem11_divMesStt" class="messageBox1 outside">
+                        <div class="colImgs"></div>
+                        <div class="colNews">
+                            <h5>Bất động sản này có thể đã hết hạn hoặc đã được giao dịch</h5>
+                            <ul>
+                                <li><a href="<?php echo $menuHome;?>">Quay về trang chủ</a></li>
+                                <li><a href="<?php echo $menuBds;?>">Bất động sản</a></li>
+                                <li><a href="<?php echo $menuProject;?>">Dự án bất động sản</a></li>
+                            </ul>
+                        </div>
+        </div>
+
+
+
+
+            
+        </div>
+        <div class="rightMainContent">
+            <?php echo $this->blkAdsColumnRight();?>     
+
+
+        </div>
+    </div>

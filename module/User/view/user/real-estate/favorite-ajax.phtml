@@ -1,0 +1,141 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+     
+        
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $image          = TEMPLATE_URL .'/user/images/nen-up-hinh.jpg';
+        $date_start     = $item['date_start'];
+        $date_end       = $item['date_end'];
+        $date_modifi    = $item['date_modifi'];
+        $name_city      = $item['name_city'];
+        $name_district  = $item['name_district'];
+        $name_ward      = $item['name_ward'];
+        $name_type      = $item['name_type'];
+        $name_project   = $item['name_project'];
+        $floor          = $item['floor'];
+        $bedroom        = $item['bedroom'];
+        $bathroom       = $item['bathroom'];
+        $direction      = $item['direction'];
+        $area           = $item['area'];
+        $type_news      = $item['type_news'];
+        $content        = $item['content'];
+        $status         = $item['status'];
+        $cat_id         = $item['cat_id'];
+        $i              = 1;
+        $xNoticeNoImage ='';
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/real-estate/'.$image;
+                    break;
+                } 
+            }
+        }else{
+            $xNoticeNoImage = '<div class="Warning"><span>Lưu ý</span> Hãy sử dụng Up hình ảnh để nâng cao mức độ tin cậy đối với người mua. Xin cảm ơn!</div>';
+        } 
+
+        
+        $price          = $item['price'];
+       
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));   
+        
+       
+       
+
+        $xFloor         = '';
+        $xBedroom       = '';
+        $xBathroom      = '';
+        $xDirection     = '';
+        $xArea          = '';
+
+        if(!empty($floor)){
+            $xFloor     = '<span><b>'.$floor.'</b> Tầng </span> |';
+        }
+        if(!empty($bedroom)){
+            $xBedroom   = '<span><b>'.$bedroom.'</b> Phòng Ngủ </span> |';
+        }
+        if(!empty($bathroom)){
+            $xBathroom  = '<span><b>'.$bathroom.'</b> WC </span> |';
+        }
+        if(!empty($direction)){
+            $xDirection = 'Hướng '.$direction.' |';
+        }
+        if(!empty($area)){
+            $xArea = '<span><b>'.$area.'</b> m<sup>2</sup></span>';
+        }
+
+        $xinfoOther = ' ('.$xFloor.' '.$xBedroom.' '.$xBathroom.'  '.$xDirection.'  '.$xArea .' )'; 
+
+        $xhtml .= '<li class="ItemsPostPro " onmouseover="javascript:$(\'#_foreclsoure_'.$id.'\').show();" onmouseout="javascript:$(\'#_foreclsoure_'.$id.'\').hide();">
+                <div class="col_imgages">
+                    
+                    ID: <span><a href="'. $linkDetail.'">'.$id.'</a></span>
+                    <a href="'. $linkDetail.'"><img src="'.$image.'" width="100px" alt="'.$title.'"></a>
+                </div>
+                <div class="col_description">
+                    <div class="Furniture">
+                        <h3></h3><h5>'.\ZendVN\Convert\Price::convert($price).'  </h5>
+                        '.$xinfoOther.'
+                    </div>
+                    <div class="Title"><a href="'. $linkDetail.'">'.\ZendVN\Filter\ReadMore::create($title,0,50).'</a></div>
+                    <div class="LocationPro">
+                        <span class="Districts"><a href="#" class="LinkFooter">'.$name_city.'</a></span>
+                        <span class="Districts"><a href="#" class="LinkFooter">'.$name_district.'</a></span>
+                        <span class="Districts"><a href="#" class="LinkFooter">'.$name_ward.'</a></span>
+                        <span class="AddPro">'.$name_type.' </span>
+                    </div>
+                    <p>'.\ZendVN\Filter\ReadMore::create($content,0,200).'</p>
+                    
+                    <ul class="Toolcontrol" style="display: none;" id="_foreclsoure_'.$id.'">
+                        <li id="spMyShortListLink_'.$id.'"><a href="javascript:void(0);" onclick="deleteBDSFavorite('.$id.')">Hủy BĐS khỏi danh sách</a></li>
+                        <li class="clr_borright"><a href="'. $linkDetail.'">Chi tiết</a></li>
+                    </ul>
+                </div>
+            </li>';                
+
+                             
+    }
+}
+
+?>
+           
+
+
+<ul id="MainContent_ctl00_ulListBDS">
+    <?php echo $xhtml;?>
+</ul>
+<?php
+    
+    $currentUrl =  $this->basePath('/user/real-estate/favorite/page/');
+    echo $this->paginationControl($this->paginator , 'sliding' , 'user/paginator.phtml', array('currentUrl'=>$currentUrl)); 
+ ?>
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

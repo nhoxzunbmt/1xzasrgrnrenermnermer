@@ -1,0 +1,78 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+$xhtml          = '';
+$real_estate_id = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+        $name_type = $item['name_type'];
+        $xhtml .= ' <tr>
+                    <td width="25%" height="25" style="border:1px solid #CCCCCC;padding-top:5px;">'.$item['fullname'].'</td>
+                    <!---Tên sự kiện---->
+                    <td width="20%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;">'.$name_type.'</td>
+                    <!---Số điểm đã dùng---->
+                    <td width="20%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;">'.$item['date_time'].'</td>
+                    <!---Ngày bắt đầuc---->
+                   
+                </tr>';
+        
+                     
+        
+        $real_estate_id = $item['service_id'];                        
+                             
+    }
+}
+
+?>
+           
+
+
+<div class="TitleDialog">
+    <h4>Danh sách các sự kiện đã dùng cho BĐS: <?php echo $real_estate_id;?></h4>
+    <a class="bt_close_1" onclick="hideViewBds();" title="Đóng">Đóng</a>
+</div>
+<div class="ContentDialog">
+    <table width="100%" cellspacing="10" cellpadding="0" border="0">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="100%" style="border:1px solid #CCCCCC;">
+                        <tbody>
+                            <tr height="25" bgcolor="#EFEFEF">
+                                <td width="25%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;">
+                                    <b>Nhân viên kích hoạt</b>
+                                </td>
+                                <td width="20%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;">
+                                    <b>Loại tin</b>
+                                </td>
+                                <td width="20%" align="center" style="border:1px solid #CCCCCC;padding-top:5px;">
+                                    <b>Ngày kích hoạt</b>
+                                </td>
+                               
+                            </tr>
+                            
+                            <?php echo $xhtml;?>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="actionButton" onclick="document.getElementById('login_box').style.display='none'; return false;" href="javascript:void(0)" title="Thoát">Thoát</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

@@ -1,0 +1,241 @@
+
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+$identity = (!empty($this->identity()->id)) ? $this->identity()->id : '';
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/list/page/".$page;
+$config = new \ZendVN\Config\Config();    
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+       
+        $id             = $item['id'];
+        $title          = $item['title'];
+        $content        = $item['content'];
+        $image          = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
+        $date_start     = $item['date_start'];
+        $date_end       = $item['date_end'];
+        $date_modifi    = $item['date_modifi'];
+        $name_city      = $item['name_city'];
+        $name_district  = $item['name_district'];
+        $name_ward      = $item['name_ward'];
+        $name_type      = $item['name_type'];
+        $name_project   = $item['name_project'];
+        $floor          = $item['floor'];
+        $bedroom        = $item['bedroom'];
+        $bathroom       = $item['bathroom'];
+        $direction      = $item['direction'];
+        $area           = $item['area'];
+        $type_news      = $item['type_news'];
+        $status         = $item['status'];
+        $cat_id         = $item['cat_id'];
+        $i              = 1;
+       
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/real-estate/'.$image;
+                    break;
+                } 
+            }
+        }
+
+        
+        $price          = $item['price'];
+        
+        
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+
+        $linkFilterCity  = $this->url('CategoryBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'category',
+            'namecity'      =>  \ZendVN\Url\FriendlyLink::filter($name_city),
+            'type'          =>  \ZendVN\Url\FriendlyLink::filter('co-hinh'),
+            'name'          =>  \ZendVN\Url\FriendlyLink::filter('nha-dat-ban'),
+            'idcity'        =>  $item['city'],
+            'id'            =>  123,
+            'extension'     =>  'html',
+        ));
+
+        $linkFilterDistrict = $this->url('CategoryBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'category',
+            'namecity'      =>  \ZendVN\Url\FriendlyLink::filter($name_city),
+            'namedistrict'      =>  \ZendVN\Url\FriendlyLink::filter($name_district),
+            'type'          =>  \ZendVN\Url\FriendlyLink::filter('co-hinh'),
+            'name'          =>  \ZendVN\Url\FriendlyLink::filter('nha-dat-ban'),
+            'idcity'        =>  $item['city'],
+            'iddistrict'    =>  $item['district'],
+            'page'          =>  1,
+            'id'            =>  123,
+            'extension'     =>  'html',
+        ));
+
+        $id_favorite        = $item['id_favorite'];
+       
+        
+        if(!empty($identity)){//Trường hợp đăng nhập
+            if(!empty($id_favorite)){//Đã yêu thích thì hiển thị nút "Hủy BĐS"
+                if($identity == $item['user_id_favorite']){
+                    //Bất động sản đã yêu thích của người đang đăng nhập hiển thị nút "Hủy BĐS"
+                    $linkSaveRealEstateFavorite = '<li id="spMyShortListLink_3019240"><a href="javascript:void(0);" class="LinkSaveProperty" onclick="deleteRealEstateFavorite('.$id_favorite.')">Hủy BĐS khỏi danh sách</a></li>';
+                }else if($identity != $item['user_id_favorite']){
+                    //Nếu chưa yêu thích thì hiển thị nút "Lưu BĐS"
+                    $linkSaveRealEstateFavorite = '<li id="spMyShortListLink_2753606"><a class="saveProperty" title="Lưu BĐS" href="javascript:void(0);" onclick="saveRealEstateFavorite('.$id.')">Lưu BĐS</a></li>';
+                }
+                
+            }if(empty($id_favorite)){//Chưa yêu thích thì hiển thị nút "Lưu BĐS"
+                $linkSaveRealEstateFavorite = '<li id="spMyShortListLink_2753606"><a class="saveProperty" title="Lưu BĐS" href="javascript:void(0);" onclick="saveRealEstateFavorite('.$id.')">Lưu BĐS</a></li>';
+            }
+        }else{//Không đăng nhập. Hiển thị nút "Lưu BĐS"
+            $linkSaveRealEstateFavorite = '<li id="spMyShortListLink_2753606"><a class="saveProperty" title="Lưu BĐS" href="javascript:void(0);" onclick="saveRealEstateFavorite('.$id.')">Lưu BĐS</a></li>';
+        }
+        
+        $description = '';
+        if ($config->descriptionRealEstate() == 1)  $description  = \ZendVN\Filter\ReadMore::create($content,0,150);
+
+        $class      =   '';
+        if($type_news == 1){
+            //Tin miễn phí
+            $class  = 'class="highlightText3"';
+        }else if($type_news == 2){
+            //Tin Thường
+            $class  = 'class="highlightText5"';
+        }else if($type_news == 3){
+            //Tin VIP
+            $class  = 'class="highlightText"';
+        }else if($type_news == 4){
+            //Tin HOT
+            $class  = 'class="highlightText2"';
+        }else if($type_news == 5){
+            //Tin Chính chủ
+            $class  = 'class="highlightText4"';
+        }
+        
+        $xhtml .= '<li>
+                    <a title="'.$title.'" class="illustrationPic" href="'.$linkDetail.'"><img width="150" alt="'.$title.'" src="'.$image.'"></a>
+                    <div class="text">
+                        <h3><a title="'.$title.'" href="'.$linkDetail.'" '.$class.'>'.\ZendVN\Filter\ReadMore::create($title,0,80).'</a></h3>
+                        <h4><span><a href="'.$linkFilterCity.'" title="'.$name_city.'">'.$name_city.'</a> | <a href="'.$linkFilterDistrict.'" title="'.$name_district.'">'.$name_district.'</a> </span><span>'.\ZendVN\Convert\Price::convert($price).' | '.$area.'m<sup>2</sup></span></h4>
+                        <p>'.$description.'<small class="ago">(<b>'.$date_end.'</b>)</small></p>
+                        <ul class="moreBox">            
+                            
+                            '.$linkSaveRealEstateFavorite.'            
+                        </ul>
+                    </div>
+            </li>';
+
+                    
+
+                             
+    }
+}
+
+?>
+<ul class="tabS">
+                <li runat="server"><h4><a href="#" runat="server" title="Tất cả" class="current">Tất cả<span> </span></a></h4></li>
+                                    
+            </ul>
+<ul id="MainContent_ListItems1_DivPropertyList1" class="leftListing1">
+    <ul>
+        <?php echo $xhtml;?>          
+
+    </ul>
+</ul>
+
+  
+   <?php
+    if($this->arrParam['transaction'] == 2){
+        $paramsUrl  = array(
+            'module'        =>  'home',
+            'controller'    =>  'business',
+            'action'        =>  'landsale',
+            'alias'         =>  $this->arrParam['alias'],
+            'landsale'      => 'nha-dat',
+            'transaction'   =>  'ban',
+            'page'          => '1',
+        );
+    }
+    if($this->arrParam['transaction'] == 1){
+        $paramsUrl  = array(
+            'module'        =>  'home',
+            'controller'    =>  'business',
+            'action'        =>  'landforrent',
+            'alias'         =>  $this->arrParam['alias'],
+            'landforrent'      => 'nha-dat',
+            'transaction'   =>  'cho-thue',
+            'page'          => '1',
+        );
+    }
+    echo $this->paginationControl($this->paginator , 'sliding' , 'home/business/paginator.phtml', array(
+        'router'    => 'LandSaleBusinessRoute',
+        'arrParam'  =>$paramsUrl,
+    )); 
+    ?>
+
+
+<script type="text/javascript">
+    //Thêm vào yêu thích
+    function saveRealEstateFavorite(id){
+        var authenticate = '<?php echo $identity;?>';
+        if(authenticate == ''){
+            alert('Bạn phải đăng nhập để lưu Bất động sản này');
+        }else{
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {value : id, option : 'save-real-estate-favorite'},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    alert('Đã thêm Bất động sản này vào danh sách yêu thích');
+                }
+            });    
+        }
+        
+    }
+
+    //xóa khỏi yêu thích
+    function deleteRealEstateFavorite(id){
+        var authenticate = '<?php echo $identity;?>';
+        if(authenticate == ''){
+            alert('Bạn phải đăng nhập để Hủy Bất động sản này khỏi danh sách');
+        }else{
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {value : id, option : 'delete-real-estate-favorite'},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    alert('Đã xóa khỏi danh sách Bất động sản yêu thích');
+                }
+            });    
+        }
+        
+    }
+
+</script>
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

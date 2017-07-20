@@ -1,0 +1,248 @@
+<?php
+//Thời hạn sử dụng tài khoản cao cấp
+$remain         = 'Vô hạn';
+$name_service   = 'Tài khoản thường';
+if(!empty($this->itemThoiHanSuDung)){
+    $hansudung_db = explode("-",$this->itemThoiHanSuDung['date_end']);
+    //tính số ngày còn lại sử dụng dịch vụ
+    $month  = !empty($hansudung_db[1]) ? $hansudung_db[1] : '';
+    $day    = !empty($hansudung_db[0]) ? $hansudung_db[0] : '';
+    $year   = !empty($hansudung_db[2]) ? $hansudung_db[2] : '';
+    $remain = ceil((mktime(0,0,0,$month,$day,$year) - time()) / 86400) .' ngày'; 
+    $name_service = $this->itemThoiHanSuDung['name_service'];                        
+}
+
+if(!empty($this->listItems)){
+	$xhtmlName 			= '';
+	$xhtmlPrice			= '';
+	$xhtmlTinThuong		= '';
+	$xhtmlTinVip		= '';
+	$xhtmlTinHot		= '';
+	$xhtmlTinFree		= '';
+	$xhtmlTinCc			= '';
+	$xhtmlPay			= '';
+	foreach($this->listItems as $item){
+		$className 		= '';
+		$classActive 	= 'class="column-alt"';
+		if($item['id'] %2 == 0){
+			$className = 'class="recommend"';
+			$classActive = 'class="column"';
+		}
+		$xhtmlName 		.= '<td '.$className.'>'.$item['name'].'</td>';
+	
+		$xhtmlTinThuong .= ' <td '.$classActive.'>'.$item['normal'].' tin</td>';
+		$xhtmlTinVip 	.= ' <td '.$classActive.'>'.$item['vip'].' tin</td>';
+		$xhtmlTinHot 	.= ' <td '.$classActive.'>'.$item['hot'].' tin</td>';
+		$xhtmlTinFree 	.= ' <td '.$classActive.'>'.$item['free'].' tin</td>';
+		$xhtmlTinCc 	.= ' <td '.$classActive.'>'.$item['chinhchu'].' tin</td>';
+
+		$urlPay 		= $this->url('MVC_UserRouter/action',array('module'=>'user','controller'=>'service','action'=>'pay','id'=>$item['id']));
+		
+
+		if($item['id'] != 1){
+			$xhtmlPrice 	.= '<td class="recommend">
+		                    <span class="highlight">'.$item['price'].'&nbsp;₫ /Tháng</span>
+		                    <br>
+		                    <div class="quatity">
+		                        
+		                        <label for="platinum-6-Months">
+		                            6 tháng</label>
+		                       
+		                    </div>
+
+			            </td>';
+
+			$xhtmlPay		.= '<td '.$classActive.'>  
+			                    <a href="javascript:;" onclick="payServiceAccount('.$item['id'].')"><button style="border:1px solid white;width:81px;height:32px;font-weight:bold;background : url('. TEMPLATE_URL.'/user/images/dangkigianhangcaocap.png);" id="RegisterGold" name="RegisterGold" type="button" value=""></button></a>
+			            </td>';
+		}
+		
+	}
+}
+
+
+
+?>
+
+<style type="text/css">
+    .RegStorePackageId {
+        width: 100%;
+        border: 1px solid #d4d4d4;
+    }
+
+        .RegStorePackageId td {
+            text-align: center;
+            vertical-align: middle;
+            width: 105px;
+            padding: 9px;
+        }
+
+        .RegStorePackageId tr.header1 {
+            background-image: url('<?php echo TEMPLATE_URL;?>/user/images/store-package-bg.jpg');
+            background-repeat: repeat-x;
+            color: #FFF;
+            height: 48px;
+            font-weight: bold;
+        }
+
+        .RegStorePackageId tr.header2 {
+            background-image: url('/public/templates/default/images/store-package-bg2.jpg');
+            background-repeat: repeat-x;
+            color: #FFF;
+        }
+
+            .RegStorePackageId tr.header2 td {
+                border-top: 1px solid #434343;
+            }
+
+        .RegStorePackageId tr.header1 td {
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .RegStorePackageId tr.header1 td, .RegStorePackageId tr.header2 td {
+            border-left: 1px solid #474747;
+        }
+
+        .RegStorePackageId tr.header1 .t-header, .RegStorePackageId tr.header2 .t-header {
+            border-left: none;
+        }
+
+        .RegStorePackageId tr.header2 .t-header {
+            vertical-align: middle;
+        }
+
+        .RegStorePackageId tr.header2 td {
+            vertical-align: top;
+            
+        }
+
+        .RegStorePackageId span.highlight {
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        .RegStorePackageId tr.header2 .recommend {
+            background-color: #a40000;
+            border-top: 1px solid #e22525;
+        }
+
+        .RegStorePackageId tr.header1 .recommend {
+            background-color: #ce0808;
+            border-bottom: 1px solid #7d0101;
+        }
+
+        .RegStorePackageId .quatity {
+            display: block;
+            text-align: center;
+            padding: 9px 10px 0;
+            line-height: 24px;
+        }
+
+        .RegStorePackageId .row .column {
+            background-color: #e3e3e3;
+        }
+
+        .RegStorePackageId .row .column-alt {
+            background-color: #ebebeb;
+        }
+
+        .RegStorePackageId .row-alt .column {
+            background-color: #f6f6f6;
+        }
+
+        .RegStorePackageId .row-alt .column-alt {
+            background-color: #ffffff;
+        }
+</style>
+
+<table class="RegStorePackageId" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+    <thead>
+        <tr class="header1">
+            <td>&nbsp;</td>
+            <?php echo $xhtmlName;?>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="all-quantity" class="header2">
+            <td class="recommend">
+                <span class="highlight">Đơn giá</span>
+            </td>
+            '<td class="recommend">
+		                    <span class="highlight">Miễn phí</span>
+		                    
+
+			            </td>
+           	<?php echo $xhtmlPrice;?>
+        </tr>
+       
+       
+        
+        <tr class="row-alt">
+            <td class="column">
+                <span class="highlight">Kích hoạt tin thường</span>
+            </td>
+            <?php echo $xhtmlTinThuong;?>
+        </tr>
+        <tr class="row">
+            <td class="column">
+                <span class="highlight">Kích hoạt tin VIP</span>
+            </td>
+           <?php echo $xhtmlTinVip;?>
+        </tr>
+       
+        <tr class="row-alt">
+            <td class="column">
+                <span class="highlight">Kích hoạt tin HOT</span>
+            </td>
+            <?php echo $xhtmlTinHot;?>
+        </tr>
+        <tr class="row">
+            <td class="column">
+                <span class="highlight">Kích hoạt tin Miễn phí</span>
+            </td>
+           <?php echo $xhtmlTinFree;?>
+        </tr>
+        <tr class="row-alt">
+            <td class="column">
+                <span class="highlight">Kích hoạt tin Chính chủ</span>
+            </td>
+            <?php echo $xhtmlTinCc;?>
+        </tr>
+        <tr class="row-alt" id="all-action">
+        	<td class="column">
+                
+            </td>
+            <td class="column">
+                
+            </td>
+            <?php echo $xhtmlPay;?>
+        </tr>
+
+        <tr>
+            <td colspan="5" style="text-align: left; font-style: italic;">
+                <span>Chú thích (*):<br>
+                -  Đối với trường hợp nâng cấp, hệ thống sẽ tính toán chi phí khách hàng phải trả thêm từ thời hạn còn lại của gọi dịch vụ hiện tại của khách hàng khi nâng cấp lên gói dịch vụ khách hàng chọn.<br>
+                - Khi đăng kí dịch vụ bạn sẽ phải tiến hành thanh toán chi phí qua cổng Thanh toán Ngân Lượng. Khi bạn thanh toán xong bạn vui lòng liên hệ lại cho chúng tôi để tiến hàng nâng cấp gian hàng cho bạn.
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+
+        $(document).ready(function(){
+            
+
+        });
+
+        function payServiceAccount(id)
+        {   
+            if(!confirm("<?php echo $name_service;?> của bạn còn <?php echo $remain;?> . Bạn muốn nâng cấp không?")) return;
+            else
+            {
+                window.location = '<?php echo $this->url(null,array("module"=>"user","controller"=>"service","action"=>"pay"));?>' + id;
+            }   
+        }
+
+        </script>

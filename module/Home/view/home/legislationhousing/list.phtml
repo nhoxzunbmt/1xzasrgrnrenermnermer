@@ -1,0 +1,70 @@
+
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+       
+        $id             = $item['id'];
+        $title          = $item['title']; 
+        $number         = $item['number'];
+       
+        
+        $urlDetail   = $this->url('DetailLegislationHousingRoute',array(
+            'controller'        => 'legislationhousing',
+            'action'            => 'detail',
+            'namecategory'      => \ZendVN\Url\FriendlyLink::filter($item['name_category']),
+            'title'             => \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'               => $item['cat_id'],
+            'id'                => $item['id'],
+            'extension'         => 'html',
+        ));
+
+        $xhtml .= ' <tr><td>'.$id.'</td><td><p><a href="'.$urlDetail.'">'.$title.'</a></p> </td><td>'.$number.'</td></tr>';
+
+                    
+
+                             
+    }
+}
+
+
+?>
+   <div class="taList1"><table><tbody><tr><th>STT</th><th>Tên</th><th>Số hiệu</th></tr>
+
+    <?php echo $xhtml;?>
+
+    </tbody></table>
+<script type="text/javascript">
+    _ITEMS_PAGES=$("#idItemPage").val();
+    var tps = (parseInt($("#hTotalRows").val())%_ITEMS_PAGES)!=0?(parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES))+1):parseInt(parseInt($("#hTotalRows").val())/(_ITEMS_PAGES));
+    nvgPaging.mjDrawLbPageListingPiNoAjaxLi(tps, $("#hCurrentPage").val(), "dvPagingDefault",$("#idPage").val(),$("#idQs").val(),$('#pPath').val());
+    nvgPaging.loadMiddleListBanner("divMiddleListBanner","middlelistbanner");
+</script>
+</div>
+
+  
+ <?php
+    $paramsUrl  = array(
+       'module'        => 'home',
+        'controller'   => 'legislationhousing',
+        'action'       => 'index',
+        'page'         => '1',
+    );
+    echo $this->paginationControl($this->paginator , 'sliding' , 'home/business/paginator.phtml', array(
+        'router'    => 'ListLegalHousingRoute',
+        'arrParam'  =>$paramsUrl,
+    )); 
+ ?>
+
+
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

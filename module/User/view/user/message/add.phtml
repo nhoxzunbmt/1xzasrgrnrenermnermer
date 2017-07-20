@@ -1,0 +1,54 @@
+<?php
+
+
+
+$myForm	= $this->myForm;
+$messagesErrors = $this->elementErrors(array(
+    'name'                 =>  $myForm->get('name'),
+    'username'             =>  $myForm->get('username'),
+    'content'              =>  $myForm->get('content'),
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+?>
+<?php echo $messagesErrors .$xhtmlError;?>
+<form name="appForm" method="post" action="">
+
+<div class="BoxCardCode">
+    <div class="TitleBox">
+        <h2>
+           <?php echo $this->title;?></h2>
+    </div>
+    <div class="DesCardCode">
+    	
+    	<ul>
+        	<li>
+                <label>Username *:</label>
+                <p><?php  echo $this->formText($myForm->get('username'));?></p>
+            </li>
+           
+            <li>
+                <label>Tiêu đề *:</label>
+                <p> <?php  echo $this->formText($myForm->get('name'));?></p>
+            </li>
+            
+           
+           
+            <li class="end">
+                <label>Nội dung *:</label>
+                <p><?php  echo $this->formTextarea($myForm->get('content'));?></p>
+            </li>
+		</ul>
+        <div class="Button">    
+              
+
+                <a href="#" class="actionButtonAcc" onclick="OnSubmitForm('<?php echo $this->basePath('/user/message/add/');?>')" id="MainContent_ctl00_btnDongY"><div id="btnLabel">Gửi tin nhắn</div></a>
+                
+        </div>
+    </div>
+    
+
+    
+</div>
+
+</form>

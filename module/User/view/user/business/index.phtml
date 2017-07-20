@@ -1,0 +1,118 @@
+<?php
+if($this->identity()){
+    
+    $name           = $this->item['name'];
+    $alias          = $this->item['alias'];
+    $type_business  = $this->item['type_business'];
+    $phone          = $this->item['phone'];
+    $fax            = $this->item['fax'];
+    $website        = $this->item['website'];
+    $adrress        = $this->item['address'] .' - '.$this->item['name_city'] . ' - ' .$this->item['name_district'] . ' - ' .$this->item['name_ward'];
+    $intro          = $this->item['intro'];
+    $contact        = $this->item['contact'];
+    $department     = $this->item['department'];
+    $avatar     = (!empty($this->item['logo']))  ? UPLOAD_URL .'/logo-business/'.$this->item['logo'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+    $linkIntro  = $this->url('IntroBusinessRoute',array('action'=>'detail','alias'=>$alias));
+
+
+    $linkEdit   = $this->url('MVC_UserRouter/action',array('module'=>'user','controller'=>'business','action'=>'edit','id'=>$this->item['id']));
+}
+
+?>        
+
+<div id="BoxInfoAccount">
+    <div class="ListAlter">
+        
+        <a id="MainContent_ctl00_lbtSuaTaiKhoan" href="<?php echo $linkEdit;?>">Sửa thông tin doanh nghiệp</a></div>
+    <div class="TitleBox">
+        <h2><span id="MainContent_ctl00_lblTieuDe">Thông tin doanh nghiệp</span></h2>
+    </div>
+    <div class="DesBoxInfoAccount">
+        <h3><span id="MainContent_ctl00_lblThongBao" style="color:Red;"></span></h3>
+        <div class="Imglogo">
+            <div id="MainContent_ctl00_divHinhView"><img id="MainContent_ctl00_imgLogoView" src="<?php echo $avatar;?>" style="height:80px;width:80px;"></div>
+            <br>
+            <span class="name">
+                <span id="MainContent_ctl00_lblTenDangNhap"></span><a href="<?php echo $linkIntro;?>">(Xem trang doanh nghiệp)</a></span></div>
+        <div class="TitleSub"><span>Thông tin liên hệ</span></div>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="25%"><label>Tên doanh nghiệp:</label><span class="star" id="sao1">*</span></td>
+                    <td width="75%"><span class="namecompany"><span id="MainContent_ctl00_lblTenLienHe"><?php echo $name;?></span></span></td>
+                </tr>
+                <tr>
+                    <td><label>Alias:</label><span class="star" id="sao2">*</span></td>
+                    <td><span><span id="MainContent_ctl00_lblHoTen"><?php echo $alias;?></span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Loại doanh nghiệp:</label></td>
+                    <td><span><span id="MainContent_ctl00_lblDiaChi"><?php echo $type_business;?></span></span>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><label>Điện thoại:</label><span class="star" id="Span1">*</span></td>
+                    <td><span class="mobile">
+                        
+                        <span id="MainContent_ctl00_lblDiDong"><?php echo $phone;?></span>
+                        <input type="hidden" id="hdndidong" value="<?php echo $phone;?>">
+                        </span></td>
+                </tr>
+                <tr>
+                    <td><label>Fax:</label><span class="star" id="sao3">*</span></td>
+                    <td><span class="email"><?php echo $fax;?>
+                        </span></td>
+                </tr>
+                <tr>
+                    <td><label>Website:</label></td>
+                    <td><span class="email"><a id="MainContent_ctl00_lblWebsite"><?php echo $website;?></a></span>
+                        
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td><label>Địa chỉ:</label></td>
+                    <td><span>
+                            <span id="MainContent_ctl00_lblDangThanhVien"><?php echo $adrress;?></span></span></td>
+                </tr>
+                <tr>
+                    <td valign="top"><label><span id="MainContent_ctl00_lblTieuDeAboutme" style="font-weight: bold; display: inline;">Tự giới thiệu</span></label></td>
+                    <td valign="top"><span id="MainContent_ctl00_lblAboutme"></span><textarea name="ctl00$MainContent$ctl00$txtAboutme" id="MainContent_ctl00_txtAboutme" style="width: 400px; height: 200px;" class="input_text"><?php echo $intro;?></textarea>
+                        
+                      
+                    </td>
+                </tr>
+               
+                 <tr>
+                    <td valign="top"><label><span id="MainContent_ctl00_lblTieuDeAboutme" style="font-weight: bold; display: inline;">Liên hệ</span></label></td>
+                    <td valign="top"><span id="MainContent_ctl00_lblAboutme"></span><textarea name="ctl00$MainContent$ctl00$txtAboutme" id="MainContent_ctl00_txtAboutme" style="width: 400px; height: 200px;" class="input_text"><?php echo $contact;?></textarea>
+                        
+                        
+                    </td>
+                </tr>
+                
+                 <tr>
+                    <td valign="top"><label><span id="MainContent_ctl00_lblTieuDeAboutme" style="font-weight: bold; display: inline;">Chi nhánh</span></label></td>
+                    <td valign="top"><span id="MainContent_ctl00_lblAboutme"></span><textarea name="ctl00$MainContent$ctl00$txtAboutme" id="MainContent_ctl00_txtAboutme" style="width: 400px; height: 200px;" class="input_text"><?php echo $department;?></textarea>
+                        
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

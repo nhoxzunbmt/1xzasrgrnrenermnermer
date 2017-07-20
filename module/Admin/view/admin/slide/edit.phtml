@@ -1,0 +1,153 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('title');
+$elementDescription		= $myForm->get('description');
+$elementUrl 		= $myForm->get('link');
+$elementFile		= $myForm->get('image');
+
+
+$image        = (!empty($this->item->images))  ? UPLOAD_URL .'/slide/'.$this->item->images :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tiêu đề',
+		'tooltipmessage'	=>	'Tiêu đề',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementDescription),
+		'input'				=>	$this->formElement($elementDescription),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Mô tả ngắn',
+		'tooltipmessage'	=>	'Mô tả ngắn',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementUrl),
+		'input'				=>	$this->formElement($elementUrl),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Url',
+		'tooltipmessage'	=>	'Url',
+	),
+	
+
+	array(
+		'label'				=>	'Mở liên kết ở',
+		'input'				=>	'<select name="open" id="open" size="1" style="width:100px;"><option value="1">Trang hiện hành</option><option value="2">Trang mới</option></select>',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Mở liên kết',
+		'tooltipmessage'	=>	'Mở liên kết',
+	),
+
+	array(
+		'label'				=>	$this->formLabel($elementFile),
+		'input'				=>	'<div id="load-avatar"><img src="'.$image.'" width="150" height="150">
+								<input name="image_hidden" type="hidden" value="'.$this->item->images.'"/>
+								</div><br>
+								
+								<input name="image" type="file" />
+								<button class="Button btn btn-small">Tải lên</button>
+								',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Hình đại diện',
+		'tooltipmessage'	=>	'Hình đại diện',
+	),
+	
+	
+	
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'title'					=>	$elementName,
+	'link'					=>	$elementUrl,
+));
+
+
+
+
+?>
+
+
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+	    			echo $this->formElement($elementId);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+		$(function() {
+			
+
+		    //upload avatar
+			$("#appForm").submit(function(){
+			    var formData = new FormData($(this)[0]);
+			    
+			    $.ajax({
+			        url: "<?php echo $this->url(null,array('module'=>'admin','controller'=>'slide','action'=>'upload'));?>",
+			        type: 'POST',
+			        data: formData,
+			        async: false,
+			        success: function (data) {
+			        	$j("#load-avatar").html(data);
+			        },
+			        cache: false,
+			        contentType: false,
+			        processData: false
+			    });
+
+			    return false;
+			});
+
+
+		});
+
+	  </script> 
+
+	 <script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+	<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+	<script>
+			var content = CKEDITOR.replace( 'content', {
+				customConfig	: 'config-05.js',
+				
+			});
+			CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+		
+
+	</script>
+  	      	 	

@@ -1,0 +1,77 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId					= $myForm->get('id');
+$elementTitle 				= $myForm->get('name');
+$elementSeo_keyword			= $myForm->get('seo_keyword');
+$elementDescription			= $myForm->get('seo_description');
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementTitle),
+		'input'				=>	$this->formElement($elementTitle),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tiêu đề',
+		'tooltipmessage'	=>	'Nhập Tiêu đề',
+	),
+	
+
+	array(
+		'label'				=>	$this->formLabel($elementSeo_keyword),
+		'input'				=>	$this->formElement($elementSeo_keyword),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Thẻ từ khóa',
+		'tooltipmessage'	=>	'Thẻ từ khóa',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementDescription),
+		'input'				=>	$this->formElement($elementDescription),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Thẻ mô tả',
+		'tooltipmessage'	=>	'Thẻ mô tả',
+	),
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'name'					=>	$elementTitle,
+
+	
+));
+
+
+
+
+ 
+       
+
+
+?>
+
+
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+	    			echo $this->formElement($elementId);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+

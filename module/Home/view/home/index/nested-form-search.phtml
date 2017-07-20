@@ -1,0 +1,287 @@
+<?php
+
+//Loại bất động sản
+$frmTypeRealEstate          = $this->cmsSelect('type_real_estate','',$this->itemsTypeRealEstate,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+
+//Loại bất động sản
+$frmProjectCat          = $this->cmsSelect('project_cat','',$this->itemsProjectCat,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+//Kiểu bất động sản
+$arrOptions = array(
+    array('id'=>'','name'=>'Kiểu bất động sản'),
+);
+$frmTypeRealEstateChild     = $this->cmsSelect('type_real_estate_child','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+//Tỉnh
+$frmCity            = $this->cmsSelect('city','',$this->itemsCity,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+//Quận huyện
+$arrOptions = array(
+     array('id'=>'','name'=>'Quận/Huyện'),
+);
+$frmDistrict        = $this->cmsSelect('district','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+
+//Tỉnh
+$frmCityProject            = $this->cmsSelect('city_project','',$this->itemsCity,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+//Quận huyện
+$arrOptions = array(
+     array('id'=>'','name'=>'Quận/Huyện'),
+);
+$frmDistrictProject        = $this->cmsSelect('district_project','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+
+$arrOptions = array(
+      array('id'=>'','name'=>'Khoảng giá'),
+      array('id'=>'0-500','name'=>'0 - 500 triệu'),
+      array('id'=>'500-750','name'=>'500 - 750 triệu'),
+      array('id'=>'7500-1000','name'=>'750- 1 tỷ'),
+      array('id'=>'1000-2000','name'=>'1 - 2 tỷ'),
+      array('id'=>'2000-3000','name'=>'2 - 3 tỷ'),
+      array('id'=>'3000-4000','name'=>'3 - 4 tỷ'),
+      array('id'=>'4000-6000','name'=>'4 - 6 tỷ'),
+      array('id'=>'6000-8000','name'=>'6 - 8 tỷ'),
+      array('id'=>'12000-1000000000','name'=>'trên 12 tỷ'),
+);
+$frmKhoangGia               = $this->cmsSelect('price_range','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+
+$arrOptions = array(
+  array('id'=>'','name'=>'Diện tích'),
+  array('id'=>'0-40','name'=>'0-40 m2'),
+  array('id'=>'40-70','name'=>'40-70 m2'),
+  array('id'=>'70-100','name'=>'70 - 100 m2'),
+  array('id'=>'100-150','name'=>'100 - 150 m2'),
+  array('id'=>'150-250','name'=>'150 - 250 m2'),
+  array('id'=>'250-500','name'=>'250 - 500 m2'),
+  array('id'=>'500-1000','name'=>'500 - 1000 m2'),
+  array('id'=>'1000-1500','name'=>'1000 - 1500 m2'),
+  array('id'=>'1500-3000','name'=>'1500 - 3000 m2'),
+  array('id'=>'3000-1000000','name'=>'trên 3000 m2'),
+);
+$frmAreaRange               = $this->cmsSelect('area_range','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+
+$arrOptions = array(
+  array('id'=>'','name'=>'Diện tích'),
+  array('id'=>'100-150','name'=>'100 - 150 m2'),
+  array('id'=>'150-250','name'=>'150 - 250 m2'),
+  array('id'=>'250-500','name'=>'250 - 500 m2'),
+  array('id'=>'500-1000','name'=>'500 - 1000 m2'),
+  array('id'=>'1000-1500','name'=>'1000 - 1500 m2'),
+  array('id'=>'1500-3000','name'=>'1500 - 3000 m2'),
+  array('id'=>'3000-5000','name'=>'3000 - 5000 m2'),
+  array('id'=>'5000-10000','name'=>'5000 - 10000 m2'),
+  array('id'=>'10000-20000','name'=>'10000 - 20000 m2'),
+  array('id'=>'20000-30000','name'=>'20000 - 30000 m2'),
+  array('id'=>'30000-100000000','name'=>'trên 30000 m2'),
+);
+$frmAreaRangeProject               = $this->cmsSelect('area_range_project','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+//Search Name
+$linkSearchBds         = $this->url('MVC_HomeRouter/action',array('controller'=>'realestate','action'=>'search'));
+
+$linkSearchProject         = $this->url('MVC_HomeRouter/action',array('controller'=>'project','action'=>'search'));
+//Category
+
+
+$linkLoadDistrict    = $this->url('MVC_HomeRouter/action',array(
+    'module'=>'home',
+    'controller'=>'business',
+    'action'=>'load-select-district'
+));
+
+
+$linkLoadTypeRealEstate = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'realestate','action'=>'load-select-type-real-estate'));
+?>
+
+<div class="boxSearch nvgFst">
+        <ul>
+            <li class="current">
+                <h4><a id="transaction-2" rel="2" title="Nhà đất bán" href="javascript:;" onclick="$('#txtText').show();$('#txtTextThue').hide();$('#txtTextDuAn').hide();$('#txtTextBDS').show();NvgFst.ActiveTab(this, '.tabBan');LoadLoaiBDSFolTranClass('sale');SetValueQH('txtTranClass', 'sale');LoadGia();WriteTextCondition();"><b>Nhà đất bán</b></a></h4>
+            </li>
+            <li>
+                <h4><a id="transaction-1" rel="1" title="Nhà đất cho thuê" href="javascript:;" onclick="$('#txtText').hide();$('#txtTextThue').show();$('#txtTextDuAn').hide();$('#txtTextBDS').show();NvgFst.ActiveTab(this, '.tabBan');LoadLoaiBDSFolTranClass('rent');SetValueQH('txtTranClass', 'rent');LoadGia();WriteTextCondition();"><b>Nhà đất cho thuê</b></a></h4>
+            </li>
+            <li><h4><a title="Dự án" href="javascript:;" onclick="$('#txtTextBDS').hide();$('#txtTextDuAn').show();NvgFst.ActiveTab(this, '.tabDuAn');"><b>Dự án</b></a></h4></li>
+            <li class="end"><strong><span id="txtTextBDS">Tìm kiếm bất động sản mới mỗi ngày!</span><span id="txtTextDuAn" style="display: none;">Tìm kiếm dự án bất động sản!</span></strong></li>
+            
+        </ul>
+        <div class="contentSearch bgRed tabBan">
+            <form action="<?php echo $linkSearchBds;?>" method="get" name="search-realestate-form" id="search-realestate-form">
+            <ol>
+                <li>
+                   
+                    <div class="selectedValues marL10 w93">
+                        <?php echo $frmCity;?>
+                    </div>
+                    <div class="selectedValues marL10 w93">
+                        <?php echo $frmDistrict;?>
+                    </div>                
+
+                    <div class="selectedValues marL10 w93">
+                        <?php echo $frmTypeRealEstate;?>
+                    </div>
+                    <div class="selectedValues marL10 w93">
+                        <?php echo $frmTypeRealEstateChild;?>
+                    </div>
+                    <div class="selectedValues marL10 w93">
+                        <?php echo $frmKhoangGia;?>        
+                    </div>
+                    <div class="selectedValues marL10 w93">
+                        <?php echo $frmAreaRange;?>        
+                    </div>
+
+                     <input type="button" id="search-submit-real-estate" name="submit" style="float:right;background:url('<?php echo TEMPLATE_URL.'/default/images/search-real-estate.png';?>');width:113px;height:32px;">
+                    <div class="clearBoth"></div>
+                </li>
+               
+            </ol>
+              </form>
+
+              
+        </div>
+        <div class="contentSearch bgRed tabDuAn" style="display: none;">
+            <form action="<?php echo $linkSearchProject;?>" method="get" name="search-project-form" id="search-project-form">
+            <ol>
+                <li>
+                    
+                   
+                    
+                    <div class="selectedValues marL15">
+                        <?php echo $frmCityProject ;?>     
+                    </div>
+                    <div class="selectedValues marL15">
+                        <?php echo $frmDistrictProject ;?>
+                    </div>
+                    <div class="selectedValues marL15">
+                        <?php echo $frmProjectCat;?>
+                    </div>
+                     <div class="selectedValues marL15">
+                        <?php echo $frmAreaRangeProject ;?>     
+                    </div>
+                    <input type="button" id="search-submit-project" name="submit" style="float:right;background:url('<?php echo TEMPLATE_URL.'/default/images/search-real-estate.png';?>');width:113px;height:32px;">
+                    <div class="clearBoth"></div>
+                </li>
+                
+            </ol>
+        </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            _transaction = 2;
+            $("#transaction-1").click(function(){
+                _transaction    = $("#transaction-1").attr("rel");
+        
+            });
+            $("#transaction-2").click(function(){
+                _transaction    = $("#transaction-2").attr("rel");
+               
+            })
+            
+            
+            $("#city").change(function(){
+                  var city = $("#city option:selected").val();
+                  
+                  loadDistrict(city);
+              });
+
+            $("#city_project").change(function(){
+                  var city_project = $("#city_project option:selected").val();
+                  
+                  loadDistrictProject(city_project);
+              });
+
+            //Load kiểu bất động sản
+            $("#search-realestate-form #type_real_estate").change(function(){
+                var type_real_estate = $("#search-realestate-form #type_real_estate option:selected").val();
+                loadTypeRealEstate(type_real_estate);
+            });
+
+            $("#search-realestate-form #search-submit-real-estate").click(function(){
+                
+                var city        = $("#search-realestate-form #city option:selected").val();
+                var district    = $("#search-realestate-form #district option:selected").val();
+                var cat         = $("#search-realestate-form #type_real_estate_child option:selected").val();
+                
+                var price_range     = $("#search-realestate-form #price_range option:selected").val();
+                var area_range      = $("#search-realestate-form #area_range option:selected").val();
+                var project         = $("#search-realestate-form #project option:selected").val();
+                var linkSearchBds = '<?php echo $linkSearchBds;?>?transaction=' + _transaction + '&cat=' + cat + '&city=' + city + '&district=' + district + '&price=' + price_range + '&area=' + area_range + '&page=1';
+
+
+
+                //Tìm kiếm tất cả thông tin
+                if(cat != '' || city != ''  || district != ''|| price_range != '' || area_range != ''){
+                    window.location = linkSearchBds;
+                }else if(cat == '' && city == ''  && district == '' && price_range == '' && area_range == '' ){
+                     alert("Bạn phải nhập từ khóa, hoặc chọn các tiêu chí");
+                }
+
+            });
+
+            $("#search-project-form #search-submit-project").click(function(){
+                
+                var city        = $("#search-project-form #city_project option:selected").val();
+                var district    = $("#search-project-form #district_project option:selected").val();
+                var cat         = $("#search-project-form #project_cat option:selected").val();
+                var area_range         = $("#search-project-form #area_range_project option:selected").val();
+                
+                var linkSearchProject = '<?php echo $linkSearchProject;?>?cat=' + cat + '&city=' + city + '&district=' + district + '&area=' + area_range + '&page=1';
+
+
+
+                //Tìm kiếm tất cả thông tin
+                if(cat != '' || city != ''  || district != ''||  area_range != ''){
+                    window.location = linkSearchProject;
+                }else if(cat == '' && city == ''  && district == '' && area_range == '' ){
+                     alert("Bạn phải nhập từ khóa, hoặc chọn các tiêu chí");
+                }
+
+            });
+        });
+        
+        function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+
+        function loadDistrictProject(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district_project").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+
+        function loadTypeRealEstate(type_real_estate){
+            $.ajax({
+                url     : '<?php echo $linkLoadTypeRealEstate;?>',
+                type    : 'GET',
+                data    : {type : type_real_estate},
+                success: function(data){
+                    $("#search-realestate-form #type_real_estate_child").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        
+    </script>

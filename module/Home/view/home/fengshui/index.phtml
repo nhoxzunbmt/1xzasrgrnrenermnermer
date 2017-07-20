@@ -1,0 +1,136 @@
+<?php
+
+//List danh mục
+$urlAll           = $this->url('ListFengshuiRoute',array('module'=>'home','controller'=>'fengshui','action'=>'category'));
+
+//Tra cứu phong thủy
+$urlTraCuu           = $this->url('SearchFengshuiRoute',array('module'=>'home','controller'=>'fengshui','action'=>'fengshuiapp'));
+
+$xhtmlTabCategory = '<li id="tab-0" class="current">
+                          <h4><a href="'.$urlAll.'" title="Tất cả">
+                          Tất cả</a></h4></li>';
+if(!empty($this->listItemsCategory)){
+  foreach ($this->listItemsCategory as $key => $item) {
+ 
+    $urlCategory = $this->url('CategoryFengshuiRoute',array(
+      'module'=>'home',
+      'controller'  =>'fengshui',
+      'action'      =>'category',
+      'name'        => \ZendVN\Url\FriendlyLink::filter($item['name']),
+      'page'        => '1',
+      'id'          => $item['id'],
+       'extension'  => 'html',
+    ));
+    $xhtmlTabCategory .= '<li id="tab-'.$item['id'].'">
+                          <h4><a href="'.$urlCategory.'" title="'.$item['name'].'">
+                          '.$item['name'].'</a></h4></li>
+                          ';
+  }
+}
+?>
+
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+
+<div class="pageWrap">
+  <div class="leftMainContent">
+        
+    <?php echo $this->blkSlideFengShui();?>
+    <div class="boxTab niceHouseTab">
+      <ul>
+          <?php echo $xhtmlTabCategory;?>
+      </ul>
+    </div>
+<input type="hidden" id="hdfNewsTypeId">
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#tabNews").click(function () {
+      $("#tabState").attr("class", "");
+      $("#tabNews").attr("class", "current");
+      $("#divNews").show();
+      $("#divState").hide();
+    });
+    $("#tabState").click(function () {
+      $("#tabNews").attr("class", "");
+      $("#tabState").attr("class", "current");
+      $("#divState").show();
+      $("#divNews").hide();
+    });
+    $('#txtNewsKeySearch').val('Nhập từ khóa');
+  });
+
+  function GetNewsTypeId(id, text) {
+    $("#hdfNewsTypeId").val(id);
+    $("#hrfText").text(text);
+    $("#divNewsType").hide(1);
+  }
+</script>
+
+  <div id="MainContent_ucDefaultNewsList_divDefaultNewsList" class="niceHouseList margined">
+    <div class="leftSmallContent">
+      <ul id="MainContent_ArticleList1_divTabPhongThuy" class="tabS">
+            <li><h4><a class="current" title="Tin tức phong thủy" href="<?php echo $urlAll;?>">Tin tức phong thủy</a></h4></li>
+            <li><h4><a title="Tra cứu phong thủy" href="<?php echo $urlTraCuu;?>">Tra cứu phong thủy</a></h4></li>            
+        </ul>
+      <div class="dataTables_wrapper"><!--load--></div>
+        <?php
+        $page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+        $LinkPage   = $this->basePath()."/".$this->arrParam['module']."/fengshui/list/page/".$page;
+        $catid = (!empty($this->arrParam["id"])) ? $this->arrParam["id"] : "" ;
+        ?>
+        <script type="text/javascript">
+
+        $(document).ready(function(){
+            $(".loading").show();
+            var page        = '<?php echo $page;?>';
+            var catid       = '<?php echo $catid ?>';
+            $.ajax({
+                url     : '<?php echo $LinkPage;?>',
+                type    : 'GET',
+                data    : {page: page, catid: catid},
+                cache   : false,
+                success : function(data,status){
+                    $("div.dataTables_wrapper").html(data);
+                    $(".loading").fadeOut(1000);
+                }
+            });
+        });
+
+        </script>
+
+    </div>
+  </div>
+
+ 
+
+
+  </div>
+  <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+
+
+  <?php echo $this->blkFengShui();?>
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+</div>

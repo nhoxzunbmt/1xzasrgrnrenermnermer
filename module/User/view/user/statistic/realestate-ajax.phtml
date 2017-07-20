@@ -1,0 +1,105 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+	$xhtmlBdsBan 		= '';
+	$xhtmlBdsThue 		= '';
+	$countChuaKichHoat 	= 0;
+	$countChoDuyet 		= 0;
+	$countKhongGiaoDich = 0;
+	$countHetHan 		= 0;
+	$countDangGiaoDich 	= 0;
+	if(!empty($this->items)){
+	    foreach($this->items as $item){
+
+	        $id             = $item['id'];
+	        $title          = $item['title'];
+	        $name_type		= $item['name_type'];
+	        $name_status    = $item['name_status'];
+	        $status 		= $item['status'];
+	        $type_news      = $item['type_news'];
+
+	    	if($item['transaction'] == 2){
+	    		$xhtmlBdsBan .= '<li><label>'.\ZendVN\Filter\ReadMore::create($title,0,30).': <span> ('.$name_status.')</span></label><div class="Viewdetail"><a href="javascript:;" onclick="loadInfoBds('.$id.')">Xem</a></div>
+					</li>';
+	    	}
+	    	if($item['transaction'] == 1){
+	    		$xhtmlBdsThue .= '<li><label>'.\ZendVN\Filter\ReadMore::create($title,0,30).': <span> ('.$name_status.')</span></label><div class="Viewdetail"><a href="javascript:;" onclick="loadInfoBds('.$id.')">Xem</a></div>
+					</li>';
+	    	}
+
+	    	if($status == 1){
+	    		$countChuaKichHoat++;
+	    	}else if($status == 2){
+	    		$countChoDuyet++;
+	    	}else if($status == 3){
+	    		$countKhongGiaoDich++;
+	    	}else if($status == 4){
+	    		$countHetHan++;
+	    	}else if($status == 5){
+	    		$countDangGiaoDich++;
+	    	}	
+	    }
+	}    	
+?>	
+
+<div class="MesSearch" id="divGhiDieuKien"><h4>Bạn tìm được <span><?php echo $this->totalItem;?> BÐS</span> , trong khoảng từ ngày <span>19/11/2014</span> đến <span>19/12/2014</span></h4></div>
+		<div id="divTkBds"><div class="BuyRS"><h4>BÐS Bán</h4>
+			<ul>
+				<?php echo $xhtmlBdsBan;?>
+			</ul>
+
+		</div><div class="RentRS"><h4>BÐS Cho thuê</h4>
+		<ul>
+			<?php echo $xhtmlBdsThue;?>
+		</ul>
+
+		</div><div class="StatusRS"><h4>Trạng thái</h4>
+		<ul>
+			
+			<li>Chưa kích hoạt: <span><?php echo $countChuaKichHoat;?></span></li>
+			<li>Chờ duyệt: <span><?php echo $countChoDuyet;?></span></li>
+			<li>Không giao dịch: <span><?php echo $countKhongGiaoDich;?></span></li>
+			<li>Hết hạn: <span><?php echo $countHetHan;?></span></li>
+			<li>Đang giao dịch: <span><?php echo $countDangGiaoDich;?></span></li>
+		</ul></div></div>
+	</div>
+</div>
+
+<div class="DesStaResult" id="divDesStaResult">
+		
+
+</div>
+<?php
+		
+		$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/statistic/info-ajax";
+
+		?>
+		<script type="text/javascript">
+
+		$(document).ready(function(){
+		    
+
+		});
+
+		function loadInfoBds(id){
+			
+		    $.ajax({
+		        url     : '<?php echo $LinkPage;?>',
+		        type    : 'GET',
+		        data    : {id : id},
+		        cache   : false,
+		        success : function(data,status){
+		        	console.log(data);
+		            $("div#divDesStaResult").html(data);
+		            $(".loading").fadeOut(1000);
+		        }
+		    });
+		}
+
+		</script>
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

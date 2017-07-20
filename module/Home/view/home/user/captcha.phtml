@@ -1,0 +1,30 @@
+<?php
+$url       = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'refresh-captcha'));
+
+?>
+
+<form action="" method="post">
+	<div class="captcha-area">
+		<img src="<?php echo $this->imageUrl;?>"><br><br>
+		<input type="hidden" name="captcha_hidden" id="captcha_hidden" value="<?php echo $this->captchaID;?>">
+	</div>
+	<br>
+	<input type="text" 	name="captcha_code"><br>
+	<a href="#" class="refresh-captcha">Refresh Captcha</a><br>
+	<input type="submit" name="submit">
+</form>	
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('a.refresh-captcha').click(function(){
+			$.ajax({
+				url 	: '<?php echo $url;?>',
+				type	: 'GET',
+				data 	: {captchaID : $('#captcha_hidden').val()},
+				success : function(data){
+					$('div.captcha-area').html(data);
+				}
+			});
+		});
+	})
+</script>

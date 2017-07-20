@@ -1,0 +1,56 @@
+<?php
+$linkComment        = $this->url('MVC_UserRouter/action',array('module'=>'user','controller'=>'comment','action'=>'add'));
+?>
+<form name="appForm" method="post" action="">
+<div id="BoxInfoAccount">
+	<div class="ListAlter">
+        
+        <a id="MainContent_ctl00_lbtSuaTaiKhoan" href="<?php echo $linkComment;?>">Đăng nhận xét</a></div>
+
+	<div class="TitleBox">
+        <h2><span id="MainContent_ctl00_lblTieuDe">Nhận xét của khách hàng</span></h2>
+    </div>
+	
+	<div class="dataTables_wrapper">
+                        <!-- V? tri load datat-->
+    </div>	
+<?php
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/comment/list/page/".$page;
+?>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(".loading").show();
+    $.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        data    : {page : <?php echo $page;?>},
+        cache   : false,
+        success : function(data,status){
+            $("div.dataTables_wrapper").html(data);
+            $(".loading").fadeOut(1000);
+        }
+    });
+})
+
+
+
+</script>
+
+<script type="text/javascript">
+
+
+function deleteStaff(id)
+{   
+    if(!confirm("Bạn có chắc xóa nhận xét này?")) return;
+    else
+    {
+        window.location = '<?php echo $this->url(null,array("module"=>"user","controller"=>"comment","action"=>"delete"));?>' + id;
+    }   
+}
+
+</script>
+	<div class="PagesNumber" id="dvPaging" style="display: none;"></div>
+</div>
+</form>

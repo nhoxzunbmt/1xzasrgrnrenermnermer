@@ -1,0 +1,154 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementTitle 		= $myForm->get('title');
+$elementFile		= $myForm->get('image');
+$elementDescription		= $myForm->get('description');
+$elementContent		= $myForm->get('content');
+
+$image        = (!empty($this->item->images))  ? UPLOAD_URL .'/fengshui-news/'.$this->item->images :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementTitle),
+		'input'				=>	$this->formElement($elementTitle),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tiêu đề',
+		'tooltipmessage'	=>	'Nhập Tiêu đề',
+	),
+	
+	array(
+		'label'				=>	'Danh mục',
+		'input'				=>	$this->cmsSelect('cat_id',$this->item->cat_id,$this->itemsCategoryNews,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn Danh mục',
+		'tooltipmessage'	=>	'Chọn Danh mục',
+	),
+	
+	
+	
+	
+	array(
+		'label'				=>	$this->formLabel($elementFile),
+		'input'				=>	'<div id="load-avatar"><img src="'.$image.'" width="150" height="150">
+								<input name="image_hidden" type="hidden" value="'.$this->item->images.'"/>
+								</div><br>
+								
+								<input name="image" type="file" />
+								<button class="Button btn btn-small">Tải lên</button>
+								',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Hình đại diện',
+		'tooltipmessage'	=>	'Hình đại diện',
+	),
+	
+	
+	array(
+		'label'				=>	$this->formLabel($elementDescription),
+		'input'				=>	$this->formElement($elementDescription),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Mô tả ngắn',
+		'tooltipmessage'	=>	'Nhập vào Mô tả ngắn',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementContent),
+		'input'				=>	$this->formElement($elementContent),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Nội dung',
+		'tooltipmessage'	=>	'Nội dung',
+	),
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'title'					=>	$elementTitle,
+	'description'			=>	$elementDescription,
+	'content'				=>	$elementContent,
+	
+));
+
+
+
+?>
+
+
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+	    			echo $this->formElement($elementId);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+		$(function() {
+			
+
+		    //upload avatar
+			$("#appForm").submit(function(){
+			    var formData = new FormData($(this)[0]);
+			    
+			    $.ajax({
+			        url: "<?php echo $this->url(null,array('module'=>'admin','controller'=>'fengshuinews','action'=>'upload'));?>",
+			        type: 'POST',
+			        data: formData,
+			        async: false,
+			        success: function (data) {
+			        	$j("#load-avatar").html(data);
+			        },
+			        cache: false,
+			        contentType: false,
+			        processData: false
+			    });
+
+			    return false;
+			});
+
+
+		});
+
+	  </script>
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+var content = CKEDITOR.replace( 'content', {
+	customConfig	: 'config-05.js',
+	
+});
+CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+
+
+</script>
+      	 	

@@ -1,0 +1,42 @@
+<?php
+//Danh sách hình ảnh
+$i = 1;
+if(!empty($this->item['images'])){
+    $images  = \Zend\Json\Json::decode($this->item['images']);
+    foreach ($images as $key => $image) {
+        if($i == 1){
+            $image = UPLOAD_URL .'/real-estate/'.$image;
+            break;
+        }
+        $i++; 
+    }
+}
+
+
+$title  		= $this->item['title'];
+$name_category 	= $this->item['name_type'];
+$name_city 		= $this->item['name_city'];
+$name_district 	= $this->item['name_district'];
+$name_ward		= $this->item['name_ward'];
+$fullname 		= $this->item['fullname'];
+
+$content		= $this->item['content'];
+
+
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh Tin tức</h5>
+<p class='detail-info even'><span><img style="border-radius: 1px;-moz-border-radius: 1px;-webkit-border-radius: 1px;box-shadow: 0 0 5px black;-webkit-box-shadow: 0 0 5px black;" src="<?php echo $image;?>" width="200px" height="100"></span></p>
+<p class='detail-info even'><label>Tiêu đề:</label><span><?php echo $title ;?></span></p>
+<p class='detail-info even'><label>Danh mục:</label><span><?php echo $name_category;?></span></p>
+<p class='detail-info even'><label>Thành phố:</label><span><?php echo $name_city;?></span></p>
+<p class='detail-info even'><label>Quận huyện:</label><span><?php echo $name_district ;?></span></p>
+<p class='detail-info even'><label>Xã/phường:</label><span><?php echo $name_ward ;?></span></p>
+<p class='detail-info even'><label>Người đăng:</label><span><?php echo $fullname ;?></span></p>
+<p class='detail-info even'><label>Nội dung:</label><span><?php echo $content;?></span></p>
+
+</div>

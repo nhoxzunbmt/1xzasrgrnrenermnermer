@@ -1,0 +1,68 @@
+<?php
+$myForm             = $this->myForm;
+$myForm->setAttribute('action', $this->url(null, array(
+            'module'    =>  'home',
+            'controller'    => 'user',
+            'action'        => 'login-admin'
+    )));
+
+
+
+$xhtmlError         =  !empty($this->error) ? $this->errorMessages($this->error,'user') : '';
+
+$linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'forgot-password'));
+?>
+<?php 
+    //echo $this->form()->openTag($myForm);
+?>                
+<div id="box">
+    <div id="cphMain_ctl00_Passport_SignIn" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;cphMain_ctl00_Btn_Login&#39;)" style="width:100%;">
+  
+        <!-- BEGIN LOGIN -->
+        <div id="login">
+            <div id="loginform" class="form-vertical no-padding no-margin">
+                
+                <div class="control-wrap">
+                    <div class="logo">
+                        <img src="<?php echo TEMPLATE_URL;?>/default/images/logo-login.png" title="Đăng nhập" alt="Đăng nhập" />
+                    </div>
+                   <?php echo $xhtmlError;?>
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="input-prepend">
+                                <span class="add-on"><img src="<?php echo TEMPLATE_URL;?>/default/images/user.png"></span>
+                                <?php  echo $this->formText($myForm->get('my-email'));?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="input-prepend" style="margin-bottom: 6px;">
+                            <span class="add-on"><img src="<?php echo TEMPLATE_URL;?>/default/images/clock.png"></span>
+                            <?php  echo $this->formPassword($myForm->get('my-password'));?>
+                        </div>
+                        <div class="input-prepend">
+                            
+                        </div>
+                        <div class="login-extend">
+                            <div class="block-hint pull-left">
+                                <span class="Normal"><?php  echo $this->formCheckBox($myForm->get('my-checkbox'));?>Nhớ mật khẩu</label></span>
+                            </div>
+                            <div class="block-hint pull-right">
+                                <a href="<?php echo $linkPasswordForgot;?>" class="" id="forget-password">Quên mật khẩu?</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <input type="submit" name="my-button-submit" value="Đăng nhập" id="submit" class="btn btn-block login-btn" />
+                
+            </div>
+        </div>
+
+        
+    
+</div>
+</div>
+<?php
+//echo $this->form()->closeTag();
+?>

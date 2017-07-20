@@ -1,0 +1,75 @@
+<?php
+
+//List danh mục
+$urlAll           = $this->url('ListNiceHouseRoute',array('module'=>'home','controller'=>'nicehouse','action'=>'index'));
+$xhtmlTabCategory = '<li id="tab-0" class="current">
+                          <h4><a href="'.$urlAll.'" title="Tất cả">
+                          Tất cả</a></h4></li>';
+if(!empty($this->listItemsCategory)){
+  foreach ($this->listItemsCategory as $key => $item) {
+ 
+    $urlCategory = $this->url('CategoryNiceHouseRoute',array(
+      'module'=>'home',
+      'controller'  =>'nicehouse',
+      'action'      =>'category',
+      'name'        => \ZendVN\Url\FriendlyLink::filter($item['name']),
+      'page'        => '1',
+      'id'          => $item['id'],
+       'extension'  => 'html',
+    ));
+    $xhtmlTabCategory .= '<li id="tab-'.$item['id'].'">
+                          <h4><a href="'.$urlCategory.'" title="'.$item['name'].'">
+                          '.$item['name'].'</a></h4></li>
+                          ';
+  }
+}
+?>
+
+<div class="pageWrap">
+  <div class="leftMainContent">
+      <?php echo $this->blkSlideNiceHouse();?>
+          
+      <div class="boxTab niceHouseTab">
+        <ul>
+            <?php echo $xhtmlTabCategory;?>
+        </ul>
+      </div>
+      <div class="niceHouseList">
+        <div class="leftSmallContent">
+          <ul class="leftListing3">
+            
+            <?php echo $this->xhtmlList;?>
+
+          </ul>
+        </div>
+      </div>
+
+  </div>
+  
+  <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+
+ 
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+</div>

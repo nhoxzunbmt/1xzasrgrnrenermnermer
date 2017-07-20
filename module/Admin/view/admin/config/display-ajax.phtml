@@ -1,0 +1,71 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementDescriptionNews     = $myForm->get('descriptionNews');
+$elementDescriptionRealEstate      = $myForm->get('descriptionRealEstate');
+$elementDescriptionLegalhousing = $myForm->get('descriptionLegalhousing');
+$elementCommentFacebook = $myForm->get('commentFacebook');
+$elements = array(
+    array(
+        'label'             =>  $this->formLabel($elementDescriptionNews),
+        'input'             =>  $this->formElement($elementDescriptionNews),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '',
+        'tooltiptitle'      =>  'Hiển thị mô tả ngắn BĐS',
+        'tooltipmessage'    =>  'Hiển thị mô tả ngắn BĐS',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementDescriptionRealEstate),
+        'input'             =>  $this->formElement($elementDescriptionRealEstate),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '',
+        'tooltiptitle'      =>  'Hiển thị mô tả ngắn BĐS',
+        'tooltipmessage'    =>  'Hiển thị mô tả ngắn BĐS',
+    ),
+
+     array(
+        'label'             =>  $this->formLabel($elementDescriptionLegalhousing),
+        'input'             =>  $this->formElement($elementDescriptionLegalhousing),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '',
+        'tooltiptitle'      =>  'Hiển thị mô tả ngắn Pháp lý nhà đất',
+        'tooltipmessage'    =>  'Hiển thị mô tả ngắn Pháp lý nhà đất',
+    ),
+
+    array(
+        'label'             =>  $this->formLabel($elementCommentFacebook),
+        'input'             =>  $this->formElement($elementCommentFacebook),
+        'class'             =>  'col-sm-9',
+        'required'          =>  '',
+        'tooltiptitle'      =>  'Hiển thị comment Facebook',
+        'tooltipmessage'    =>  'Hiển thị comment Facebook',
+    ),
+
+    
+    
+);
+          
+?>
+
+<table class="admintable" style="width: 100%;">
+    <?php  echo $this->form()->openTag($myForm);
+    echo $this->partialLoop('admin/form-group.phtml',$elements);
+    echo $this->form()->closeTag();
+    ?>
+</table>
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

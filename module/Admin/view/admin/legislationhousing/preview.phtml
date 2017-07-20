@@ -1,0 +1,32 @@
+<?php
+
+
+
+$title  		= $this->item['title'];
+$name_category 	= $this->item['name_category'];
+$content		= $this->item['content'];
+$number 		= $this->item['number'];
+$placeissued 	= $this->item['placeissued'];
+$dateissued 	= $this->item['dateissued'];
+$effectivedate	= $this->item['effectivedate'];
+$expirydate		= $this->item['expirydate'];
+$effect 		= $this->item['effect'];
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh</h5>
+<p class='detail-info even'><span></p>
+<p class='detail-info even'><label>Tiêu đề:</label><span><?php echo $title ;?></span></p>
+<p class='detail-info even'><label>Danh mục:</label><span><?php echo $name_category;?></span></p>
+<p class='detail-info even'><label>Số hiệu:</label><span><?php echo $number;?></span></p>
+<p class='detail-info even'><label>Nơi ban hành:</label><span><?php echo $placeissued;?></span></p>
+<p class='detail-info even'><label>Ngày ban hành:</label><span><?php echo $dateissued;?></span></p>
+<p class='detail-info even'><label>Ngày hiệu lực:</label><span><?php echo $effectivedate;?></span></p>
+<p class='detail-info even'><label>Ngày hết hiệu lực:</label><span><?php echo $expirydate;?></span></p>
+<p class='detail-info even'><label>hiệu lực:</label><span><?php echo $effect;?></span></p>
+<p class='detail-info even'><label>Nội dung:</label><span><?php echo $content ;?></span></p>
+
+</div>

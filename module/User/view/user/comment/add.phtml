@@ -1,0 +1,57 @@
+<?php
+$myForm = $this->myForm;
+$messagesErrors = $this->elementErrors(array(
+    'content'               =>  $myForm->get('content'),
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+?>
+
+<?php echo $messagesErrors .$xhtmlError;?>
+<form name="appForm" method="post" action="">
+
+<div id="BoxFormContact">
+    <div class="TitleBox">
+        <h2>
+            Đăng nhận xét của khách hàng về dịch vụ của chúng tôi</h2>
+    </div>
+    <div class="DesBoxFormContact">
+        <table cellspacing="5" cellpadding="0" border="0">
+            <tbody>
+               
+             
+              
+                <tr>
+                    <td valign="top" align="left" class="Title">
+                        <label>
+                            Nội dung:</label>
+                        <span class="star">*</span>
+                    </td>
+                    <td>
+                        <?php  echo $this->formTextarea($myForm->get('content'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td align="left">
+                        <ul class="Btform">
+                            <li>
+                                <div class="Bgbutton">
+                                    <div>
+                                         <a href="#" onclick="OnSubmitForm('<?php echo $this->basePath('/user/comment/add/');?>')" id="MainContent_ctl00_btnDongY">Đăng nhận xét</a>
+
+                                    </div>
+                                </div>
+                                </li><li>
+                                    
+                                </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</form>

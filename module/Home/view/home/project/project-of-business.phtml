@@ -1,0 +1,154 @@
+
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+$xhtml = '';
+if(!empty($this->items)){
+    foreach($this->items as $item){
+       
+        $id             = $item['id'];
+        $name           = $item['name'];
+        $name_category  = $item['name_category'];
+        $area           = $item['area'];
+        $cat_id         = $item['cat_id'];
+       
+        $address        = $item['address'] . ' - '. $item['name_district'] .' - '.$item['name_city'];
+        $image          =  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        $i              = 1;
+        if(!empty($item['images'])){
+            $images  = \Zend\Json\Json::decode($item['images']);
+            foreach ($images as $key => $image) {
+                if($i == 1){
+                    $image = UPLOAD_URL .'/project/'.$image;
+                    break;
+                } 
+            }
+        }
+
+        
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'project',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_category),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($name),
+            'cid'           =>  $cat_id,
+            'id'            =>  $id,
+            'extension'     =>  'html',
+        ));
+
+       
+
+      
+       
+        
+
+        $xhtml .= '<li><a href="'.$linkDetail.'" class="illustrationPic"><img width="150" height="112" src="'.$image.'" alt="'.$name.'" title="'.$name.'"></a>
+                        <div class="text">
+                            <h3><a href="'.$linkDetail.'" title="'.$name.'">'.$name.'</a></h3>
+                            <h4><span>'.$address.'</span></h4>
+                            <p>'.$name.'</p>
+              <div class="typeSize">
+                                <span>Loại hình: <em>'.$name_category.'</em></span><span>Diện tích tổng thể: <em>'.$area.' m2</em></span>
+                            </div>
+              
+                        </div></li>';
+
+                    
+
+                             
+    }
+}
+
+?>
+<ul class="tabS">
+                <li runat="server"><h4><a href="#" runat="server" title="Tất cả" class="current">Tất cả<span></span></a></h4></li>
+                                    
+            </ul>
+ <ul class="leftListing1">
+    <?php echo $xhtml;?>
+
+ </ul>
+
+  
+ <?php
+    if($this->arrParam['type'] == 'investors'){
+        $router     = 'investorsBusinessRoute';
+        $paramsUrl  = array(
+            'module'        =>  'home',
+            'controller'    =>  'business',
+            'action'        =>  'investors',
+            'alias'         =>  $this->arrParam['alias'],
+            'project'       =>  'du-an',
+            'type'          =>  'chu-dau-tu',
+            'page'          => '1',
+        );
+    }
+    if($this->arrParam['type'] == 'construction'){
+        $router     = 'constructionBusinessRoute';
+        $paramsUrl  = array(
+            'module'        =>  'home',
+            'controller'    =>  'business',
+            'action'        =>  'construction',
+            'alias'         =>  $this->arrParam['alias'],
+            'project'       =>  'du-an',
+            'type'          =>  'thi-cong',
+            'page'          => '1',
+        );
+    }
+    if($this->arrParam['type'] == 'management'){
+        $router     = 'managementBusinessRoute';
+        $paramsUrl  = array(
+            'module'        =>  'home',
+            'controller'    =>  'business',
+            'action'        =>  'management',
+            'alias'         =>  $this->arrParam['alias'],
+            'project'       =>  'du-an',
+            'type'          =>  'quan-ly',
+            'page'          => '1',
+        );
+    }   
+    if($this->arrParam['type'] == 'design'){
+        $router     = 'designBusinessRoute';
+        $paramsUrl  = array(
+            'module'        =>  'home',
+            'controller'    =>  'business',
+            'action'        =>  'design',
+            'alias'         =>  $this->arrParam['alias'],
+            'project'       =>  'du-an',
+            'type'          =>  'thiet-ke',
+            'page'          => '1',
+        );
+    }   
+
+    if($this->arrParam['type'] == 'distributors'){
+        $router     = 'distributorsBusinessRoute';
+        $paramsUrl  = array(
+            'module'        =>  'home',
+            'controller'    =>  'business',
+            'action'        =>  'distributors',
+            'alias'         =>  $this->arrParam['alias'],
+            'project'       =>  'du-an',
+            'type'          =>  'phan-phoi',
+            'page'          => '1',
+        );
+    }         
+    echo $this->paginationControl($this->paginator , 'sliding' , 'home/business/paginator.phtml', array(
+        'router'    => $router,
+        'arrParam'  =>$paramsUrl,
+    )); 
+ ?>
+
+
+
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>

@@ -1,0 +1,196 @@
+<?php
+$myForm = $this->myForm;
+//echo $this->form()->openTag($this->myForm);
+$avatar         = (!empty($this->item->avatar))  ? UPLOAD_URL .'/avatar/'.$this->item->avatar :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+
+
+
+$messagesErrors = $this->elementErrors(array(
+	'fullname'				=>	$myForm->get('fullname'),
+	'email'					=>	$myForm->get('email'),
+	'phone'					=>	$myForm->get('phone'),
+	
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+?>
+<?php echo $messagesErrors .$xhtmlError;?>
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+<div id="BoxInfoAccount">
+	<div class="ListAlter">
+        
+        </div>
+	<div class="TitleBox">
+		<h2><span id="MainContent_ctl00_lblTieuDe">Hiệu chỉnh thông tin tài khoản cá nhân</span></h2>
+	</div>
+	<div class="DesBoxInfoAccount">
+		<h3><span id="MainContent_ctl00_lblThongBao" style="color:Red;"></span></h3>
+		<div class="Imglogo">
+			
+			<br>
+			<label>Tên đăng nhập:</label> <span class="name">
+				<span id="MainContent_ctl00_lblTenDangNhap"><?php echo $this->item->username;?></span></span></div>
+		<div class="TitleSub"><span>Thông tin liên hệ</span></div>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td width="25%"><label>Tên liên hệ:</label><span class="star" id="sao1">*</span></td>
+					<td width="75%"><span class="namecompany"><?php echo  $this->formText($myForm->get('fullname'));?>
+                        <?php echo $this->formHidden($myForm->get('id'));?></span></td>
+				</tr>
+				
+				
+				
+				
+				<tr>
+					<td><label>Di động:</label><span class="star" id="Span1">*</span></td>
+					<td><span class="mobile">
+                        <?php echo  $this->formText($myForm->get('phone'));?>
+                        </span></td>
+				</tr>
+				<tr>
+					<td><label>Email:</label><span class="star" id="sao3">*</span></td>
+					<td><span class="email">
+                       <?php echo  $this->formText($myForm->get('email'));?>
+				</tr>
+				<tr>
+					<td><label>Website:</label></td>
+					<td><span class="email"><?php echo  $this->formText($myForm->get('website'));?></span>
+                        <span class="star" id="Span2"><br>Lưu ý: Không cần nhập http:// chỉ cần nhập tên web, ví dụ: muabannhadat.com.vn hoặc www.muabannhadat.com.vn</span>
+                    </td>
+				</tr>
+				
+				<tr>
+					<td><label>Dạng thành viên:</label></td>
+					<td><span>
+						<?php echo $this->cmsSelect('group_id',$this->item->group_id,$this->itemsGroup,'no-level',array('class' =>'input_text'));?>
+
+							</span></td>
+				</tr>
+				<tr>
+					<td><label>Thành phố:</label></td>
+					<td><span>
+						<?php echo $this->cmsSelect('city_id',$this->item->city_id,$this->itemsCity,'no-level',array('class' =>'input_text'));?>
+
+							</span></td>
+				</tr>
+				<tr>
+					<td><label>Địa chỉ:</label></td>
+					<td><span><?php echo  $this->formText($myForm->get('diachi'));?></span>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top"><label><span id="MainContent_ctl00_lblTieuDeAboutme" style="font-weight:bold;">Tự giới thiệu</span></label></td>
+					<td valign="top"><span id="MainContent_ctl00_lblAboutme" style="display: none;"></span>
+						<?php echo  $this->formTextarea($myForm->get('introduced'));?>
+
+						
+						<input name="ctl00$MainContent$ctl00$hdnAboutme" type="hidden" id="MainContent_ctl00_hdnAboutme">
+					</td>
+				</tr>
+				<tr>
+					<td><label>Nhận thư báo hàng tuần</label></td>
+					<td><input id="MainContent_ctl00_chkNhanThuBao" type="checkbox" name="ctl00$MainContent$ctl00$chkNhanThuBao" checked="checked"></td>
+				</tr>
+				
+				<tr id="rowEmailFR" style="display: none;">
+					<td><label><span id="MainContent_ctl00_lblTieuDeEmailForum">Hiển thị email trong forum:</span></label></td>
+					<td><input id="MainContent_ctl00_chkHienEmail" type="checkbox" name="ctl00$MainContent$ctl00$chkHienEmail" checked="checked"></td>
+				</tr>
+				<tr id="rowDiaChiFR" style="display: none;">
+					<td><label><span id="MainContent_ctl00_lblTieuDeDiaChiForum">Hiển thị địa chỉ trong forum:</span></label></td>
+					<td><input id="MainContent_ctl00_chkHienDiaChi" type="checkbox" name="ctl00$MainContent$ctl00$chkHienDiaChi" checked="checked"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<div id="MainContent_ctl00_divUplaodHinhEdit">
+							<table>
+								<tbody><tr>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td height="30" align="right"><label>Upload Photo:</label></td>
+									<td height="30">
+                                        <div id="load-avatar"><img src="<?php echo $avatar;?>" width="150" height="150">
+								<input name="image_hidden" type="hidden" value="'<?php echo $this->item->avatar;?>"/>
+								</div><br>
+								
+								<input name="image" type="file" />
+								<button class="Button btn btn-small">Tải lên</button>
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody></table>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<div id="MainContent_ctl00_divAction">
+							<ul class="Btform">
+								<li>
+									<div class="Bgbutton">
+										<div> 
+											
+
+                        <a href="#" onclick="OnSubmitForm('<?php echo $this->basePath($this->currentController . '/edit/');?>')" id="MainContent_ctl00_btnDongY">Đồng ý</a>
+										</div>
+                                        
+									</div>
+                                    </li>
+								<li>
+									
+								</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</form>
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+		$(function() {
+			//datepicker
+		    $( "#textbirthday" ).datepicker({
+		    	dateFormat: "dd/mm/yy",
+		    	defaultDate: "+3d",
+		    	changeYear: true,
+		    	changeMonth: true,
+		    	yearRange: "1950:2015"
+		    });
+
+		    //upload avatar
+			$("#appForm").submit(function(){
+		    var formData = new FormData($(this)[0]);
+		    
+		    $.ajax({
+		        url: "<?php echo $this->url(null,array('module'=>'user','controller'=>'account','action'=>'upload'));?>",
+		        type: 'POST',
+		        data: formData,
+		        async: false,
+		        success: function (data) {
+		        	$("#load-avatar").html(data);
+		        },
+		        cache: false,
+		        contentType: false,
+		        processData: false
+		    });
+
+		    return false;
+		});
+
+		});
+	  </script>   	      	 	

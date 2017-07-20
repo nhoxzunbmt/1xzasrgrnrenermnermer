@@ -1,0 +1,773 @@
+<?php 
+
+	
+$myForm	= $this->myForm;
+echo $this->form()->openTag($this->myForm);
+
+
+
+//Loại bất động sản
+$frmTypeRealEstate          = $this->cmsSelect('type_real_estate','',$this->itemsTypeRealEstate,'no-level',array('class' =>'select'));
+
+
+//Kiểu bất động sản
+$arrOptions = array(
+  
+);
+$frmTypeRealEstateChild     = $this->cmsSelect('type_real_estate_child','',$arrOptions,'no-level',array('class' =>'select'));
+
+
+//Loại giao dịch
+$arrOptions = array(
+    array('id'=>'1','name'=>'Cho thuê'),
+    array('id'=>'2','name'=>'Bán'),
+);
+$frmTypeTransaction         = $this->cmsSelect('type_transaction','',$arrOptions,'no-level',array('class' =>'select'));
+
+
+//Loại tiền tệ
+$arrOptions = array(
+    array('id'=>'1','name'=>'Triệu'),
+);
+$frmTypeMoney               = $this->cmsSelect('type_money','',$arrOptions,'no-level',array('class' =>'select'));
+
+
+
+//Hướng
+$arrOptions = array(
+    array('id'=>'','name'=>'--Chọn--'),
+    array('id'=>'Đông','name'=>'Đông'),
+    array('id'=>'Tây','name'=>'Tây'),
+    array('id'=>'Nam','name'=>'Nam'),
+    array('id'=>'Bắc','name'=>'Bắc'),
+    array('id'=>'Đông Bắc','name'=>'Đông Bắc'),
+    array('id'=>'Đông Nam','name'=>'Đông Nam'),
+    array('id'=>'Tây bắc','name'=>'Tây bắc'),
+    array('id'=>'Tây Nam','name'=>'Tây Nam'),
+    array('id'=>'Chưa xác định','name'=>'Chưa xác định'),
+);
+$frmDirection               = $this->cmsSelect('direction','',$arrOptions,'no-level',array('class' =>'select'));
+    
+//Pháp lý
+$arrOptions = array(
+    array('id'=>'','name'=>'--Chọn--'),
+    array('id'=>'1','name'=>'Sổ đổ, sổ hồng'),
+    array('id'=>'2','name'=>'Giấy tờ hợp lệ'),
+    array('id'=>'3','name'=>'GP kinh doanh'),
+    array('id'=>'4','name'=>'GP xây dựng'),
+);
+$frmJuridical               = $this->cmsSelect('juridical','',$arrOptions,'no-level',array('class' =>'select'));
+
+//Số tầng
+$arrOptions = array(
+  
+);
+for($i = 0 ; $i <= 40; $i++){
+    if($i == 0){
+        $arrOptions[] = array('id'=>0,'name'=>'--Chọn--');
+    }if($i > 0 && $i < 40){
+        $arrOptions[] = array('id'=>$i,'name'=>$i);
+    }if($i == 40){
+        $arrOptions[] = array('id'=>$i,'name'=>'> 40');
+    }
+    
+}
+$frmFloor                   = $this->cmsSelect('floor','',$arrOptions,'no-level',array('class' =>'select'));
+
+//Thành phố
+$frmcity                    = $this->cmsSelect('city','',$this->itemsCity,'no-level',array('class' =>'select'));
+
+//Quận huyện
+$arrOptions = array(
+  
+);
+$frmDistrict                = $this->cmsSelect('district','',$arrOptions,'no-level',array('class' =>'select'));
+  
+//Xã phường
+$arrOptions = array(
+  
+);
+$frmWard                    = $this->cmsSelect('ward','',$arrOptions,'no-level',array('class' =>'select'));
+    
+//Thuộc dự án
+$arrOptions = array(
+  
+);
+$frmProject                 = $this->cmsSelect('project_bds','',$arrOptions,'no-level',array('class' =>'select'));
+  
+
+
+$messagesErrors = $this->elementErrors(array(
+    'title'                 =>  $myForm->get('title'),
+    'content'               =>  $myForm->get('content'),
+    'area'                  =>  $myForm->get('area'),
+    'price'                 =>  $myForm->get('price'),
+    'price_m2'              =>  $myForm->get('price_m2'),
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+
+ 
+
+?>	
+
+
+                     
+<?php echo $messagesErrors .$xhtmlError;?>
+                    
+<script src="<?php echo TEMPLATE_URL;?>/user/js/propertyUsers.js?v=23072014.163" type="text/javascript"></script>
+<div class="steps">
+        <div class="step1 active">
+            <div class="bar"></div>
+            <p>THÔNG TIN BẤT ĐỘNG SẢN</p>
+        </div>
+        <div class="step2">
+            <div class="bar"></div>
+            <p>KÍCH HOẠT TIN ĐĂNG</p>
+        </div>
+    </div>
+
+
+    
+    <div id="BoxPostProperty">
+         <div class="TitleBox">
+            <h2>
+                <span id="MainContent_ctl00_lblPropertyRV">Thông tin bất động sản</span>
+            </h2>
+        </div>
+        <div class="DesBoxPostProperty">
+<table border="0" cellpadding="0" cellspacing="5" width="100%" style="padding-top: 3px;">
+            <tbody>
+            		<tr>
+                        <td width="20%"></td>
+                        <td width="22%"></td>
+                        <td width="27%"></td>
+                        <td width="31%"></td>
+                    </tr>
+                <tr>
+                    <td class="Col1">                      
+                        <span>Tiêu đề</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2" colspan="3">
+                        <?php echo  $this->formText($myForm->get('title'));?>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Col1" style="vertical-align: top;">
+                        <span>Nội dung</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2" colspan="3">
+                    	<?php  echo $this->formTextarea($myForm->get('content'));?>
+     
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Col1" width="24%">
+                    </td>
+                    <td class="Col2" colspan="3">
+                   	 	
+                        	
+                           
+                        <div id="uploaderform" style="width:90%;">
+                            <label>
+                                <span class="small"><a href="#" id="AddMoreFileBox"><img src="<?php echo TEMPLATE_URL;?>/user/images/add.jpg">Thêm nhiều hình ảnh</a></span>
+                                </label>
+                                <div id="AddFileInputBox"><input id="fileInputBox" style="margin-bottom: 5px;" type="file" name="image[]"></div>
+                                <div class="sep_s"></div>
+                        </div>
+                            
+                        
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="4" height="5"></td>
+                </tr>
+                <tr class="BgAreaTitle">
+                    <td class="AreaTitle" colspan="4">
+                        <span>Thông tin cơ bản</span>
+                    </td>
+                </tr>
+                 <tr>
+                	<td colspan="4" height="5"></td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span>Loại BĐS</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmTypeRealEstate;?>
+                        
+                    </td>
+                    <td class="Col1">
+                        <span>Loại giao dịch</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmTypeTransaction;?>
+                        
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span>Kiểu BĐS</span>
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmTypeRealEstateChild ;?>
+</select>
+                    </td>
+                    <td class="Col1">
+                    	 <span>Diện tích (m<sup>2</sup>)</span> <font class="star">*</font>
+                     
+                    </td>
+                    <td class="Col2">
+                        <?php  echo $this->formText($myForm->get('area'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" height="20"></td>
+                	<td height="20"><span id="dt" style="font-weight: bold; color: #df3832;"></span></td>
+                </tr>
+                <tr>
+                   
+                    <td class="Col1" colspan="2">
+                        <?php  echo $this->formCheckBox($myForm->get('display_price'));?> <span style="vertical-align: top">Không hiển thị giá</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span>Tổng Giá</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                        <?php  echo $this->formText($myForm->get('price'));?>
+                    </td>
+                    <td class="Col1" colspan="2">
+                        <span id="tg" style="font-weight: bold; color: #df3832"></span>
+                    </td>
+                    
+                </tr>
+                
+                
+                <tr>
+                    <td class="Col1">
+                        <span>Giá/m<sup>2</sup></span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                        <?php  echo $this->formText($myForm->get('price_m2'));?>
+                    </td>
+                    <td class="Col1" colspan="2">
+                        <span style="font-weight: bold; color: #df3832;" id="gm"></span>
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="4" height="20"><span style="font-weight: bold; color: #df3832;" id="tnum"></span></td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span>Hướng</span>
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmDirection;?>
+                    </td>
+                    <td class="Col1">
+                        <span>Đường rộng (m)</span>
+                    </td>
+                    <td class="Col2">
+                        <?php  echo $this->formText($myForm->get('avenue'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span>Pháp lý</span>
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmJuridical;?>
+                    </td>
+                    <td class="Col1">
+                        <span>Số tầng</span>
+                    </td>
+                    <td class="Col2">
+                         <?php echo $frmFloor;?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span>Số phòng ngủ</span>
+                    </td>
+                    <td class="Col2">
+						<?php  echo $this->formText($myForm->get('bedroom'));?>
+                    </td>
+                    <td class="Col1">
+                        <span>Số nhà tắm/WC</span>
+                    </td>
+                    <td class="Col2">
+                        <?php  echo $this->formText($myForm->get('bathroom'));?>
+                    </td>
+                </tr>
+               
+                 <tr>
+                	<td colspan="4" height="5"></td>
+                </tr>
+                <tr class="BgAreaTitle">
+                    <td class="AreaTitle" colspan="4">
+                        <span>Vị trí</span>
+                    </td>
+                </tr>
+                 <tr>
+                	<td colspan="4" height="5"></td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span>Tỉnh/ thành phố</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmcity ;?>
+                        
+                    </td>
+                    <td class="Col1">
+                        <span>Quận/ huyện</span> <font class="star">*</font>
+                     
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmDistrict;?>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span>Phường/xã</span><font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                       <?php echo $frmWard ;?>
+                    </td>
+                    <td class="Col1">
+                        <span>Thuộc dự án</span>
+                    </td>
+                    <td class="Col2">
+                        <?php echo $frmProject;?>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="Col1">
+                        <span>Số nhà</span>
+                    </td>
+                    <td class="Col2">
+						<?php  echo $this->formText($myForm->get('numberhouse'));?>
+                    </td>
+                    <td class="Col1">
+                        <span>Tên đường</span>
+                    </td>
+                    <td class="Col2">
+                        <?php  echo $this->formText($myForm->get('nameavenue'));?>
+                       
+                    </td>
+                </tr>
+                 <tr>
+                	<td colspan="4" height="5"></td>
+                </tr>
+                <tr class="BgAreaTitle">
+                    <td class="AreaTitle" colspan="4">
+                        <span>Liên hệ</span>
+                    </td>
+                </tr>
+                 <tr>
+                	<td colspan="4" height="5"></td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span style="font-weight:bold;">Tên liên hệ</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                       <?php  echo $this->formText($myForm->get('fullname'));?>
+                    </td>
+                    <td class="Col1">
+                        <span style="font-weight:bold;">Điện thoại</span> <font class="star">*</font>
+                    </td>
+                    <td class="Col2">
+                        <?php  echo $this->formText($myForm->get('phone'));?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="Col1">
+                        <span style="font-weight:bold;">Skype</span>
+                    </td>
+                    <td class="Col2">
+                        <?php  echo $this->formText($myForm->get('skype'));?>
+                    </td>
+                    <td class="Col1">
+                        <b>
+                            <span style="font-weight:bold;">Email</span></b>
+                    </td>
+                    <td class="Col2">
+                       <?php  echo $this->formText($myForm->get('email'));?>
+                    </td>
+                </tr>
+                 <tr>
+                	<td colspan="4" height="5"></td>
+                </tr>
+                <tr class="BgAreaTitle">
+                    <td class="AreaTitle" colspan="4">
+                        <span>Vị trí trên bản đồ</span>
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="4" height="5"></td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <div class="PositionMap">
+                            <div class="gMap">  
+                                <div id="MainContent_ctl00_MapVBD1_dvTextPanel" style="BORDER-RIGHT: red 0px solid; BORDER-TOP: red 0px solid; PADDING-LEFT: 5px; FLOAT: left;BORDER-LEFT: red 0px solid; WIDTH: 700px; BORDER-BOTTOM: red 0px solid; padding-bottom: 20px;">
+                                
+                                <span id="MainContent_ctl00_MapVBD1_lbl1" style="font-weight:bold;">Hỗ trợ tìm địa chỉ nhà bạn trên bản đồ</span>
+                                <br><br>
+
+                                <span id="MainContent_ctl00_MapVBD1_Label2">Địa chỉ cần tìm</span>
+
+                                <input id="address" class="input_title" type="text">
+                                <input id="btnTim12" onclick="codeAddress()" type="button" value="Tìm" style="height: 22px;">
+                                <input id="btnTim12" onclick="initialize()" type="button" value="Refresh Map" style="height: 22px;">
+                                <input id="latitude" name="latitude" value="" type="hidden">
+                                <input id="longitude" name="longitude" value="" type="hidden">
+
+                                <br>
+                                <div id="divKQ"></div>
+                                
+                                <span id="MainContent_ctl00_MapVBD1_Label3">Ví dụ: Từ Tây, Yên phú, yên mỹ, Hưng Yên  -&gt; sau đó nhấn nút tìm.</span>
+                              
+                              
+                                </div>
+                                <div id="container" style="width: 740px; height: 300px; border: 0px solid red; position: relative; float: left; background-color: rgb(229, 227, 223); overflow: hidden;">
+                                        <div id="map-canvas" style="margin-bottom:50px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="Col1" colspan="4">
+                        <ul class="Btform">
+                        	<li class="Reset"><a id="dangxuly" style="display: none" href="javascript:;">
+                                <div>
+                                    Đang xử lý ....</div>
+                            </a></li>
+                            <li>
+                                <?php  echo $this->formSubmit($myForm->get('button-submit'));?>
+                            </li>
+                            <li class="Reset"> <?php  echo $this->formReset($myForm->get('button-reset'));?></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+    </div>
+    
+
+
+
+
+
+    <?php 
+        $linkLoadTypeRealEstate = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-select-type-real-estate'));
+        $linkLoadDistrict       = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-select-district'));
+        $linkLoadWard           = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-select-ward'));
+        $linkLoadProject        = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-select-project'));
+    ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //Load kiểu bất động sản
+            $("#type_real_estate").change(function(){
+                var type_real_estate = $("#type_real_estate option:selected").val();
+                loadTypeRealEstate(type_real_estate);
+            });
+
+            //Load quận huyện
+            $("#city").change(function(){
+                var city = $("#city option:selected").val();
+                loadDistrict(city);
+            });
+
+            //Load xã phường và dự án
+            $("#district").change(function(){
+                var district = $("#district option:selected").val();
+                loadWard(district);
+                loadProject(district);
+            });
+
+            //format giá
+            $("#type_money").change(function(){
+                typeMoney = $("#type_money option:selected").val();
+            });
+            
+        
+            $("#textPrice").keyup(function(){
+                var val     = $(this).val();
+                var pattern = /[0-9]+$/;
+                if(!pattern.test(val)){
+                    alert('Vui lòng nhập số');
+                }else{
+                    val = trim(val, ' ').replace(',', '.')
+                   
+                        if (val < 1000)
+                            $("span#tg").html(val + " Triệu");
+                        else {
+                            $("span#tg").html(Math.round((val / 1000) * 100) / 100 + " Tỷ");
+                        }
+                    
+                       
+                   
+                }
+                
+            });
+
+            $("#textPrice_m2").keyup(function(){
+                var val     = $(this).val();
+                var pattern = /[0-9]+$/;
+                if(!pattern.test(val)){
+                    alert('Vui lòng nhập số');
+                }else{
+                    val = trim(val, ' ').replace(',', '.')
+                 
+                        if (val < 1000)
+                            $("span#gm").html(val + " Triệu");
+                        else {
+                            $("span#gm").html(Math.round((val / 1000) * 100) / 100 + " Tỷ");
+                        }
+                    
+                    
+                   
+                }
+                
+            });
+
+
+        })
+
+        function loadTypeRealEstate(type_real_estate){
+            $.ajax({
+                url     : '<?php echo $linkLoadTypeRealEstate;?>',
+                type    : 'GET',
+                data    : {type : type_real_estate},
+                success: function(data){
+                    $("#type_real_estate_child").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        function loadWard(district){
+            $.ajax({
+                url     : '<?php echo $linkLoadWard;?>',
+                type    : 'GET',
+                data    : {district : district},
+                success: function(data){
+                    $("#ward").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        function loadProject(district){
+            $.ajax({
+                url     : '<?php echo $linkLoadProject;?>',
+                type    : 'GET',
+                data    : {district : district},
+                success: function(data){
+                    $("#project_bds").html(data);
+                    console.log(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+
+
+
+
+       
+        
+    </script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript"> 
+$(document).ready(function() { 
+//elements
+var progressbox     = $('#progressbox'); //progress bar wrapper
+var progressbar     = $('#progressbar'); //progress bar element
+var statustxt       = $('#statustxt'); //status text element
+var submitbutton    = $("#SubmitButton"); //submit button
+var myform        = $("#appForm"); //upload form
+var output        = $("#output"); //ajax result output element
+var completed       = '0%'; //initial progressbar value
+var FileInputsHolder  = $('#AddFileInputBox'); //Element where additional file inputs are appended
+var MaxFileInputs   = 5; //Maximum number of file input boxs
+
+// adding and removing file input box
+var i = $("#AddFileInputBox div").size() + 1;
+$("#AddMoreFileBox").click(function () {
+    event.returnValue = false;
+    if(i < MaxFileInputs)
+    {
+      $('<span><input type="file" id="fileInputBox" size="20" name="image[]" class="addedInput" value=""/><a href="#" class="removeclass small2"><img src="<?php echo TEMPLATE_URL;?>/user/images/delete.jpg" border="0" /></a></span>').appendTo(FileInputsHolder);
+      i++;
+    }
+    return false;
+});
+
+$("body").on("click",".removeclass", function(e){
+    event.returnValue = false;
+    if( i > 1 ) {
+        $(this).parents('span').remove();i--;
+    }
+    
+}); 
+
+$("#ShowForm").click(function () {
+  $("#uploaderform").slideToggle(); //Slide Toggle upload form on click
+});
+  
+$(myform).ajaxForm({
+  beforeSend: function() { //brfore sending form
+    submitbutton.attr('disabled', ''); // disable upload button
+    statustxt.empty();
+    progressbox.show(); //show progressbar
+    progressbar.width(completed); //initial value 0% of progressbar
+    statustxt.html(completed); //set status text
+    statustxt.css('color','#000'); //initial color of status text
+    
+  },
+  uploadProgress: function(event, position, total, percentComplete) { //on progress
+    progressbar.width(percentComplete + '%') //update progressbar percent complete
+    statustxt.html(percentComplete + '%'); //update status text
+    if(percentComplete>50)
+      {
+        statustxt.css('color','#fff'); //change status text to white after 50%
+      }else{
+        statustxt.css('color','#000');
+      }
+      
+    },
+  complete: function(response) { // on complete
+    output.html(response.responseText); //update element with received data
+    myform.resetForm();  // reset form
+    submitbutton.removeAttr('disabled'); //enable submit button
+    progressbox.hide(); // hide progressbar
+    $("#uploaderform").slideUp(); // hide form after upload
+  }
+});
+
+}); 
+</script> 
+<link href="<?php echo TEMPLATE_URL;?>/user/css/js-form.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzt_2S45qa9J9Eo0KP5ltMxtxJXZv6vKU&sensor=false&
+          language=vi&
+          region=GB">
+    </script>
+    <script type="text/javascript">
+      var geocoder;
+      var map;
+      var marker;
+      var infowindow;
+
+      function toggleBounce(){
+        if(marker.getAnimation() != null){
+          marker.setAnimation(null);
+        }else{
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      };
+
+      function codeAddress(){
+        var address = document.getElementById('address').value;
+        geocoder.geocode({
+          'address': address
+        },function(results, status){
+            if(status == google.maps.GeocoderStatus.OK){
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+
+              document.getElementById('latitude').value = latitude;
+              document.getElementById('longitude').value = longitude;
+              map.setCenter(results[0].geometry.location);
+              marker = new google.maps.Marker({
+                  map: map,
+                  animation: google.maps.Animation.DROP,
+                  position: results[0].geometry.location,
+                  title: results[0].address_components[0].long_name
+              });
+              google.maps.event.addListener(marker, 'click', toggleBounce);
+              
+              var content = 'Name: ' + results[0].address_components[0].long_name + '<br/>'
+                       + 'Address: ' + results[0].formatted_address + '<br/>';
+              
+              infowindow = new google.maps.InfoWindow({
+                    map: map,
+                    position: results[0].geometry.location,
+                    content: content//JSON.stringify(results)
+              });
+            }else{
+              alert('Không tìm thấy địa điểm: ' + status);
+            }
+        });
+      };
+      function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(21.033333, 105.85000000000002);
+        var mapOptions = {
+          zoom: 15,
+          center: latlng
+        }
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+      }
+
+  
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+    <script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+        var content = CKEDITOR.replace( 'content', {
+            customConfig    : 'config-05.js',
+            
+        });
+        CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+    
+
+    </script>
+
+

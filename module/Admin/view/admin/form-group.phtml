@@ -1,0 +1,36 @@
+<?php 
+	$class = '';
+	if(!empty($this->error) &&  $this->error != ''){
+		$class = "has-feedback has-error";
+	}
+	/*$xhtml = '<div class="form-group '.$class.'">
+						'.$this->label.'
+						<div class="'.$this->class.'">
+							'.$this->input.'
+							'.$this->error.'
+						</div>
+					</div>';
+
+	*/
+	$xhtml 	= 	'<tr>
+        			<td class="key">
+            			'.$this->label.' <span class="Required">'.$this->required.'</span>
+        			</td>
+        			<td>
+            			'.$this->input.'
+            			<span class="tooltip-help"><span class="tooltipContent">
+                		<p class="tooltiptitle">
+                    	'.$this->tooltiptitle.'</p>
+                		<p class="tooltipmessage">
+                    	'.$this->tooltipmessage.'
+                		</p>
+            			</span></span>
+        			</td>
+    			</tr>';				
+	echo $xhtml;
+?>
+
+
+
+	
+   

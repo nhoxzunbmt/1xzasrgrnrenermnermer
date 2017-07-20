@@ -1,0 +1,234 @@
+<?php
+$myForm = $this->myForm;
+//echo $this->form()->openTag($this->myForm);
+$avatar         = (!empty($this->item->avatar))  ? UPLOAD_URL .'/avatar/'.$this->item->avatar :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+
+//Quận huyện
+$arrOptions = array(
+  
+);
+$frmDistrict        = $this->cmsSelect('district','',$arrOptions,'no-level',array('class' =>'input_text'));
+  
+//Xã phường
+$arrOptions = array(
+  
+);
+$frmWard            = $this->cmsSelect('ward','',$arrOptions,'no-level',array('class' =>'input_text'));
+
+
+$messagesErrors = $this->elementErrors(array(
+   'name'                   =>  $myForm->get('name'),
+    'alias'                 =>  $myForm->get('alias'),
+    'phone'                 =>  $myForm->get('phone'),
+    'address'               =>  $myForm->get('address'),
+    'intro'                 =>  $myForm->get('intro'),
+    'contact'               =>  $myForm->get('contact'),
+    
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+
+$linkLoadDistrict       = $this->url(null,array('module'=>'user','controller'=>'business','action'=>'load-select-district'));
+$linkLoadWard           = $this->url(null,array('module'=>'user','controller'=>'business','action'=>'load-select-ward'));
+?>
+<?php echo $messagesErrors .$xhtmlError;?>
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+<div id="BoxInfoAccount">
+    <div class="ListAlter">
+        
+        </div>
+    <div class="TitleBox">
+        <h2><span id="MainContent_ctl00_lblTieuDe">Tạo trang doanh nghiệp</span></h2>
+    </div>
+    <div class="DesBoxInfoAccount">
+        <h3><span id="MainContent_ctl00_lblThongBao" style="color:Red;"></span></h3>
+      
+        <div class="TitleSub"><span>Thông tin doanh nghiệp</span></div>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="25%"><label>Tên doanh nghiệp:</label><span class="star" id="sao1">*</span></td>
+                    <td width="75%"><span class="namecompany"><?php echo  $this->formText($myForm->get('name'));?>
+                        <?php echo $this->formHidden($myForm->get('id'));?></span></td>
+                </tr>
+                <tr>
+                    <td width="25%"><label>Tên alias doanh nghiệp</label><span class="star" id="sao1">*</span></td>
+                    <td width="75%"><span class="namecompany"><?php echo  $this->formText($myForm->get('alias'));?>
+                        <?php echo $this->formHidden($myForm->get('id'));?></span></td>
+                </tr>
+               
+                 <tr>
+                    <td><label>Loại hình doanh nghiệp:</label></td>
+                    <td><span>
+                        <?php echo $this->cmsSelect('type_business','',$this->itemsTypeBusinesss,'no-level',array('class' =>'input_text'));?>
+
+                            </span></td>
+                </tr>
+                 <tr>
+                    <td><label>Số điện thoại:</label><span class="star" id="Span1">*</span></td>
+                    <td><span class="mobile">
+                        <?php echo  $this->formText($myForm->get('phone'));?>
+                        </span></td>
+                </tr>
+                 <tr>
+                    <td><label>Fax:</label><span class="star" id="sao3"></span></td>
+                    <td><span class="email">
+                       <?php echo  $this->formText($myForm->get('fax'));?>
+                </tr>
+
+                 <tr>
+                    <td><label>Fax:</label><span class="star" id="sao3"></span></td>
+                    <td><span class="email">
+                       <?php echo  $this->formText($myForm->get('website'));?>
+                </tr>
+
+                <tr>
+                    <td><label>Logo:</label></td>
+                    <td><span>
+                       <?php echo  $this->formFile($myForm->get('image'));?>
+                        </span>
+                    </td>
+                </tr>
+               
+               
+               
+                <tr>
+                    <td><label>Thành phố:</label><span class="star" id="sao3">*</span></td>
+                    <td><span>
+                        <?php echo $this->cmsSelect('city','',$this->itemsCity,'no-level',array('class' =>'input_text'));?>
+
+                            </span></td>
+                </tr>
+
+                 <tr>
+                    <td><label>Quận / huyện:</label><span class="star" id="sao3">*</span></td>
+                    <td><span>
+                        <?php echo $frmDistrict;?>
+
+                            </span></td>
+                </tr>
+
+                 <tr>
+                    <td><label>Xã / phường:</label><span class="star" id="sao3">*</span></td>
+                    <td><span>
+                        <?php echo $frmWard;?>
+
+                            </span></td>
+                </tr>
+                 <tr>
+                    <td><label>Địa chỉ:</label></td>
+                    <td><span><?php echo  $this->formText($myForm->get('address'));?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top"><label><span id="MainContent_ctl00_lblTieuDeAboutme" style="font-weight:bold;">Tự giới thiệu</span></label><span class="star" id="sao3">*</span></td>
+                    <td valign="top">
+                        <?php echo  $this->formTextarea($myForm->get('intro'));?>
+
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td valign="top"><label><span id="MainContent_ctl00_lblTieuDeAboutme" style="font-weight:bold;">Liên hệ</span></label><span class="star" id="sao3">*</span></td>
+                    <td valign="top">
+                        <?php echo  $this->formTextarea($myForm->get('contact'));?>
+
+                    </td>
+                </tr>
+                 <tr>
+                    <td valign="top"><label><span id="MainContent_ctl00_lblTieuDeAboutme" style="font-weight:bold;">Chi nhánh</span></label></td>
+                    <td valign="top">
+                        <?php echo  $this->formTextarea($myForm->get('department'));?>
+
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td></td>
+                    <td>
+                        <div id="MainContent_ctl00_divAction">
+                            <ul class="Btform">
+                                <li>
+                                    <div class="Bgbutton">
+                                        <div> 
+                                            
+
+                        <a href="#" onclick="OnSubmitForm('<?php echo $this->basePath($this->currentController . '/add/');?>')" id="MainContent_ctl00_btnDongY">Đồng ý</a>
+                                        </div>
+                                        
+                                    </div>
+                                    </li>
+                                <li>
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</form>
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/admin/js/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+        $(document).ready(function(){
+         
+
+            //Load quận huyện
+            $("#city").change(function(){
+                var city = $("#city option:selected").val();
+                
+                loadDistrict(city);
+            });
+
+            //Load xã phường và dự án
+            $("#district").change(function(){
+                var district = $("#district option:selected").val();
+                loadWard(district);
+                
+            });
+
+
+
+        })
+
+    
+        function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        function loadWard(district){
+            $.ajax({
+                url     : '<?php echo $linkLoadWard;?>',
+                type    : 'GET',
+                data    : {district : district},
+                success: function(data){
+                    $("#ward").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+     
+
+
+
+       
+        
+    </script>                               

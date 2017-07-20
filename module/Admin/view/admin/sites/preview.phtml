@@ -1,0 +1,15 @@
+<?php
+
+
+$content  			= $this->item['content'];
+$fullname_contact 	= $item['fullname_contact'];
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh</h5>
+<p class='detail-info even'><label>Khách hàng:</label><span><?php echo $fullname_contact;?></span></p>
+<p class='detail-info even'><label>Nội dung:</label><span><?php echo $content;?></span></p>
+</div>

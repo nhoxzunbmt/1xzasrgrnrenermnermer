@@ -1,0 +1,188 @@
+<?php
+
+//List danh mục
+$urlAll           = $this->url('ListFengshuiRoute',array('module'=>'home','controller'=>'fengshui','action'=>'category'));
+
+//Tra cứu phong thủy
+$urlTraCuu           = $this->url('SearchFengshuiRoute',array('module'=>'home','controller'=>'fengshui','action'=>'fengshuiapp'));
+
+$xhtmlTabCategory = '<li id="tab-0" class="current">
+                          <h4><a href="'.$urlAll.'" title="Tất cả">
+                          Tất cả</a></h4></li>';
+if(!empty($this->listItemsCategory)){
+  foreach ($this->listItemsCategory as $key => $item) {
+ 
+    $urlCategory = $this->url('CategoryFengshuiRoute',array(
+      'module'=>'home',
+      'controller'  =>'fengshui',
+      'action'      =>'category',
+      'name'        => \ZendVN\Url\FriendlyLink::filter($item['name']),
+      'page'        => '1',
+      'id'          => $item['id'],
+       'extension'  => 'html',
+    ));
+    $xhtmlTabCategory .= '<li id="tab-'.$item['id'].'">
+                          <h4><a href="'.$urlCategory.'" title="'.$item['name'].'">
+                          '.$item['name'].'</a></h4></li>
+                          ';
+  }
+}
+?>
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+  <div class="leftMainContent">
+        
+    <?php echo $this->blkSlideFengShui();?>
+    <div class="boxTab niceHouseTab">
+      <ul>
+          <?php echo $xhtmlTabCategory;?>
+      </ul>
+    </div>
+<input type="hidden" id="hdfNewsTypeId">
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#tabNews").click(function () {
+      $("#tabState").attr("class", "");
+      $("#tabNews").attr("class", "current");
+      $("#divNews").show();
+      $("#divState").hide();
+    });
+    $("#tabState").click(function () {
+      $("#tabNews").attr("class", "");
+      $("#tabState").attr("class", "current");
+      $("#divState").show();
+      $("#divNews").hide();
+    });
+    $('#txtNewsKeySearch').val('Nhập từ khóa');
+  });
+
+  function GetNewsTypeId(id, text) {
+    $("#hdfNewsTypeId").val(id);
+    $("#hrfText").text(text);
+    $("#divNewsType").hide(1);
+  }
+</script>
+
+  <div id="MainContent_ucDefaultNewsList_divDefaultNewsList" class="niceHouseList margined">
+    <div class="leftSmallContent">
+      <ul id="MainContent_ArticleList1_divTabPhongThuy" class="tabS">
+            <li><h4><a  title="Tin tức phong thủy" href="<?php echo $urlAll;?>">Tin tức phong thủy</a></h4></li>
+            <li><h4><a class="current" title="Tra cứu phong thủy" href="<?php echo $urlTraCuu;?>">Tra cứu phong thủy</a></h4></li>            
+        </ul>
+         <!--Xem phong thủy-->
+        <?php 
+        $fengshuiForm = $this->fengshuiForm;
+        $fengshuiForm ->setAttribute('action', $this->url('MVC_HomeRouter/action', array(
+                'module'    =>  'home',
+                'controller'    => 'realestate',
+                'action'        => 'fengshui'
+            )));
+        echo $this->form()->openTag($fengshuiForm);
+        ?>     
+        <div class="fengshuiBox" style="margin-top:10px;padding:10px;">            
+            <ul>
+                <li><b>Năm sinh:*</b>  <?php  echo $this->formText($fengshuiForm->get('feng-shui-birth'));?><br>
+                    <div id="fengshui-error-birth" style="display: none;"><b>&nbsp;</b>
+                    <span><em id="fengshui-error-message-birth" ></em></span>
+                    </div>
+                </li>
+                <li><b>Giới tính:*</b> <?php  echo $this->formSelect($fengshuiForm->get('feng-shui-sex'));?>
+                </li>
+                <li><b>Hướng nhà:</b> 
+            <?php  echo $this->formSelect($fengshuiForm->get('feng-shui-huong'));?>
+                </li>
+                                            
+            </ul>
+            <div class="buttonGroup">
+            <?php  echo $this->formSubmit($fengshuiForm->get('feng-shui-submit'));?>
+            </div>
+
+
+        <div class="result" id="txtHint"><h2 >Kết quả</h2> 
+            <div id="fengshuimessage">Xem phong thủy theo năm sinh, giới tính, và hướng nhà</div><div class="result" id="txtHintShow"></div></div>
+                                 
+       </div>
+        <?php echo $this->form()->closeTag();?>
+         <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.form.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+               //Liên hệ
+                $('#feng-shui').submit(function(){
+                    $(this).ajaxSubmit(optionsFengshui); 
+                    return false; 
+                });
+            })
+            //Liên hệ
+            var optionsFengshui = { 
+                target      : '#ajax-info-fengshui',
+                dataType    : 'json',
+                success     : showResponseFengshui  
+         
+            }; 
+
+            function showResponseFengshui(data){
+                if(data.status == 'success'){
+                    $('#fengshui-success').removeAttr('style');
+                    $('#fengshui-error-message-birth').removeAttr('style');
+                    $('#fengshui-error-birth, #fengshuimessage').css({'display':'none'});
+                    $('#txtHint').css({'display':'block'});
+                    $("#txtHintShow").fadeIn(3000);
+                    $('#txtHintShow').html(data.messages['success']);
+                   
+                }else if(data.status == 'error'){
+                    
+                    $('#fengshui-success').css({'display':'none'});
+                    $('#fengshui-error-birth').removeAttr('style').css({'margin-top':'10px'});
+                    $('#fengshui-error-message-birth').html(data.messages['birth'])
+                                         .removeClass()
+                                         .addClass('content-error')
+                                         .css({'width':'386px','color':'red'});                                               
+                    
+                }else if(data.status == undefined){
+                    $('#ajax-info-fengshui').html('Có lỗi trong quá trình xử lý').removeClass().addClass('content-warning');
+                }
+            }
+
+            //end liện hệ
+            </script>
+
+       <!--end Xem phong thủy-->          
+    </div>
+  </div>
+
+  
+
+
+  </div>
+  <div class="rightMainContent">
+  <?php echo $this->blkAdsColumnRight();?>     
+
+
+  <script type="text/javascript">
+      function DisplayMe(div) {
+          document.getElementById(div).style.display = '';
+      }
+
+      $('#txtEmailNL').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});$('#txtFullName').click(function (event) {$('html').one('click', function () {$("#infoDiv").hide();});event.stopPropagation();});
+  </script>
+
+
+
+
+  <?php echo $this->blkFengShui();?>
+
+    <script type="text/javascript">
+        $("#divTopAgent .padded .infoGroup img").error(function (event) {
+            $(this).attr("src", "http://images.videonhadat.com.vn/avatar_male_84x94.gif");
+        })
+    </script> 
+      
+  <?php echo $this->blkRegisterEmail();?> 
+  <?php echo $this->blkNhanXet();?> 
+  <?php echo $this->blkLienKet();?> 
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<?php
+if($this->identity()){
+    $infoAccountService = \Zend\Json\Json::decode($this->identity()->info_service_account);
+           
+   
+    $service_account    = $infoAccountService->service_account;
+
+    $username   = $this->identity()->username;
+    $fullname   = $this->identity()->fullname;
+    $diachi     = $this->identity()->diachi;
+    $phone      = $this->identity()->phone;
+    $email      = $this->identity()->email;
+  
+    $website    = $this->identity()->website;
+    $introduced = $this->identity()->introduced ;
+    $avatar     = (!empty($this->identity()->avatar))  ? UPLOAD_URL .'/avatar/'.$this->identity()->avatar :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+
+    $linkEdit   = $this->url('MVC_UserRouter/action',array('module'=>'user','controller'=>'account','action'=>'edit'));
+}
+
+?>        
+
+<div id="BoxInfoAccount">
+    <div class="ListAlter">
+        
+        <a id="MainContent_ctl00_lbtSuaTaiKhoan" href="<?php echo $linkEdit;?>">Sửa tài khoản</a></div>
+    <div class="TitleBox">
+        <h2><span id="MainContent_ctl00_lblTieuDe">Thông tin tài khoản cá nhân</span></h2>
+    </div>
+    <div class="DesBoxInfoAccount">
+        <h3><span id="MainContent_ctl00_lblThongBao" style="color:Red;"></span></h3>
+        <div class="Imglogo">
+            <div id="MainContent_ctl00_divHinhView"><img id="MainContent_ctl00_imgLogoView" src="<?php echo $avatar;?>" style="height:80px;width:80px;"></div>
+            <br>
+            <label>Tên đăng nhập:</label> <span class="name">
+                <span id="MainContent_ctl00_lblTenDangNhap"><?php echo $username;?></span></span>
+             <br>
+            <span class="name">
+                <span id="MainContent_ctl00_lblTenDangNhap"><h2 style="color:red;"><?php echo $service_account;?></h2></span></span>    
+            </div>
+        <div class="TitleSub"><span>Thông tin liên hệ</span></div>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="25%"><label>Tên liên hệ:</label><span class="star" id="sao1">*</span></td>
+                    <td width="75%"><span class="namecompany"><span id="MainContent_ctl00_lblTenLienHe"><?php echo $fullname;?></span></span></td>
+                </tr>
+                <tr>
+                    <td><label>Họ Tên:</label><span class="star" id="sao2">*</span></td>
+                    <td><span><span id="MainContent_ctl00_lblHoTen"><?php echo $fullname;?></span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Địa chỉ:</label></td>
+                    <td><span><span id="MainContent_ctl00_lblDiaChi"><?php echo $diachi;?></span></span>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><label>Di động:</label><span class="star" id="Span1">*</span></td>
+                    <td><span class="mobile">
+                        
+                        <span id="MainContent_ctl00_lblDiDong"><?php echo $phone;?></span>
+                        <input type="hidden" id="hdndidong" value="<?php echo $phone;?>">
+                        </span></td>
+                </tr>
+                <tr>
+                    <td><label>Email:</label><span class="star" id="sao3">*</span></td>
+                    <td><span class="email"><a id="MainContent_ctl00_lblEmail" href="mailto:<?php echo $email;?>"><?php echo $email;?></a>
+                        </span></td>
+                </tr>
+                <tr>
+                    <td><label>Website:</label></td>
+                    <td><span class="email"><a id="MainContent_ctl00_lblWebsite"><?php echo $website;?></a></span>
+                        <span class="star" id="Span2"><br>Lưu ý: Không cần nhập http:// chỉ cần nhập tên web, ví dụ: muabannhadat.com.vn hoặc www.muabannhadat.com.vn</span>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td><label>Dạng thành viên:</label></td>
+                    <td><span>
+                            <span id="MainContent_ctl00_lblDangThanhVien">Chuyên viên địa ốc</span></span></td>
+                </tr>
+                <tr>
+                    <td valign="top"><label><span id="MainContent_ctl00_lblTieuDeAboutme" style="font-weight: bold; display: inline;">Tự giới thiệu</span></label></td>
+                    <td valign="top"><span id="MainContent_ctl00_lblAboutme"></span><textarea name="ctl00$MainContent$ctl00$txtAboutme" id="MainContent_ctl00_txtAboutme" style="width: 400px; height: 200px;" class="input_text"><?php echo $introduced;?></textarea>
+                        
+                        <input name="ctl00$MainContent$ctl00$hdnAboutme" type="hidden" id="MainContent_ctl00_hdnAboutme">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Nhận thư báo hàng tuần</label></td>
+                    <td><img id="MainContent_ctl00_imgThuBao" src="http://muabannhadat.com.vn/images/users/check.gif"></td>
+                </tr>
+                <tr style="display: none;">
+                    <td><label>Thành viên forum</label></td>
+                    <td><img id="MainContent_ctl00_Image_ThanhVien" src="http://muabannhadat.com.vn/images/users/check.gif">
+                    <input name="ctl00$MainContent$ctl00$hdnCheckThanhVien" type="hidden" id="MainContent_ctl00_hdnCheckThanhVien" value="1"></td>
+                </tr>
+                <tr id="rowEmailFR" style="display: none;">
+                    <td><label><span id="MainContent_ctl00_lblTieuDeEmailForum">Hiển thị email trong forum:</span></label></td>
+                    <td><img id="MainContent_ctl00_Image_HienEmail" src="http://muabannhadat.com.vn/images/users/check.gif"></td>
+                </tr>
+                <tr id="rowDiaChiFR" style="display: none;">
+                    <td><label><span id="MainContent_ctl00_lblTieuDeDiaChiForum">Hiển thị địa chỉ trong forum:</span></label></td>
+                    <td><img id="MainContent_ctl00_Image_HienDiaChi" src="http://muabannhadat.com.vn/images/users/check.gif"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

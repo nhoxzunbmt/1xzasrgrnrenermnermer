@@ -1,0 +1,41 @@
+<?php
+    $content = $this->item['content'];
+    $title   = $this->item['name'];
+    $fullname = $this->item['fullname'];
+?>
+
+<div id="BoxInfoAccount">
+   
+    <div class="TitleBox">
+        <h2><span id="MainContent_ctl00_lblTieuDe">Chi tiết tin nhắn</span></h2>
+    </div>
+    <div class="DesBoxInfoAccount">
+        <h3><span id="MainContent_ctl00_lblThongBao" style="color:Red;"></span></h3>
+        
+       
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="25%"><label>Người nhận:</label><span class="star" id="sao1">*</span></td>
+                    <td width="75%"><span class="namecompany"><span id="MainContent_ctl00_lblTenLienHe"><?php echo $fullname;?></span></span></td>
+                </tr>
+              
+                <tr>
+                    <td><label>Tiêu đề:</label></td>
+                    <td><span><span id="MainContent_ctl00_lblDiaChi"><?php echo $title;?></span></span>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td><label>Nội dung:</label></td>
+                    <td><span>
+                            <span id="MainContent_ctl00_lblDangThanhVien"><?php echo $content;?></span></span></td>
+                </tr>
+              
+               
+                
+               
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,830 @@
+<?php
+
+$linkRealEstate       = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'realestate','action'=>'index'));
+
+$linkProjectList      = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'project','action'=>'index'));
+
+$linkBusinessList     = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'business','action'=>'index'));
+$linkUserList         = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'user','action'=>'index'));
+
+$linkEmailTemplate    = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'emailtemplate','action'=>'index'));
+$linkSkinBackGround   = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'skin','action'=>'background'));
+
+$linkConfigWebsite    = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'config','action'=>'index'));
+
+$linkService          = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'service','action'=>'index'));
+
+$linkContact          = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'contact','action'=>'index'));
+
+$linkEmailMarketing   = $this->url('MVC_AdminRouter/action',array('module'=>'admin','controller'=>'emailmarketing','action'=>'index'));
+
+$developer = array(
+    'name'  =>  'Phạm Văn Nam',
+    'phone' =>  '0916878823',
+    'yahoo' =>  'nobita_xuka_ccy',
+    'email' =>  'phamvannam.44ct1.ccy@gmail.com'
+);
+
+
+//Bds mới nhất
+$xhtmlMoiNhat = '';
+if(!empty($this->arrParam['listItemRealEstate'])){
+  foreach ($this->arrParam['listItemRealEstate'] as $key => $item) {
+        $linkDetail = $this->url('MVC_AdminRouter/action',array(
+            'module'        =>  'admin',
+            'controller'    =>  'realestate',
+            'action'        =>  'edit',
+            'id'            =>  $item['id'],
+        ));
+
+ 
+        $xhtmlMoiNhat .= '<li>
+                            <a target="_blank" href="'.$linkDetail.'">'.$item['title'].'</a>
+                        </li>';
+  }
+}
+
+//Thành viên mới nhất
+$xhtmlUser = '';
+if(!empty($this->arrParam['listItemUserNew'])){
+  foreach ($this->arrParam['listItemUserNew'] as $key => $item) {
+       
+        $linkDetail = $this->url('MVC_AdminRouter/action',array(
+            'module'        =>  'admin',
+            'controller'    =>  'user',
+            'action'        =>  'edit',
+            'id'            =>  $item['id'],
+        ));
+
+ 
+        $xhtmlUser .= '<div class="item">
+                            <a class="titlefield" target="_new" href="'.$linkDetail.'" rel="nofollow">'.$item['username'].'</a><span class="datefield"></span></div>';
+  }
+}
+
+//Email đăng kí mới nhất
+$xhtmlEmail = '';
+if(!empty($this->arrParam['listItemEmailRegisterNew'])){
+  foreach ($this->arrParam['listItemEmailRegisterNew'] as $key => $item) {
+       
+        $linkDetail = $this->url('MVC_AdminRouter/action',array(
+            'module'        =>  'admin',
+            'controller'    =>  'email-newsletter',
+            'action'        =>  'edit',
+            'id'            =>  $item['id'],
+        ));
+
+ 
+        $xhtmlEmail .= '<div class="item">
+                            <a class="titlefield" target="_new" href="'.$linkDetail.'" rel="nofollow">'.$item['email'].'</a><span class="datefield"></span></div>';
+  }
+}
+?>
+
+<div id="cph_Main_ContentPane">
+<style type="text/css">
+.hidden{ display: none; }
+
+.admin-home{ font-family: Arial; font-size: 12px; width: 100%; border-collapse: collapse; }
+.admin-home td{ padding: 3px; vertical-align: top; }
+
+.admin-home .quick-access-icon{ float: left; width: 115px; margin: 7px; }
+.quick-access .icon{ background-image: url('/images/toolbox/icon_bg.gif'); }
+.admin-home .icon{ text-align: center; padding-top: 6px; padding-bottom: 10px; color: #666; }
+.admin-home .icon .image{ margin-bottom: 11px; }
+.admin-home .icon .image img{ border: none; }
+
+.admin-home .tabs{}
+.admin-home .tabs .controls{ background: none repeat scroll 0 0 #DFECFD; border-top: 2px solid #CBE2E9; height: 19px; padding: 7px 8px 4px; }
+.admin-home .tabs .controls a{ padding: 4px 10px; font-family: Arial; font-size: 12px; }
+.admin-home .tabs .controls a.current{ background-color: #FFF; border-radius: 5px; outline: medium none; } 
+.admin-home .tabs .content{  min-height: 100px; }
+.admin-home .tabs .statistic{ margin-bottom: 10px; text-align: left; }
+.admin-home .tabs .statistic a{ padding-left: 10px; padding-right: 10px; border-right: dotted 1px #CACACA; text-decoration: none; }
+.admin-home .tabs .statistic .number{ background-color: #006497; border-radius: 4px; font-weight: bold; color: #FFF; padding: 1px 4px; text-align: center; }
+
+.admin-home .tabs .content img{ border: none; width: 24px; }
+.admin-home .tabs .content table{ width: 600px; border-collapse: collapse; }
+.admin-home .tabs .content table .icon{ width: 24px; }
+
+.admin-home .title{ color: #444; font-family: Arial; font-size: 16px; font-weight: bold; margin-bottom: 10px; }
+.admin-home .support, .admin-home .marketing, .admin-home .online{ min-height: 300px; }
+.admin-home .support .item{ border-bottom: dotted 1px #CACACA; line-height: 1.5; padding: 5px 28px; }
+.admin-home .support .item{background: url("/images/adminhome/help.gif") no-repeat scroll left 5px transparent;}
+.admin-home .marketing .item{ border-bottom: dotted 1px #CACACA; line-height: 1.5; padding: 5px 28px; }
+.admin-home .marketing .item{  background: url("/images/icons/article.gif") no-repeat scroll left 7px transparent; }
+.admin-home .online .item{ border-bottom: dotted 1px #CACACA; line-height: 1.5; padding: 5px 28px; }
+.admin-home .online .item{ background: url("/images/icons/article.gif") no-repeat scroll left 7px transparent;}
+
+.admin-home .video .hot{ margin-top: 10px; }
+.admin-home .video .hot .image{ text-align: center; height: 200px; overflow: hidden; }
+.admin-home .video .hot .text{ font-weight: bold; font-size: 16px; margin-top: 10px; text-align: center; }
+.admin-home .video .item{ border-bottom: dotted 1px #CACACA; line-height: 1.5; padding: 7px 28px; }
+.admin-home .video .item{ background-image: url('/images/adminhome/play.gif'); background-position: left center; background-repeat: no-repeat; }
+
+.admin-home .buttons{ text-align: center; }
+.admin-home .buttons a{ text-decoration: none; color: #FFF; font-weight: bold; font-size: 24px; width: 300px; border: none; cursor: pointer; }
+.admin-home .buttons a{ padding-top: 12px; padding-bottom: 12px; }
+.admin-home .buttons .request{ margin: 20px 0px; }
+.admin-home .buttons .help{}
+
+.admin-home .review{ line-height: 2.0; }
+.admin-home .review .item{ padding: 4px; }
+.admin-home .homecontainer{ border: 1px solid #CCCCCC; border-radius: 5px 5px 5px 5px; padding: 15px 13px;; position: relative; }
+.admin-home .homecontainer-panel{ border: 5px solid #ECECEC; border-radius: 10px 10px 10px 10px; margin-bottom: 15px; }
+.admin-home .homecontainer h3{ font-weight:bold; margin-bottom:5px; }
+.admin-home .homecontainer p{ line-height:1.5; margin-bottom:15px; }
+.admin-home .homecontainer ul {margin:10px 0;}
+.admin-home .homecontainer ul li{line-height:1.5; margin-bottom:5px; padding-left:18px; background: url("/images/check.png") no-repeat scroll left 5px transparent;}
+.admin-home .vietclick{background-color:#66b70a; color:#FFFFFF; border-color:#549d00;}
+.admin-home .vietclick .title{color:#FFFFFF;}
+.admin-home .vietclick .promote{color:#f6ff00; font-weight:bold; text-align:center; text-shadow: 0.1em 0.1em 0.05em #000}
+.rssFeedDisplay
+{
+    overflow:hidden;
+    height:207px;    
+}
+
+.item
+{
+    background-image:url('Images/Admin_Dashboard/admin_10.png');
+    background-repeat:no-repeat;    
+    background-position: 2px 10px;
+    padding-left:12px;
+    border-bottom: 1px solid #e8e8e8 !important;
+    line-height:25px;
+    
+
+}
+
+#rssfeedsVideo .item {
+    background-image: url("/images/adminhome/play.gif");
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left:25px;
+}
+</style>
+<style type="text/css">
+    #vietclickpopup
+    {
+        width: 651px;
+        height: 352px;
+        background-image: url('/Images/PopupModules/UpgradeServer.png?1');
+        background-repeat: no-repeat;
+    }
+    #vietclickpopup p
+    {
+        line-height: 1.3;
+        margin: 8px 0;
+    }
+    #vietclickpopup .controls
+    {
+        bottom: 0px;
+        height: 30px;
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+        font-family: arial;
+        font-size: 12px;
+    }
+    #vietclickpopup .controls .options
+    {
+        float: left;
+        text-align: left;
+        padding-left: 20px;
+    }
+    #vietclickpopup .controls .links
+    {
+        float: right;
+        text-align: right;
+        padding-right: 45px;
+    }
+    #vietclickpopup .controls .links a
+    {
+        color: #8ABA22;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+    #vietclickpopup .clear
+    {
+        clear: both;
+    }
+    .fancybox-skin
+    {
+        background-color: transparent;
+    }
+    .fancybox-opened .fancybox-skin
+    {
+        box-shadow: none;
+    }
+    .fancybox-close
+    {
+        right: 50px;
+        top: 25px;
+        width: 21px;
+        height: 21px;
+        overflow: hidden;
+        background-image: url('/Images/PopupModules/FancyBoxClose.png');
+        background-position: left center;
+    }
+</style>
+<style type="text/css">
+    .support-info
+    {
+        font-family: Arial;
+        padding: 15px 5px !important;
+    }
+    .support-info .icon
+    {
+        float: left;
+        width: 65px;
+        text-align: center;
+    }
+    .support-info .info
+    {
+        float: right;
+        width: 353px;
+        color: #444444;
+    }
+    .support-info .info div
+    {
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .support-info .f14, .support-info .f14 strong
+    {
+        font-size: 12px;
+    }
+    .support-info .f12, .support-info .f12 string
+    {
+        font-size: 11px;
+    }
+    .support-info a
+    {
+        color: #006497;
+    }
+    .support-info .skypesaler
+    {
+        position: absolute;
+        right: 194px;
+        top: 0px;
+    }
+    .support-info .ymsaler
+    {
+        position: absolute;
+        right: 123px;
+        top: -1px;
+    }
+    .support-info .ymsupporter
+    {
+        position: absolute;
+        right: 97px;
+        top: -1px;
+    }
+    .heightSupport
+    {
+        height: 201px;
+    }
+    .borderIE
+    {
+        border: 1px solid #e9e9e9;
+        background: #fff;
+    }
+    .SmallNotification
+    {
+        color:Red !important; 
+        display:inline !important; 
+        font-size:13px !important;    
+    }
+</style>
+<script type="text/javascript" src="/Extensions/Js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    $j(document).ready(function () {
+
+        $j(".icon-btn").hover(function () {
+            if (navigator.userAgent.indexOf("MSIE") != -1) {
+                if (!$j(this).hasClass("borderIE")) {
+                    $j(this).addClass("borderIE");
+                } else {
+                    $j(this).removeClass("borderIE");
+                }
+            }
+        });
+
+
+        $j("#control_1").click(function () {
+            $j("#content_2").hide(); $j("#control_2").removeClass("current"); $j("#control_2").parent().removeClass("active");
+            $j("#content_3").hide(); $j("#control_3").removeClass("current"); $j("#control_3").parent().removeClass("active");
+            $j("#content_1").fadeIn(); $j("#control_1").addClass("current"); $j("#control_1").parent().addClass("active");
+            return false;
+        });
+        $j("#control_2").click(function () {
+            $j("#content_1").hide(); $j("#control_1").removeClass("current"); $j("#control_1").parent().removeClass("active");
+            $j("#content_3").hide(); $j("#control_3").removeClass("current"); $j("#control_3").parent().removeClass("active");
+            $j("#content_2").fadeIn(); $j("#control_2").addClass("current"); $j("#control_2").parent().addClass("active");
+            return false;
+        });
+        $j("#control_3").click(function () {
+            $j("#content_1").hide(); $j("#control_1").removeClass("current"); $j("#control_1").parent().removeClass("active");
+            $j("#content_2").hide(); $j("#control_2").removeClass("current"); $j("#control_2").parent().removeClass("active");
+            $j("#content_3").fadeIn(); $j("#control_3").addClass("current"); $j("#control_3").parent().addClass("active");
+            return false;
+        });
+        //Combine set 2 
+        $j("#controlTab_1").click(function () {
+            $j("#contentTab_2").hide(); $j("#controlTab_2").removeClass("current"); $j("#controlTab_2").parent().removeClass("active");
+            $j("#contentTab_3").hide(); $j("#controlTab_3").removeClass("current"); $j("#controlTab_3").parent().removeClass("active");
+            $j("#contentTab_1").fadeIn(); $j("#controlTab_1").addClass("current"); $j("#controlTab_1").parent().addClass("active");
+            return false;
+        });
+        $j("#controlTab_2").click(function () {
+            $j("#contentTab_1").hide(); $j("#controlTab_1").removeClass("current"); $j("#controlTab_1").parent().removeClass("active");
+            $j("#contentTab_3").hide(); $j("#controlTab_3").removeClass("current"); $j("#controlTab_3").parent().removeClass("active");
+            $j("#contentTab_2").fadeIn(); $j("#controlTab_2").addClass("current"); $j("#controlTab_2").parent().addClass("active");
+
+            return false;
+        });
+        $j("#controlTab_3").click(function () {
+            $j("#contentTab_1").hide(); $j("#controlTab_1").removeClass("current"); $j("#controlTab_1").parent().removeClass("active");
+            $j("#contentTab_2").hide(); $j("#controlTab_2").removeClass("current"); $j("#controlTab_2").parent().removeClass("active");
+            $j("#contentTab_3").fadeIn(); $j("#controlTab_3").addClass("current"); $j("#controlTab_3").parent().addClass("active");
+            return false;
+        });
+        //End combine set 2
+        $j("#c_review").click(function () {
+            var all = $j("input[type='checkbox']");
+            for (var i = 0; i < all.length; i++) {
+                var obj = all[i];
+                if (obj.id.indexOf("c_review_") != -1) obj.checked = this.checked;
+            }
+        });
+        $j("#btn_review").click(function () {
+            var ids = "";
+            var number_remove = 0;
+            var sum = $j("#sp_review").html();
+            $j(".adminlist input[type='checkbox']").each(function () {
+                if ($j(this).attr("checked") == "checked" && $j(this).attr("id").indexOf("c_review_") != -1) {
+                    number_remove = number_remove + 1;
+
+                    var id = $j(this).attr("id").replace("c_review_", "")
+                    ids = ids + '[' + id + ']';
+
+                    var obj = $j(this).parent().parent().parent();
+                    $j(obj).fadeTo("fast", 0, function () {
+                        $j(this).slideUp("fast", function () { $j(this).remove(); });
+                    });
+                }
+            });
+            if (number_remove == 0) {
+                alert("Chọn ít nhất một đánh giá sản phẩm để thực hiện duyệt");
+            }
+            else {
+                $j.ajax({
+                    type: "POST",
+                    url: "/WebServices/ProductService.asmx/PublishReview",
+                    data: "{'ids':'" + ids + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (response) {
+                        var p = response.d;
+                        $j("#sp_review").html(Number(sum) - Number(number_remove));
+                        alert(p);
+                    },
+                    failure: function (msg) { console.log(msg); }
+                });
+            }
+            return false;
+        });
+
+        $j("#vietclickreg").fancybox({
+            'width': 760,
+            'height': 400,
+            'autoScale': false,
+            'hideOnOverlayClick': false,
+            'transitionIn': 'none',
+            'transitionOut': 'none',
+            'type': 'iframe'
+        });
+        $j("#vietclickreg2").fancybox({
+            'width': 760,
+            'height': 400,
+            'autoScale': false,
+            'hideOnOverlayClick': false,
+            'transitionIn': 'none',
+            'transitionOut': 'none',
+            'type': 'iframe'
+        });
+    });
+
+    function checkWindowSize() {
+        var windowWidth = $j("#ui-widget-container").width();
+        $j("#admin-home-left").css("width", (windowWidth - 400) + "px");
+    }
+    $j(function () {
+        window.onresize = checkWindowSize;
+    });
+</script>
+
+<div class="">
+    <!-- widget Thông báo -->
+    <div class="span6">
+        <div class="widget">
+            <div class="widget-title">
+                <h4>
+                    <img src="<?php echo TEMPLATE_URL . '/admin/images/list-index.png';?>" width="20" height="20">&nbsp;Bất động sản mới nhất
+                </h4>
+            </div>
+            <div class="widget-body">
+                <ul class="hotIconList">
+                
+                       <?php echo $xhtmlMoiNhat;?>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- widget hỗ trợ khách hàng -->
+    <div class="span6">
+        <div class="widget">
+            <div class="widget-body inlineblock heightSupport">
+                <div class="supportInfoNew support-info homecontainer">
+                    <div class="icon iconFullSize">
+                        <img src="<?php echo TEMPLATE_URL;?>/admin/images/support-icon_03.png" alt="">
+                    </div>
+                    <div class="info infoMarginLeft" style="background:white;">
+                        
+                        <div class="f14">
+                            Hỗ trợ trực tiếp: <strong>
+                                <?php echo $developer['name'];?></strong>
+                        </div>
+                        <div class="f14">
+                            Điện thoại: <strong>
+                                <?php echo $developer['phone'];?></strong>
+                           
+                            
+                        </div>
+                        <div class="f14">
+                            <strong>Yahoo ID</strong>: <a href="ymsgr:sendim?<?php echo $developer['yahoo'];?>&amp;m=Xin chào"><img class="ymsaler" src="http://opi.yahoo.com/online?u=<?php echo $developer['yahoo'];?>&amp;m=g&amp;t=1" alt=""></a>
+                        </div>
+                       
+                        <div class="f14" style="margin-bottom: 0;">
+                            <strong>Email</strong>: <a href="mailto:<?php echo $developer['email'];?>">
+                                <?php echo $developer['email'];?></a>
+                        </div>
+                        
+                        <div style="margin-top: 35px;">
+                            <?php /*<a href="http://forum.bizweb.vn/hoi-dap-ho-tro/" class="linkButton BtnRequest">Yêu cầu tính năng</a> <a href="http://www.bizweb.vn/tro-giup-p164.html" class="linkButton BtnHelp ">Trợ giúp</a>*/
+                            ?>
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- widget báo cáo -->
+    <div class="">
+        <!-- Thống kê đơn hàng -->
+        <div class="widget">
+            <div class="widget-body">
+                <div class="tabs tabbable tabbable-custom">
+                    <div class="statistic row-fluid circle-state-overview">
+                        <!-- Khách hàng -->
+                        <div class="span2 responsive" data-desktop="span2" data-tablet="span3">
+                            <div class="circle-wrap">
+                                <a href="<?php echo $linkRealEstate;?>">
+                                    <div class="stats-circle turquoise-color">
+                                        
+                                    </div>
+                                    <p>
+                                        <strong>
+                                            <?php echo $this->arrParam['count_realestate'];?></strong>
+                                        Bất động sản
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Sản phẩm -->
+                        <div class="span2 responsive" data-desktop="span2" data-tablet="span3">
+                            <div class="circle-wrap">
+                                <a href="<?php echo $linkProjectList;?>">
+                                    <div class="stats-circle red-color">
+                                       
+                                    </div>
+                                    <p>
+                                        <strong>
+                                            <?php echo $this->arrParam['count_project'];?></strong>
+                                        Dự án
+                                    </p>
+                                </a>
+                            </div>
+                            
+                        </div>
+                        <!-- Đơn hàng -->
+                        <div class="span2 responsive" data-desktop="span2" data-tablet="span3">
+                            <div class="circle-wrap">
+                                <a href="<?php echo $linkBusinessList;?>">
+                                    <div class="stats-circle  green-color">
+                                       
+                                    </div>
+                                    <p>
+                                        <strong>
+                                            <?php echo $this->arrParam['count_business'];?></strong> Doanh nghiệp <strong class="SmallNotification"></strong>
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Liên hệ -->
+                        <div data-desktop="span2" data-tablet="span3" class="span2 responsive">
+                            <div class="circle-wrap">
+                                <a href="<?php echo $linkUserList;?>">
+                                    <div class="stats-circle  gray-color">
+                                        
+                                    </div>
+                                    <p>
+                                        <strong>
+                                            <?php echo $this->arrParam['count_user'];?></strong>
+                                        Thành viên <strong class="SmallNotification"></strong>
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Danh mục sản phẩm -->
+                        <div class="span2 responsive" data-desktop="span3" data-tablet="span3">
+                            <div class="circle-wrap">
+                                <a href="<?php echo $linkContact;?>">
+                                    <div class="stats-circle blue-color">
+                                        
+                                    </div>
+                                    <p>
+                                        <strong>
+                                            <?php echo $this->arrParam['count_contact'];?></strong>
+                                        Liên hệ
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Tin tức -->
+                        <div class="span2 responsive" data-desktop="span3" data-tablet="span3">
+                            <div class="circle-wrap">
+                                <a href="<?php echo $linkEmailMarketing;?>">
+                                    <div class="stats-circle purple-color">
+                                       
+                                    </div>
+                                    <p>
+                                        <strong>
+                                            <?php echo $this->arrParam['count_emailmaketing'];?></strong> Email marketing
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title titleheight">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a id="control_1" href="javascript:void(0);" class="first current titleHeader">
+                                Thống kê</a></li>
+                            <li><a id="control_2" href="javascript:void(0);" class="titleHeader">Tin nhắn&nbsp;
+                            </a></li>
+                            <li><a id="control_3" href="javascript:void(0);" class="titleHeader">Liên hệ&nbsp;
+                            </a></li>
+                        </ul>
+                    </div>
+                    <div class="content tab-content">
+                        <table id="content_1" border="0" cellspacing="0" cellpadding="0" width="100%">
+                            <tbody><tr>
+                                <td colspan="2">
+                                    <div style="padding-top: 13px; padding-left: 5px;">
+                                        <img src="<?php echo TEMPLATE_URL . '/admin/images/ic.gif';?>" width="10" height="10">&nbsp;&nbsp;&nbsp; <strong>Bất động sản mới:</strong>
+                                        <?php echo $this->arrParam['count_realestate_new'];?>
+                                        (<a href="<?php echo $linkRealEstate;?>">Xem toàn bộ</a>)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div style="padding-top: 13px; padding-left: 5px;">
+                                        <img src="<?php echo TEMPLATE_URL . '/admin/images/ic.gif';?>" width="10" height="10">&nbsp; <strong>Liên hệ mới:</strong>
+                                        <?php echo $this->arrParam['count_contact_new'];?>
+                                        (<a href="<?php echo $linkContact;?>">Xem toàn bộ</a>)
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <div id="content_2" style="display: none;">
+                            
+                            <table id="content_1" border="0" cellspacing="0" cellpadding="0" width="100%">
+                            <tbody><tr>
+                                <td colspan="2">
+                                    <div style="padding-top: 13px; padding-left: 5px;">
+                                        <img src="<?php echo TEMPLATE_URL . '/admin/images/ic.gif';?>" width="10" height="10">&nbsp;&nbsp;&nbsp; <strong>Bất động sản mới:</strong>
+                                        <?php echo $this->arrParam['count_realestate_new'];?>
+                                        (<a href="<?php echo $linkRealEstate;?>">Xem toàn bộ</a>)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div style="padding-top: 13px; padding-left: 5px;">
+                                        <img src="<?php echo TEMPLATE_URL . '/admin/images/ic.gif';?>" width="10" height="10">&nbsp; <strong>Liên hệ mới:</strong>
+                                        <?php echo $this->arrParam['count_contact_new'];?>
+                                        (<a href="<?php echo $linkContact;?>">Xem toàn bộ</a>)
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                            
+                        </div>
+                        <div id="content_3" class="review" style="display: none;">
+                            
+                             <table id="content_1" border="0" cellspacing="0" cellpadding="0" width="100%">
+                            <tbody><tr>
+                                <td colspan="2">
+                                    <div style="padding-top: 13px; padding-left: 5px;">
+                                        <img src="<?php echo TEMPLATE_URL . '/admin/images/ic.gif';?>" width="10" height="10">&nbsp;&nbsp;&nbsp; <strong>Bất động sản mới:</strong>
+                                        <?php echo $this->arrParam['count_realestate_new'];?>
+                                        (<a href="<?php echo $linkRealEstate;?>">Xem toàn bộ</a>)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div style="padding-top: 13px; padding-left: 5px;">
+                                        <img src="<?php echo TEMPLATE_URL . '/admin/images/ic.gif';?>" width="10" height="10">&nbsp; <strong>Liên hệ mới:</strong>
+                                        <?php echo $this->arrParam['count_contact_new'];?>
+                                        (<a href="<?php echo $linkContact;?>">Xem toàn bộ</a>)
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- widget truy cập nhanh -->
+    <div class="span6 NoMarginLeft">
+        <div class="widget">
+            <div class="widget-title">
+                <h4>
+                    
+                    <img src="<?php echo TEMPLATE_URL . '/admin/images/list-index.png';?>" width="20" height="20">&nbsp;Truy cập nhanh
+                </h4>
+            </div>
+            <div class="widget-body maxheight" style="width:96%;">
+                <div class="square-state">
+                    <div class="row-fluid">
+                        <a href="<?php echo $linkRealEstate;?>" class="icon-btn span3" >
+                           
+                            <div >
+                                Quản lý bất động sản</div>
+                        </a><a href="<?php echo $linkProjectList;?>" class="icon-btn span3">
+                            <div>
+                                Quản lý dự án</div>
+                        </a><a href="<?php echo $linkProjectList;?>" class="icon-btn span3">
+                            <div>
+                                Doanh nghiệp</div>
+                        </a>
+                        <a href="<?php echo $linkUserList;?>" class="icon-btn span3">
+                            <div>
+                                Thành viên</div>
+                        </a>
+
+                    </div>
+                    <div class="row-fluid">
+                        <a href="<?php echo $linkSkinBackGround;?>" class="icon-btn span3">
+                            <div>
+                                Background website</div>
+                        </a><a href="<?php echo $linkEmailTemplate ;?>" class="icon-btn span3">
+                        </i>
+                            <div>
+                                Email Template</div>
+                        </a><a href="<?php echo $linkService;?>" class="icon-btn span3">
+                            <div>
+                                Dịch vụ</div>
+                        </a><a href="<?php echo $linkConfigWebsite;?>" class="icon-btn span3">
+                            <div>
+                                Cấu hình website</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- widget các vấn đề thường gặp, video hướng dẫn nhanh, giúp bạn bán hàng nhiều hơn-->
+    <div class="span6">
+        <div class="widget">
+            <div class="widget-title titleheight">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a id="controlTab_1" href="javascript:void(0);" class="NoBorderRadius NoborderTop NoBorderLeft first current titleHeader">
+                        <img src="<?php echo TEMPLATE_URL . '/admin/images/ic.gif';?>" width="10" height="10">&nbsp;Thành viên mới</a></li>
+                    <li><a id="controlTab_2" href="javascript:void(0);" class="NoBorderRadius NoborderTop titleHeader">
+                         <img src="<?php echo TEMPLATE_URL . '/admin/images/ic.gif';?>" width="10" height="10">&nbsp;Email đăng kí mới</a></li>
+                   
+                </ul>
+            </div>
+            <div class="widget-body maxheight">
+                <div id="contentTab_1" style="display: block;">
+                    <div id="rssfeedsSupport" class="rssFeedDisplay">
+                        <?php echo $xhtmlUser;?>
+                    </div>
+                </div>
+                <div id="contentTab_2" style="display: none;">
+                   <div id="rssfeedsSupport" class="rssFeedDisplay">
+                        <?php echo $xhtmlEmail;?>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- widget thống kê truy cập -->
+     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <div class="widget">
+        <div class="widget-body">
+            <div class="quick-access homecontainer">
+                <script type="text/javascript">
+                  google.load("visualization", "1", {packages:["corechart"]});
+                  google.setOnLoadCallback(drawChart);
+                  function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                    ['<?php echo "Ngày";?>', '<?php echo "Lượt truy cập";?>'],
+                    <?php
+                    foreach($this->arrParam['ChartStatisticsAccess'] as $value)
+                    {
+                        
+                    ?>
+                    ['<?php echo $value['day'];?>', <?php echo $value['total_counter'];?>],
+                    <?php
+                    }
+                    ?>
+                    ]);
+
+                    var options = {
+                      title: '<?php echo "Thông kê truy cập tháng";?> <?php echo $value['month'];?> <?php echo "Năm";?> <?php echo $value["year"];?>',
+                      hAxis: {title: 'Ngày', titleTextStyle: {color: 'red'}}
+                    };
+
+                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div3'));
+                    chart.draw(data, options);
+                  }
+                </script>
+                <div id="chart_div3" style="width: 100%; height: 300px;"></div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="javascript" src="http://www.google.com/jsapi?key=ABQIAAAAFEyVt-pBJaTXzM__EKlCrBRyn6VRRdQGMLQqRPPw1fs6QDtVcBRGklOHzrf7hmoAX3qgxg4t5ImqRA"></script>
+<script type="text/javascript" language="javascript" src="/extensions/js/rssreader/gfeedfetcher.js"></script><script src="http://www.google.com/uds/?file=feeds&amp;v=1" type="text/javascript"></script><link href="http://www.google.com/uds/api/feeds/1.0/482f2817cdf8982edf2e5669f9e3a627/default+vi.css" type="text/css" rel="stylesheet"><script src="http://www.google.com/uds/api/feeds/1.0/482f2817cdf8982edf2e5669f9e3a627/default+vi.I.js" type="text/javascript"></script>
+<script type="text/javascript">
+    // Email Marketing
+    //    var newsfeedEmail = new gfeedfetcher("rssfeedsEmail", "rssfeedsclass", "_new")
+    //    newsfeedEmail.addFeed("bizmail", "http://blog.bizmail.vn/?feed=rss2");
+    //    newsfeedEmail.setentrycontainer("div", "item");
+    //    newsfeedEmail.filterfeed(10, "date");
+    //    newsfeedEmail.init();
+    // Blog
+    var newsfeedBlog = new gfeedfetcher("rssfeedsBlog", "rssfeedsclass", "_new")
+    newsfeedBlog.addFeed("blog", "http://congdong.bizweb.vn/cmsrss.php?type=newcontent&count=10&days=30");
+    newsfeedBlog.setentrycontainer("div", "item");
+    newsfeedBlog.filterfeed(10, "date");
+    newsfeedBlog.init();
+    // Support
+    //    var newsfeedSupport = new gfeedfetcher("rssfeedsSupport", "rssfeedsclass", "_new")
+    //    newsfeedSupport.addFeed("support", "http://support.bizweb.vn/rss/faq.rss");
+    //    newsfeedSupport.setentrycontainer("div", "item");
+    //    newsfeedSupport.filterfeed(10, "date");
+    //    newsfeedSupport.init();
+</script><div id="rssfeedsBlog" class="rssfeedsclass"></div>
+<script type="text/javascript" src="/Extensions/Js/rssReader/jquery.jgfeed.js"></script>
+<script type="text/javascript">
+    //    $j(document).ready(function () {
+    //        $j.jGFeed('http://www.bizweb.vn/rss/vid.rss',
+    //        function (feeds) {
+    //            if (!feeds) { return false; }
+    //            var len = feeds.entries.length;
+    //            var container = document.getElementById('rssfeedsVideo')
+    //            for (var i = 0; i < len; i++) {
+    //                var entry = feeds.entries[i];
+
+    //                var div = document.createElement("div")
+    //                div.className = "item"
+
+    //                var a = document.createElement("a")
+    //                a.id = "vid_" + i;
+    //                a.target = "_blank";
+    //                a.href = entry.link;
+    //                a.appendChild(document.createTextNode(entry.title));
+
+    //                div.appendChild(a)
+    //                container.appendChild(div)
+    //            }
+    //        }
+    //    , 5);
+    //    });
+</script>
+</div>

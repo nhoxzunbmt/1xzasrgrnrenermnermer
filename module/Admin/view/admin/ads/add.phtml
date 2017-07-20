@@ -1,0 +1,148 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('name');
+$elementUrl 		= $myForm->get('url');
+$elementFile		= $myForm->get('image');
+$elementWidth		= $myForm->get('width');
+$elementHeight		= $myForm->get('height');
+
+//Hiện trạng
+$arrOptions = array(
+   array('id'=>'','name'=>'--Khu vực quảng cáo--'),
+   array('id'=>'column_right','name'=>'Cột phải'),
+   array('id'=>'top','name'=>'Top'),
+   array('id'=>'bottom','name'=>'Bottom'),
+);
+$frmArea_ads       	= $this->cmsSelect('area_ads','',$arrOptions,'no-level',array('style' =>'padding: 4px 8px; width:206px;'));
+
+
+$elements = array(
+	array(
+		'label'				=>	'Khu vực quảng cáo',
+		'input'				=>	$frmArea_ads,
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Khu vực quảng cáo xuất hiện trên website',
+		'tooltipmessage'	=>	'Khu vực quảng cáo xuất hiện trên website',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tiêu đề quảng cáo',
+		'tooltipmessage'	=>	'Tiêu đề quảng cáo',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementUrl),
+		'input'				=>	$this->formElement($elementUrl),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Url quảng cáo',
+		'tooltipmessage'	=>	'Url quảng cáo',
+	),
+	
+	
+
+	array(
+		'label'				=>	$this->formLabel($elementFile),
+		'input'				=>	$this->formElement($elementFile),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'File hình ảnh quảng cáo',
+		'tooltipmessage'	=>	'File hình ảnh quảng cáo',
+	),
+	
+
+	array(
+		'label'				=>	'Kích thước',
+		'input'				=>	$this->formElement($elementWidth) .' '. $this->formElement($elementHeight) .' Rộng x cao',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Kích thước',
+		'tooltipmessage'	=>	'Kích thước',
+	),
+	
+
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'name'					=>	$elementName,
+	'url'					=>	$elementUrl,
+	'width'					=>	$elementWidth,
+	'height'				=>	$elementHeight,
+));
+
+
+
+ 
+       
+
+
+?>
+
+
+<form name="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+<script type="text/javascript">
+        $j(document).ready(function(){
+        
+            $j("#type").change(function(){
+                var type = $j("#type option:selected").val();
+                if(type == 'image'){
+                	$j('#type-ads-image').removeAttr('style'); 
+                	$j('#type-ads-flash').removeAttr('style').css({'display':'none'});
+
+                }if(type == 'flash'){
+                	$j('#type-ads-flash').removeAttr('style');
+                	$j('#type-ads-image').removeAttr('style').css({'display':'none'});
+                }	
+            });
+
+
+        })
+
+
+        
+    </script>	   
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var content = CKEDITOR.replace( 'content', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
+
+		
+
+	</script>
+
+
+   	      	 	

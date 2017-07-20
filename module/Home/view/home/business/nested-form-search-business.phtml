@@ -1,0 +1,116 @@
+<?php
+//Tìm loại doanh nghiệp
+
+$frmTypeBusiness   = $this->cmsSelect('type','',$this->itemsTypeBusiness,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+
+
+//Tỉnh
+$frmCity            = $this->cmsSelect('city','',$this->itemsCity,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+
+//Quận huyện
+$arrOptions = array(
+     array('id'=>'','name'=>'Quận/Huyện'),
+);
+$frmDistrict        = $this->cmsSelect('district','',$arrOptions,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+
+
+//Search Name
+$linkSearch         = $this->url('MVC_HomeRouter/action',array('controller'=>'business','action'=>'search'));
+
+//Category
+
+$xhtml = '';
+if(!empty($this->itemsCategory)){
+    foreach($this->itemsCategory as $item){
+        $urlCategory  = $this->url(
+            'CategoryBusinessRoute',
+            array(
+                'action'    =>'category',
+                'name'      =>\ZendVN\Url\FriendlyLink::filter($item['name']),
+                'page'      =>1,
+                'id'        =>$item['id']
+            )
+        );
+        $xhtml      .= '<p><a href="'.$urlCategory.'" title="'.$item['name'].'">'.$item['name'].'</a></p>';
+    }  
+}
+
+$linkLoadDistrict    = $this->url('MVC_HomeRouter/action',array(
+    'module'=>'home',
+    'controller'=>'business',
+    'action'=>'load-select-district'
+));
+?>
+
+<div class="companyPage">
+    <div class="smallSearch" style="display: block;">
+        <div class="boxSearch">
+            <p class="companyQuantity">
+                <b><?php echo $totalItem;?></b> doanh nghiệp tin tưởng</p>
+            <ul id="bTab">
+                <li id="bLi1" class="current"><h4><a onclick="ShowMe(1);" title="Tìm doanh nghiệp"><b>Tìm
+                    doanh nghiệp</b></a></h4></li>
+                <li id="bLi2" class=""><h4><a onclick="ShowMe(2);" title="Tìm theo danh mục">Theo danh mục</a></h4></li><!--<li class="end current"><a href="#">Theo danh mục cho thuê</a></li>-->
+            </ul>
+            <div id="bTab1" class="contentSearch bgWhite">
+                <form action="<?php echo $linkSearch;?>" method="get" name="search-business-form" id="search-business-form">
+                <ol>
+                    <li>
+                        <div class="selectedValues marR15">
+                            <input type="text" value="" onblur="nvgUtils.OnBlurInput(this,'Tên DN');" onfocus="nvgUtils.OnFocusInput(this,'Tên DN');" placeholder="Tên DN" class="" name="q" id="txtTenDN">
+                            <span title="Xóa" class="btDropdown del" onclick="$('#txtTenDN').val('');$('#txtTenDN').focus();">
+                            </span>
+                        </div>
+                        <div class="selectedValues marR15">
+                           <?php echo $frmTypeBusiness;?>
+                        </div>
+                        <div class="selectedValues marR15">
+                            <?php echo $frmCity;?>
+                        </div>
+                        <div class="selectedValues marR15">
+                            <?php echo $frmDistrict;?>
+                        </div>
+                        <input type="button" id="search-submit-business" name="submit" style="background:url('<?php echo TEMPLATE_URL.'/default/images/tim-doanh-nghiep.png';?>');width:118px;height:32px;">
+                        
+                        <div class="clearBoth">
+                        </div>
+                    </li>
+                </ol>
+                </form>
+            </div>
+            <div id="bTab2" class="contentSearch bgWhite" style="display: none;">
+                <div class="quickLink"><?php echo $xhtml;?></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">    FSDoanhNghiep.DefaultDN();
+    $(document).ready(function () {
+        var xxx = getCookie('sltTab');
+        ShowMe(xxx);
+
+        
+       
+    });
+
+     
+    function ShowMe(p) {
+        if (p == 2) {
+            $('#bTab1').hide();
+            $('#bTab2').show();
+            $('ul#bTab li').removeClass();
+            $('ul#bTab li#bLi2').addClass('current');
+            document.cookie = 'sltTab = 2';
+        }
+        else {
+            $('#bTab2').hide();
+            $('#bTab1').show();
+            $('ul#bTab li').removeClass();
+            $('ul#bTab li#bLi1').addClass('current');
+            document.cookie = 'sltTab = 1';
+        }
+    }
+</script>
+<script>FSDoanhNghiep.ShowDefaultTopSelect('','','','');</script>

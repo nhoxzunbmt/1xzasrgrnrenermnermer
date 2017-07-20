@@ -1,0 +1,150 @@
+<?php 
+
+    $myForm             = $this->myForm;
+    $myForm->setAttribute('action', $this->url(null, array(
+            'module'        => 'home',
+            'controller'    => 'user',
+            'action'        => 'validate-restore-password'
+    )));
+    
+    
+    $myForm->prepare();
+    $elementPassword        = $myForm->get('password');
+    $elementConfirmPassword = $myForm->get('confirm-password');
+    $elementBtnSubmit       = $myForm->get('my-button-submit');
+   
+    
+    $elements       = array(
+            array(
+                    'label'     => $this->formLabel($elementPassword),
+                    'input'     => $this->formElement($elementPassword),
+                    'error'     => 'ajax-info-password',
+                    'lierror'   => 'li-password',
+            ),
+
+            array(
+                    'label'     => $this->formLabel($elementConfirmPassword),
+                    'input'     => $this->formElement($elementConfirmPassword),
+                    'error'     => 'ajax-info-confirm-password',
+                    'lierror'   => 'li-confirm-password',
+            ),
+            
+            array(
+                    'label' => null,
+                    'input' => '<input type="hidden" id="code"  name="code" value="'.$this->arrParam['code'].'">'.$this->formElement($elementBtnSubmit),
+                    'error' => '',
+                    'lierror'   =>'',
+            ),
+    );
+
+if(!empty($this->msgError)){
+    $messageError = $this->msgError;
+}
+
+$linkRegister           = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'register'));
+$linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'forgot-password'));
+
+?>
+
+
+<style type="text/css">
+.content-error {
+    color: #df3832;
+    font-style: normal;
+}
+</style>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.form.js"></script>
+<script type="text/javascript">
+    var options = { 
+        target      : '#ajax-info',
+        dataType    : 'json',
+        success     : showResponse  
+ 
+    }; 
+
+    function showResponse(data){
+        if(data.status == 'success'){
+             //console.log(data.messages['success']);
+            $('#li-password, #li-confirm-password').removeAttr('style');
+            $('#inputPassword, #inputConfirmPassword').removeClass('inputWarmning');
+            $('#ajax-info-password, #ajax-info-confirm-password').removeAttr('style').html('');
+            $('#ajax-info-success').html(data.messages['success'])
+                                .removeAttr('style')
+                                .css({'padding':'10px','color':'white','background-color':'#61b832','border-color':'#55a12c','margin-bottom':'10px'});
+           
+        }else if(data.status == 'error'){
+            /*var error   = '';
+            for(x in data.messages){
+                error += data.messages[x] + '<br/>';
+            }
+
+            console.log(error);*/
+            $('#ajax-info-success').removeAttr('style').html('');
+            $('#li-password, #li-confirm-password').removeAttr('style');
+            
+            
+            $('#inputPassword, #inputConfirmPassword').removeClass();
+
+            if(data.messages['password']){
+                $('#inputPassword').addClass('inputWarmning');
+            }
+            if(data.messages['confirmpassword']){
+                $('#inputConfirmPassword').addClass('inputWarmning');
+            }
+
+            //Thông báo password                     
+            $('#ajax-info-password').html(data.messages['password'])
+                                    .removeClass()
+                                    .addClass('content-error')
+                                    .css({'width':'386px'});
+
+             //Thông báo nhập password                     
+            $('#ajax-info-confirm-password').html(data.messages['confirmpassword'])
+                                    .removeClass()
+                                    .addClass('content-error')
+                                    .css({'width':'386px'});  
+
+
+            
+        }else if(data.status == undefined){
+            $('#ajax-info').html('Có lỗi trong quá trình xử lý').removeClass().addClass('content-warning');
+        }
+    }
+    
+    $(document).ready(function() {
+        $('#login-form').submit(function(){
+            $(this).ajaxSubmit(options); 
+            return false; 
+        });
+    })
+    
+
+</script>
+
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+<div class="pageWrap">
+<div class="leftMainContent popupPage">
+    <div class="signInNewDialog">
+		<div class="TitleDialog">
+            <h4>Phục hồi mật khẩu</h4>
+        </div>
+		 <div class="ContentDialog">
+
+         	
+            <div id="ajax-info-success" style="display:none;"></div>
+            <ol>
+            	<?php 
+                echo $this->form()->openTag($myForm);
+                    echo $this->partialLoop('form-group.phtml', $elements);
+                echo $this->form()->closeTag();
+                ?>
+
+            </ol>
+         </div>
+	</div>
+</div>
+</div>
+   

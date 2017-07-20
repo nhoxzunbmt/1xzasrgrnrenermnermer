@@ -1,0 +1,22 @@
+<?php
+
+
+
+$content = $this->item['content'];
+$title   = $this->item['name'];
+$fullname = $this->item['fullname'];
+
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh</h5>
+<p class='detail-info even'><span></p>
+<p class='detail-info even'><label>Người gửi:</label><span><?php echo $fullname  ;?></span></p>
+<p class='detail-info even'><label>Tiêu đề:</label><span><?php echo $title  ;?></span></p>
+<p class='detail-info even'><label>Nội dung:</label><span><?php echo $content;?></span></p>
+
+
+</div>

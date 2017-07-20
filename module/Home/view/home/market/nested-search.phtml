@@ -1,0 +1,194 @@
+<?php
+//Loại bất động sản
+$frmItemsProjectCategory          = $this->cmsSelect('project_cat','',$this->listItemsCategory,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+
+
+
+
+//Tỉnh
+$frmCityProject            = $this->cmsSelect('city_project','',$this->itemsCity,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+//Quận huyện
+$arrOptions = array(
+     array('id'=>'','name'=>'Quận/Huyện'),
+);
+$frmDistrictProject        = $this->cmsSelect('district_project','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+
+
+$arrOptions = array(
+  array('id'=>'','name'=>'Diện tích'),
+  array('id'=>'100-150','name'=>'100 - 150 m2'),
+  array('id'=>'150-250','name'=>'150 - 250 m2'),
+  array('id'=>'250-500','name'=>'250 - 500 m2'),
+  array('id'=>'500-1000','name'=>'500 - 1000 m2'),
+  array('id'=>'1000-1500','name'=>'1000 - 1500 m2'),
+  array('id'=>'1500-3000','name'=>'1500 - 3000 m2'),
+  array('id'=>'3000-5000','name'=>'3000 - 5000 m2'),
+  array('id'=>'5000-10000','name'=>'5000 - 10000 m2'),
+  array('id'=>'10000-20000','name'=>'10000 - 20000 m2'),
+  array('id'=>'20000-30000','name'=>'20000 - 30000 m2'),
+  array('id'=>'30000-100000000','name'=>'trên 30000 m2'),
+);
+$frmAreaRangeProject               = $this->cmsSelect('area_range_project','',$arrOptions,'no-level',array('style' =>'width:100%;border: 1px solid #dddddd; color: #919191;'));
+
+
+
+$linkSearchProject         = $this->url('MVC_HomeRouter/action',array('controller'=>'market','action'=>'search'));
+
+$linkLoadTypeRealEstate = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'realestate','action'=>'load-select-type-real-estate'));
+$linkLoadDistrict       = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'business','action'=>'load-select-district'));
+$linkLoadProject        = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'realestate','action'=>'load-select-project'));
+
+//Category
+
+$xhtml = '';
+if(!empty($this->listCity)){
+    foreach($this->listCity as $item){
+        $urlCity   = $this->url(
+            'CityMarketRoute',
+            array('controller'=>'project','action'=>'city','cityname'=>\ZendVN\Url\FriendlyLink::filter($item['name']),'page'=>1,'cityid'=>$item['id']
+        ));
+        $xhtml      .= '<p><a href="'.$urlCity.'" title="'.$item['name'].'">'.$item['name'].'</a></p>';
+    }  
+}
+?>
+
+<div class="companyPage">
+    <div class="smallSearch" style="display: block;">
+        <div class="boxSearch">
+            <p class="companyQuantity">
+               
+            <ul id="bTab">
+                <li id="bLi1" class="current"><h4><a onclick="ShowMe(1);" title="Tìm doanh nghiệp"><b>Tìm
+                    dự án</b></a></h4></li>
+                <li id="bLi2" class=""><h4><a onclick="ShowMe(2);" title="Tìm theo danh mục">Theo tỉnh thành</a></h4></li><!--<li class="end current"><a href="#">Theo danh mục cho thuê</a></li>-->
+            </ul>
+            <div id="bTab1" class="contentSearch bgWhite">
+               <form action="<?php echo $linkSearchProject;?>" method="get" name="search-project-form" id="search-project-form">
+                <ol>
+                    <li>
+                        <div class="selectedValues marR15">
+                           
+                           <?php echo $frmItemsProjectCategory;?>
+                        </div>
+                       
+                       
+                        <div class="selectedValues marR15">
+                            <?php echo $frmCityProject;?>
+                        </div>
+                        <div class="selectedValues marR15">
+                            <?php echo $frmDistrictProject;?>
+                        </div>
+                        <div class="selectedValues marR15">
+                            <?php echo $frmAreaRangeProject;?>
+                        </div>
+                        <input type="button" id="search-submit-project" name="submit" style="background:url('<?php echo TEMPLATE_URL.'/default/images/tim-doanh-nghiep.png';?>');width:118px;height:32px;">
+                        
+                        <div class="clearBoth">
+                        </div>
+                    </li>
+                </ol>
+                </form>
+            </div>
+            <div id="bTab2" class="contentSearch bgWhite" style="display: none;">
+                <div class="quickLink"><?php echo $xhtml;?></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        $(document).ready(function(){
+
+
+           
+            //Load quận huyện
+            $("#search-project-form #city_project").change(function(){
+                var city = $("#search-project-form #city_project option:selected").val();
+                loadDistrict(city);
+            });
+
+            //Load xã phường và dự án
+            $("#search-project-form #district_project").change(function(){
+                var district = $("#search-project-form #district_project option:selected").val();
+                loadProject(district);
+            });
+
+
+            $("#search-project-form #search-submit-project").click(function(){
+                
+                var city        = $("#search-project-form #city_project option:selected").val();
+                var district    = $("#search-project-form #district_project option:selected").val();
+                var cat         = $("#search-project-form #project_cat option:selected").val();
+                var area_range         = $("#search-project-form #area_range_project option:selected").val();
+                
+                var linkSearchProject = '<?php echo $linkSearchProject;?>?cat=' + cat + '&city=' + city + '&district=' + district + '&area=' + area_range + '&page=1';
+
+
+
+                //Tìm kiếm tất cả thông tin
+                if(cat != '' || city != ''  || district != ''||  area_range != ''){
+                    window.location = linkSearchProject;
+                }else if(cat == '' && city == ''  && district == '' && area_range == '' ){
+                     alert("Bạn phải nhập từ khóa, hoặc chọn các tiêu chí");
+                }
+
+            });
+        });
+
+        function loadTypeRealEstate(type_real_estate){
+            $.ajax({
+                url     : '<?php echo $linkLoadTypeRealEstate;?>',
+                type    : 'GET',
+                data    : {type : type_real_estate},
+                success: function(data){
+                    $("#search-project-form #type_real_estate_child").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city},
+                success: function(data){
+                    $("#search-project-form #district_project").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+        
+        
+    </script>
+   
+
+<script type="text/javascript">    FSDoanhNghiep.DefaultDN();
+    $(document).ready(function () {
+        var xxx = getCookie('sltTab');
+        ShowMe(xxx);
+
+       
+    });
+    function ShowMe(p) {
+        if (p == 2) {
+            $('#bTab1').hide();
+            $('#bTab2').show();
+            $('ul#bTab li').removeClass();
+            $('ul#bTab li#bLi2').addClass('current');
+            document.cookie = 'sltTab = 2';
+        }
+        else {
+            $('#bTab2').hide();
+            $('#bTab1').show();
+            $('ul#bTab li').removeClass();
+            $('ul#bTab li#bLi1').addClass('current');
+            document.cookie = 'sltTab = 1';
+        }
+    }
+</script>
+<script>FSDoanhNghiep.ShowDefaultTopSelect('','','','');</script>

@@ -1,0 +1,52 @@
+<?php
+	
+    $arrParam           = $this->arrParam;
+
+	$arrParam['page']   = $this->first;
+    $linkStart          = $this->url($this->router,$arrParam);
+
+    $arrParam['page']   = $this->last;
+    $linkEnd            = $this->url($this->router,$arrParam);
+
+    $arrParam['page']   = $this->next;
+    $linkNext           = $this->url($this->router,$arrParam);
+   
+    $$arrParam['page']  = $this->previous;
+    $linkPrevious       = $this->url($this->router,$arrParam);
+
+	$startXhtml 	    = '';
+	$previousXhtml      = '';
+	$endXhtml 		    = '';
+	$nextXhtml		    = '';
+	if($this->current != 1){
+		$startXhtml 	= sprintf('<li><a href="%s" class="">Trang đầu</a></li>',$linkStart);
+
+		$previousXhtml 	= sprintf('<li><a href="%s" class="">«</a></li>',$linkPrevious);
+	}
+	if($this->current != $this->last){
+		$endXhtml 		= sprintf('<li><a href="%s" class="">Trang cuối</a></li>',$linkEnd);
+		$nextXhtml 		= sprintf('<li><a href="%s" class="">»</a></li>',$linkNext);
+	}
+	$pagesInRange = '';
+	foreach($this->pagesInRange as $key){
+		$arrParam['page'] = $key;
+        $linkPage = $this->url($this->router,$arrParam);
+		if($this->current == $key){
+			$pagesInRange .= sprintf('<li><a  href="%s" class="current">%s</a></li>',$linkPage,$key);
+		}else{
+			$pagesInRange .= sprintf('<li><a href="%s" class="LinkNumbers">%s</a></li>',$linkPage,$key);
+		}
+		
+	}
+	
+?>
+
+
+    <ul class="pageNumber" id="dvPagingDefault">
+    	<li style="display:none"></li> 
+        <?php echo $startXhtml;?>
+       	<?php echo $previousXhtml;?>             
+        <?php echo $pagesInRange;?>    
+        <?php echo $nextXhtml;?>
+       	<?php echo $endXhtml;?>
+    </ul>

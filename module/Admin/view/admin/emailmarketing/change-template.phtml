@@ -1,0 +1,81 @@
+<?php
+$ssFilter   = $this->arrParam['ssFilter'];
+
+//==========Messages=========================//
+$messages   = $this->flashMessenger()
+                    ->setMessageOpenFormat('<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="alert alert-success">')
+                    ->setMessageSeparatorString('')
+                    ->setMessageCloseString('<button data-dismiss="alert" class="close">×</button>')
+                    ->render('success',array('success message'));
+
+
+
+
+if(!empty($this->templateEmail)){
+    $xhtml = '';
+
+    foreach($this->templateEmail as $item){
+
+        $image          = (!empty($item['images']))  ? UPLOAD_URL .'/email-template/'.$item['images'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+        $xhtml .= ' <div id="item">
+                    <div class="img"><a href="'.$image.'" rel="facybox"><img style="border-radius:7px;-moz-border-radius:7px;-webkit-border-radius:7px;box-shadow:0 0 5px black;-webkit-box-shadow:0 0 5px black;" src="'.$image.'" alt="Mặc định" width="160px" height="200"></a>
+                                    
+                </div>
+
+                <div class="price"><label for="template-1"><input type="radio" name="template" id="template-'.$item['id'].'" value="'.$item['id'].'">'.$item['name'].'</label></div>
+                        
+                </div>';
+    }         
+}
+
+?>
+<style>
+#list-gallary{}
+#list-gallary #item{width:170px;float:left;margin-bottom:10px;margin-left:7px;margin-right:5px;background:#FFFFFF;}
+#list-gallary #item .img{height:200px;position:relative;text-align:center;margin-top:5px;}
+#list-gallary #item .title-p{height:20px;position:relative;text-align:center;font-size:12px;font-weight:bold;}
+#list-gallary #item .price{text-align:center;height:20px;position:relative;font-size:12px;font-weight:bold;color:red;}
+</style>
+<form name="appForm" method="post" action="">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+
+            <div class="widget-body">
+                <div id="cph_Main_ctl00_notification_divNotice" style="padding-top:10px;">
+                <?php echo $messages ;?>  
+                <?php echo $this->errorMessages($this->error,'admin');?>
+                </div>
+
+               
+
+                <div class="dataTables_wrapper">
+
+                    <div id="list-gallary">
+                                    
+                        <?php echo $xhtml;?>
+                                    
+                   
+                    </div>
+                                    
+                </div>
+             <div style="clear: both;margin-top:10px;">    </div>
+
+
+
+            <link href="/public/templates/admin/css/facybox.css" media="screen" rel="stylesheet" type="text/css">
+
+
+            </div>
+        
+                <style type="text/css">
+                #tooltip { position: absolute; z-index: 10102; background-color: #FFF; padding: 5px; border: solid 3px #cccccc; display: block; width: 350px; text-align: center; }
+                </style>
+
+        </div>
+</div>
+

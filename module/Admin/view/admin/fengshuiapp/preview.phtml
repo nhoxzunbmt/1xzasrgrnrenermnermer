@@ -1,0 +1,52 @@
+<?php
+
+
+
+$birth  		= $this->item->birth;
+$content		= $this->item->content;
+$sex            = ($this->item->sex == 1) ? 'Nam' : 'Nữ';
+        switch ($this->item->direction) {
+            case '1':
+                $direction = 'Đông';
+                break;
+            case '2':
+                $direction = 'Tây';
+                break;
+            case '3':
+                $direction = 'Nam';
+                break;
+            case '4':
+                $direction = 'Bắc';
+                break;
+            case '5':
+                $direction = 'Đông Bắc';
+                break;
+            case '6':
+                $direction = 'Đông Nam';
+                break;
+            case '7':
+                $direction = 'Tây Bắc';
+                break; 
+            case '8':
+                $direction = 'Tây Nam';
+                break;  
+
+            case '8':
+            default:
+                $direction = 'Chưa xác định';
+                break;
+        }
+?>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="<?php echo TEMPLATE_URL;?>/admin/css/layout.css" media="screen" rel="stylesheet" type="text/css" >
+
+
+<div class='message info'><h5>Xem nhanh</h5>
+<p class='detail-info even'><span></p>
+<p class='detail-info even'><label>Năm sinh:</label><span><?php echo $birth ;?></span></p>
+<p class='detail-info even'><label>Giới tính:</label><span><?php echo $sex;?></span></p>
+<p class='detail-info even'><label>Hướng nhà:</label><span><?php echo $direction;?></span></p>
+<p class='detail-info even'><label>Nội dung:</label><span><?php echo $content ;?></span></p>
+
+</div>

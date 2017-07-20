@@ -1,0 +1,637 @@
+<?php
+$myForm = $this->myForm;
+$myForm->prepare();
+$elementId			= $myForm->get('id');
+$elementName 		= $myForm->get('name');
+$elementAdress 		= $myForm->get('address');
+$elementArea		= $myForm->get('area');
+$elementPriceM2		= $myForm->get('price_m2');
+$elementWorkstart	= $myForm->get('workstart');
+$elementWorkend		= $myForm->get('workend');
+$elementNameother	= $myForm->get('nameother');
+$elementFile		= $myForm->get('image');
+$elementOverview		= $myForm->get('overview');
+$elementIntro		= $myForm->get('intro');
+$elementService		= $myForm->get('service');
+$elementLocation	= $myForm->get('location');
+$elementSiteplan	= $myForm->get('siteplan');
+$elementContact	    = $myForm->get('contact');
+
+
+
+//Quận huyện
+$arrOptions = array(
+   array('id'=>'','name'=>'Quận/Huyện'),
+);
+$frmDistrict       	= $this->cmsSelect('district','',$arrOptions,'no-level',array('style' =>'padding: 4px 8px; width:206px;'));
+  
+
+//Số tầng
+$arrOptions = array(
+  
+);
+for($i = 0 ; $i <= 40; $i++){
+    if($i == 0){
+        $arrOptions[] = array('id'=>0,'name'=>'--Chọn--');
+    }if($i > 0 && $i < 40){
+        $arrOptions[] = array('id'=>$i,'name'=>$i);
+    }if($i == 40){
+        $arrOptions[] = array('id'=>$i,'name'=>'> 40');
+    }
+    
+}
+$frmFloor                   = $this->cmsSelect('floor',$this->item->floor,$arrOptions,'no-level',array('style' =>'padding: 4px 8px; width:206px;'));
+
+
+//Hiện trạng
+$arrOptions = array(
+   array('id'=>'','name'=>'--Hiện trạng--'),
+   array('id'=>'1','name'=>'Đang triển khai'),
+);
+$frmStatusQuo       	= $this->cmsSelect('status_quo',$this->item->status_quo,$arrOptions,'no-level',array('style' =>'padding: 4px 8px; width:206px;'));
+
+
+$elements = array(
+	array(
+		'label'				=>	$this->formLabel($elementName),
+		'input'				=>	$this->formElement($elementName),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tiêu đề',
+		'tooltipmessage'	=>	'Nhập Tiêu đề',
+	),
+	
+	array(
+		'label'				=>	'Loại hình',
+		'input'				=>	$this->cmsSelect('cat_id',$this->item->cat_id,$this->itemsCategory,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn Loại hình',
+		'tooltipmessage'	=>	'Chọn Loại hình',
+	),
+	
+	
+	array(
+		'label'				=>	'Thành phố',
+		'input'				=>	$this->cmsSelect('city',$this->item->city,$this->itemsCity,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn thành phố',
+		'tooltipmessage'	=>	'Chọn thành phố',
+	),
+
+	array(
+		'label'				=>	'Quận/Huyện',
+		'input'				=>	$frmDistrict,
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Quận/Huyện',
+		'tooltipmessage'	=>	'Quận/Huyện',
+	),
+
+	
+	array(
+		'label'				=>	$this->formLabel($elementAdress),
+		'input'				=>	$this->formElement($elementAdress),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Địa chỉ',
+		'tooltipmessage'	=>	'Địa chỉ',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementArea),
+		'input'				=>	$this->formElement($elementArea),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Diện tích',
+		'tooltipmessage'	=>	'Diện tích',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementPriceM2),
+		'input'				=>	$this->formElement($elementPriceM2),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Giá triệu / m2',
+		'tooltipmessage'	=>	'Giá triệu / m2',
+	),
+	array(
+		'label'				=>	'Số tầng',
+		'input'				=>	$frmFloor,
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Số tầng',
+		'tooltipmessage'	=>	'Số tầng',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementWorkstart),
+		'input'				=>	$this->formElement($elementWorkstart),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Ngày khởi công',
+		'tooltipmessage'	=>	'Ngày khởi công',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementWorkend),
+		'input'				=>	$this->formElement($elementWorkend),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Ngày hoàn thành',
+		'tooltipmessage'	=>	'Ngày hoàn thành',
+	),
+	array(
+		'label'				=>	'Hiện trạng',
+		'input'				=>	$frmStatusQuo,
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Hiện trạng',
+		'tooltipmessage'	=>	'Hiện trạng',
+	),
+	array(
+		'label'				=>	'Chủ đầu tư',
+		'input'				=>	$this->cmsSelect('investors',$this->item->investors,$this->listItemBusiness,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Chọn Chủ đầu tư',
+		'tooltipmessage'	=>	'Chọn Chủ đầu tư',
+	),
+
+	array(
+		'label'				=>	'Đơn vị thi công',
+		'input'				=>	$this->cmsSelect('construction',$this->item->construction,$this->listItemBusiness,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Chọn Đơn vị thi công',
+		'tooltipmessage'	=>	'Chọn Đơn vị thi công',
+	),
+
+	array(
+		'label'				=>	'Đơn vị quản lý',
+		'input'				=>	$this->cmsSelect('management',$this->item->management,$this->listItemBusiness,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Chọn Đơn vị quản lý',
+		'tooltipmessage'	=>	'Chọn Đơn vị quản lý',
+	),
+
+	array(
+		'label'				=>	'Đơn vị thiết kế',
+		'input'				=>	$this->cmsSelect('design',$this->item->design,$this->listItemBusiness,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Chọn Đơn vị thiết kế',
+		'tooltipmessage'	=>	'Chọn Đơn vị thiết kế',
+	),
+
+	array(
+		'label'				=>	'Nhà phân phối',
+		'input'				=>	$this->cmsSelect('distributors',$this->item->distributors,$this->listItemBusiness,'no-level',array('style' =>'padding: 4px 8px; width:206px;')),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Chọn Nhà phân phối',
+		'tooltipmessage'	=>	'Chọn Nhà phân phối',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementNameother),
+		'input'				=>	$this->formElement($elementNameother),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Tên gọi khác',
+		'tooltipmessage'	=>	'Tên gọi khác',
+	),
+	array(
+		'label'				=>	'Hình ảnh',
+		'input'				=>	"   <div id='osx-modal'>
+                        <input id='btn' type='button' name='osx' value='QUẢN LÝ HÌNH ẢNH' class='osx demo' style='*padding: 3px;font-weight: bold;font-size: 13px;cursor: default;color: #FFFFFF;background: #0E76BC;border: 1px #0E76BC solid;border-radius: 3px;'/> or <a href='#' class='osx'>QUẢN LÝ HÌNH ẢNH</a>
+                        </div>",
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Hình ảnh',
+		'tooltipmessage'	=>	'Hình ảnh',
+	),
+	
+	array(
+		'label'				=>	'Bản đồ',
+		'input'				=>	'  <div id="MainContent_ctl00_MapVBD1_dvTextPanel" style="BORDER-RIGHT: red 0px solid; BORDER-TOP: red 0px solid; PADDING-LEFT: 5px; FLOAT: left;BORDER-LEFT: red 0px solid; WIDTH: 700px; BORDER-BOTTOM: red 0px solid; padding-bottom: 20px;">
+                                
+                                <span id="MainContent_ctl00_MapVBD1_lbl1" style="font-weight:bold;">Hỗ trợ tìm địa chỉ nhà bạn trên bản đồ</span>
+                                <br><br>
+
+                                <span id="MainContent_ctl00_MapVBD1_Label2">Địa chỉ cần tìm</span>
+
+                                <input id="address" class="input_title" type="text">
+                                <input id="btnTim12" onclick="codeAddress()" type="button" value="Tìm" style="height: 22px;">
+                                <input id="btnTim12" onclick="initialize()" type="button" value="Refresh Map" style="height: 22px;">
+                                <input id="latitude" name="latitude" value="" type="hidden">
+                                <input id="longitude" name="longitude" value="" type="hidden">
+
+                                <br>
+                                <div id="divKQ"></div>
+                                
+                                <span id="MainContent_ctl00_MapVBD1_Label3">Ví dụ: Từ Tây, Yên phú, yên mỹ, Hưng Yên  -&gt; sau đó nhấn nút tìm.</span>
+                              
+                              
+                                </div><div id="container" style="width: 740px; height: 300px; border: 0px solid red; position: relative; float: left; background-color: rgb(229, 227, 223); overflow: hidden;">
+                                        <div id="map-canvas" style="margin-bottom:50px;"></div>
+                                </div>',
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Liên hệ',
+		'tooltipmessage'	=>	'Nhập vào Liên hệ',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementOverview),
+		'input'				=>	$this->formElement($elementOverview),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Tổng quan',
+		'tooltipmessage'	=>	'Nhập vào Tổng quan',
+	),
+
+	array(
+		'label'				=>	$this->formLabel($elementIntro),
+		'input'				=>	$this->formElement($elementIntro),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Giới thiệu',
+		'tooltipmessage'	=>	'Nhập vào Giới thiệu',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementService),
+		'input'				=>	$this->formElement($elementService),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Hạ tầng, dịch vụ',
+		'tooltipmessage'	=>	'Nhập vào Hạ tầng, dịch vụ',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementLocation),
+		'input'				=>	$this->formElement($elementLocation),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Vị trí',
+		'tooltipmessage'	=>	'Nhập vào Vị trí',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementSiteplan),
+		'input'				=>	$this->formElement($elementSiteplan),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'*',
+		'tooltiptitle'		=>	'Sơ đồ mặt bằng',
+		'tooltipmessage'	=>	'Nhập vào Sơ đồ mặt bằng',
+	),
+	array(
+		'label'				=>	$this->formLabel($elementContact),
+		'input'				=>	$this->formElement($elementContact),
+		'class'				=>	'col-sm-9',
+		'required'			=>	'',
+		'tooltiptitle'		=>	'Liên hệ',
+		'tooltipmessage'	=>	'Nhập vào Liên hệ',
+	),
+	
+	
+);
+
+$messagesErrors = $this->elementErrors(array(
+	'name'					=>	$elementName,
+	'area'					=>	$elementArea,
+	'price_m2'				=>	$elementPriceM2,
+	'overview'				=>	$elementOverview,
+	'intro'					=>	$elementIntro,
+	'service'				=>	$elementService,
+	'location'				=>	$elementLocation,
+	'siteplan'				=>	$elementSiteplan,
+));
+
+
+$linkLoadDistrict       = $this->url(null,array('module'=>'admin','controller'=>'project','action'=>'load-select-district'));
+$linkLoadWard           = $this->url(null,array('module'=>'admin','controller'=>'project','action'=>'load-select-ward'));
+       
+ 
+       
+$latitude_gmap  = (!empty($this->item->latitude_gmap)) ? $this->item->latitude_gmap : '21.033333';
+$longitude_gmap = (!empty($this->item->longitude_gmap)) ? $this->item->longitude_gmap : '105.85000000000002'; 
+
+
+//Danh sách hình ảnh
+$xhtmlImage     = '';
+if(!empty($this->item)){
+    $arrImage   = \Zend\Json\Json::decode($this->item->images);
+    if(!empty($arrImage)){
+        foreach($arrImage as $key=>$value){
+            $image      = UPLOAD_URL .'/project/'.$value;
+            $checkbox   = $this->cmsInput('check[]','check','checkbox',array('value'=>$key));                                                         
+            $xhtmlImage .= '  <div id="item">
+                            <div class="img"><a href="'.$image.'" rel="facybox"><img style="" src="'.$image.'" alt="Mặc định" class="sdsd" width="200px" height="200px"></a>                  
+                            </div>
+                            <div class="price" style="margin-top:5px;">'.$checkbox.' Chọn ảnh</div>
+                            <div style="margin-top:5px;height:20px;position:relative;font-size:12px;text-align: center;">
+                            </div>                
+                        </div>';
+                    
+        }                   
+
+    }
+}      
+?>
+
+
+<form name="appForm" id="appForm" method="post" action="" enctype="multipart/form-data">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+            
+            <div class="widget-body">
+            	<?php echo $messagesErrors;?>
+            	<?php echo $this->errorMessages($this->error,'admin');?>
+	   			<table class="admintable" style="width: 100%;">
+	    			<?php  echo $this->form()->openTag($myForm);
+	    			echo $this->formElement($elementId);
+					echo $this->partialLoop('admin/form-group.phtml',$elements);
+					echo $this->form()->closeTag();
+					?>
+				</table>
+           	</div>
+        </div> 
+   	</div> 
+</form>
+
+
+
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.form.js"></script>
+
+<script src="<?php echo PUBLIC_URL.'/scripts/uploadify-v3.1/js/jquery.uploadify-3.1.js'?>" type="text/javascript"></script>
+<link href="<?php echo PUBLIC_URL.'/scripts/uploadify-v3.1/css/uploadify.css' ?>" type="text/css" rel="stylesheet"/>
+<script type="text/javascript">
+		$(function() {
+			
+
+		    _city = $("#city option:selected").val();
+            loadDistrict(_city);
+
+
+            //Load quận huyện
+            $("#city").change(function(){
+                _city = $("#city option:selected").val();
+                loadDistrict(_city);
+            });
+
+
+            //Khai bao ten cua vung hien du lieu tra ve
+        var formMessage = '#content-load';
+        
+        // config uploadify
+        $('#file').uploadify({
+
+            'swf'       : '<?php echo PUBLIC_URL.'/scripts/uploadify-v3.1/uploadify.swf'?>',
+            'uploader'  : '<?php echo $this->url(null,array("module"=>"home","controller"=>"project","action"=>"uploadify-db"))?>',
+            'buttonText' : 'BROWSE FILES...',
+            'fileTypeExts'   : '*.jpg;*.png;',
+            'fileTypeDesc'  : 'Image Files',
+            'multi'     : true,
+            'auto'     : false,
+            
+            'onQueueComplete' : function(queueData) {
+                refresh_files();
+            },
+            'onUploadSuccess' : function(file, data, response){
+                console.log(data);
+                if(data.status == 'error'){
+                    alert(data.messages['upload']);
+                }
+                if(data.status == 'success'){
+                    alert(data.messages['mess']);
+                }   
+            },
+
+        });
+        
+        
+        // ajax submit form & upload image
+        var options = {
+            url: '<?php echo $this->url(null,array("module"=>"admin","controller"=>"project","action"=>"delete-img","id"=>$this->arrParam["id"]));?>',
+            type: "POST",
+            clearForm: false,
+            resetForm: true,
+            beforeSubmit: function(){
+                
+            },
+            success: function(data){
+                var arr = JSON.parse(data);
+                var type = arr.type;
+                if(type == 'success'){
+                    $('#files').html('<p>Reloading files...</p>');
+                    refresh_files();
+                }
+            }
+        };
+        
+        function refresh_files(){
+            $.ajax({
+                url     : '<?php echo $this->url(null,array("module"=>"admin","controller"=>"project","action"=>"success"));?>',
+                type    : 'GET',
+                data    : {id : <?php echo $this->arrParam['id'];?>},
+                cache   : false,
+                success : function(data,status){
+                    $('#files').html(data);
+                }
+            })
+        }
+
+        $('#appForm1').submit(function(){
+            
+            $(this).ajaxSubmit(options);
+            return false;
+        });
+
+
+
+		});
+
+		function loadDistrict(city){
+            $.ajax({
+                url     : '<?php echo $linkLoadDistrict;?>',
+                type    : 'GET',
+                data    : {city : city, currentDistrict : <?php echo $this->item->district;?>},
+                success: function(data){
+                    $("#district").html(data);
+                },
+                complete: function(){
+
+                }
+            });
+        }
+
+	  </script>   	      	 	
+
+	  <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGQX4Hz0Vxv6DfKdan46Y33DyZ5xjnljc&sensor=false&
+          language=vi&
+          region=GB">
+    </script>
+    <script type="text/javascript">
+      var geocoder;
+      var map;
+      var marker;
+      var infowindow;
+
+      function toggleBounce(){
+        if(marker.getAnimation() != null){
+          marker.setAnimation(null);
+        }else{
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      };
+
+      function codeAddress(){
+        var address = document.getElementById('address').value;
+        geocoder.geocode({
+          'address': address
+        },function(results, status){
+            if(status == google.maps.GeocoderStatus.OK){
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+
+              document.getElementById('latitude').value = latitude;
+              document.getElementById('longitude').value = longitude;
+              map.setCenter(results[0].geometry.location);
+              marker = new google.maps.Marker({
+                  map: map,
+                  animation: google.maps.Animation.DROP,
+                  position: results[0].geometry.location,
+                  title: results[0].address_components[0].long_name
+              });
+              google.maps.event.addListener(marker, 'click', toggleBounce);
+              
+              var content = 'Name: ' + results[0].address_components[0].long_name + '<br/>'
+                       + 'Address: ' + results[0].formatted_address + '<br/>';
+              
+              infowindow = new google.maps.InfoWindow({
+                    map: map,
+                    position: results[0].geometry.location,
+                    content: content//JSON.stringify(results)
+              });
+            }else{
+              alert('Không tìm thấy địa điểm: ' + status);
+            }
+        });
+      };
+      function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(<?php echo $latitude_gmap;?>, <?php echo $longitude_gmap;?>);
+        var mapOptions = {
+          zoom: 15,
+          center: latlng
+        }
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+      }
+        /*function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var myLatlng = new google.maps.LatLng(<?php echo $latitude_gmap;?>, <?php echo $longitude_gmap;?>);
+            var mapOptions = {
+                zoom: 17,
+                center: myLatlng
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            /*var marker = new google.maps.Marker({
+                position: myLatlng,
+                title: 'Hello World!'
+            });
+            
+            marker.setMap(map);
+        }*/
+
+  
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+<!--Hiển thị phần quản lý ảnh-->
+
+<!-- modal content -->
+<div id="osx-modal-content" >
+    <div id="osx-modal-title">QUẢN LÝ ALBUM ẢNH - <?php echo $this->item->name; ?></div>
+    <div class="close"><a href="#" class="simplemodal-close">x</a></div>
+    <div id="osx-modal-data" >
+        <form id="appForm1" action="" method="post" enctype="multipart/form-data">       
+            <div id="files" style="height: 600px; width: 700px; overflow: auto;float:right;border-left:1px solid gray;">
+                <div id="list-gallary">
+                    <?php echo $xhtmlImage;?>        
+                </div>
+            </div>   
+            <div style="float:left;width:350px;padding:5px;background:#20B2AA;color:white;">
+            1. Chọn file ảnh cần upload(ảnh có kích thước không quá 500KB với các định dạng: jpg, png, gif)<br>
+            2. Để xóa ảnh chọn ảnh cần xóa và nhất nút Delete selected image")<br><br>
+            <input type="file" name="file" id="file" />
+            <a class="btnosx" style="width:120px;height:35px;" href="javascript: 
+                    $('#file').uploadify(
+                        'settings',
+                        'formData',{
+                        'id': <?php echo $this->arrParam['id']; ?>
+                        }
+                    );
+                    $('#file').uploadify('upload','*')">Tải hình</a>
+            <!--Kết thúc edit ảnh-->
+            <input class="btnosx" style="width:120px;height:30px;" type="submit" name="btn_upload" id="btn_upload" value="Xóa hình ảnh" />
+            </div>
+        </form>
+        <!-- END: ALBUM HINH -->
+    </div>
+</div>
+
+<link type='text/css' href='<?php echo TEMPLATE_URL; ?>/user/css/blocksui/osx.css' rel='stylesheet' media='screen' />
+<script type='text/javascript' src='<?php echo TEMPLATE_URL; ?>/user/js/blocksui/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='<?php echo TEMPLATE_URL; ?>/user/js/blocksui/osx.js'></script>
+
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+<script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
+
+<script>
+		var overview = CKEDITOR.replace( 'overview', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( overview, 'plugins/ckfinder/' );
+
+		var intro = CKEDITOR.replace( 'intro', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( intro, 'plugins/ckfinder/' );
+
+		var service = CKEDITOR.replace( 'service', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( service, 'plugins/ckfinder/' );
+
+		
+
+		var siteplan = CKEDITOR.replace( 'siteplan', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( siteplan, 'plugins/ckfinder/' );
+
+		var contact = CKEDITOR.replace( 'contact', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( contact, 'plugins/ckfinder/' );
+
+		var locations = CKEDITOR.replace( 'location', {
+			customConfig	: 'config-05.js',
+			
+		});
+		CKFinder.setupCKEditor( locations, 'plugins/ckfinder/' );
+
+	</script>

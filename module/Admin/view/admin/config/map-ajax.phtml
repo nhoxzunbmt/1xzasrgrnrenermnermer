@@ -1,0 +1,60 @@
+<?php
+$isXmlHttpRequest = $this->isXmlHttpRequest;
+if($isXmlHttpRequest == true){
+
+
+$elements = array(
+    array(
+        'label'             =>  'Bản đồ',
+        'input'             =>  '  <div id="MainContent_ctl00_MapVBD1_dvTextPanel" style="BORDER-RIGHT: red 0px solid; BORDER-TOP: red 0px solid; PADDING-LEFT: 5px; FLOAT: left;BORDER-LEFT: red 0px solid; WIDTH: 700px; BORDER-BOTTOM: red 0px solid; padding-bottom: 20px;">
+                                
+                                <span id="MainContent_ctl00_MapVBD1_lbl1" style="font-weight:bold;">Hỗ trợ tìm địa chỉ nhà bạn trên bản đồ</span>
+                                <br><br>
+
+                                <span id="MainContent_ctl00_MapVBD1_Label2">Địa chỉ cần tìm</span>
+
+                                <input id="address" class="input_title" type="text">
+                                <input id="btnTim12" onclick="codeAddress()" type="button" value="Tìm" style="height: 22px;">
+                                <input id="btnTim12" onclick="initialize()" type="button" value="Refresh Map" style="height: 22px;">
+                                <input id="latitude" name="latitude" value="" type="hidden">
+                                <input id="longitude" name="longitude" value="" type="hidden">
+
+                                <br>
+                                <div id="divKQ"></div>
+                                
+                                <span id="MainContent_ctl00_MapVBD1_Label3">Ví dụ: Từ Tây, Yên phú, yên mỹ, Hưng Yên  -&gt; sau đó nhấn nút tìm.</span>
+                              
+                              
+                                </div><div id="container" style="width: 740px; height: 300px; border: 0px solid red; position: relative; float: left; background-color: rgb(229, 227, 223); overflow: hidden;">
+                                        <div id="map-canvas" style="margin-bottom:50px;"></div>
+                                </div>',
+        'class'             =>  'col-sm-9',
+        'required'          =>  '',
+        'tooltiptitle'      =>  'Liên hệ',
+        'tooltipmessage'    =>  'Nhập vào Liên hệ',
+    ),
+    
+    
+);
+          
+?>
+
+<table class="admintable" style="width: 100%;">
+    <?php  
+    echo $this->partialLoop('admin/form-group.phtml',$elements);
+    
+    ?>
+</table>
+
+
+
+
+<?php
+}else{
+    echo 'not ajax';
+}
+?>
+
+
+
+

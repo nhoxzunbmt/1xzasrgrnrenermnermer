@@ -1,0 +1,67 @@
+<?php
+    $content 	= $this->item['content'];
+   	$phone 		= $this->item['phone'];
+   	$email 		= $this->item['email'];
+    $fullname 	= $this->item['fullname'];
+    $title 		= $this->item['title'];
+	$cat_id 	= $this->item['rcat_id'];
+	$rid 		= $this->item['rid'];
+	$name_type 	= $this->item['name_type'];
+
+	$linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
+            'cid'           =>  $cat_id,
+            'id'            =>  $rid,
+            'extension'     =>  'html',
+        ));
+?>
+
+<div id="BoxInfoAccount">
+   
+    <div class="TitleBox">
+        <h2><span id="MainContent_ctl00_lblTieuDe">Xem liên hệ</span></h2>
+    </div>
+    <div class="DesBoxInfoAccount">
+        <h3><span id="MainContent_ctl00_lblThongBao" style="color:Red;"></span></h3>
+        
+       
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td width="25%"><label>Người gửi:</label><span class="star" id="sao1">*</span></td>
+                    <td width="75%"><span class="namecompany"><span id="MainContent_ctl00_lblTenLienHe"><?php echo $fullname;?></span></span></td>
+                </tr>
+
+                <tr>
+                    <td width="25%"><label>Điện thoại:</label><span class="star" id="sao1">*</span></td>
+                    <td width="75%"><span class="namecompany"><span id="MainContent_ctl00_lblTenLienHe"><?php echo $phone;?></span></span></td>
+                </tr>
+
+                  <tr>
+                    <td width="25%"><label>Email:</label><span class="star" id="sao1">*</span></td>
+                    <td width="75%"><span class="namecompany"><span id="MainContent_ctl00_lblTenLienHe"><?php echo $email;?></span></span></td>
+                </tr>
+              
+                <tr>
+                    <td><label>Bất động sản:</label></td>
+                    <td><span><span id="MainContent_ctl00_lblDiaChi"><a class="link" target="_BLANK" href="<?php echo $linkDetail;?>"><?php echo $title;?></a></span></span>
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td><label>Nội dung:</label></td>
+                    <td><span>
+                            <span id="MainContent_ctl00_lblDangThanhVien"><?php echo $content;?></span></span></td>
+                </tr>
+              
+               
+                
+               
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<?php
+
+//Tỉnh
+$frmCity            = $this->cmsSelect('city','',$this->itemsCity,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+
+//Quận huyện
+$arrOptions = array(
+     array('id'=>'','name'=>'Quận/Huyện'),
+);
+$frmDistrict        = $this->cmsSelect('district','',$arrOptions,'no-level',array('style' =>'width:100%; border: 1px solid #dddddd; color: #919191;'));
+
+
+//Search Name
+$linkSearch         = $this->url('MVC_HomeRouter/action',array('controller'=>'agency','action'=>'search'));
+
+//Category
+
+$xhtml = '';
+if(!empty($this->itemsCategory)){
+    foreach($this->itemsCategory as $item){
+        $urlCategory  = $this->url(
+            'CategoryBusinessRoute',
+            array(
+                'action'    =>'category',
+                'name'      =>\ZendVN\Url\FriendlyLink::filter($item['name']),
+                'page'      =>1,
+                'id'        =>$item['id']
+            )
+        );
+        $xhtml      .= '<p><a href="'.$urlCategory.'" title="'.$item['name'].'">'.$item['name'].'</a></p>';
+    }  
+}
+?>
+
+<div class="topAgentPage">
+    <div class="smallSearch" style="display: block;">
+        <div class="boxSearch">
+            <ul>
+                <li class="current"><a href="#" title="Tìm môi giới"><b>Tìm môi giới</b></a></li>
+            </ul>
+            <div class="contentSearch bgWhite">
+                 <form action="<?php echo $linkSearch;?>" method="get" name="search-business-form" id="search-business-form">
+                <ol>
+                    <li>
+                        <div class="selectedValues marR15">
+                            <input id="txtName" type="text" onblur="if(this.value=='') this.value='Nhập từ khóa';" onfocus="if(this.value=='Nhập từ khóa') this.value='';" value="" placeholder="Nhập từ khóa">
+                            <span title="Xóa" class="btDropdown del"></span>
+                        </div>
+                        <div class="selectedValues marR15" onclick="$('.hiddenDropBox').hide();$('#divDropState').toggle();">
+                            <?php echo $frmCity;?>
+                            
+                        </div>
+                        <div class="selectedValues marR15">
+                            <?php echo $frmDistrict ;?>
+                        </div>
+                         <input type="button" id="search-submit" name="submit" style="background:url('<?php echo TEMPLATE_URL.'/default/images/search-agency.png';?>');width:151px;height:32px;">
+                        <div class="clearBoth">
+                        </div>
+                    </li>
+                </ol>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,281 @@
+<?php
+$config = new \ZendVN\Config\Config();
+//echo $config->limitSendEmailMarketing();
+if(!empty($this->arrParams['itemSkin'])){
+  $arrConfigBackground = \Zend\Json\Json::decode($this->arrParams['itemSkin']->config_background);
+  $curentBackground = UPLOAD_URL .'/skin/'.$arrConfigBackground->curentBackground->background; 
+  $fixed            = $arrConfigBackground->curentBackground->style; 
+} 
+
+?>
+<?php echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   
+
+    <?php echo $this->headTitle()->setSeparator(" - ")->append($config->title());?>
+   
+
+    <!-- Meta -->
+    <?php echo $this->headMeta()
+            ->appendName('description', $config->description())
+            ->prependName('keywords',$config->keyword())
+            ->appendHttpEquiv('REFRESH', '600')
+            
+    ?>
+
+    <!-- Le styles -->
+    <?php echo $this->headLink(array(
+                  'rel' => 'shortcut icon',
+                  'type' => 'image/vnd.microsoft.icon',
+                  'href' => TEMPLATE_URL . '/default/images/favicon.png'
+                ))
+                ->prependStylesheet(TEMPLATE_URL . '/default/css/mbnd-ver2.css');
+                //->prependStylesheet(TEMPLATE_URL . '/default/css/mbnd.css');
+    ?>
+
+
+    <!-- Scripts -->
+    <?php echo $this->headScript()
+            ->prependFile(TEMPLATE_URL . '/user/js/submit.js')
+            ->prependFile(TEMPLATE_URL . '/default/js/jquery-ui/jquery.js?v=23072014.16')
+            ->prependFile(TEMPLATE_URL . '/default/js/jquery-ui/jquery.cookie.js')
+            //->prependFile(TEMPLATE_URL . '/default/js/Login.js?v=23072014.1666')
+            ->prependFile(TEMPLATE_URL . '/default/js/stepcarousel_NodeMsg.js?v=123333')
+            ->prependFile(TEMPLATE_URL . '/default/js/jquery.jscrollpane.min.js')
+            ->prependFile(TEMPLATE_URL . '/default/js/jquery-ui/jquery.template.js')
+            ->prependFile(TEMPLATE_URL . '/default/js/GlobalFunction.js')
+            ->prependFile(TEMPLATE_URL . '/default/js/SearchMain.js?v=23072014.16');
+     ?>
+
+  
+
+	
+
+	
+    <script type="text/javascript">
+        
+//        var pathClientAjax = "http://localhost/mbndv6/";
+//                var pathClient = "http://localhost/mbndv6/";
+        var pathClientAjax = "http://batdongsan.vn/";
+        var pathClient = "http://batdongsan.vn/";
+        
+//        var pathClientAjax = location.protocol + "//" + location.host + "/";
+//        var pathClient = location.protocol + "//" + location.host + "/";
+//        
+        var pathImagesUrl = "http://batdongsan.vn/";
+
+        var pathClientUploadFilePhoToMap = "http://batdongsan.vn/";
+        var pathClientUploadFileViewPhoToMap = "http://batdongsan.vn/";
+        var pathGmap = "http://batdongsan.vn/";
+        //key de active tab  o module search --- ON- agent  // OFF- raovat
+        var keyActiveTabInSearchModule = "OFF";
+        var key1650 = "0D3%2fH6DcM9Hr2aWBZuV9VpEgVpE1eepL3haen4AUYcs%3d";
+
+        // key map v3
+        var keyGmap = "AIzaSyCSiRBJuxKHiAqoi4AExm2KKTiRhhA_MwY";
+        var BigProvinces = "59,28,31,60,17,38,44,20,34,41,50,43";
+        var TopProvinces = "59,28,31,17,50,44,41";
+
+        var pAppIdFb = "264597697012220";
+        var mbndLabel = "";
+
+
+    </script>
+	
+	
+
+<script type="text/javascript">
+ var ismobile = (/iphone|ipod|android|blackberry|opera mini|windows\sce|palm|smartphone|iemobile/i.test(navigator.userAgent.toLowerCase()));
+        var istablet = (/ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(navigator.userAgent.toLowerCase()));
+
+        if (ismobile || istablet) {
+            if ($.cookie('MobileVersion') == 1) {
+                location.replace("http://m.muabannhadat.com.vn/");
+                //location.replace("http://localhost:1119/mobile/");
+            }
+        }
+
+
+
+	navigator.userAgent.match(/iPad/i) != null;
+         var flag = false;
+         var device = navigator.userAgent.toLowerCase();
+         if (device.search("iphone") > -1
+        || device.search("blackberry") > -1
+        || device.search("windows ce") > -1
+        || device.search("opera mini") > -1
+        || device.search("palm") > -1
+        || device.search("symbian") > -1
+        || device.search("android") > -1
+        || device.search("smartphone") > -1
+        || device.search("iemobile") > -1
+        || device.search("wap") > -1
+        || device.search("vodafone") > -1
+        || device.search("pocket") > -1
+        || device.search("pda") > -1
+        || device.search("Nokia") > -1
+        || device.search("ipod") > -1
+        //|| device.search("ipad") > -1
+        || navigator.platform.toLowerCase().indexOf("symbian") != -1)
+             flag = true;
+         if (device.search("mobile") > -1) { if (device.match(/iPad/i) != null) { } else { flag = true; } }
+
+         if (flag)
+             $('#TopHeaderLabel').html("<a href=\"javascript:;\" onclick=\"mred();\" style=\"font-size:16pt;\">Phiên bản cho mobile</a>");
+
+         function mred() {
+             if ($.cookie('MobileVersion') == 0) {
+                 $.cookie('MobileVersion', '1', { expires: 1, path: '/', domain: 'batdongsan.vn' });
+                 $.cookie('MobileVersion', '1', { expires: 1, path: '/', domain: 'm.batdongsan.vn' });
+                 
+             }
+             location.replace("http://m.batdongsan.vn/?mv=1");
+            
+         }
+
+
+   var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4041217-1']);
+  _gaq.push(['_setDomainName', '.batdongsan.vn']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  
+  var arrSeofix=new Array();
+  
+  try
+  {
+    if(arrSeofix != null)
+    {
+      var countSeofix=0;
+      
+      for(i=0;i<arrSeofix.length;i++)
+		  {
+			  var tempsf=arrSeofix[i].split('#');
+			  if(tempsf[1]!="")
+			  {
+				  _gaq.push(['_setCustomVar', i+1, tempsf[0], tempsf[1], 3]);
+				  countSeofix++;
+			  }
+			  if(countSeofix==5)
+				  break;
+		  }
+	  }
+  }
+  catch(err)
+  {}
+  
+  
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  
+ 
+(function(d, t) {
+var g = d.createElement(t),
+	s = d.getElementsByTagName(t)[0];
+g.async = true;
+g.src = 'https://apis.google.com/js/plusone.js';
+s.parentNode.insertBefore(g, s);
+})(document, 'script');
+        
+  function trackPageview(str)
+  {
+	  var pageTracker = _gat._getTracker("UA-4041217-1");
+	  pageTracker._trackPageview(str);
+	  pageTracker._trackPageLoadTime(str);
+  }
+
+  function trackANZFormSubmit()
+  {
+      var tp = document.getElementById("sltTinhThanhDiaChi").value;
+	  var tpName = "hcmc";
+	  if(tp=="28"){tpName="ha-noi";}else if(tp=="0"){tpName = "khac"; } else   tpName = "hcmc";
+	  var key = getUrlVars()["key"];
+	  var pageTracker = _gat._getTracker("UA-4041217-1");
+	  if(key=="1")
+      {
+	     
+	      pageTracker._trackPageview("anz-moigioi-submitted/".tpName);
+	      pageTracker._trackPageLoadTime("anz-moigioi-submitted/".tpName);
+	      pageTracker._trackEvent("ANZ Register Forms", "anz-moigioi-submitted/".tpName);	
+	  }
+	  else
+      {
+		  pageTracker._trackPageview("anz-loan-submitted/".tpName);
+	      pageTracker._trackPageLoadTime("anz-loan-submitted/".tpName);
+	      pageTracker._trackEvent("ANZ Register Forms", "anz-loan-submitted/".tpName);	
+	  }
+
+      
+  }
+
+</script>	
+ 
+ 
+<!-- Start Alexa Certify Javascript -->
+<script type="text/javascript">
+    _atrk_opts = { atrk_acct: "VVbHg1aAQ700Mx", domain: "muabannhadat.com.vn", dynamic: true };
+    (function () { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(as, s); })();
+</script>
+<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=VVbHg1aAQ700Mx" style="display:none" height="1" width="1" alt="" /></noscript>
+<!-- End Alexa Certify Javascript -->  
+<script type='text/javascript' src='http://adserver.ringier.com.vn/new/www/delivery/spcjs.php?id=9&amp;target=_blank&amp;charset=UTF-8'></script>
+
+<!-- All Google Analytics -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+ m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-4041217-10', 'auto');
+    ga('create', 'UA-4041217-1', 'auto', { 'name': 'mbndDesktop' }); // MBND_Desktop.
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+    ga('mbndDesktop.send', 'pageview'); // Send pageview for MBND_Desktop.
+</script>
+<!-- END All Google Analytics -->
+
+</head>
+
+<body onload="checkShowCrapper();" onresize="checkShowCrapper();" style="background: url('<?php echo $curentBackground;?>') top center <?php echo $fixed;?>;">
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+	<div style="left: -1000px; visibility: hidden; top: 397px; position: absolute; z-index: 10000;"
+		id="tooltipdoanhnghiep" class="propertyToolTip">
+	</div>
+	<div style="width:1010px;margin: 0 auto;background:white;">
+        <div class="header">
+          <?php include_once 'html/header.php';?>
+         
+        </div>
+        
+      
+        <div class="mainNav">
+          <?php include_once 'html/navigation.php';?>
+        </div>
+   
+  
+        <?php echo $this->content;?> 
+    </div> 
+    <div class="footer">
+        <?php include_once 'html/footer.php';?>
+    </div> 
+  
+</body>
+</html>
+<!--
+Duration: 195.274 ms (MBNDVNRE)
+-->

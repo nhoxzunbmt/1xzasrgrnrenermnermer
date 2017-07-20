@@ -1,0 +1,275 @@
+<?php echo $this->doctype(); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <?php echo $this->headTitle();?>
+   
+
+    <!-- Meta -->
+    <?php echo $this->headMeta()
+            ->appendName('description', 'Chuyên trang mua bán nhà đất, bất động sản, bán nhà, bán đất - Thông tin mua, bán, nhà, đất, căn hộ, chung cư, phòng, cao ốc, biệt thự cao cấp, mặt bằng, văn phòng, kho bãi, nhà xưởng, dự án đất đai, dự án bất động sản, dự án đầu tư được cập nhật liên tục và chính xác.')
+            ->prependName('keywords','Bat dong san, nha dat, mua ban nha dat, cho thue, mua, ban, nha, dat, can ho, biet thu, chung cu, phong, dat dai, du an, bang gia, luat, moi gioi, nguoi thu nhap thap, mau nha dep, phong thuy, nha o, phong khach, nha bep, huong nha, Ho Chi Minh, Ha Noi, Hai Phong, Da Nang, Binh Duong, Vung Tau, quan, huyen, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, Binh Tan, Binh Thanh, Go Vap, Phu Nhuan, Tan Binh, Tan Phu, Thu Duc, Binh Chanh, Can Gio, Cu Chi, Hoc Mon, Nha Be')
+            ->appendHttpEquiv('REFRESH', '600')
+            
+    ?>
+
+    <!-- Le styles -->
+    <?php echo $this->headLink(array(
+                  'rel' => 'shortcut icon',
+                  'type' => 'image/vnd.microsoft.icon',
+                  'href' => TEMPLATE_URL . '/user/images/favicon.png'
+                ))
+                ->appendStylesheet(TEMPLATE_URL . '/user/css/mbnd.css')
+                ->appendStylesheet(TEMPLATE_URL . '/user/css/style_membership.css?v=29102014');
+    ?>
+
+
+
+    <!-- Scripts -->
+    <?php echo $this->headScript()
+            ->prependFile(TEMPLATE_URL . '/user/js/submit.js')
+            ->prependFile(TEMPLATE_URL . '/user/js/jquery-ui/jquery.js?v=23072014.16')
+            ->prependFile(TEMPLATE_URL . '/user/js/jquery-ui/jquery.cookie.js')
+            ->prependFile(TEMPLATE_URL . '/user/js/Login.js?v=23072014.1666')
+            ->prependFile(TEMPLATE_URL . '/user/js/stepcarousel_NodeMsg.js?v=123333')
+            ->prependFile(TEMPLATE_URL . '/user/js/jquery.jscrollpane.min.js')
+            ->prependFile(TEMPLATE_URL . '/user/js/jquery-ui/jquery.template.js')
+            ->prependFile(TEMPLATE_URL . '/user/js/GlobalFunction.js')
+            ->prependFile(TEMPLATE_URL . '/user/js/UsrComplex.js')
+            ->appendFile(TEMPLATE_URL . '/admin/js/submit.js');
+     ?> 
+	
+    <script type="text/javascript">
+        
+//        var pathClientAjax = "http://localhost/mbndv6/";
+//                var pathClient = "http://localhost/mbndv6/";
+        var pathClientAjax = "http://muabannhadat.com.vn/";
+        var pathClient = "http://muabannhadat.com.vn/";
+        
+//        var pathClientAjax = location.protocol + "//" + location.host + "/";
+//        var pathClient = location.protocol + "//" + location.host + "/";
+//        
+        var pathImagesUrl = "http://images.videonhadat.com.vn/";
+
+        var pathClientUploadFilePhoToMap = "http://uploads.videonhadat.com.vn/TMP/photovbd/L";
+        var pathClientUploadFileViewPhoToMap = "http://uploads.videonhadat.com.vn/";
+        var pathGmap = "http://bando.muabannhadat.com.vn/";
+        //key de active tab  o module search --- ON- agent  // OFF- raovat
+        var keyActiveTabInSearchModule = "OFF";
+        var key1650 = "0D3%2fH6DcM9Hr2aWBZuV9VpEgVpE1eepL3haen4AUYcs%3d";
+
+        // key map v3
+        var keyGmap = "AIzaSyCSiRBJuxKHiAqoi4AExm2KKTiRhhA_MwY";
+        var BigProvinces = "59,28,31,60,17,38,44,20,34,41,50,43";
+        var TopProvinces = "59,28,31,17,50,44,41";
+
+        var pAppIdFb = "264597697012220";
+        var mbndLabel = "";
+
+        var pathClientTemplate = "<?php echo TEMPLATE_URL;?>/user";
+        var pathClientTemplateDefault = "<?php echo TEMPLATE_URL;?>/default";
+
+    </script>
+	
+	
+
+<script type="text/javascript">
+ var ismobile = (/iphone|ipod|android|blackberry|opera mini|windows\sce|palm|smartphone|iemobile/i.test(navigator.userAgent.toLowerCase()));
+        var istablet = (/ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(navigator.userAgent.toLowerCase()));
+
+        if (ismobile || istablet) {
+            if ($.cookie('MobileVersion') == 1) {
+                location.replace("http://m.muabannhadat.com.vn/");
+                //location.replace("http://localhost:1119/mobile/");
+            }
+        }
+
+
+
+	navigator.userAgent.match(/iPad/i) != null;
+         var flag = false;
+         var device = navigator.userAgent.toLowerCase();
+         if (device.search("iphone") > -1
+        || device.search("blackberry") > -1
+        || device.search("windows ce") > -1
+        || device.search("opera mini") > -1
+        || device.search("palm") > -1
+        || device.search("symbian") > -1
+        || device.search("android") > -1
+        || device.search("smartphone") > -1
+        || device.search("iemobile") > -1
+        || device.search("wap") > -1
+        || device.search("vodafone") > -1
+        || device.search("pocket") > -1
+        || device.search("pda") > -1
+        || device.search("Nokia") > -1
+        || device.search("ipod") > -1
+        //|| device.search("ipad") > -1
+        || navigator.platform.toLowerCase().indexOf("symbian") != -1)
+             flag = true;
+         if (device.search("mobile") > -1) { if (device.match(/iPad/i) != null) { } else { flag = true; } }
+
+         if (flag)
+             $('#TopHeaderLabel').html("<a href=\"javascript:;\" onclick=\"mred();\" style=\"font-size:16pt;\">Phiên bản cho mobile</a>");
+
+         function mred() {
+             if ($.cookie('MobileVersion') == 0) {
+                 $.cookie('MobileVersion', '1', { expires: 1, path: '/', domain: 'muabannhadat.com.vn' });
+                 $.cookie('MobileVersion', '1', { expires: 1, path: '/', domain: 'm.muabannhadat.com.vn' });
+                 
+             }
+             location.replace("http://m.muabannhadat.com.vn/?mv=1");
+            
+         }
+
+
+   var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4041217-1']);
+  _gaq.push(['_setDomainName', '.muabannhadat.com.vn']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  
+  var arrSeofix=new Array();
+  
+  try
+  {
+    if(arrSeofix != null)
+    {
+      var countSeofix=0;
+      
+      for(i=0;i<arrSeofix.length;i++)
+		  {
+			  var tempsf=arrSeofix[i].split('#');
+			  if(tempsf[1]!="")
+			  {
+				  _gaq.push(['_setCustomVar', i+1, tempsf[0], tempsf[1], 3]);
+				  countSeofix++;
+			  }
+			  if(countSeofix==5)
+				  break;
+		  }
+	  }
+  }
+  catch(err)
+  {}
+  
+  
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  
+ 
+(function(d, t) {
+var g = d.createElement(t),
+	s = d.getElementsByTagName(t)[0];
+g.async = true;
+g.src = 'https://apis.google.com/js/plusone.js';
+s.parentNode.insertBefore(g, s);
+})(document, 'script');
+        
+  function trackPageview(str)
+  {
+	  var pageTracker = _gat._getTracker("UA-4041217-1");
+	  pageTracker._trackPageview(str);
+	  pageTracker._trackPageLoadTime(str);
+  }
+
+  function trackANZFormSubmit()
+  {
+      var tp = document.getElementById("sltTinhThanhDiaChi").value;
+	  var tpName = "hcmc";
+	  if(tp=="28"){tpName="ha-noi";}else if(tp=="0"){tpName = "khac"; } else   tpName = "hcmc";
+	  var key = getUrlVars()["key"];
+	  var pageTracker = _gat._getTracker("UA-4041217-1");
+	  if(key=="1")
+      {
+	     
+	      pageTracker._trackPageview("anz-moigioi-submitted/".tpName);
+	      pageTracker._trackPageLoadTime("anz-moigioi-submitted/".tpName);
+	      pageTracker._trackEvent("ANZ Register Forms", "anz-moigioi-submitted/".tpName);	
+	  }
+	  else
+      {
+		  pageTracker._trackPageview("anz-loan-submitted/".tpName);
+	      pageTracker._trackPageLoadTime("anz-loan-submitted/".tpName);
+	      pageTracker._trackEvent("ANZ Register Forms", "anz-loan-submitted/".tpName);	
+	  }
+
+      
+  }
+
+</script>	
+ 
+ 
+<!-- Start Alexa Certify Javascript -->
+<script type="text/javascript">
+    _atrk_opts = { atrk_acct: "VVbHg1aAQ700Mx", domain: "muabannhadat.com.vn", dynamic: true };
+    (function () { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(as, s); })();
+</script>
+<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=VVbHg1aAQ700Mx" style="display:none" height="1" width="1" alt="" /></noscript>
+<!-- End Alexa Certify Javascript -->  
+<script type='text/javascript' src='http://adserver.ringier.com.vn/new/www/delivery/spcjs.php?id=9&amp;target=_blank&amp;charset=UTF-8'></script>
+
+<!-- All Google Analytics -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+ m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-4041217-10', 'auto');
+    ga('create', 'UA-4041217-1', 'auto', { 'name': 'mbndDesktop' }); // MBND_Desktop.
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+    ga('mbndDesktop.send', 'pageview'); // Send pageview for MBND_Desktop.
+</script>
+<!-- END All Google Analytics -->
+
+</head>
+<body onload="checkShowCrapper();" onresize="checkShowCrapper();">
+  
+
+
+
+
+
+
+  
+  <div style="left: -1000px; visibility: hidden; top: 397px; position: absolute; z-index: 10000;"
+    id="tooltipdoanhnghiep" class="propertyToolTip">
+  </div>
+  
+  <div class="header">
+    <?php include_once 'html/header.php';?>
+  </div>
+  <div class="mainNav">
+    <?php include_once 'html/navigation.php';?>
+  </div>
+  <div class="pageWrap">
+    <?php include_once 'html/breadcrumb.php';?>
+  </div>
+
+  <center>
+        <div class="WidthPages">
+            <div class="ContentsBody">
+                <div class="ColLeft">                    
+                  <?php include_once 'html/menu-left.php';?>
+                </div>
+                <div class="ColRight">
+                <?php echo $this->content;?> 
+                </div>
+            </div>
+        </div>
+   </center>                
+  <div class="footer">
+    <?php include_once 'html/footer.php';?>
+  </div>   
+</body>
+</html>
+<!--
+Duration: 195.274 ms (MBNDVNRE)
+-->

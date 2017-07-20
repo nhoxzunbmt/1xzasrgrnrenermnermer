@@ -1,0 +1,66 @@
+<?php
+$ssFilter   = $this->arrParam['ssFilter'];
+
+//==========Messages=========================//
+$messages   = $this->flashMessenger()
+                    ->setMessageOpenFormat('<div id="cph_Main_ctl00_notification_rptNotice_divMessage_0" class="alert alert-success">')
+                    ->setMessageSeparatorString('')
+                    ->setMessageCloseString('<button data-dismiss="alert" class="close">×</button>')
+                    ->render('success',array('success message'));
+
+
+
+
+
+
+?>
+
+<form name="appForm" id="appForm" method="post" action="">
+
+<?php include('sublink/index.php');?>
+    <!--Nội dung load ở đây-->                   
+    <div id="cph_Main_ContentPane">
+
+        <div class="widget">
+            <?php include('toolbar/index.php');?>
+
+            <div class="widget-body">
+                <div id="cph_Main_ctl00_notification_divNotice" style="padding-top:10px;">
+                <?php echo $messages ;?>  
+                </div>
+                <?php echo $this->errorMessages($this->error,'admin');?>
+               
+
+                <div class="dataTables_wrapper">
+                        <!-- V? tri load datat-->
+                </div>
+        
+                <style type="text/css">
+                #tooltip { position: absolute; z-index: 10102; background-color: #FFF; padding: 5px; border: solid 3px #cccccc; display: block; width: 350px; text-align: center; }
+                </style>
+
+        </div>
+</div>
+
+
+<?php
+$page       = !empty($this->arrParam['page']) ? $this->arrParam['page'] : 1;
+$LinkPage   = $this->basePath()."/".$this->arrParam['module']."/".$this->arrParam['controller']."/background-ajax/page/".$page;
+?>
+<script type="text/javascript">
+
+$j(document).ready(function(){
+    $j(".loading").show();
+    $j.ajax({
+        url     : '<?php echo $LinkPage;?>',
+        type    : 'GET',
+        //data    : {page : 1},
+        cache   : false,
+        success : function(data,status){
+            $j("div.dataTables_wrapper").html(data);
+            $j(".loading").fadeOut(1000);
+        }
+    });
+});
+
+</script>

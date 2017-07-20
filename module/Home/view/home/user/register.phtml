@@ -1,0 +1,288 @@
+<?php 
+
+    $myForm             = $this->myForm;
+    $myForm->setAttribute('action', $this->url(null, array(
+            'module'    =>  'home',
+            'controller'    => 'user',
+            'action'        => 'validate-register'
+    )));
+    
+    
+    $myForm->prepare();
+    $elementFullname    = $myForm->get('fullname');
+    $elementUsername    = $myForm->get('username');
+    $elementEmail       = $myForm->get('email');
+    $elementPassword    = $myForm->get('password');
+    $elementConfirmPassword    = $myForm->get('confirm-password');
+    $elementPhone       = $myForm->get('phone');
+    $elementCaptcha       = $myForm->get('captcha');
+    $elementBtnSubmit   = $myForm->get('my-button-submit');
+   
+    
+    $elements       = array(
+            array(
+                    'label'     => $this->formLabel($elementFullname),
+                    'input'     => $this->formElement($elementFullname),
+                    'error'     => 'ajax-info-fullname',
+                    'lierror'   => 'li-fullname',
+            ),
+            array(
+                    'label'     => $this->formLabel($elementUsername),
+                    'input'     => $this->formElement($elementUsername),
+                    'error'     => 'ajax-info-username',
+                    'lierror'   => 'li-username',
+            ),
+            array(
+                    'label' => $this->formLabel($elementPassword),
+                    'input' => $this->formElement($elementPassword),
+                    'error' => 'ajax-info-password',
+                    'lierror'   =>'li-password',
+            ),
+            array(
+                    'label' => $this->formLabel($elementConfirmPassword),
+                    'input' => $this->formElement($elementConfirmPassword),
+                    'error' => 'ajax-info-confirm-password',
+                    'lierror'   =>'li-confirm-password',
+            ),
+            array(
+                    'label'     => $this->formLabel($elementEmail),
+                    'input'     => $this->formElement($elementEmail),
+                    'error'     => 'ajax-info-email',
+                    'lierror'   => 'li-email',
+            ),
+            array(
+                    'label'     => $this->formLabel($elementPhone),
+                    'input'     => $this->formElement($elementPhone),
+                    'error'     => 'ajax-info-phone',
+                    'lierror'   => 'li-phone',
+            ),
+            array(
+                    'label'     => $this->formLabel($elementCaptcha) ,
+                    'input'     => '<div class="captcha-area">'.$this->formElement($elementCaptcha).'</div><a href="javascript::void(0);" class="refresh-captcha">Refresh Captcha</a><br>',
+                    'error'     => 'ajax-info-captcha',
+                    'lierror'   => 'li-captcha',
+            ),
+            array(
+                    'label' => null,
+                    'input' => $this->formElement($elementBtnSubmit),
+                    'error' => '',
+                    'lierror'   =>'',
+            ),
+    );
+
+if(!empty($this->msgError)){
+    $messageError = $this->msgError;
+}
+
+$linkLogin           = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'login'));
+
+
+
+$messagesErrors = $this->elementErrors(array(
+    'fullname'                 =>  $elementFullname,
+),'user');
+
+$xhtmlError     =  $this->errorMessages($this->error,'user');
+
+
+$url       = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'refresh-captcha'));
+
+
+?>  
+
+
+                     
+<?php echo $messagesErrors .$xhtmlError;?>
+
+<style type="text/css">
+.content-error {
+    color: #df3832;
+    font-style: normal;
+}
+</style>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.form.js"></script>
+<script type="text/javascript">
+    var options = { 
+        target      : '#ajax-info',
+        dataType    : 'json',
+        success     : showResponse  
+ 
+    }; 
+
+    function showResponse(data){
+        
+        if(data.status == 'success'){
+            if(data.messages['success']){
+                //console.log(data.messages['success']);
+                $('#li-fullname, #li-username, #li-password, #li-confirm-password, #li-email, #li-phone, #li-captcha').removeAttr('style');
+                $('#ajax-info-success').html(data.messages['success'])
+                                    .removeAttr('style')
+                                    .css({'padding':'10px','color':'white','background-color':'#61b832','border-color':'#55a12c','margin-bottom':'10px'});
+
+                
+            }
+            
+           
+        }else if(data.status == 'error'){
+            
+            /*var error   = '';
+            for(x in data.messages){
+                error += data.messages[x] + '<br/>';
+            }*/
+            console.log(data.messages);
+            $('#li-fullname, #li-username, #li-password, #li-confirm-password, #li-email, #li-phone,  #li-captcha').removeAttr('style');
+            
+            
+            $('#inputFullname, #inputUsername, #inputPassword, #inputConfirmPassword, #inputEmail, #inputPhone, #inputCaptcha').removeClass();
+
+            if(data.messages['fullname']){
+                $('#inputFullname').addClass('inputWarmning');
+            } 
+            if(data.messages['username']){
+                $('#inputUsername').addClass('inputWarmning');
+            }
+            if(data.messages['password']){
+                $('#inputPassword').addClass('inputWarmning');
+            }
+            if(data.messages['confirmpassword']){
+                $('#inputConfirmPassword').addClass('inputWarmning');
+            }
+            if(data.messages['email']){
+                $('#inputEmail').addClass('inputWarmning');
+            }
+            if(data.messages['phone']){
+                $('#inputPhone').addClass('inputWarmning');
+            }
+            if(data.messages['captcha']){
+                $('#inputCaptcha').addClass('inputWarmning');
+            }
+            //Thông báo fullname
+            $('#ajax-info-fullname').html(data.messages['fullname'])
+                                 .removeClass()
+                                 .addClass('content-error')
+                                 .css({'width':'386px'});
+                                
+            //Thông báo username
+            $('#ajax-info-username').html(data.messages['username'])
+                                 .removeClass()
+                                 .addClass('content-error')
+                                 .css({'width':'386px'});
+                                                    
+
+            //Thông báo password                     
+            $('#ajax-info-password').html(data.messages['password'])
+                                    .removeClass()
+                                    .addClass('content-error')
+                                    .css({'width':'386px'});
+
+             //Thông báo nhập password                     
+            $('#ajax-info-confirm-password').html(data.messages['confirmpassword'])
+                                    .removeClass()
+                                    .addClass('content-error')
+                                    .css({'width':'386px'});  
+
+             //Thông báo email
+            $('#ajax-info-email').html(data.messages['email'])
+                                 .removeClass()
+                                 .addClass('content-error')
+                                 .css({'width':'386px'});                          
+            //Thông báo phone
+            $('#ajax-info-phone').html(data.messages['phone'])
+                                 .removeClass()
+                                 .addClass('content-error')
+                                 .css({'width':'386px'});                                              
+
+             //Thông báo captcha
+            $('#ajax-info-captcha').html(data.messages['captcha'])
+                                 .removeClass()
+                                 .addClass('content-error')
+                                 .css({'width':'386px'});                      
+            
+            $.ajax({
+                url     : '<?php echo $url;?>',
+                type    : 'GET',
+                data    : {captchaID : $('#inputCaptcha-hidden').val()},
+                success : function(data){
+                    $('div.captcha-area').html(data);
+                }
+            });                     
+
+            
+        }else if(data.status == undefined){
+            $('#ajax-info').html('Có lỗi trong quá trình xử lý').removeClass().addClass('content-warning');
+        }
+    }
+    
+    $(document).ready(function() {
+        $('#login-form').submit(function(){
+            $(this).ajaxSubmit(options); 
+            return false; 
+        });
+
+         $('a.refresh-captcha').click(function(){
+            $.ajax({
+                url     : '<?php echo $url;?>',
+                type    : 'GET',
+                data    : {captchaID : $('#inputCaptcha-hidden').val()},
+                success : function(data){
+                    $('div.captcha-area').html(data);
+                }
+            });
+        });
+
+
+    })
+    
+
+</script>
+
+
+</script>
+
+
+<div class="pageWrap">
+<?php echo $this->cmsBreadcrumb($this->title,array('task'=>'no-data')) .' '.$this->blkAccountGroup($this->identity());?>
+</div>
+
+<div class="pageWrap">	
+            <div class="leftMainContent popupPage">
+            	<div class="row">
+                	<div class="colFacility">
+                    	<h4>Là thành viên bạn có thể</h4>
+                        <ul>
+                        	<li class="free">Quản lý tin đăng, quản lý tài khoản con</li>
+                            <li class="price">Xem toàn bộ bảng giá các dự án</li>                            
+                            <li class="newsletter">Nhận thông tin newsletter hàng tuần</li>
+                            <li>Nhận thông tin khuyến mãi</li>
+                        </ul>
+                    </div>
+            		<div class="signInNewDialog">
+								<div class="TitleDialog">
+                                    <h4>Tạo tài khoản miễn phí</h4>
+                                </div>
+								 <div class="ContentDialog">
+                                 	<strong>Bạn đã có tài khoản?<a rel="nofollow" href="<?php echo $linkLogin;?>">Đăng nhập</a></strong>
+                                    <div id="ajax-info-success" style="display:none;"></div>
+                                    <ol>
+                                    	 <ol>
+                                        <?php 
+                                        echo $this->form()->openTag($myForm);
+                                            echo $this->partialLoop('form-group.phtml', $elements);
+                                        echo $this->form()->closeTag();
+                                        ?>
+
+                                    </ol>
+                                        
+                                        
+                                        
+                                    </ol>
+                                    
+                                    
+                                    
+                                    <a style="display:none;" id="btn_process">Đang xử lý ...</a>
+                                 </div>
+						</div>
+                </div>
+            </div>
+    </div>

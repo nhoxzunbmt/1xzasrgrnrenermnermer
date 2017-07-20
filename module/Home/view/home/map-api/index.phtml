@@ -1,0 +1,45 @@
+<?php 
+$latitude_gmap  = (!empty($this->arrParam['latitude'])) ? $this->arrParam['latitude'] : '21.033333';
+$longitude_gmap = (!empty($this->arrParam['longitude'])) ? $this->arrParam['longitude'] : '105.85000000000002';
+?>
+
+<style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGQX4Hz0Vxv6DfKdan46Y33DyZ5xjnljc&sensor=false&
+          language=vi&
+          region=GB">
+    </script>
+    <script type="text/javascript">
+      var geocoder;
+      var map;
+      var marker;
+      var infowindow;
+
+      
+        function initialize() {
+           
+            var myLatlng = new google.maps.LatLng(<?php echo $latitude_gmap;?>, <?php echo $longitude_gmap;?>);
+            var mapOptions = {
+                zoom: 17,
+                center: myLatlng
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title: 'Hello World!'
+            });
+            
+            marker.setMap(map);
+        }
+
+  
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+
+    <div id="map-canvas"></div>
