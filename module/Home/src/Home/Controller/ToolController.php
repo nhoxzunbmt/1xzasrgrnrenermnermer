@@ -119,9 +119,17 @@ class ToolController extends AbstractActionController
     {
 
         die('123');
-       
-       
 
     }
-    
+    public function insertAction()
+    {
+
+        die(__FUNCTION__);
+    }
+
+    public function updateAction()
+    {
+
+        die(__FUNCTION__);
+    }
 }

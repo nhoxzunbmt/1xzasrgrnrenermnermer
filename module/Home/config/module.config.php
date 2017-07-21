@@ -25,13 +25,16 @@ return array(
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
             'tool' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Segment',
                 'options' => array(
-                    'route'    => '/tool/',
-                    'defaults' => array(
-                        'controller' => 'Home\Controller\Tool',
-                        'action'     => 'index',
-                    ),
+                    'route' => '/tool/:action',
+                    'constraints' => [
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]+',
+                    ],
+                    'defaults' => [
+                        'controller' => 'Home\Controller\ToolController',
+                        'action'     => 'index'
+                    ]
                 ),
             ),
             'AuthRedirect' => array(
@@ -1173,6 +1176,7 @@ return array(
             'Home\Controller\Project'       => 'Home\Controller\ProjectController',
             'Home\Controller\Market'        => 'Home\Controller\MarketController',
             'Home\Controller\Notice'        => 'Home\Controller\NoticeController',
+            'Home\Controller\Tool'    => 'Home\Controller\ToolController',
         ),
     ),
     'view_manager' => array(   
