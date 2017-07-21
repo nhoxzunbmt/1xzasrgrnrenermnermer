@@ -44,16 +44,11 @@ class ToolController extends AbstractActionController
 
     public function getTable(){
         if(empty($this->_userTable)){
-            $this->_userTable = $this->getServiceLocator()->get('Admin\Model\UserTable');
+            $this->_userTable = $this->getServiceLocator()->get('Admin\Model\CityTable');
         }
         return $this->_userTable;
     }
-    public function getUserGroupTable(){
-        if(empty($this->_userGroupTable)){
-            $this->_userGroupTable = $this->getServiceLocator()->get('Admin\Model\UserGroupTable');
-        }
-        return $this->_userGroupTable;
-    }
+
     public function setEventManager(EventManagerInterface $events)
     {
         parent::setEventManager($events);
@@ -123,7 +118,7 @@ class ToolController extends AbstractActionController
     public function indexAction()
     {
 
-
+        die('123');
        
        
 

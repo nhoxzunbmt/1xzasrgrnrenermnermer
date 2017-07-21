@@ -15,8 +15,8 @@ return array(
    'db' => array(
       	'adapters'	=>	array(
       		'dbBatDongSan'	=>	array(
-      			'username'	=>	'admin_zend2',
-      			'password'	=>	'530825',
+      			'username'	=>	'root',
+      			'password'	=>	'',
       		),
       		'dbVuiMuaSam'	=>	array(
       			'username'	=>	'root',

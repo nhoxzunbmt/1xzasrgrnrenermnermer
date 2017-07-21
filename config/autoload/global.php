@@ -28,8 +28,8 @@ return array(
       'adapters'  => array(
          'dbBatDongSan' => array(
             'driver'    => 'Pdo_Mysql',
-            'database'  => 'admin_zend2',
-            'hostname'  => '45.252.248.163',
+            'database'  => 'bds',
+            'hostname'  => 'localhost',
             'charset'   => 'utf8',
          ),
          'dbVuiMuaSam' => array(

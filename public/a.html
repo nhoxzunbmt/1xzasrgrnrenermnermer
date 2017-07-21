@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script src="templates/user/js/jquery-1.8.3.min.js"></script>
+<script src="craw_data/city.js"></script>
+<script>
+
+    $.each(n, function (i, currProgram) {
+        console.log(currProgram.n);
+        $.each(currProgram.c, function (key, val) {
+            console.log(key + val.n);
+        });
+    });
+
+</script>
+</body>
+</html>

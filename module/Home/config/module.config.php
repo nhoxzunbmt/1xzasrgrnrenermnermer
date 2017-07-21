@@ -24,6 +24,16 @@ return array(
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
+            'tool' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/tool/',
+                    'defaults' => array(
+                        'controller' => 'Home\Controller\Tool',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
             'AuthRedirect' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
