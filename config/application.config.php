@@ -7,6 +7,7 @@ return array(
         'Home',
         'RtHeadtitle',
         'AcMailer',
+        'Raovat'
     ),
 
     // These are various options for the listeners attached to the ModuleManager
@@ -78,7 +79,7 @@ return array(
                                 'dirPermission' => 0755,
                                 'filePermission' => 0666,
                                 'namespaceSeparator' => '-db-'
-                            ),
+                            )
                         ),
                         'plugins' => array(
                             'serializer',

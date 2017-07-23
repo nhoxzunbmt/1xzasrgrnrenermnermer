@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" serverName="bds.webnew.vn">
     <serverData>
       <paths name="Thuoc.WebNew.Vn">
         <serverdata>
@@ -12,7 +12,7 @@
       <paths name="bds.webnew.vn">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

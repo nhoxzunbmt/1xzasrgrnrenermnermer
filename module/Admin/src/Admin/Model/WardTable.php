@@ -7,7 +7,7 @@ use Zend\Db\Sql\Sql;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
 
-class CityTable
+class WardTable
 {
     protected $tableGateway;
     protected $adapter;

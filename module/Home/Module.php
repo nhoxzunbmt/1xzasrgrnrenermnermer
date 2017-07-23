@@ -11,15 +11,9 @@ namespace Home;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-
-use Admin\Model\UserTable;
 use Admin\Model\User;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
-
-use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
-use Sidebar\SidebarAds;
-
 class Module
 {
     public function onBootstrap(MvcEvent $e)
