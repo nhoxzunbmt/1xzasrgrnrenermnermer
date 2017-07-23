@@ -7,7 +7,6 @@ return array(
         'Home',
         'RtHeadtitle',
         'AcMailer',
-        'Raovat'
     ),
 
     // These are various options for the listeners attached to the ModuleManager
