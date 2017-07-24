@@ -107,11 +107,6 @@ class IndexController extends ActionController
 
     public function init()
     {
-
-
-        $controller = $this;
-
-
         //Mảng tham số Router nhận được ở mỗi Action
         $this->_arrParam = $this->params()->fromRoute();
 
@@ -163,52 +158,34 @@ class IndexController extends ActionController
         $this->_arrParam['paginator'] = $this->_paginatorParams;
 
         //Load templates
-        $this->layout('layout/home');
 
+
+
+
+        if(isset($this->_arrParam['latitude']) && $this->_arrParam['latitude'] == 'v1')
+        {
+            $this->layout('layout/home');
+        }
+        else
+        {
+            $this->layout('layout/home_v2');
+        }
 
     }
 
     public function indexAction()
     {
-//        echo '<pre>';
-//        var_dump(class_exists('ZendVN\Controller\ActionController'));
-//        die();
-        // get cache service
-        $cache = $this->getServiceLocator()->get('cache');
-        $cache->setItem('test', 123);
-
-
-//        $outputCache = PatternFactory::factory('output', array(
-//            'storage' => 'filesystem',
-//        ));
-//        $outputCache->start('mySimpleViewScript');
-//        include 'log.phtml';
-//        $outputCache->end();
-//        die();
-
-
         $view = new ViewModel();
         //Tiêu đề
         $title = 'Mua bán nhà, mua bán đất, mua bán nhà đất, dự án, chung cư, căn hộ, biệt thự';
         $this->headTitle($title);
 
-
-        //dự án nổi bật
-        //$key = 'list-item-project-hight-light';		
-        //$listItemHighlight = $cache->getItem($key,$success);
-
-        //if(!$success){
         $listItemHighlight = $this->getTable()->listItem($this->_arrParam, array('task' => 'list-items-hightlight'));
-        //$cache->setItem($key,$listItemHighlight);
-        //}
-
 
         //loại dự án
         $itemsProjectCat = $this->getTable()->itemInselectBox($this->_arrParam, array('task' => 'list-item-project-category'));
         //Bất động nổi bật
         $itemRealestateHighlight = $this->getRealEstateTable()->listItem($this->_arrParam, array('task' => 'list-items-realestate-highlight'));
-
-
 
         //Bất động sản chính chủ
         //$itemRealestateChinhChu       = $this->getRealEstateTable()->listItem($this->_arrParam,array('task'=>'list-items-realestate-chinh-chu')); 
@@ -231,7 +208,16 @@ class IndexController extends ActionController
 
 
         //nested
-        $view->setTemplate('home/index/index');
+        if(isset($this->_arrParam['latitude']) && $this->_arrParam['latitude'] == 'v1')
+        {
+            $view->setTemplate('home/index/index');
+        }
+        else
+        {
+            $view->setTemplate('home_v2/index/index');
+        }
+
+
         $formSearch = new ViewModel(array(
             'itemsTypeRealEstate' => $itemsTypeRealEstate,
             'itemsCity' => $itemsCity,

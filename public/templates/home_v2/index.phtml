@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <?php require_once 'inc/head.php';?>
+</head>
+<body>
+<?php require_once 'plugins/facebook_js.php';?>
+<div class="page-wrap" id="page-wrap">
+    <?php require_once 'inc/menu_top.php';?>
+    <div class="main-container lazy">
+
+
+        <?php echo $this->content;?>
+
+
+
+        <?php require_once 'inc/footer-link.php';?>
+        <div class="mbn-list">
+            <div class="mbn-title-link hidden-xs">
+                <div class="container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php require_once 'inc/footer.php';?>
+</div>
+
+<?php require_once 'inc/js.php';?>
+<?php //echo $this->render('inc/js.php');?>
+</body>
+</html>

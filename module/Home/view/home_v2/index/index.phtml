@@ -1,0 +1,972 @@
+<div class="mbn-list hidden-xs">
+    <div data-bind="with: TopSearch" id="dv-top-search">
+        <div class="mbn-search clearfix hidden-xs" id="topSearch" data-bind="addOnEnter: GotoSearch">
+            <div class="container container-top-seach row">
+                <div class="col-md-3 col-sm-3 col-xs-3 top-search-location">
+                    <i id="mbn-top-search-city-icon" class="fa fa-map-marker marker"></i>
+                    <select data-gtm-event="mbn-event-link" data-gtm-category="mbn-search" data-gtm-action="mbn-city-dropdown"
+                            data-bind="chosen: { source: Cities, selectedValue: CityId, displayProp: 'Name', valueProp: 'CityId', styleProp: 'Style', chosenOption: { disable_search: true } }" class="hide"></select>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 top-search-category">
+                    <select data-gtm-event="mbn-event-link" data-gtm-category="mbn-search" data-gtm-action="mbn-category-dropdown"
+                            data-bind="chosen: { source: Categories, selectedValue: CategoryId, displayProp: 'CategoryName', valueProp: 'CategoryId', chosenOption: { disable_search: true } }" class="hide"></select>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-5 top-search-keyword">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-keyword" data-bind="value: Keyword, attr:{placeholder: KeywordPlaceholder}" maxlength="50">
+                        <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-search" data-gtm-action="simple-search" class="input-group-addon btn-search" data-bind="click:GotoSearch" href="#"> <i class="fa fa-search"></i> &nbsp;Tìm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="posting-line"></div>
+<div class="mbn-list">
+    <div class="mbn-title-link hidden-xs">
+        <div class="container">
+            <div class="mbn-box-sub-link" id="dv_box_sub_link">
+                <div class="mbn-box-sub-list-link ">
+
+                    <?php require_once TEMPLATE_PATH . DS . 'home_v2' . DS . 'inc' . DS . 'box-menu.php';?>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+
+                <?php require_once TEMPLATE_PATH . DS . 'home_v2' . DS . 'inc' . DS . 'box-filter.php';?>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+
+
+        <div class="breadcrumb breadcrumbs">
+            <div class="rdfa-breadcrumb">
+                <div xmlns:v="http://rdf.data-vocabulary.org/#">
+                    <div>
+                        <span class="breadcrumbs-title"> </span>
+                        <span typeof="v:Breadcrumb">
+                    <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-nav" data-gtm-action="/"
+                       rel="v:url" property="v:title" href="https://muaban.net/" class="home">Trang chủ</a>
+                </span>
+                        <span class="icon icon-arrow-s"></span>
+                        <span typeof="v:Breadcrumb"> <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-nav" data-gtm-action="listing-nav-https://muaban.net/toan-quoc"
+                                                        rel="v:url" property="v:title" href="https://muaban.net/toan-quoc" title="Toàn quốc">Toàn quốc</a></span>
+                        <span class="icon icon-arrow-s"></span>
+                        Bất động sản
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mbn-body container">
+        <div class="mbn-box-left">
+            <div class="mbn-box-list">
+
+                <div class="list-title">
+                    <h1>
+                        Mua bán rao vặt bất động sản, nhà đất tại Toàn quốc
+                    </h1>
+                    <div id="page-description">Trang thông tin rao vặt, mua bán bất động sản uy tín tại Toàn quốc. 2,000,000 tin mua, bán, cho thuê phòng trọ, căn hộ ,nhà đất, khách sạn,... được cập nhật 24/7 tại muaban.net.</div>
+                </div>
+                <div class="mbn-tool" data-bind="visible: visibleTool">
+                    <span class="mbn-total" data-bind="text: TotalRecord"></span>
+                    <div class="mbn-sort">
+                        <select data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing" data-gtm-action="listing-sort"
+                                class="hidden" data-bind="chosen: { source: Sorts, selectedValue: SortValue, displayProp: 'Name', valueProp: 'Value', chosenOption: { disable_search: true } }"></select>
+                    </div>
+                    <ul class="nav mbn-list-nav">
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-view" data-gtm-action="listing-view-simple"
+                               title="Hiển thị rút gọn" href="javascript:void(0)" data-bind="click:simpleClick"><span class="icon icon-display-simple "></span></a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-view" data-gtm-action="listing-view-gallery"
+                               title="Hiển thị lưới" href="javascript:void(0)" data-bind="click:galleryClick"><span class="icon icon-display-grid "></span></a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-view" data-gtm-action="listing-view-list"
+                               title="Hiển thị tiêu chuẩn" href="javascript:void(0)" data-bind="click:listClick"><span class="icon icon-display-list "></span></a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-view" data-gtm-action="listing-view-summary"
+                               title="Hiển thị nội dung" href="javascript:void(0)" data-bind="click:listSummaryClick"><span class="icon icon-display-list-new mbn-color-selected"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+
+            <div class="mbn-box-slide">
+                <div id="box-slide-special" class="mbn-box-slide-special  ">
+                    <div class="mbn-title-header">
+                        <span class="title-special">Tin nổi bật</span>
+                        <a data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-next" id="btnNext" class="special-ctn-next">
+                            <i class="icon icon-right218"></i>
+                        </a>
+                        <a data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-back" id="btnPrev" class="special-ctn-next">
+                            <i class="icon icon-left207"></i>
+                        </a>
+
+
+                        <a class="title-qc" data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-help" href="https://muaban.net/uploads/huong-dan/bang_gia/tin-noi-bat/index.html">Bạn muốn quảng cáo tại đây?</a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="owl-carousel-special" class="owl-carousel">
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39498618" href="/biet-thu-villa-penthouse-quan-7-l5915-c3205/xuat-canh-ban-gap-biet-thu-huynh-tan-phat-quan-7-gia-cuc-tot-id39498618" title="Xuất cảnh bán gấp biệt thự Huỳnh Tấn Phát Quận 7 giá cực tốt">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/17/226/f7db533976ac4798999a5fd945937f6a.jpg">
+                                </div>
+                                <span class="owl-item-title">Xuất cảnh bán gấp biệt thự Huỳnh Tấn Phát Quận 7 giá cực tốt</span>
+                                <span class="owl-item-price">12 tỷ </span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39510182" href="/dat-tho-cu-quan-hai-ba-trung-l2409-c3102/ban-dat-trong-ngo-tan-lac-quan-hai-ba-trung-dien-tich-59-m2-id39510182" title="Bán đất trong ngõ Tân Lạc, quận Hai Bà Trưng, diện tích 59 m2">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/19/900/412b8f7ce8744fcaa6047a6bc4119c39.jpg">
+                                </div>
+                                <span class="owl-item-title">Bán đất trong ngõ Tân Lạc, quận Hai Bà Trưng, diện tích 59 m2</span>
+                                <span class="owl-item-price">&nbsp;</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-38733522" href="/dat-du-an-khu-dan-cu-quan-ngu-hanh-son-l1505-c3101/100-trieu-la-co-dat-lam-nha-ngay-sat-lang-dai-hoc-id38733522" title="100 triệu là có đất làm nhà ngay SÁT LÀNG ĐẠI HỌC">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn01.muaban.net/images/thumb-list/201706/05/536/c662c9d4d58b40789ddf0930c17e6de9.jpg">
+                                </div>
+                                <span class="owl-item-title">100 triệu là có đất làm nhà ngay SÁT LÀNG ĐẠI HỌC</span>
+                                <span class="owl-item-price">100.000.000 đ</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39134336" href="/nha-hem-ngo-quan-8-l5916-c3202/ban-nha-duong-au-duong-lan-quan-8-4x8m-2-lau-san-thuong-id39134336" title="Bán nhà đường Âu Dương Lân, Quận 8, 4x8m, 2 lầu, sân thượng">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/21/638/ed8276ca2f014ab6b1ac47e86724c2d4.jpg">
+                                </div>
+                                <span class="owl-item-title">Bán nhà đường Âu Dương Lân, Quận 8, 4x8m, 2 lầu, sân thượng</span>
+                                <span class="owl-item-price">1 tỷ 900 triệu</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39123339" href="/nha-tro-phong-tro-quan-12-l5909-c3405/phong-moi-xay-quan-12-gan-cong-vien-phan-mem-quang-trung-id39123339" title="Phòng mới xây quận 12 gần Công Viên Phần Mềm Quang Trung">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn01.muaban.net/images/thumb-list/201706/26/646/922b0898a682458da0f03e6bde1f36b8.jpg">
+                                </div>
+                                <span class="owl-item-title">Phòng mới xây quận 12 gần Công Viên Phần Mềm Quang Trung</span>
+                                <span class="owl-item-price">1.800.000 đ</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39160007" href="/nha-mat-tien-quan-ba-dinh-l2406-c3201/ban-nha-mat-pho-an-xa-quan-ba-dinh-nha-xay-3-tang-1-tum-id39160007" title="Bán nhà mặt phố An Xá, quận Ba Đình, nhà xây 3 tầng + 1 tum">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201706/29/812/e20fe3bd906e4719828cad134c554c56.jpg">
+                                </div>
+                                <span class="owl-item-title">Bán nhà mặt phố An Xá, quận Ba Đình, nhà xây 3 tầng + 1 tum</span>
+                                <span class="owl-item-price">9 tỷ 300 triệu</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39433057" href="/quan-ca-phe-do-uong-quan-cau-giay-l2407-c3303/sang-nhuong-cua-hang-cafe-photo-hieu-nghia-tan-gia-220-trieu-id39433057" title="Sang nhượng cửa hàng cafe phốTô Hiệu, Nghĩa Tân, giá 220 triệu">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/23/444/2b6a7ac8709f4c4aa5e347eb08d6a78b.jpg">
+                                </div>
+                                <span class="owl-item-title">Sang nhượng cửa hàng cafe phốTô Hiệu, Nghĩa Tân, giá 220 triệu</span>
+                                <span class="owl-item-price">220.000.000 đ</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39363413" href="/nha-hem-ngo-quan-dong-da-l2408-c3407/cho-thue-nha-quan-dong-da-cach-duong-lang-30m-tien-o-lam-van-phong-id39363413" title="Cho thuê nhà quận Đống Đa, cách đường Láng 30m, tiện ở, làm văn phòng">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/10/402/26c2c942270b46d2a5bb54c684888ec0.jpg">
+                                </div>
+                                <span class="owl-item-title">Cho thuê nhà quận Đống Đa, cách đường Láng 30m, tiện ở, làm văn phòng</span>
+                                <span class="owl-item-price">15.000.000 đ</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39598231" href="/nha-mat-tien-quan-tan-binh-l5922-c3201/2-thang-nua-ve-my-dinh-cu-thanh-ly-het-tai-san-dang-co-vn-id39598231" title="2 Tháng nữa về Mỹ định cư,Thanh lý hết tài sản đang có VN">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/22/819/b9b0323713434a1c865ee0a004915c93.jpg">
+                                </div>
+                                <span class="owl-item-title">2 Tháng nữa về Mỹ định cư,Thanh lý hết tài sản đang có VN</span>
+                                <span class="owl-item-price">5 tỷ 900 triệu</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39122497" href="/nha-hem-ngo-quan-nam-tu-liem-l2431-c3202/ban-nha-ngo-pho-nhan-my-my-dinh-quan-nam-tu-liem-id39122497" title="Bán nhà ngõ phố Nhân Mỹ, Mỹ Đình, quận Nam Từ Liêm">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn01.muaban.net/images/thumb-list/201706/27/141/ec28293ff16a48f6a4da67cbd71cb230.jpg">
+                                </div>
+                                <span class="owl-item-title">Bán nhà ngõ phố Nhân Mỹ, Mỹ Đình, quận Nam Từ Liêm</span>
+                                <span class="owl-item-price">4 tỷ 500 triệu</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-38648112" href="/nha-hem-ngo-quan-dong-da-l2408-c3202/ban-nha-ngo-22-ton-that-tung-dien-tich-20-m2-cap-4-mat-tien-2-5m-id38648112" title="Bán nhà ngõ 22 Tôn Thất Tùng, diện tích 20 m2, cấp 4, mặt tiền 2,5m">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/09/800/46ce5b5f0ad64880852852080bdd2f9d.jpg">
+                                </div>
+                                <span class="owl-item-title">Bán nhà ngõ 22 Tôn Thất Tùng, diện tích 20 m2, cấp 4, mặt tiền 2,5m</span>
+                                <span class="owl-item-price">1 tỷ 100 triệu</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-37373814" href="/can-ho-chung-cu-tap-the-quan-nam-tu-liem-l2431-c3204/ban-can-ho-chung-cu-312-ct3a-me-tri-thuong-96-m2-23-5-trieu-m2-id37373814" title="Bán căn hộ chung cư 312 CT3A Mễ Trì Thượng, 96 m2, 23,5 triệu/m2">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn01.muaban.net/images/thumb-list/201705/23/419/b80f787d5bf24d2da488983c6caf76d8.jpg">
+                                </div>
+                                <span class="owl-item-title">Bán căn hộ chung cư 312 CT3A Mễ Trì Thượng, 96 m2, 23,5 triệu/m2</span>
+                                <span class="owl-item-price">2 tỷ 256 triệu</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39493397" href="/nha-hem-ngo-quan-cau-giay-l2407-c3202/ban-nha-ngo-79-56-8-cau-giay-dien-tich-37-1-m2-4-tang-so-do-id39493397" title="Bán nhà ngõ 79/56/8 Cầu Giấy, diện tích 37,1 m2, 4 tầng, sổ đỏ">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/17/546/d27b5c2ea8f84cb3b9a511c36ac7ce60.jpg">
+                                </div>
+                                <span class="owl-item-title">Bán nhà ngõ 79/56/8 Cầu Giấy, diện tích 37,1 m2, 4 tầng, sổ đỏ</span>
+                                <span class="owl-item-price">3 tỷ 600 triệu</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39324870" href="/nha-hem-ngo-quan-long-bien-l2412-c3202/ban-nha-4-5-tang-so-268-58-35e-ngoc-thuy-dien-tich-35m2-2-35-ty-id39324870" title="Bán nhà 4,5 tầng số 268/58/35E Ngọc Thuỵ, Diện tích: 35m2, 2.35 tỷ">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/07/157/882198b3f1284498baad978665ff57b6.jpg">
+                                </div>
+                                <span class="owl-item-title">Bán nhà 4,5 tầng số 268/58/35E Ngọc Thuỵ, Diện tích: 35m2, 2.35 tỷ</span>
+                                <span class="owl-item-price">2 tỷ 350 triệu</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-sptop" data-gtm-action="listing-sptop-posting-id-39506650" href="/nha-hem-ngo-quan-hoang-mai-l2411-c3202/can-ban-nha-tai-so-nha-18-ngo-281-vinh-hung-hoang-mai-id39506650" title="Cần bán nhà tại số nhà 18 ngõ 281 Vĩnh Hưng, Hoàng Mai">
+                                <div class="owl-item-image">
+                                    <img class="lazyOwl" width="136" height="102" data-src="https://cdn.muaban.net/cdn/images/thumb-list/201707/18/055/a416761ff94d49da9699f7f572d10d51.jpg">
+                                </div>
+                                <span class="owl-item-title">Cần bán nhà tại số nhà 18 ngõ 281 Vĩnh Hưng, Hoàng Mai</span>
+                                <span class="owl-item-price">520.000.000 đ</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <a data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-sptop-mobile" data-gtm-action="listing-sptop-posting-back"
+                       class="prev carousel-control icon icon-arrow83"></a>
+                    <a data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-sptop-mobile" data-gtm-action="listing-sptop-posting-next"
+                       class="next carousel-control icon icon-arrow89 right"></a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="mbn-box-list">
+                <div class="mbn-tool-mobile" data-bind="visible: visibleTool">
+                    <div class="mbn-sort">
+                        <a data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-mobile" data-gtm-action="listing-sort"
+                           aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span><i data-bind="attr:{class: SortValueResposiveSelected}"></i></span><span class="mbn-title" data-bind="text:SortDisplayName"></span>
+                        </a>
+                        <ul role="menu" class="dropdown-menu" data-bind="foreach: Sorts">
+                            <li data-bind="attr:{class : ($parent.SortValue() == Value ? 'color-selected' : '')}">
+                                <a href="javascript:void(0)" data-bind="click: function (data, event) { $parent.SortValueResposive(Value);}">
+                                    <span><i data-bind="attr:{class : ($parent.SortValue() == Value ? Icon + ' color-selected' : Icon)}"></i></span><span data-bind="text: Name"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="nav mbn-list-nav">
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-view-mobile" data-gtm-action="listing-view-simple"
+                               title="Hiển thị rút gọn" href="javascript:void(0)" data-bind="click:simpleClick"><span class="icon icon-display-simple "></span></a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-view-mobile" data-gtm-action="listing-view-gallery"
+                               title="Hiển thị lưới" href="javascript:void(0)" data-bind="click:galleryClick"><span class="icon icon-display-grid "></span></a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-view-mobile" data-gtm-action="listing-view-list"
+                               title="Hiển thị tiêu chuẩn" href="javascript:void(0)" data-bind="click:listClick"><span class="icon icon-display-list "></span></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="mbn-box-list">
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán nhà BT phố 2 MT (trước và sau công viên)" href="https://muaban.net/nha-mat-tien-quan-go-vap-l5920-c3201/ban-nha-bt-pho-2-mt-truoc-va-sau-cong-vien--id39564387">
+                        <img title="Bán nhà BT phố 2 MT (trước và sau công viên)" alt="Bán nhà BT phố 2 MT (trước và sau công viên)" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/20/042/9e25253574c347cc84df15d86eae7eec.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán nhà BT phố 2 MT (trước và sau công viên)" href="https://muaban.net/nha-mat-tien-quan-go-vap-l5920-c3201/ban-nha-bt-pho-2-mt-truoc-va-sau-cong-vien--id39564387">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán nhà BT phố 2 MT (trước và sau công viên)</h2>
+                            <span class="mbn-price">6 tỷ 500 triệu</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Gò Vấp, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Nhà biệt thự phố 2 MT đường số 59, P. 14, QGV, HCM (MT trước và sau đêu có công viên).&#10;Dt: 6 x 12m (Hướng chính đông)&#10;1 trệt + 1 lửng + 3 lầu (1 Pk + 1 p bếp + 1 p. Karaoke + 4 p. Ngủ + 1 p. Xông hơi + 1 p. Thờ + 2 sân thượng trước và sau)&#10;Nhà xây đựng</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Sang quán cà phê góc đường đẹp" href="https://muaban.net/quan-ca-phe-do-uong-quan-go-vap-l5920-c3303/sang-quan-ca-phe-goc-duong-dep-id39457764">
+                        <img title="Sang quán cà phê góc đường đẹp" alt="Sang quán cà phê góc đường đẹp" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/14/042/5693452f1ac4498f8babdbaf14c4c61f.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Sang quán cà phê góc đường đẹp" href="https://muaban.net/quan-ca-phe-do-uong-quan-go-vap-l5920-c3303/sang-quan-ca-phe-goc-duong-dep-id39457764">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Sang quán cà phê góc đường đẹp</h2>
+                            <span class="mbn-price">650.000.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Gò Vấp, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Quán cà phê máy lạnh, cơm văn phòng, đang kinh doanh ổn định. Doanh thu trung bình 5-6tr/ngày. Gần ngã tư Nguyễn Oanh - Phan Văn Trị.&#10;Quán rộng, để xe thoải mái, có bếp riêng khép kín. &#10;Haizz. Chị gái quản lý sắp lấy chồng, ko có ai trông, mình thì đi làm</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán Nhà diện tích đẹp mặt tiền gần bv chợ rẫy." href="https://muaban.net/nha-mat-tien-quan-5-l5913-c3201/ban-nha-dien-tich-dep-mat-tien-gan-bv-cho-ray--id39598703">
+                        <img title="Bán Nhà diện tích đẹp mặt tiền gần bv chợ rẫy." alt="Bán Nhà diện tích đẹp mặt tiền gần bv chợ rẫy." data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/22/040/93667f1513fc4b5cb0fb813f76fc122a.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán Nhà diện tích đẹp mặt tiền gần bv chợ rẫy." href="https://muaban.net/nha-mat-tien-quan-5-l5913-c3201/ban-nha-dien-tich-dep-mat-tien-gan-bv-cho-ray--id39598703">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán Nhà diện tích đẹp mặt tiền gần bv chợ rẫy.</h2>
+                            <span class="mbn-price">27 tỷ 200 triệu</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận 5, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Bán nhà mặt tiền cách cổng chính bv chợ rẫy 35m.dt 7,26m x 25,08m.Trệt,lầu.Khu vực kinh doanh sầm uất,đắc địa,hiếm có nhà bán trong khu vực.có lề đường 5m.Trước nhà xe hơi đậu thoải mái.giá tốt 27,2 tỉ.Tiếp khách thiện chí,có nhu cầu mua thật.Miễn tiếp</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Nhà ngõ 100 Hoàng Quốc Việt - 70m x 5Tầng-Thang máy" href="https://muaban.net/van-phong-quan-cau-giay-l2407-c3408/nha-ngo-100-hoang-quoc-viet-70m-x-5tang-thang-may-id39524853">
+                        <img title="Nhà ngõ 100 Hoàng Quốc Việt - 70m x 5Tầng-Thang máy" alt="Nhà ngõ 100 Hoàng Quốc Việt - 70m x 5Tầng-Thang máy" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/22/357/759357947abf43d685cbd2c48c5aca50.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Nhà ngõ 100 Hoàng Quốc Việt - 70m x 5Tầng-Thang máy" href="https://muaban.net/van-phong-quan-cau-giay-l2407-c3408/nha-ngo-100-hoang-quoc-viet-70m-x-5tang-thang-may-id39524853">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Nhà ngõ 100 Hoàng Quốc Việt - 70m x 5Tầng-Thang máy</h2>
+                            <span class="mbn-price">20.000.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Cầu Giấy, Hà Nội</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">1. Nhà ngõ 100 Hoàng Quốc Việt - 70m x 5,5Tầng-Thang máy&#10;+ Công năng: phù hợp Văn phòng Cty, Trung Tâm Đào Tạo, Lớp Dậy, Gia đình ở .....&#10;+ Diện Tích 70m2 x 5Tầng, 1 tum, mặt tiền 5m&#10;+ Thiết kế tầng 1,2,5 thông suốt. Tầng 3,4 mỗi tầng chia 2 phòng to,</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Nhà riêng 5 tầng DT 80m2x5T, làm VP, nhà ở, đào tạo" href="https://muaban.net/nha-mat-tien-quan-cau-giay-l2407-c3401/nha-rieng-5-tang-dt-80m2x5t-lam-vp-nha-o-dao-tao-id39553150">
+                        <img title="Nhà riêng 5 tầng DT 80m2x5T, làm VP, nhà ở, đào tạo" alt="Nhà riêng 5 tầng DT 80m2x5T, làm VP, nhà ở, đào tạo" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/20/136/3cd0c29520da49c3abeacdda23243f56.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Nhà riêng 5 tầng DT 80m2x5T, làm VP, nhà ở, đào tạo" href="https://muaban.net/nha-mat-tien-quan-cau-giay-l2407-c3401/nha-rieng-5-tang-dt-80m2x5t-lam-vp-nha-o-dao-tao-id39553150">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Nhà riêng 5 tầng DT 80m2x5T, làm VP, nhà ở, đào tạo</h2>
+                            <span class="mbn-price">15.000.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Cầu Giấy, Hà Nội</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Cập nhật ngày 20/07/2017 - Danh sách nhà liền kề 5 tầng và nhà biệt thự khu Cầu Giấy giá từ 12tr đến 30tr. </span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="ads-banner-center borderTop" id="ads-banner-center"></div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Cho thuê văn phòng lẻ hoặc nguyên căn" href="https://muaban.net/nha-tro-phong-tro-quan-9-l5917-c3405/cho-thue-van-phong-le-hoac-nguyen-can-id39564006">
+                        <img title="Cho thuê văn phòng lẻ hoặc nguyên căn" alt="Cho thuê văn phòng lẻ hoặc nguyên căn" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/20/951/83490d0023144f1cab3963a0c15f405d.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Cho thuê văn phòng lẻ hoặc nguyên căn" href="https://muaban.net/nha-tro-phong-tro-quan-9-l5917-c3405/cho-thue-van-phong-le-hoac-nguyen-can-id39564006">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Cho thuê văn phòng lẻ hoặc nguyên căn</h2>
+                            <span class="mbn-price">7.500.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận 9, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Cho thuê văn phòng lẻ hoặc nguyên căn, nhà biệt thự đẹp, thoáng mát, có hầm để xe rộng. Góc đường dễ thấy. &#10;Khu an ninh. &#10;Có nhiều loại phòng cho thuê làm văn phòng, tất cả đều có toilet riêng. Văn phòng có cửa sổ.</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán đất Tân Đô - AN Hạ Riverside, sổ riêng, giá gốc, cam kết lợi nhuận" href="https://muaban.net/dat-tho-cu-huyen-binh-chanh-l5901-c3102/ban-dat-tan-do-an-ha-riverside-so-rieng-gia-goc-cam-ket-loi-nhuan-id39450743">
+                        <img title="Bán đất Tân Đô - AN Hạ Riverside, sổ riêng, giá gốc, cam kết lợi nhuận" alt="Bán đất Tân Đô - AN Hạ Riverside, sổ riêng, giá gốc, cam kết lợi nhuận" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/23/341/1f9d0a1a85b6420a9409098664d938eb.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán đất Tân Đô - AN Hạ Riverside, sổ riêng, giá gốc, cam kết lợi nhuận" href="https://muaban.net/dat-tho-cu-huyen-binh-chanh-l5901-c3102/ban-dat-tan-do-an-ha-riverside-so-rieng-gia-goc-cam-ket-loi-nhuan-id39450743">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán đất Tân Đô - AN Hạ Riverside, sổ riêng, giá gốc, cam kết lợi nhuận</h2>
+                            <span class="mbn-price">480.000.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Huyện Bình Chánh, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">*** Hoàn hảo là không sống ảo!&#10;*** An Hạ Riverside - Đất thật - Giá trị thật - Lợi nhuận thật!&#10;*** Giá chỉ 480tr, sổ hồng trao tay. Thanh toán 40% nhận đất xây dựng&#10;--------------------------------&#10;&#10145;&#65039; BẬT MÍ VỀ Dự ÁN AN HẠ RIVERSIDE - TÂN ĐÔ:&#10;- Top 10 dự</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Phòng Đầy Đủ Nội Thất Cho Thuê Ngay Trung Tâm Quận 1" href="https://muaban.net/nha-tro-phong-tro-quan-1-l5906-c3405/phong-day-du-noi-that-cho-thue-ngay-trung-tam-quan-1-id39406298">
+                        <img title="Phòng Đầy Đủ Nội Thất Cho Thuê Ngay Trung Tâm Quận 1" alt="Phòng Đầy Đủ Nội Thất Cho Thuê Ngay Trung Tâm Quận 1" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/17/003/4e7a1ffa95784b048e0cb9e263950af6.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Phòng Đầy Đủ Nội Thất Cho Thuê Ngay Trung Tâm Quận 1" href="https://muaban.net/nha-tro-phong-tro-quan-1-l5906-c3405/phong-day-du-noi-that-cho-thue-ngay-trung-tam-quan-1-id39406298">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Phòng Đầy Đủ Nội Thất Cho Thuê Ngay Trung Tâm Quận 1</h2>
+                            <span class="mbn-price">7.800.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận 1, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Còn duy nhất 3 phòng - đầy đủ tiện nghi ngay trung tâm quận 1 - sát chợ bến thành.&#10; &#128073;&#128073;&#128073;Giá 7.8- 8tr/tháng (phòng 35m2)&#10;&#10;Nhà mặt tiền đẹp mới, được trang bị nhiều tiện nghi cho mỗi phòng (hình ảnh tự chụp 100%):&#10;- máy lạnh phà phà.&#10;- Tủ lạnh&#10;- tủ quần</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Chỉ  566 tr sở hữu ngay căn hộ chuẩn Singgapore, cách chợ Thủ Đức 2km." href="https://muaban.net/can-ho-chung-cu-tap-the-quan-thu-duc-l5924-c3204/chi-566-tr-so-huu-ngay-can-ho-chuan-singgapore-cach-cho-thu-duc-2km--id39206667">
+                        <img title="Chỉ  566 tr sở hữu ngay căn hộ chuẩn Singgapore, cách chợ Thủ Đức 2km." alt="Chỉ  566 tr sở hữu ngay căn hộ chuẩn Singgapore, cách chợ Thủ Đức 2km." data-original="https://cdn.muaban.net/cdn/images/thumb-list/201706/30/437/f9ce9c79f2604ccfaba296679c801d0a.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Chỉ  566 tr sở hữu ngay căn hộ chuẩn Singgapore, cách chợ Thủ Đức 2km." href="https://muaban.net/can-ho-chung-cu-tap-the-quan-thu-duc-l5924-c3204/chi-566-tr-so-huu-ngay-can-ho-chuan-singgapore-cach-cho-thu-duc-2km--id39206667">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Chỉ  566 tr sở hữu ngay căn hộ chuẩn Singgapore, cách chợ Thủ Đức 2km.</h2>
+                            <span class="mbn-price">566.000.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Thủ Đức, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Căn hộ giá tốt nhất TP. HCM, nơi đáng sống và đầu tư nhất trên tuyến đường Đại Lộ Phạm Văn Đồng tuyệt đẹp&#10;Căn hộ giá rẻ Lotus Apartment - Sen Hồng gồm 3 block cao 23 tầng với 1000 căn hộ, sổ hồng riêng, vĩnh viễn. Ngân hàng ABBank bảo lãnh và hỗ trợ vay.</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Căn nhà phố giống biệt thự mini, ngay góc bán giá 6 tỷ," href="https://muaban.net/nha-mat-tien-quan-binh-tan-l5918-c3201/can-nha-pho-giong-biet-thu-mini-ngay-goc-ban-gia-6-ty--id39125122">
+                        <img title="Căn nhà phố giống biệt thự mini, ngay góc bán giá 6 tỷ," alt="Căn nhà phố giống biệt thự mini, ngay góc bán giá 6 tỷ," data-original="https://cdn01.muaban.net/images/thumb-list/201706/26/918/403b9e35e6524edd948cab7d60004dcc.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Căn nhà phố giống biệt thự mini, ngay góc bán giá 6 tỷ," href="https://muaban.net/nha-mat-tien-quan-binh-tan-l5918-c3201/can-nha-pho-giong-biet-thu-mini-ngay-goc-ban-gia-6-ty--id39125122">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Căn nhà phố giống biệt thự mini, ngay góc bán giá 6 tỷ,</h2>
+                            <span class="mbn-price">6 tỷ </span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Bình Tân, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Cần bán gấp nhà phố giống biệt thự mini góc khu vực an ninh, yên tĩnh, thích hợp cho người an hưởng tuổi già, xung quanh trồng cây rất mát mẻ. Nhà có diện tích 11m x 15.56m - 176m2, diện tích sử dụng 186m2, có 4 phòng ngủ, 4 toilet, 1 phòng khách lớn, 1</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán dãy trọ 12 phòng, mới xây liền kề BonChen 2, giá 1,2 tỷ" href="https://muaban.net/dat-tho-cu-huyen-binh-chanh-l5901-c3102/ban-day-tro-12-phong-moi-xay-lien-ke-bonchen-2-gia-1-2-ty-id39562356">
+                        <img title="Bán dãy trọ 12 phòng, mới xây liền kề BonChen 2, giá 1,2 tỷ" alt="Bán dãy trọ 12 phòng, mới xây liền kề BonChen 2, giá 1,2 tỷ" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/20/707/9694fec86a634063b074b2ad4fd37595.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán dãy trọ 12 phòng, mới xây liền kề BonChen 2, giá 1,2 tỷ" href="https://muaban.net/dat-tho-cu-huyen-binh-chanh-l5901-c3102/ban-day-tro-12-phong-moi-xay-lien-ke-bonchen-2-gia-1-2-ty-id39562356">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán dãy trọ 12 phòng, mới xây liền kề BonChen 2, giá 1,2 tỷ</h2>
+                            <span class="mbn-price">1 tỷ 200 triệu</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Huyện Bình Chánh, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Bán dãy trọ 12 phòng 1 kiot có gác đúc ( kinh doanh dc 7 tháng) tại bình chánh&#10;- sổ chính chủ &#10;- thu nhập :14tr/tháng ( đã trừ mọi chi phí)&#10;- giao toàn bộ hợp đồng cho thuê ( 1 năm) + đăng ký điện, nước ( điện 3 pha, nước máy) &#10;- đối diện kcn tân đô &#10;-</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Văn phòng cho thuê 20tr/80 m2. Bùi Thị Xuân, quận 1" href="https://muaban.net/van-phong-quan-1-l5906-c3408/van-phong-cho-thue-20tr-80-m2-bui-thi-xuan-quan-1-id39471991">
+                        <img title="Văn phòng cho thuê 20tr/80 m2. Bùi Thị Xuân, quận 1" alt="Văn phòng cho thuê 20tr/80 m2. Bùi Thị Xuân, quận 1" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/15/913/26b2557aa08d4fd4bd587ff1e8d96bf7.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Văn phòng cho thuê 20tr/80 m2. Bùi Thị Xuân, quận 1" href="https://muaban.net/van-phong-quan-1-l5906-c3408/van-phong-cho-thue-20tr-80-m2-bui-thi-xuan-quan-1-id39471991">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Văn phòng cho thuê 20tr/80 m2. Bùi Thị Xuân, quận 1</h2>
+                            <span class="mbn-price">20.000.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận 1, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Cho thuê văn phòng 20 tr/80m2 . 87b bùi thị xuân quận 1. Liên hệ anh Thành 0933053547. Cám ơn đã xem tin</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán nhà mặt tiền đường 16m, Phường Bình Hưng Hòa, Q.Bình Tân" href="https://muaban.net/nha-mat-tien-quan-binh-tan-l5918-c3201/ban-nha-mat-tien-duong-16m-phuong-binh-hung-hoa-q-binh-tan-id39298659">
+                    </a>
+                    <a title="Bán nhà mặt tiền đường 16m, Phường Bình Hưng Hòa, Q.Bình Tân" href="https://muaban.net/nha-mat-tien-quan-binh-tan-l5918-c3201/ban-nha-mat-tien-duong-16m-phuong-binh-hung-hoa-q-binh-tan-id39298659">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán nhà mặt tiền đường 16m, Phường Bình Hưng Hòa, Q.Bình Tân</h2>
+                            <span class="mbn-price">3 tỷ 670 triệu</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Bình Tân, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Bán nhà mặt tiền đường 16m, Phường Bình Hưng Hòa, Bình Tân, 5x16m, 1trệt, 2lầu, PK, P.ăn, 3PN, 3WC, sân thượng sau, cách QL1A 150m, AEON 3km, giá từ: 3.67 -&gt; 5.2 tỷ. Liên hệ: 0983182224</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán nhà số 07 Đường Vạn Hạnh, Phường Tân Thành." href="https://muaban.net/nha-mat-tien-quan-tan-phu-l5923-c3201/ban-nha-so-07-duong-van-hanh-phuong-tan-thanh--id39598319">
+                        <img title="Bán nhà số 07 Đường Vạn Hạnh, Phường Tân Thành." alt="Bán nhà số 07 Đường Vạn Hạnh, Phường Tân Thành." data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/22/847/2391cf60fb3e4d7c847d55f43ed1d363.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán nhà số 07 Đường Vạn Hạnh, Phường Tân Thành." href="https://muaban.net/nha-mat-tien-quan-tan-phu-l5923-c3201/ban-nha-so-07-duong-van-hanh-phuong-tan-thanh--id39598319">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán nhà số 07 Đường Vạn Hạnh, Phường Tân Thành.</h2>
+                            <span class="mbn-price">7 tỷ </span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Tân Phú, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Bán nhà số 07 Đường Vạn Hạnh, Phường Tân Thành.&#10;Diện tích: 4,0 x 21m (vuông vức).&#10;Kết cấu: 3 tầng.&#10;Hướng : Đông&#10;Tiện ích: Gần trục đường chính Trương Vĩnh Ký và Lũy Bán Bích, gần chợ Tân Phú, trường học các cấp, bệnh viện, nhà thờ, trung tâm hành chính</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán nhà đường Phạm Văn Đồng, DT 5x20, xây 1 trệt, 2 lầu, giá 5 tỷ/căn" href="https://muaban.net/nha-mat-tien-quan-thu-duc-l5924-c3201/ban-nha-duong-pham-van-dong-dt-5x20-xay-1-tret-2-lau-gia-5-ty-can-id39562224">
+                        <img title="Bán nhà đường Phạm Văn Đồng, DT 5x20, xây 1 trệt, 2 lầu, giá 5 tỷ/căn" alt="Bán nhà đường Phạm Văn Đồng, DT 5x20, xây 1 trệt, 2 lầu, giá 5 tỷ/căn" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/20/703/8b5f01dd2f7e49aba439d0c395ddb7ec.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán nhà đường Phạm Văn Đồng, DT 5x20, xây 1 trệt, 2 lầu, giá 5 tỷ/căn" href="https://muaban.net/nha-mat-tien-quan-thu-duc-l5924-c3201/ban-nha-duong-pham-van-dong-dt-5x20-xay-1-tret-2-lau-gia-5-ty-can-id39562224">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán nhà đường Phạm Văn Đồng, DT 5x20, xây 1 trệt, 2 lầu, giá 5 tỷ/căn</h2>
+                            <span class="mbn-price">5 tỷ </span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Thủ Đức, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Bán nhà phố ngay đường Phạm Văn Đồng, Thủ Đức, diện tích 5x20m, xây 1 trệt 2 lầu và sân thượng.&#10; &#10;Khu dân cư sầm uất, gần đường lớn, các khu vui chơi giải trí, ăn uống, gần trường, gần chợ, bênh viện&#10;&#10;Đường thông thoáng, không kẹt xe, dễ di chuyển vào các</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán nhà phố 100m2 kiểu biệt thự, hẻm 8m ngay Thị Trấn Nhà Bè" href="https://muaban.net/nha-hem-ngo-huyen-nha-be-l5905-c3202/ban-nha-pho-100m2-kieu-biet-thu-hem-8m-ngay-thi-tran-nha-be-id35893466">
+                        <img title="Bán nhà phố 100m2 kiểu biệt thự, hẻm 8m ngay Thị Trấn Nhà Bè" alt="Bán nhà phố 100m2 kiểu biệt thự, hẻm 8m ngay Thị Trấn Nhà Bè" data-original="https://cdn01.muaban.net/images/thumb-list/201612/02/505/808ee72aabd64536a13efead1ee9cd6d.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán nhà phố 100m2 kiểu biệt thự, hẻm 8m ngay Thị Trấn Nhà Bè" href="https://muaban.net/nha-hem-ngo-huyen-nha-be-l5905-c3202/ban-nha-pho-100m2-kieu-biet-thu-hem-8m-ngay-thi-tran-nha-be-id35893466">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán nhà phố 100m2 kiểu biệt thự, hẻm 8m ngay Thị Trấn Nhà Bè</h2>
+                            <span class="mbn-price">1 tỷ 420 triệu</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Huyện Nhà Bè, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Cần bán nhà phố 100m2 kiểu biệt thự, hẻm 8m Huỳnh Tấn Phát, thị trấn Nhà Bè&#10;* Nhà phố liền kề 2 căn dạng biệt thự mini 100m2, lộng lẫy đẹp nhất vùng, kiến trúc Mỹ - Châu Âu, sử dụng 100 năm không lỗi thời, &#10;* Mới 100%, hẻm ôtô 8m ngay Huỳnh Tấn Phát tiện</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Cần bán nhà HXH 10m, hẽm 391 Trần Hưng Đạo, P.Cầu Kho, Q1." href="https://muaban.net/nha-hem-ngo-quan-1-l5906-c3202/can-ban-nha-hxh-10m-hem-391-tran-hung-dao-p-cau-kho-q1--id39589583">
+                        <img title="Cần bán nhà HXH 10m, hẽm 391 Trần Hưng Đạo, P.Cầu Kho, Q1." alt="Cần bán nhà HXH 10m, hẽm 391 Trần Hưng Đạo, P.Cầu Kho, Q1." data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/22/945/d73f2257160043a78ee0ebefa7629d0b.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Cần bán nhà HXH 10m, hẽm 391 Trần Hưng Đạo, P.Cầu Kho, Q1." href="https://muaban.net/nha-hem-ngo-quan-1-l5906-c3202/can-ban-nha-hxh-10m-hem-391-tran-hung-dao-p-cau-kho-q1--id39589583">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Cần bán nhà HXH 10m, hẽm 391 Trần Hưng Đạo, P.Cầu Kho, Q1.</h2>
+                            <span class="mbn-price">14 tỷ 900 triệu</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận 1, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Cần bán nhà HXH 10m, hẽm 391 Trần Hưng Đạo, P.Cầu Kho, Q1. &#10;DT: 3.3x16m &#10;Nhà mới xây 6 tầng, gồm 10 phòng cho thuê, nội thất cao cấp, giá thuê 400$/phòng. Cách đường chính 100m, hẽm trước nhà 8m, khu vực yên tĩnh, an ninh. &#10;Giá 14.9 tỷ, có thể thương</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán nhà Quận 7, đường 9m xe hơi tới nhà, sổ hồng riêng" href="https://muaban.net/nha-hem-ngo-quan-7-l5915-c3202/ban-nha-quan-7-duong-9m-xe-hoi-toi-nha-so-hong-rieng-id39288290">
+                        <img title="Bán nhà Quận 7, đường 9m xe hơi tới nhà, sổ hồng riêng" alt="Bán nhà Quận 7, đường 9m xe hơi tới nhà, sổ hồng riêng" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/05/536/30d74e97dc074097b5f43e27392a0050.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán nhà Quận 7, đường 9m xe hơi tới nhà, sổ hồng riêng" href="https://muaban.net/nha-hem-ngo-quan-7-l5915-c3202/ban-nha-quan-7-duong-9m-xe-hoi-toi-nha-so-hong-rieng-id39288290">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán nhà Quận 7, đường 9m xe hơi tới nhà, sổ hồng riêng</h2>
+                            <span class="mbn-price">1 tỷ 150 triệu</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận 7, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Bán Nhà Quận 7&#10;Ngang 3,5m dài 10m, đúc 2 lầu, 4 phòng ngủ, nội thất cao cấp.&#10;Đường 9m xe hơi tới nhà.&#10;Sổ hồng&#10;Giá 1,15 tỷ&#10;Cơ hội cho người mua ở và thiện chí mua thật&#10;Liên hệ chính chủ: 0967566978, 0908456771.</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Cho thuê căn hộ chung cư dự án Flora Anh Đào, quận 9, giá 8tr" href="https://muaban.net/can-ho-chung-cu-tap-the-quan-9-l5917-c3402/cho-thue-can-ho-chung-cu-du-an-flora-anh-dao-quan-9-gia-8tr-id39477592">
+                        <img title="Cho thuê căn hộ chung cư dự án Flora Anh Đào, quận 9, giá 8tr" alt="Cho thuê căn hộ chung cư dự án Flora Anh Đào, quận 9, giá 8tr" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/16/740/999c4652446a4a69bdd08ebe1fa5f135.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Cho thuê căn hộ chung cư dự án Flora Anh Đào, quận 9, giá 8tr" href="https://muaban.net/can-ho-chung-cu-tap-the-quan-9-l5917-c3402/cho-thue-can-ho-chung-cu-du-an-flora-anh-dao-quan-9-gia-8tr-id39477592">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Cho thuê căn hộ chung cư dự án Flora Anh Đào, quận 9, giá 8tr</h2>
+                            <span class="mbn-price">8.000.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận 9, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Cho thuê căn hộ 54m2 tầng 5 view hồ bơi thuộc dự án Flora Anh Đào, căn hộ đã hoàn thiện nội thất, Giá trên đã bao gồm phí quản lý. Giao thông kết nối thuận tiện, sát liền khu công nghệ cao. Ưu tiên gia đình và có thể cho thuê lâu dài.</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="mbn-box-list-content">
+                    <span class="mbn-label-VIPS"></span>
+
+                    <a class="mbn-image" title="Bán nhà sổ hồng, đường Huỳnh Tấn Phát, gần cầu Phú Xuân, Quận 7" href="https://muaban.net/nha-hem-ngo-quan-7-l5915-c3202/ban-nha-so-hong-duong-huynh-tan-phat-gan-cau-phu-xuan-quan-7-id38138778">
+                        <img title="Bán nhà sổ hồng, đường Huỳnh Tấn Phát, gần cầu Phú Xuân, Quận 7" alt="Bán nhà sổ hồng, đường Huỳnh Tấn Phát, gần cầu Phú Xuân, Quận 7" data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/13/806/55a75ed0e0354c518f5b53decf8036e3.jpg" src="https://muaban.net/Content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán nhà sổ hồng, đường Huỳnh Tấn Phát, gần cầu Phú Xuân, Quận 7" href="https://muaban.net/nha-hem-ngo-quan-7-l5915-c3202/ban-nha-so-hong-duong-huynh-tan-phat-gan-cau-phu-xuan-quan-7-id38138778">
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán nhà sổ hồng, đường Huỳnh Tấn Phát, gần cầu Phú Xuân, Quận 7</h2>
+                            <span class="mbn-price">630.000.000 đ</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận 7, TP.HCM</span>
+                            <span class="mbn-date">23/07/2017</span>
+
+                            <span class="mbn-item-summary">Chính chủ cần bán nhà cách cầu Phú Xuân 500m, đường Huỳnh Tấn Phát vào 20m, Quận 7.&#13;&#10;* Diện tích: 5x6m, trệt, 2 lầu đúc, nhà đang hoàn thiện, sổ hồng, giá 630 triệu.&#13;&#10;&#10;* Diện tích: 4x14m, 1 trệt, 1 lầu, nội thất cao cấp, sổ hồng, giá 1,82 tỷ&#10;&#13;&#10;Liên hệ:</span>
+
+
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <div class="borderTop"></div>                        <div class="clearfix"></div>
+
+                <!--Paging:Begin-->
+                <div class="paging"><ul class="pagination"><li class="disabled"><span><i class="fa fa-angle-left"></i></span></li>
+                        <li class="active"><span>1</span></li>
+                        <li class=""><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=2">2</a></li>
+                        <li class=""><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=3">3</a></li>
+                        <li class=""><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=4">4</a></li>
+                        <li class=""><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=5">5</a></li>
+                        <li class="hidden-xs"><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=6">6</a></li>
+                        <li class="hidden-xs"><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=7">7</a></li>
+                        <li class="hidden-sm hidden-xs"><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=8">8</a></li>
+                        <li class="hidden-sm hidden-xs"><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=9">9</a></li>
+                        <li class="hidden-sm hidden-xs"><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=10">10</a></li>
+                        <li><a href="https://muaban.net/mua-ban-nha-dat-cho-thue-toan-quoc-l0-c3?cp=2"><i class="fa fa-angle-right"></i></a></li>
+                    </ul></div>
+                <!--Paging:End-->
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="mbn-banner visible-lg" id="banner-bottom"></div>
+        </div>
+        <div class="mbn-box-right">
+            <div class="banner-left">
+                <div id="ads-right-top" class="hidden-xs"></div>
+
+
+                <div class="mbn-box-ads">
+                    <div class="mbn-title-header">
+                        <span class="title-special">Tin quảng cáo</span>
+                        <button id="mbn-classified-ads-next" data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-next" class="btn special-ctn-next">
+                            <i class="icon icon-right218"></i>
+                        </button>
+                        <button id="mbn-classified-ads-prev" data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-back" class="btn special-ctn-next">
+                            <i class="icon icon-left207"></i>
+                        </button>
+
+                        <span class="title-qc">
+            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-help"
+               href="https://muaban.net/uploads/huong-dan/bang_gia/tin-quang-cao/index.html"><i class="icon icon-QuestionMark"></i></a>
+        </span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ul id="mbn-classified-ads" class="hidden-xs">
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-id-39392536"
+                               title="Nhượng lại quyền kinh doanh lô đất 4.500m2 ngay trung tâm TP.Cần Thơ" href="/sang-nhuong-khac-ho-chi-minh-l59-c3309/nhuong-lai-quyen-kinh-doanh-lo-dat-4-500m2-ngay-trung-tam-tp-can-tho-id39392536">
+                                <img class="spright-image" title="Nhượng lại quyền kinh doanh lô đất 4.500m2 ngay trung tâm TP.Cần Thơ" alt="Nhượng lại quyền kinh doanh lô đất 4.500m2 ngay trung tâm TP.Cần Thơ"  data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/13/117/58519d4889904d9bb10bd0d112c0857f.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Nhượng lại quyền kinh doanh lô đất 4.500m2 ngay trung tâm TP.Cần Thơ</h2>
+                                    <span class="spright-price"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-id-30676738"
+                               title="Cho thuê đất DT 1000 - 5,000m2 đường Phạm Hữu Lầu, Nhà Bè giá rẻ" href="/dat-kho-xuong-huyen-nha-be-l5905-c3406/cho-thue-dat-dt-1000-5-000m2-duong-pham-huu-lau-nha-be-gia-re-id30676738">
+                                <img class="spright-image" title="Cho thuê đất DT 1000 - 5,000m2 đường Phạm Hữu Lầu, Nhà Bè giá rẻ" alt="Cho thuê đất DT 1000 - 5,000m2 đường Phạm Hữu Lầu, Nhà Bè giá rẻ"  data-original="https://cdn01.muaban.net/images/thumb-list/201704/01/705/84c7e3c395fe49e1bc16d54a8a554958.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Cho thuê đất DT 1000 - 5,000m2 đường Phạm Hữu Lầu, Nhà Bè giá rẻ</h2>
+                                    <span class="spright-price">15.000.000 đ</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-id-38161481"
+                               title="Cho thue phòng trọ máy lạnh Đinh Bộ Lĩnh quận Bình Thạnh " href="/nha-tro-phong-tro-quan-binh-thanh-l5919-c3405/cho-thue-phong-tro-may-lanh-dinh-bo-linh-quan-binh-thanh--id38161481">
+                                <img class="spright-image" title="Cho thue phòng trọ máy lạnh Đinh Bộ Lĩnh quận Bình Thạnh " alt="Cho thue phòng trọ máy lạnh Đinh Bộ Lĩnh quận Bình Thạnh "  data-original="https://cdn01.muaban.net/images/thumb-list/201705/07/456/0b2ce1fe13d74273b61153eed058e0fe.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Cho thue phòng trọ máy lạnh Đinh Bộ Lĩnh quận Bình Thạnh </h2>
+                                    <span class="spright-price">4.300.000 đ</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-id-38546038"
+                               title="TÔI MUỐN BÁN  26PTRỌ ĐỐI DIỆN KCN BON CHEN , TN 25TR, SHR, 0909314581" href="/dat-tho-cu-huyen-binh-chanh-l5901-c3102/toi-muon-ban-26ptro-doi-dien-kcn-bon-chen-tn-25tr-shr-0909314581-id38546038">
+                                <img class="spright-image" title="TÔI MUỐN BÁN  26PTRỌ ĐỐI DIỆN KCN BON CHEN , TN 25TR, SHR, 0909314581" alt="TÔI MUỐN BÁN  26PTRỌ ĐỐI DIỆN KCN BON CHEN , TN 25TR, SHR, 0909314581"  data-original="https://cdn01.muaban.net/images/thumb-list/201705/25/412/041e9374a1b24dc89c7d1d8ddc417652.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>TÔI MUỐN BÁN  26PTRỌ ĐỐI DIỆN KCN BON CHEN , TN 25TR, SHR, 0909314581</h2>
+                                    <span class="spright-price">1 tỷ 600 triệu</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-id-39600637"
+                               title="Nhà chính chủ 6x20m2, shr, đường Nguyễn Văn Bứa" href="/nha-mat-tien-huyen-hoc-mon-l5904-c3201/nha-chinh-chu-6x20m2-shr-duong-nguyen-van-bua-id39600637">
+                                <img class="spright-image" title="Nhà chính chủ 6x20m2, shr, đường Nguyễn Văn Bứa" alt="Nhà chính chủ 6x20m2, shr, đường Nguyễn Văn Bứa"  data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/23/945/9c4dfce5abb640749e9cd9fe6e22d3ff.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Nhà chính chủ 6x20m2, shr, đường Nguyễn Văn Bứa</h2>
+                                    <span class="spright-price">660.000.000 đ</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="owl-carousel-ads" class="owl-carousel visible-xs"></div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="mbn-box-ads mbn-box-bds-link">
+                    <div class="mbn-title-header">
+                        <span class="title-special">Tỉnh thành</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ul id="mbn-classified-ads" class="hidden-xs">
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l59-c3"
+                               href="/mua-ban-nha-dat-cho-thue-ho-chi-minh-l59-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>TP.HCM</span></a>&nbsp;<span>(1079513)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l24-c3"
+                               href="/mua-ban-nha-dat-cho-thue-ha-noi-l24-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>Hà Nội</span></a>&nbsp;<span>(349866)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l15-c3"
+                               href="/mua-ban-nha-dat-cho-thue-da-nang-l15-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>Đà Nẵng</span></a>&nbsp;<span>(56998)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l28-c3"
+                               href="/mua-ban-nha-dat-cho-thue-hai-phong-l28-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>Hải Phòng</span></a>&nbsp;<span>(11725)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l13-c3"
+                               href="/mua-ban-nha-dat-cho-thue-can-tho-l13-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>Cần Thơ</span></a>&nbsp;<span>(3037)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l09-c3"
+                               href="/mua-ban-nha-dat-cho-thue-binh-duong-l09-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>Bình Dương</span></a>&nbsp;<span>(19859)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l01-c3"
+                               href="/mua-ban-nha-dat-cho-thue-an-giang-l01-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>An Giang</span></a>&nbsp;<span>(195)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l02-c3"
+                               href="/mua-ban-nha-dat-cho-thue-ba-ria-vung-tau-l02-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>Bà Rịa - Vũng Tàu</span></a>&nbsp;<span>(5250)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l03-c3"
+                               href="/mua-ban-nha-dat-cho-thue-bac-giang-l03-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>Bắc Giang</span></a>&nbsp;<span>(133)</span>
+                        </li>
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-linked-box"
+                               data-gtm-action="listing-category-l05-c3"
+                               href="/mua-ban-nha-dat-cho-thue-bac-lieu-l05-c3"><i class="fa fa-caret-right"></i>&nbsp;<span>Bạc Liêu</span></a>&nbsp;<span>(10)</span>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="mbn-box-rss-blog">
+                    <div class="mbn-title-header">
+                        <span class="title-special">Cẩm nang mua bán</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ul>
+                        <li>
+                            <a
+                                title="Thủ tục và mức thuế phải đóng khi chuyển đổi mục đích sử dụng đất nông nghiệp sang đất ở" href="https://blog.muaban.net/thu-tuc-va-muc-thue-phai-dong-khi-chuyen-doi-muc-dich-su-dung-dat-nong-nghiep-sang-dat-o/">
+                                <img class="spright-image" title="Thủ tục và mức thuế phải đóng khi chuyển đổi mục đích sử dụng đất nông nghiệp sang đất ở" alt="Thủ tục và mức thuế phải đóng khi chuyển đổi mục đích sử dụng đất nông nghiệp sang đất ở"  data-original="https://blog.muaban.net/wp-content/uploads/2017/07/r-150x150.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Thủ tục và mức thuế phải đóng khi chuyển đổi mục đích sử dụng đất nông nghiệp sang đất ở</h2>
+                                    <span class="spright-price">22/07/2017</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                title="Kinh doanh hàng tạp hóa- Cần lưu ý những gì?" href="https://blog.muaban.net/kinh-doanh-hang-tap-hoa-can-luu-y-nhung-gi/">
+                                <img class="spright-image" title="Kinh doanh hàng tạp hóa- Cần lưu ý những gì?" alt="Kinh doanh hàng tạp hóa- Cần lưu ý những gì?"  data-original="https://blog.muaban.net/wp-content/uploads/2017/07/maxresdefault-1-150x150.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Kinh doanh hàng tạp hóa- Cần lưu ý những gì?</h2>
+                                    <span class="spright-price">21/07/2017</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                title="Kinh nghiệm thuê biệt thự ở Đà Lạt để chuyến đi du lịch thật trọn vẹn" href="https://blog.muaban.net/kinh-nghiem-thue-biet-thu-o-da-lat-de-chuyen-di-du-lich-tron-ven/">
+                                <img class="spright-image" title="Kinh nghiệm thuê biệt thự ở Đà Lạt để chuyến đi du lịch thật trọn vẹn" alt="Kinh nghiệm thuê biệt thự ở Đà Lạt để chuyến đi du lịch thật trọn vẹn"  data-original="https://blog.muaban.net/wp-content/uploads/2017/07/kinh-nghiem-thue-biet-thu-o-da-lat-150x150.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Kinh nghiệm thuê biệt thự ở Đà Lạt để chuyến đi du lịch thật trọn vẹn</h2>
+                                    <span class="spright-price">21/07/2017</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                title="Mua đất nông nghiệp để làm nhà cần lưu ý những gì?" href="https://blog.muaban.net/mua-dat-nong-nghiep-de-lam-nha-can-luu-y-nhung-gi/">
+                                <img class="spright-image" title="Mua đất nông nghiệp để làm nhà cần lưu ý những gì?" alt="Mua đất nông nghiệp để làm nhà cần lưu ý những gì?"  data-original="https://blog.muaban.net/wp-content/uploads/2017/07/s-1-1-150x150.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Mua đất nông nghiệp để làm nhà cần lưu ý những gì?</h2>
+                                    <span class="spright-price">20/07/2017</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                title="Bí quyết vàng trang trí nội thất đẹp miễn chê" href="https://blog.muaban.net/bi-quyet-vang-trang-tri-noi-dep-mien-che/">
+                                <img class="spright-image" title="Bí quyết vàng trang trí nội thất đẹp miễn chê" alt="Bí quyết vàng trang trí nội thất đẹp miễn chê"  data-original="https://blog.muaban.net/wp-content/uploads/2017/07/Bí-quyết-vàng-trang-trí-nội-thất-đẹp-miễn-chê-150x150.jpg" src="https://muaban.net/Content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Bí quyết vàng trang trí nội thất đẹp miễn chê</h2>
+                                    <span class="spright-price">20/07/2017</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+
+            <div class="banner-left" id="banner-left">
+                <div id="ads-google-right-mobile" class="visible-xs">
+                    <!-- MBNV3 Mobile Listing -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9257019901916343"
+                         data-ad-slot="6789875111"
+                         data-ad-format="auto"></ins>
+                </div>
+                <div id="ads-google-right-1">
+                    <!-- MBNV3 Right Square 1 - 250x250 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:250px;height:250px"
+                         data-ad-client="ca-pub-9257019901916343"
+                         data-ad-slot="3464681111"></ins>
+                </div>
+                <div id="ads-right-center" class="hidden-xs"></div>
+                <div id="ads-google-right-2" class="hidden-xs">
+                    <!-- MBNV3 Right Square 2 - 250x250 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:250px;height:250px"
+                         data-ad-client="ca-pub-9257019901916343"
+                         data-ad-slot="4941414311"></ins>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1187,8 +1187,8 @@ return array(
         'exception_template'       => 'error/index',    
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-//             'layout/home'             => TEMPLATE_PATH . '/default/index.phtml',
             'layout/home'             => TEMPLATE_PATH . '/home/index.phtml',
+            'layout/home_v2'             => TEMPLATE_PATH . '/home_v2/index.phtml',
             'layout/login'            => TEMPLATE_PATH . '/default/login.phtml',
             //'error/404'               => TEMPLATE_PATH . '/default/404.phtml',
             //'error/index'             => TEMPLATE_PATH . '/default/404.phtml',
