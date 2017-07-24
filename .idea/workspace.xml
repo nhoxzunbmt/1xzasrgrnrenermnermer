@@ -5,45 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbc009e5-1aa8-4a3f-9f3c-ec4ba8c0428c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/fonts/icomoon.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/images/chosen-sprite.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/chosen-sprite.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/chosen-sprite@2x.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/example.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/module/Home/view/home_v2/index/index.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/box-filter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/box-menu.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/footer-link.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/footer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/head.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/header.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/js.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/menu_top.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/inc/search.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/index.phtml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/all-scripts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/bootstrap-chosen-variables.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/bootstrap-chosen-variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/bootstrap-chosen.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/bootstrap-chosen.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/bootstrap-chosen/example.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/list.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/js/modernizr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/templates/home_v2/plugins/facebook_js.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/module/Home/view/layout/layout.phtml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/module/Home/view/layout/layout_v3.phtml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/fonts/fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/fonts/icomoon.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/images/chosen-sprite.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/all-scripts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/bootstrap-chosen-variables.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/bootstrap-chosen-variables.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/bootstrap-chosen.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/bootstrap-chosen.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/chosen-sprite.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/chosen-sprite@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/example.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/bootstrap-chosen/example.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/templates/ver2/js/modernizr.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/Home/config/module.config.php" afterPath="$PROJECT_DIR$/module/Home/config/module.config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/Home/src/Home/Controller/IndexController.php" afterPath="$PROJECT_DIR$/module/Home/src/Home/Controller/IndexController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/Home/view/layout/layout.phtml" afterPath="$PROJECT_DIR$/module/Home/view/layout/layout.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/Home/view/layout/layout_v3.phtml" afterPath="$PROJECT_DIR$/module/Home/view/layout/layout_v3.phtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/Home/view/home_v2/index/index.phtml" afterPath="$PROJECT_DIR$/module/Home/view/home_v2/index/index.phtml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -83,8 +70,8 @@
       <file leaf-file-name="index.phtml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/module/Home/view/home_v2/index/index.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="37" column="64" lean-forward="false" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
+            <state relative-caret-position="697">
+              <caret line="50" column="3" lean-forward="false" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -283,23 +270,6 @@
             <path>
               <item name="bds" type="b2602c69:ProjectViewProjectNode" />
               <item name="bds" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Home" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="bds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bds" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Home" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="bds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bds" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -307,20 +277,6 @@
               <item name="bds" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="bds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bds" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="home" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="bds" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bds" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="home_v2" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -381,12 +337,12 @@
       <workItem from="1500774847207" duration="2544000" />
       <workItem from="1500817673894" duration="6354000" />
       <workItem from="1500830116035" duration="24000" />
-      <workItem from="1500905910521" duration="4176000" />
+      <workItem from="1500905910521" duration="4438000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27633000" />
+    <option name="totallyTimeSpent" value="27895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
@@ -576,14 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/Home/view/layout/layout.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/templates/home_v2/js/list.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -596,17 +544,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="1428" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1509" selection-end-column="0" />
-          <folding>
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -804,10 +742,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/module/Home/view/layout/layout.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/module/Home/view/home_v2/index/index.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="37" column="64" lean-forward="false" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
+        <state relative-caret-position="697">
+          <caret line="50" column="3" lean-forward="false" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
           <folding />
         </state>
       </provider>
