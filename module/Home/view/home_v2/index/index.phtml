@@ -7,14 +7,11 @@
                     <select data-gtm-event="mbn-event-link" data-gtm-category="mbn-search"
                             data-gtm-action="mbn-city-dropdown"
                             data-bind="chosen: { source: Cities, selectedValue: CityId, displayProp: 'Name', valueProp: 'CityId', styleProp: 'Style', chosenOption: { disable_search: true } }"
-                            class="hide"></select>
+                            class="hide">
+                    </select>
+
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 top-search-category">
-                    <select data-gtm-event="mbn-event-link" data-gtm-category="mbn-search"
-                            data-gtm-action="mbn-category-dropdown"
-                            data-bind="chosen: { source: Categories, selectedValue: CategoryId, displayProp: 'CategoryName', valueProp: 'CategoryId', chosenOption: { disable_search: true } }"
-                            class="hide"></select>
-                </div>
+
                 <div class="col-md-5 col-sm-5 col-xs-5 top-search-keyword">
                     <div class="input-group">
                         <input type="text" class="form-control input-keyword"

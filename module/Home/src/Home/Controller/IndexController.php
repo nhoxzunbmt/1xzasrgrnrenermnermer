@@ -198,6 +198,7 @@ class IndexController extends ActionController
 
         //Thành phố
         $itemsCity = $this->getBusinessTable()->itemInselectBox($this->_arrParam, array('task' => 'list-item-city'));
+
         $listCity = array_slice($itemsCity, 1, count($itemsCity) - 1);
 
         //Item select box

@@ -133,7 +133,7 @@ class ActionController extends AbstractActionController{
 				
 				$item           = $businessTable->getItem($this->_arrParam);
 				if(empty($item)){
-					$this->goNotFoundPageBusiness();
+					//$this->goNotFoundPageBusiness();
 				}
 			}
 		}

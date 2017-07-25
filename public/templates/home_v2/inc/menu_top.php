@@ -1,8 +1,5 @@
 <div class="clearfix" data-bind="with:TopMenu">
-
-
     <div class="mbn-navbar clearfix" id="mbn-navbar">
-
         <div class="mbn-banner-appmb" data-bind="with: $parent.MBNBanner" style="background-color:#f2f2f2; width:100%">
             <div class="mbn-banner clearfix" data-bind="visible:ShowBanner()==true">
                 <span class="delete" data-bind="click: CloseBanner"><i class="fa fa-remove"></i></span>
