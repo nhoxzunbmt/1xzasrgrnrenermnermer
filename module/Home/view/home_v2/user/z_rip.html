@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng nhập hệ thống - Id Mua Bán</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="/Content/css?v=0JwbGkhNx85C_9Y5OSXM2zCNqB_oTcACtLKZ8NN_rXs1" rel="stylesheet"/>
+
+    <script src="/bundles/modernizr?v=inCVuEFe6J4Q07A0AcRsbJic_UE5MwpRMNGcOtk94TE1"></script>
+
+
+    <script>
+        function gooSocial(social, appName, returnUrl, sid, mode, callbackUrl, services) {
+            var homeUrl = '/',
+                actionType = "login",
+                openid_url = social;
+
+            var strUrl = '{0}?app={1}&returnUrl={2}&actionType={3}&openid_url={4}&sid={5}&mode={6}&callbackUrl={7}&services={8}';
+            var link = String.format(strUrl, homeUrl, appName, returnUrl, actionType, openid_url, sid, mode, callbackUrl, services);
+            location.href = link;
+        }
+
+        function gooLocal(homeUrl, appName, returnUrl, sid, mode, callbackUrl, services) {
+            var strUrl = '{0}?app={1}&sid={2}&returnUrl={3}&mode={4}&callbackUrl={5}&services={6}';
+            var link = String.format(strUrl, homeUrl, appName, sid, returnUrl, mode, callbackUrl, services);
+            location.href = link;
+        }
+
+        String.format = function () {
+            // The string containing the format items (e.g. "{0}")
+            // will and always has to be the first argument.
+            var theString = arguments[0];
+
+            // start with the second argument (i = 1)
+            for (var i = 1; i < arguments.length; i++) {
+                // "gm" = RegEx options for Global search (more than one instance)
+                // and for Multiline search
+                var regEx = new RegExp("\\{" + (i - 1) + "\\}", "gm");
+                theString = theString.replace(regEx, arguments[i]);
+            }
+
+            return theString;
+        }
+    </script>
+
+
+</head>
+<body>
+<!-- Google Tag Manager -->
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-KFP6KV"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script type="text/javascript">
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KFP6KV');</script>
+<!-- End Google Tag Manager -->
+<div class="container header">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <a class="logo" href="//muaban.net">
+
+        </a>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 text-right links">
+
+        <a href="javascript:void(0);" onclick="javascript: goSignup();">Đăng ký</a>
+
+    </div>
+</div>
+<hr />
+<div id="page-content" class="page-content container clearfix">
+    <div class="row">
+        <div class="col-md-3 col-sm-2 hidden-xs"></div>
+        <div class="col-md-6 col-xs-12 col-sm-8">
+
+
+            <div id="form-register">
+                <form action="/" class="form" method="post"><input name="__RequestVerificationToken" type="hidden" value="ZVoZBEZeZQgLRXVHjTGkCXMFYz0YLwOSXWLM4fRzF1EzUXJPOaH0hIJGD2LaNm0ePw-eIU0CEra7HZ5ikcfB_wSc7FY1" /><input id="sid" name="sid" type="hidden" value="858d4d8cf4e3421a8f5738ebaa2ec0d3" /><input data-val="true" data-val-number="The field mode must be a number." data-val-required="The mode field is required." id="mode" name="mode" type="hidden" value="0" /><input id="AppName" name="AppName" type="hidden" value="muabannet" /><input id="Services" name="Services" type="hidden" value="mbnv2" /><input id="returnUrl" name="returnUrl" type="hidden" value="https://muaban.net/dang-tin" /><input id="callbackUrl" name="callbackUrl" type="hidden" value="https://muaban.net/trang-ca-nhan/SignInCallback" /><input data-val="true" data-val-required="The IsShowCaptCha field is required." id="IsShowCaptCha" name="IsShowCaptCha" type="hidden" value="False" />        <div class="col-md-12 content">
+                    <div data-gtm-event="mbn-event-all"
+                         data-gtm-category="mbn-user"
+                         data-gtm-action="sign-in"
+                         class="button-social button-facebook" onclick="javascript: goSocial('facebook')">
+                        <span class="icon-facebook"></span>
+                        Đăng nhập bằng Facebook
+                    </div>
+                    <div class="button-space"></div>
+                    <div data-gtm-event="mbn-event-all"
+                         data-gtm-category="mbn-user"
+                         data-gtm-action="sign-in"
+                         class="button-social button-google" onclick="javascript:goSocial('google')">
+                        <span class="icon-google-plus"></span>
+                        Đăng nhập bằng Google
+                    </div>
+                    <div class="button-space"></div>
+
+                    <div data-gtm-event="mbn-event-all"
+                         data-gtm-category="mbn-user"
+                         data-gtm-action="sign-in"
+                         class="button-social button-yahoo" onclick="javascript: goSocial('yahoo')">
+                        <span class="icon-yahoo"></span>
+                        Đăng nhập bằng Yahoo
+                    </div>
+                    <div class="button-space"></div>
+                    <div class="divider">
+                        <hr class="left" />Hoặc đăng nhập bằng Email / Điện thoại<hr class="right" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" data-val="true" data-val-required="Bạn vui lòng nhập Email / Điện thoại / tên đăng nhập" id="UserName" maxlength="256" name="UserName" placeholder="Email / Điện thoại đăng nhập *" type="text" value="" />
+                        <span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" data-val="true" data-val-maxlength="Mật khẩu tối đa 50 ký tự" data-val-maxlength-max="50" data-val-required="Bạn vui lòng nhập Mật khẩu" id="Password" maxlength="51" name="Password" placeholder="Mật khẩu *" type="password" />
+                        <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="btn-submit">
+                            <div id="errorSummary">
+
+                            </div>
+                            <div style="color:#555">
+                                Bạn là khách hàng thường xuyên đăng tin lên web muaban.net và tin của bạn cần ĐĂNG GẤP NGAY LẬP TỨC.
+                                Hãy đến <a href="https://muaban.net/thong-tin/dia-diem-dang-tin" target="_blank">văn phòng giao dịch</a> của chúng tôi để xác thực chứng minh nhân dân hoặc gọi tổng đài hỗ trợ 1900 6868, 028.7300 1234 (HCM), 024.7300 1234 (HN)
+                            </div>
+                            <input data-gtm-event="mbn-event-all"
+                                   data-gtm-category="mbn-user"
+                                   data-gtm-action="sign-in"
+                                   type="submit" onclick="clearValidationSum();" value="Đăng nhập" class="button" />&nbsp;&nbsp;<a href="javascript:void(0);" onclick="javascript:goForgot();">Quên mật khẩu</a>?
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input checked="checked" data-val="true" data-val-required="The Lưu đăng nhập? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" /> <label for="RememberMe" style="color: #555555; font-weight: normal;">Lưu đăng nhập trên máy này</label>
+                    </div>
+                </div>
+                </form></div>
+
+        </div>
+        <div class="col-md-3 col-sm-2 hidden-xs"></div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="container content">
+        &copy; 2017 - <b>Id Mua Bán</b><br />
+        Công ty Cổ phần Mua Bán. MST: 0102344810, cấp ngày 10/08/2007. SĐT: 028.73001234<br />
+        Trụ sở chính: Số 28-30 Đường số 2, khu phố Hưng Gia 5, phường Tân Phong, Quận 7, TP. Hồ Chí Minh
+    </div>
+</div>
+<script src="/bundles/jquery?v=8z6YzzH0c3lAT2R_qe2hLO3ZyowcuHmPA5RUiWrC6gU1"></script>
+
+<script src="/bundles/knockout?v=GoiLP0nyiGfznhsKUGY93Kxk6hIapFQmJ3u5ickWpeA1"></script>
+
+
+
+<script src="/bundles/jqueryval?v=tbCA1UoE62X7WPrB5lldRIGebkQepUuA4izLhZGKxR41"></script>
+
+<script src="/Scripts/App/captcha.js"></script>
+<script>
+    var url = location.href;
+    var tmpIndex = url.indexOf("#/");
+    if (tmpIndex > 0) {
+        url = url.substring(tmpIndex);
+        var currentReturnUrl = 'https://muaban.net/dang-tin';
+        currentReturnUrl = currentReturnUrl + url;
+        $("#returnUrl").val(currentReturnUrl);
+    }
+    var a = 'muabannet'
+    r = 'https://muaban.net/dang-tin',
+        sid = '858d4d8cf4e3421a8f5738ebaa2ec0d3',
+        m = '0'
+    s = 'mbnv2'
+    c = 'https://muaban.net/trang-ca-nhan/SignInCallback';
+
+    function goSignup() {
+        var url = '/dang-ky';
+        gooLocal(url, a, r, sid, m, c, s);
+    }
+    function goForgot() {
+        var url = '/quen-mat-khau';
+        gooLocal(url, a, r, sid, m, c, s);
+    }
+    function goSocial(social) {
+        gooSocial(social, a, r, sid, m, c, s);
+    }
+    function clearValidationSum() {
+        var tmp = document.getElementById('errorSummary');
+        tmp.style.display = 'none';
+    }
+</script>
+<script src="/Scripts/App/trimMail.js"></script>
+
+</body>
+</html>

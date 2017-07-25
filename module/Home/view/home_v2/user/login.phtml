@@ -1,171 +1,70 @@
 <div class="page-content container mbn-posting clearfix">
+    <div class="row">
+        <div class="col-md-3 col-sm-2 hidden-xs"></div>
+        <div class="col-md-6 col-xs-12 col-sm-8">
 
-
-    <?php
-
-    $myForm             = $this->myForm;
-    $myForm->setAttribute('action', $this->url(null, array(
-        'module'    =>  'home',
-        'controller'    => 'user',
-        'action'        => 'login'
-    )));
-
-
-    $myForm->prepare();
-    $elementEmail       = $myForm->get('my-email');
-    $elementPassword    = $myForm->get('my-password');
-    $elementCheckbox    = $myForm->get('my-checkbox');
-    $elementBtnSubmit   = $myForm->get('my-button-submit');
-
-
-    $elements       = array(
-        array(
-            'label'     => $this->formLabel($elementEmail),
-            'input'     => $this->formElement($elementEmail),
-            'error'     => 'ajax-info-email',
-            'lierror'   => 'li-email',
-        ),
-        array(
-            'label' => $this->formLabel($elementPassword),
-            'input' => $this->formElement($elementPassword),
-            'error' => 'ajax-info-password',
-            'lierror'   =>'li-password',
-        ),
-        array(
-            'label' => null,
-            'input' => '<div class="checkbox">' .$this->formLabel($elementCheckbox, $this->formElement($elementCheckbox), 'append') . '</div>',
-            'error' => '',
-            'lierror'   =>'',
-        ),
-        array(
-            'label' => null,
-            'input' => $this->formElement($elementBtnSubmit),
-            'error' => '',
-            'lierror'   =>'',
-        ),
-    );
-
-    if(!empty($this->msgError)){
-        $messageError = $this->msgError;
-    }
-
-    $xhtmlError = '';
-    if($this->error)
-    {
-        foreach ($this->error as $item) {
-            $xhtmlError.= $item;
-        }
-        //$xhtmlError     =  $this->errorMessages($this->error,'user');
-    }
-
-
-
-
-    $linkRegister           = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'register'));
-    $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'forgot-password'));
-
-    ?>
-
-
-    <style type="text/css">
-        .content-error {
-            color: #df3832;
-            font-style: normal;
-        }
-    </style>
-    <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.form.js"></script>
-    <script type="text/javascript">
-        var options = {
-            target      : '#ajax-info',
-            dataType    : 'json',
-            success     : showResponse
-
-        };
-
-        function showResponse(data){
-            if(data.status == 'success'){
-                if(data.messages['authenticate']){
-                    $('#li-email, #li-password').removeAttr('style');
-                    $('#ajax-info-password').html(data.messages['authenticate'])
-                        .removeClass()
-                        .addClass('content-error')
-                        .css({'width':'386px'});
-
-                    $('#inputEmail, #inputPassword').removeClass().addClass('inputWarmning');
-                }
-                if(data.messages['redirect']){
-                    window.location.href = data.messages['redirect'];
-                }
-
-            }else if(data.status == 'error'){
-
-                /*var error   = '';
-                for(x in data.messages){
-                    error += data.messages[x] + '<br/>';
-                }*/
-                $('#li-email, #li-password').removeAttr('style');
-                $('#inputEmail, #inputPassword').removeClass();
-
-                if(data.messages['email']){
-                    $('#inputEmail').addClass('inputWarmning');
-                }
-                if(data.messages['password']){
-                    $('#inputPassword').addClass('inputWarmning');
-                }
-
-                $('#ajax-info-email').html(data.messages['email'])
-                    .removeClass()
-                    .addClass('content-error')
-                    .css({'width':'386px'});
-
-                $('#ajax-info-password').html(data.messages['password'])
-                    .removeClass()
-                    .addClass('content-error')
-                    .css({'width':'386px'});
-
-
-
-
-            }else if(data.status == undefined){
-                $('#ajax-info').html('Có lỗi trong quá trình xử lý').removeClass().addClass('content-warning');
-            }
-        }
-
-        $(document).ready(function() {
-            /*$('#login-form').submit(function(){
-                $(this).ajaxSubmit(options);
-                return false;
-            });*/
-        })
-
-
-    </script>
-
-
-    <div class="pageWrap">
-        <div class="leftMainContent popupPage">
-
-            <div class="signInNewDialog">
-                <div class="TitleDialog">
-                    <h4>Đăng nhập</h4>
+    <div id="form-register">
+        <form action="/" class="form" method="post"><input name="__RequestVerificationToken" type="hidden" value="ZVoZBEZeZQgLRXVHjTGkCXMFYz0YLwOSXWLM4fRzF1EzUXJPOaH0hIJGD2LaNm0ePw-eIU0CEra7HZ5ikcfB_wSc7FY1" /><input id="sid" name="sid" type="hidden" value="858d4d8cf4e3421a8f5738ebaa2ec0d3" /><input data-val="true" data-val-number="The field mode must be a number." data-val-required="The mode field is required." id="mode" name="mode" type="hidden" value="0" /><input id="AppName" name="AppName" type="hidden" value="muabannet" /><input id="Services" name="Services" type="hidden" value="mbnv2" /><input id="returnUrl" name="returnUrl" type="hidden" value="https://muaban.net/dang-tin" /><input id="callbackUrl" name="callbackUrl" type="hidden" value="https://muaban.net/trang-ca-nhan/SignInCallback" /><input data-val="true" data-val-required="The IsShowCaptCha field is required." id="IsShowCaptCha" name="IsShowCaptCha" type="hidden" value="False" />        <div class="col-md-12 content">
+                <div data-gtm-event="mbn-event-all"
+                     data-gtm-category="mbn-user"
+                     data-gtm-action="sign-in"
+                     class="button-social button-facebook" onclick="javascript: goSocial('facebook')">
+                    <span class="icon-facebook"></span>
+                    Đăng nhập bằng Facebook
                 </div>
-                <div class="ContentDialog">
-                    <?php echo isset($xhtmlError) ? $xhtmlError : '';?>
-                    <h6>Bạn chưa có tài khoản?<a href="<?php echo $linkRegister ;?>" rel="nofollow">Tạo tài khoản</a> <a href="<?php echo $linkPasswordForgot;?>" rel="nofollow">Quên mật khẩu</a></h6>
+                <div class="button-space"></div>
+                <div data-gtm-event="mbn-event-all"
+                     data-gtm-category="mbn-user"
+                     data-gtm-action="sign-in"
+                     class="button-social button-google" onclick="javascript:goSocial('google')">
+                    <span class="icon-google-plus"></span>
+                    Đăng nhập bằng Google
+                </div>
+                <div class="button-space"></div>
 
-                    <ol>
-                        <?php
-                        echo $this->form()->openTag($myForm);
-                        echo $this->partialLoop('form-group.phtml', $elements);
-                        echo $this->form()->closeTag();
-                        ?>
+                <div data-gtm-event="mbn-event-all"
+                     data-gtm-category="mbn-user"
+                     data-gtm-action="sign-in"
+                     class="button-social button-yahoo" onclick="javascript: goSocial('yahoo')">
+                    <span class="icon-yahoo"></span>
+                    Đăng nhập bằng Yahoo
+                </div>
+                <div class="button-space"></div>
+                <div class="divider">
+                    <hr class="left" />Hoặc đăng nhập bằng Email / Điện thoại<hr class="right" />
+                </div>
 
-                    </ol>
+                <div class="form-group">
+                    <input class="form-control" data-val="true" data-val-required="Bạn vui lòng nhập Email / Điện thoại / tên đăng nhập" id="UserName" maxlength="256" name="UserName" placeholder="Email / Điện thoại đăng nhập *" type="text" value="" />
+                    <span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" data-val="true" data-val-maxlength="Mật khẩu tối đa 50 ký tự" data-val-maxlength-max="50" data-val-required="Bạn vui lòng nhập Mật khẩu" id="Password" maxlength="51" name="Password" placeholder="Mật khẩu *" type="password" />
+                    <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="btn-submit">
+                        <div id="errorSummary">
+
+                        </div>
+                        <div style="color:#555">
+                            Bạn là khách hàng thường xuyên đăng tin lên web muaban.net và tin của bạn cần ĐĂNG GẤP NGAY LẬP TỨC.
+                            Hãy đến <a href="https://muaban.net/thong-tin/dia-diem-dang-tin" target="_blank">văn phòng giao dịch</a> của chúng tôi để xác thực chứng minh nhân dân hoặc gọi tổng đài hỗ trợ 1900 6868, 028.7300 1234 (HCM), 024.7300 1234 (HN)
+                        </div>
+                        <input data-gtm-event="mbn-event-all"
+                               data-gtm-category="mbn-user"
+                               data-gtm-action="sign-in"
+                               type="submit" onclick="clearValidationSum();" value="Đăng nhập" class="button" />&nbsp;&nbsp;<a href="javascript:void(0);" onclick="javascript:goForgot();">Quên mật khẩu</a>?
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input checked="checked" data-val="true" data-val-required="The Lưu đăng nhập? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" /> <label for="RememberMe" style="color: #555555; font-weight: normal;">Lưu đăng nhập trên máy này</label>
                 </div>
             </div>
+        </form></div>
         </div>
+        <div class="col-md-3 col-sm-2 hidden-xs"></div>
     </div>
-
-
 </div>

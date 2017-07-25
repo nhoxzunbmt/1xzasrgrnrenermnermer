@@ -46,7 +46,13 @@ echo $this->headLink(array(
                   'type' => 'image/vnd.microsoft.icon',
                   'href' => TEMPLATE_URL . '/home/images/favicon.png'
                 ))
-                ->prependStylesheet(TEMPLATE_URL . '/home_v2/css/style.css');
+
+
+                ->prependStylesheet(TEMPLATE_URL . '/home_v2/css/style.css')
+
+->prependStylesheet(TEMPLATE_URL . '/home_v2/css/custom.css')
+    ->prependStylesheet(TEMPLATE_URL . '/home_v2/css/bootstrap.min.css')
+;
 
 
 echo $this->headScript()->prependFile(TEMPLATE_URL . '/home_v2/js/modernizr.js');
