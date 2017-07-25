@@ -68,7 +68,7 @@
                             <span class="num-message-bell" data-bind="text: TotalInboxNotReadDisplay(), style:{visibility:IsVisibleBell()==false? 'hidden':'visible'}"></span>
                         </a>
                         <ul class="dropdown-menu mbn-dropdown-menu mbn-bell-loading" role="menu" data-bind="visible: Inboxs().length == 0 && IsLoadingBell() == true">
-                            <li><img src="https://muaban.net/Content/images/AjaxLoader.gif" /> Vui lòng đợi trong giây lát...</li>
+                            <li>Vui lòng đợi trong giây lát...</li>
                         </ul>
                         <ul class="dropdown-menu mbn-dropdown-menu mbn-bell-emty" data-bind="visible: IsLoadingBell() == false && HasInbox() == false">
                             <li data-bind="visible: Inboxs().length == 0">Không có thông báo nào</li>
@@ -82,7 +82,6 @@
                                 </a>
                             </li>
                             <!-- /ko -->
-
                             <li class="mbn-bell-more" data-bind="visible: Inboxs().length > 0">
                                 <a href="/trang-ca-nhan/MyNotification" data-bind="click:  function(data,e){ data.GotoInbox('/trang-ca-nhan/MyNotification');}">
                                     Xem thêm

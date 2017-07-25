@@ -50,7 +50,7 @@ echo $this->headLink(array(
 
 
 echo $this->headScript()->prependFile(TEMPLATE_URL . '/home_v2/js/modernizr.js');
-echo $this->headScript()->prependFile(TEMPLATE_URL . '/home_v2/js/modernizr.js');
+
 
 
 

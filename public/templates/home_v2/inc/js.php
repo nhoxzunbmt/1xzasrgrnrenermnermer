@@ -1,5 +1,5 @@
 <script>var SupportChat = 'LiveChat';</script>
-<script src="<?php echo TEMPLATE_URL;?>/ver2/js/all-scripts.js"></script>
+<script src="<?php echo TEMPLATE_URL;?>/home_v2/js/all-scripts.js"></script>
 <script type="text/javascript">
     var ads_google_total = 2;
     if (mbnUtils.IsResponsive_XS() == true) {
@@ -36,7 +36,7 @@
     //fix hide ads banner center in grid view
     $("#li-ads-banner-center").hide();
 </script>
-<script src="<?php echo TEMPLATE_URL;?>/ver2/js/list.js"></script>
+<script src="<?php echo TEMPLATE_URL;?>/home_v2/js/list.js"></script>
 <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
 </script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>

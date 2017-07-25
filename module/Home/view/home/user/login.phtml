@@ -46,7 +46,17 @@ if(!empty($this->msgError)){
     $messageError = $this->msgError;
 }
 
-$xhtmlError     =  $this->errorMessages($this->error,'user');
+$xhtmlError = '';
+if($this->error)
+{
+    foreach ($this->error as $item) {
+        $xhtmlError.= $item;
+    }
+    //$xhtmlError     =  $this->errorMessages($this->error,'user');
+}
+
+
+
 
 $linkRegister           = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'register'));
 $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'forgot-password'));
@@ -140,7 +150,7 @@ $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'ho
             <h4>Đăng nhập</h4>
         </div>
 		 <div class="ContentDialog">
-             <?php echo $xhtmlError;?>
+             <?php echo isset($xhtmlError) ? $xhtmlError : '';?>
          	<h6>Bạn chưa có tài khoản?<a href="<?php echo $linkRegister ;?>" rel="nofollow">Tạo tài khoản</a> <a href="<?php echo $linkPasswordForgot;?>" rel="nofollow">Quên mật khẩu</a></h6>
              
             <ol>

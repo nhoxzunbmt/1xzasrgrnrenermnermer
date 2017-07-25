@@ -181,9 +181,14 @@ class UserController extends ActionController
         if($this->identity()){
             $this->redirect()->toUrl('/');
         }
-        $error          = array();
 
+        $error          = array();
         $view           = new ViewModel();
+
+
+        $this->layout('layout/home_v2');
+        $view->setTemplate('home_v2/user/login');
+
         //Tiêu đề
         $title          =  'Đăng nhập';   
         $this->headTitle($title)->setSeparator(" - ")->append("Website bất động sản");

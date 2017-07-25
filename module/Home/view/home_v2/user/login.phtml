@@ -1,0 +1,171 @@
+<div class="page-content container mbn-posting clearfix">
+
+
+    <?php
+
+    $myForm             = $this->myForm;
+    $myForm->setAttribute('action', $this->url(null, array(
+        'module'    =>  'home',
+        'controller'    => 'user',
+        'action'        => 'login'
+    )));
+
+
+    $myForm->prepare();
+    $elementEmail       = $myForm->get('my-email');
+    $elementPassword    = $myForm->get('my-password');
+    $elementCheckbox    = $myForm->get('my-checkbox');
+    $elementBtnSubmit   = $myForm->get('my-button-submit');
+
+
+    $elements       = array(
+        array(
+            'label'     => $this->formLabel($elementEmail),
+            'input'     => $this->formElement($elementEmail),
+            'error'     => 'ajax-info-email',
+            'lierror'   => 'li-email',
+        ),
+        array(
+            'label' => $this->formLabel($elementPassword),
+            'input' => $this->formElement($elementPassword),
+            'error' => 'ajax-info-password',
+            'lierror'   =>'li-password',
+        ),
+        array(
+            'label' => null,
+            'input' => '<div class="checkbox">' .$this->formLabel($elementCheckbox, $this->formElement($elementCheckbox), 'append') . '</div>',
+            'error' => '',
+            'lierror'   =>'',
+        ),
+        array(
+            'label' => null,
+            'input' => $this->formElement($elementBtnSubmit),
+            'error' => '',
+            'lierror'   =>'',
+        ),
+    );
+
+    if(!empty($this->msgError)){
+        $messageError = $this->msgError;
+    }
+
+    $xhtmlError = '';
+    if($this->error)
+    {
+        foreach ($this->error as $item) {
+            $xhtmlError.= $item;
+        }
+        //$xhtmlError     =  $this->errorMessages($this->error,'user');
+    }
+
+
+
+
+    $linkRegister           = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'register'));
+    $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'home','controller'=>'user','action'=>'forgot-password'));
+
+    ?>
+
+
+    <style type="text/css">
+        .content-error {
+            color: #df3832;
+            font-style: normal;
+        }
+    </style>
+    <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.form.js"></script>
+    <script type="text/javascript">
+        var options = {
+            target      : '#ajax-info',
+            dataType    : 'json',
+            success     : showResponse
+
+        };
+
+        function showResponse(data){
+            if(data.status == 'success'){
+                if(data.messages['authenticate']){
+                    $('#li-email, #li-password').removeAttr('style');
+                    $('#ajax-info-password').html(data.messages['authenticate'])
+                        .removeClass()
+                        .addClass('content-error')
+                        .css({'width':'386px'});
+
+                    $('#inputEmail, #inputPassword').removeClass().addClass('inputWarmning');
+                }
+                if(data.messages['redirect']){
+                    window.location.href = data.messages['redirect'];
+                }
+
+            }else if(data.status == 'error'){
+
+                /*var error   = '';
+                for(x in data.messages){
+                    error += data.messages[x] + '<br/>';
+                }*/
+                $('#li-email, #li-password').removeAttr('style');
+                $('#inputEmail, #inputPassword').removeClass();
+
+                if(data.messages['email']){
+                    $('#inputEmail').addClass('inputWarmning');
+                }
+                if(data.messages['password']){
+                    $('#inputPassword').addClass('inputWarmning');
+                }
+
+                $('#ajax-info-email').html(data.messages['email'])
+                    .removeClass()
+                    .addClass('content-error')
+                    .css({'width':'386px'});
+
+                $('#ajax-info-password').html(data.messages['password'])
+                    .removeClass()
+                    .addClass('content-error')
+                    .css({'width':'386px'});
+
+
+
+
+            }else if(data.status == undefined){
+                $('#ajax-info').html('Có lỗi trong quá trình xử lý').removeClass().addClass('content-warning');
+            }
+        }
+
+        $(document).ready(function() {
+            /*$('#login-form').submit(function(){
+                $(this).ajaxSubmit(options);
+                return false;
+            });*/
+        })
+
+
+    </script>
+
+
+    <div class="pageWrap">
+        <div class="leftMainContent popupPage">
+
+            <div class="signInNewDialog">
+                <div class="TitleDialog">
+                    <h4>Đăng nhập</h4>
+                </div>
+                <div class="ContentDialog">
+                    <?php echo isset($xhtmlError) ? $xhtmlError : '';?>
+                    <h6>Bạn chưa có tài khoản?<a href="<?php echo $linkRegister ;?>" rel="nofollow">Tạo tài khoản</a> <a href="<?php echo $linkPasswordForgot;?>" rel="nofollow">Quên mật khẩu</a></h6>
+
+                    <ol>
+                        <?php
+                        echo $this->form()->openTag($myForm);
+                        echo $this->partialLoop('form-group.phtml', $elements);
+                        echo $this->form()->closeTag();
+                        ?>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

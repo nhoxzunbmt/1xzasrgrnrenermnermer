@@ -3,14 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <?php echo $this->headTitle();?>
-   
+
 
     <!-- Meta -->
     <?php echo $this->headMeta()
             ->appendName('description', 'Chuyên trang mua bán nhà đất, bất động sản, bán nhà, bán đất - Thông tin mua, bán, nhà, đất, căn hộ, chung cư, phòng, cao ốc, biệt thự cao cấp, mặt bằng, văn phòng, kho bãi, nhà xưởng, dự án đất đai, dự án bất động sản, dự án đầu tư được cập nhật liên tục và chính xác.')
             ->prependName('keywords','Bat dong san, nha dat, mua ban nha dat, cho thue, mua, ban, nha, dat, can ho, biet thu, chung cu, phong, dat dai, du an, bang gia, luat, moi gioi, nguoi thu nhap thap, mau nha dep, phong thuy, nha o, phong khach, nha bep, huong nha, Ho Chi Minh, Ha Noi, Hai Phong, Da Nang, Binh Duong, Vung Tau, quan, huyen, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, Binh Tan, Binh Thanh, Go Vap, Phu Nhuan, Tan Binh, Tan Phu, Thu Duc, Binh Chanh, Can Gio, Cu Chi, Hoc Mon, Nha Be')
             ->appendHttpEquiv('REFRESH', '600')
-            
+
     ?>
 
     <!-- Le styles -->
@@ -37,18 +37,18 @@
             ->prependFile(TEMPLATE_URL . '/user/js/GlobalFunction.js')
             ->prependFile(TEMPLATE_URL . '/user/js/UsrComplex.js')
             ->appendFile(TEMPLATE_URL . '/admin/js/submit.js');
-     ?> 
-	
+     ?>
+
     <script type="text/javascript">
-        
+
 //        var pathClientAjax = "http://localhost/mbndv6/";
 //                var pathClient = "http://localhost/mbndv6/";
         var pathClientAjax = "http://muabannhadat.com.vn/";
         var pathClient = "http://muabannhadat.com.vn/";
-        
+
 //        var pathClientAjax = location.protocol + "//" + location.host + "/";
 //        var pathClient = location.protocol + "//" + location.host + "/";
-//        
+//
         var pathImagesUrl = "http://images.videonhadat.com.vn/";
 
         var pathClientUploadFilePhoToMap = "http://uploads.videonhadat.com.vn/TMP/photovbd/L";
@@ -70,8 +70,8 @@
         var pathClientTemplateDefault = "<?php echo TEMPLATE_URL;?>/default";
 
     </script>
-	
-	
+
+
 
 <script type="text/javascript">
  var ismobile = (/iphone|ipod|android|blackberry|opera mini|windows\sce|palm|smartphone|iemobile/i.test(navigator.userAgent.toLowerCase()));
@@ -116,10 +116,10 @@
              if ($.cookie('MobileVersion') == 0) {
                  $.cookie('MobileVersion', '1', { expires: 1, path: '/', domain: 'muabannhadat.com.vn' });
                  $.cookie('MobileVersion', '1', { expires: 1, path: '/', domain: 'm.muabannhadat.com.vn' });
-                 
+
              }
              location.replace("http://m.muabannhadat.com.vn/?mv=1");
-            
+
          }
 
 
@@ -128,15 +128,15 @@
   _gaq.push(['_setDomainName', '.muabannhadat.com.vn']);
   _gaq.push(['_trackPageview']);
   _gaq.push(['_trackPageLoadTime']);
-  
+
   var arrSeofix=new Array();
-  
+
   try
   {
     if(arrSeofix != null)
     {
       var countSeofix=0;
-      
+
       for(i=0;i<arrSeofix.length;i++)
 		  {
 			  var tempsf=arrSeofix[i].split('#');
@@ -152,16 +152,16 @@
   }
   catch(err)
   {}
-  
-  
+
+
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-  
- 
+
+
 (function(d, t) {
 var g = d.createElement(t),
 	s = d.getElementsByTagName(t)[0];
@@ -169,7 +169,7 @@ g.async = true;
 g.src = 'https://apis.google.com/js/plusone.js';
 s.parentNode.insertBefore(g, s);
 })(document, 'script');
-        
+
   function trackPageview(str)
   {
 	  var pageTracker = _gat._getTracker("UA-4041217-1");
@@ -186,31 +186,31 @@ s.parentNode.insertBefore(g, s);
 	  var pageTracker = _gat._getTracker("UA-4041217-1");
 	  if(key=="1")
       {
-	     
+
 	      pageTracker._trackPageview("anz-moigioi-submitted/".tpName);
 	      pageTracker._trackPageLoadTime("anz-moigioi-submitted/".tpName);
-	      pageTracker._trackEvent("ANZ Register Forms", "anz-moigioi-submitted/".tpName);	
+	      pageTracker._trackEvent("ANZ Register Forms", "anz-moigioi-submitted/".tpName);
 	  }
 	  else
       {
 		  pageTracker._trackPageview("anz-loan-submitted/".tpName);
 	      pageTracker._trackPageLoadTime("anz-loan-submitted/".tpName);
-	      pageTracker._trackEvent("ANZ Register Forms", "anz-loan-submitted/".tpName);	
+	      pageTracker._trackEvent("ANZ Register Forms", "anz-loan-submitted/".tpName);
 	  }
 
-      
+
   }
 
-</script>	
- 
- 
+</script>
+
+
 <!-- Start Alexa Certify Javascript -->
 <script type="text/javascript">
     _atrk_opts = { atrk_acct: "VVbHg1aAQ700Mx", domain: "muabannhadat.com.vn", dynamic: true };
     (function () { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(as, s); })();
 </script>
 <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=VVbHg1aAQ700Mx" style="display:none" height="1" width="1" alt="" /></noscript>
-<!-- End Alexa Certify Javascript -->  
+<!-- End Alexa Certify Javascript -->
 <script type='text/javascript' src='http://adserver.ringier.com.vn/new/www/delivery/spcjs.php?id=9&amp;target=_blank&amp;charset=UTF-8'></script>
 
 <!-- All Google Analytics -->
@@ -231,18 +231,18 @@ s.parentNode.insertBefore(g, s);
 
 </head>
 <body onload="checkShowCrapper();" onresize="checkShowCrapper();">
-  
 
 
 
 
 
 
-  
+
+
   <div style="left: -1000px; visibility: hidden; top: 397px; position: absolute; z-index: 10000;"
     id="tooltipdoanhnghiep" class="propertyToolTip">
   </div>
-  
+
   <div class="header">
     <?php include_once 'html/header.php';?>
   </div>
@@ -256,18 +256,18 @@ s.parentNode.insertBefore(g, s);
   <center>
         <div class="WidthPages">
             <div class="ContentsBody">
-                <div class="ColLeft">                    
+                <div class="ColLeft">
                   <?php include_once 'html/menu-left.php';?>
                 </div>
                 <div class="ColRight">
-                <?php echo $this->content;?> 
+                <?php echo $this->content;?>
                 </div>
             </div>
         </div>
-   </center>                
+   </center>
   <div class="footer">
     <?php include_once 'html/footer.php';?>
-  </div>   
+  </div>
 </body>
 </html>
 <!--
