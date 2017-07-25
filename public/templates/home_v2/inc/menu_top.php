@@ -56,7 +56,7 @@
                 <ul class="nav navbar-nav navbar-right mbn-navbar-nav hidden-xs">
                     <li>
                         <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-profile" data-gtm-action="user-signin"
-                           title="Đăng nhập" href="/trang-ca-nhan/SignIn"><span>Đăng nhập</span></a>
+                           title="Đăng nhập" href="/home/user/login/"><span>Đăng nhập</span></a>
                     </li>
                     <li class="mbn-navbar-icon-search" data-bind="style:{display: HasIconSearch()?'block':''}">
                         <a href="#" data-bind="click: ShowTopSearch"><span><i class="icon icon-search-mb"></i></span></a>
