@@ -28,7 +28,7 @@ use Facebook\FacebookSession;
 include_once APPLICATION_PATH.'/vendor/Google/Google_Client.php';
 include_once APPLICATION_PATH.'/vendor/Google/contrib/Google_Oauth2Service.php';
 //include_once APPLICATION_PATH.'/vendor/Yahoo/Yahoo.inc';
-include_once APPLICATION_PATH."/vendor/facebook/src/Facebook/autoload.php";
+include_once APPLICATION_PATH."/vendor/Facebook/src/Facebook/autoload.php";
 class UserController extends ActionController
 {
     
