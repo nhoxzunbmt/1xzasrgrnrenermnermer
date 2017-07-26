@@ -1,9 +1,9 @@
-<?php 
+<?php
 //Bds mới nhất
 $xhtmlMoiNhat = '';
 if(!empty($this->itemRealestateMoiNhat)){
     foreach ($this->itemRealestateMoiNhat as $key => $item) {
-        
+
         $id             = $item['id'];
         $title          = $item['title'];
         $image          = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
@@ -12,10 +12,10 @@ if(!empty($this->itemRealestateMoiNhat)){
         $price_m2       = $item['price_m2'];
         $cat_id         = $item['cat_id'];
         $price          = $item['price'];
-        
+
         $date_modifi    = $item['date_modifi'];
-        $content        = \ZendVN\Filter\ReadMore::create($item['content'],0,250);         
-        
+        $content        = \ZendVN\Filter\ReadMore::create($item['content'],0,250);
+
         if(!empty($item['images'])){
             $images     = \Zend\Json\Json::decode($item['images']);
             $image      = current($images);

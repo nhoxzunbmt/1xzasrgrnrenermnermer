@@ -21,10 +21,7 @@
                         <a class="logo hidden-xs" href="/">
                             <img src="https://muaban.net/Content/images/logo.gif" alt="Bao mua ban rao vat" title="Báo mua bán rao vặt" width="210" height="32" />
                         </a>
-                        <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-home" data-gtm-action="mbn-banner-top"
-                           href="https://muaban.net/app?source=mbn-banner-top" class="banner-top-qc visible-lg">
-                            <img src="https://muaban.net/Content/images/banner/top.gif" />
-                        </a>
+
                         <a href="/" class="logo-w visible-xs">
 
                         <span class="float-left">

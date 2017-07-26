@@ -1,4 +1,4 @@
-<?php 
+<?php
 //BDS chính chủ
 $xhtmlChinhChu = '';
 $xhtmlChinhChuToolTip = '';

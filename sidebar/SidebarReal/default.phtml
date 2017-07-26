@@ -1,57 +1,43 @@
-<?php 
-//BDS chính chủ
-$xhtmlChinhChu = '';
-$xhtmlChinhChuToolTip = '';
-if(!empty($this->_data)){
-    $urlHelper          = $this->getView()->plugin('url');
-    foreach ($this->_data as $key => $item) {
-        $id             = $item['id'];
-        $title          = $item['title'];
-        $name_type      = $item['name_type'];
+<?php
+ if (!empty($this->_data)):?>
+    <?php foreach ($this->_data as $key => $item):
+        $id = $item['id'];
+        $title = $item['title'];
+        $name_type = $item['name_type'];
+        $cat_id = $item['cat_id'];
 
-        $cat_id         = $item['cat_id'];
+        if (!empty($item['images'])) {
+            $images = \Zend\Json\Json::decode($item['images']);
+            $image = current($images);
+            $image = UPLOAD_URL . '/real-estate/' . $image;
+        }
 
-
-        $linkDetail = $urlHelper('DetailBatDongSanRoute',array(
-            'module'        =>  'home',
-            'controller'    =>  'realestate',
-            'action'        =>  'detail',
-            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($name_type),
-            'title'         =>  \ZendVN\Url\FriendlyLink::filter($title),
-            'cid'           =>  $cat_id,
-            'id'            =>  $id,
-            'extension'     =>  'html',
+        $linkDetail = $this->view->url('DetailBatDongSanRoute', array(
+            'module' => 'home',
+            'controller' => 'realestate',
+            'action' => 'detail',
+            'namecategory' => \ZendVN\Url\FriendlyLink::filter($name_type),
+            'title' => \ZendVN\Url\FriendlyLink::filter($title),
+            'cid' => $cat_id,
+            'id' => $id,
+            'extension' => 'html',
         ));
-
-        $xhtmlChinhChu .= '<tr>
-            					<td>
-            						<table>
-            							<tr>
-            								<td>»</td>
-            								<td>
-                                                <a title="'.$title.'" class="TieudiemFull" href="'.$linkDetail.'">'.$title.'</a>
-            							    </td>
-            							</tr>
-            						</table>
-            					</td>
-            				</tr>';
-    }
-}
-?>
-<div class="dv-box-ttbds">
-	<div class="dv-tabs-ttbds">
-		<div class="dv-ico-ttbds">
-			<i class="ico-sty nha-dat-ban"></i>
-		</div>
-		<div class="dv-ct-tabs-ttbds">
-			<a class="a-title" href="#">BẤT ĐỘNG SẢN CHÍNH CHỦ</a>
-		</div>
-	</div>
-	<div class="dv-body-frm-ttbds">
-		<div style="padding: 10px;">
-			<table id="ContentPlaceHolder3_RightControl1_viewLoaiBDS1_DataList1" cellspacing="0" style="border-collapse: collapse;">
-				<?php echo $xhtmlChinhChu;?>
-			</table>
-		</div>
-	</div>
-</div>
+        ?>
+        <li>
+            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright"
+               data-gtm-action="listing-spright-posting-id-<?php echo $item['id']?>"
+               title="<?php echo $title ?>"
+               href="<?php echo $linkDetail ?>">
+                <img class="spright-image"
+                     title="<?php echo $title ?>"
+                     alt="<?php echo $title ?>"
+                     data-original="<?php echo $image ?>"
+                     src="https://muaban.net/Content/images/1x1.gif" width="100" height="75"/>
+                <div class="spright-content">
+                    <h2><?php echo $title ?></h2>
+                    <span class="spright-price"></span>
+                </div>
+            </a>
+        </li>
+    <?php endforeach ?>
+<?php endif ?>
