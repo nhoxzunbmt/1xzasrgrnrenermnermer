@@ -18,6 +18,17 @@ use Zend\Validator\Db\RecordExists;
 use Zend\Validator\Db\NoRecordExists;
 use Zend\Stdlib\ArrayObject;
 use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
+
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook;
+use Facebook\FacebookRequest;
+use Facebook\FacebookSession;
+
+include_once APPLICATION_PATH.'/vendor/Google/Google_Client.php';
+include_once APPLICATION_PATH.'/vendor/Google/contrib/Google_Oauth2Service.php';
+include_once APPLICATION_PATH.'/vendor/Yahoo/Yahoo.inc';
+include_once APPLICATION_PATH."/vendor/facebook/src/Facebook/autoload.php";
 class UserController extends ActionController
 {
     
@@ -220,17 +231,307 @@ class UserController extends ActionController
                 $error[] =   'Email : '.current($loginForm->getMessages('my-email'));
                 $error[] =   'Password : '.current($loginForm->getMessages('my-password'));
             }
-        }         
+        }
+
+        //Login with FB
+        $fb = $this->facebookApi();
+
+        $helper = $fb->getRedirectLoginHelper();
+
+        $permissions = ['email']; // Optional permissions
+
+        $fbLogin = $helper->getLoginUrl('http://dev.bds.com/home/user/fb-callback', $permissions);
+
+        //Login with GG
+        $gClient = $this->GoogleApi();
+
+        $google_oauthV2 = new \Google_Oauth2Service($gClient);
+
+        $ggLogin = $gClient->createAuthUrl();
+
         $view->setVariables(array(
             'title'             =>  $title,
             'arrParam'          =>  $this->_arrParam,
             'currentController' =>  $this->_currentController,
             'myForm'            =>  $loginForm,
             'error'             =>  $error,
+            'fbLogin'           => $fbLogin,
+            'ggLogin'           => $ggLogin,
         ));
         return $view;
         
     }
+
+    /**
+     * @Author : VuND
+     *
+     */
+
+    protected function facebookApi(){
+
+        return new Facebook([
+            'app_id' => '1976171855951538',
+            'app_secret' => '7d1da91a55468059523363f414db668e',
+            'default_graph_version' => 'v2.9',
+            //'default_access_token' => ''
+        ]);
+    }
+
+    public function GoogleApi(){
+
+        //Call Google API
+        $this->config = $this->getServiceLocator()->get('Config');
+        $gClient = new \Google_Client();
+        $gClient->setApplicationName('Login to CodexWorld.com');
+        $gClient->setClientId($this->config['gg']['clientId']);
+        $gClient->setClientSecret($this->config['gg']['clientSecret']);
+        $gClient->setRedirectUri($this->config['gg']['redirectURL']);
+
+        return $gClient;
+    }
+
+    public function fbCallbackAction()
+    {
+        $fb = $this->facebookApi();
+
+        $helper = $fb->getRedirectLoginHelper();
+
+        try {
+            $accessToken = $helper->getAccessToken();
+        } catch(FacebookResponseException $e) {
+            // When Graph returns an error
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+        } catch(FacebookSDKException $e) {
+            // When validation fails or other local issues
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+
+        if (! isset($accessToken)) {
+            if ($helper->getError()) {
+                header('HTTP/1.0 401 Unauthorized');
+                echo "Error: " . $helper->getError() . "\n";
+                echo "Error Code: " . $helper->getErrorCode() . "\n";
+                echo "Error Reason: " . $helper->getErrorReason() . "\n";
+                echo "Error Description: " . $helper->getErrorDescription() . "\n";
+            } else {
+                header('HTTP/1.0 400 Bad Request');
+                echo 'Bad request';
+            }
+            exit;
+        }
+
+        // The OAuth 2.0 client handler helps us manage access tokens
+        $oAuth2Client = $fb->getOAuth2Client();
+
+        // Get the access token metadata from /debug_token
+        $tokenMetadata = $oAuth2Client->debugToken($accessToken);
+
+        $tokenMetadata->validateExpiration();
+
+        if (! $accessToken->isLongLived()) {
+            // Exchanges a short-lived access token for a long-lived one
+            try {
+                $accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
+            } catch (FacebookSDKException $e) {
+                echo "<p>Error getting long-lived access token: " . $e->getMessage() . "</p>\n\n";
+                exit;
+            }
+
+            echo '<h3>Long-lived</h3>';
+            var_dump($accessToken->getValue());
+        }
+
+        try {
+            // Get the \Facebook\GraphNodes\GraphUser object for the current user.
+            // If you provided a 'default_access_token', the '{access-token}' is optional.
+            $response = $fb->get('/me?fields=id,birthday,name,email,gender,link,location,locale,updated_time,verified,picture,age_range', $accessToken);
+        } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+            // When Graph returns an error
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+            // When validation fails or other local issues
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+
+        $me = $response->getGraphUser();
+
+        try{
+            if ($me['email'])
+            {
+                $mUser = $this->serviceLocator->get('Home\Model\UserTable');
+                $arrAccount = $mUser->checkAccount($me['email'])->current();
+
+                if (!$arrAccount)
+                {
+
+                    $arrAccount = array();
+                    $arrAccount['id_fb']  	    = $me['id'];
+                    $arrAccount['email']  	    = $me['email'];
+                    $arrAccount['password']  	= md5($me['id']);
+                    $arrAccount['fullname']     = $me['name'];
+                    $arrAccount['avatar']          = $me['picture']['url'];
+                    $arrAccount['register_ip']     = $this->getClientIP();
+                    $mUser->save($arrAccount);
+
+                }
+                else
+                {
+                    if(!$arrAccount['id_fb'])
+                    {
+                        $arrAccount['id_fb']  	    = $me['id'];
+                        $mUser->updateUser($arrAccount, $me['email']);
+                    }
+                }
+
+                $authService = $this->getServiceLocator()->get('Authenticate');
+                if($authService->login(array('email'=>$arrAccount['email'],'password'=>$arrAccount['id_fb'])) == true){
+
+
+                    $data  = array();
+                    $permissionTable = $this->getServiceLocator()->get('Home\Model\PermissionTable');
+                    $userID                     =   $this->identity()->id;
+                    $groupID                    =   $this->identity()->group_id;
+                    $data['user']               =   $this->getTable()->getItem(array('id'=>$userID));
+                    $data['group']              =   $this->getTable()->getItem(array('id'=>$groupID),array('task'=>'store-group-info'));
+                    $data['permission']['role']         =   $data['group']['group_name'];
+                    $data['permission']['privileges']   =   $permissionTable->getItem($data['group'],array('task'=>'store-permission-info'));
+
+                    $infoUser       = new \ZendVN\System\Info();
+                    $infoUser->storeInfo($data);
+                    $this->redirect()->toUrl('/user/account/');
+                }else{
+                    $error[] =   $authService->getError();
+                }
+            }
+            else
+            {
+                $this->_helper->redirector('index', 'register', 'default', array('key'=> 'failed'));
+            }
+        }
+        catch (\ErrorException $ex)
+        {
+            echo $ex;
+        }
+    }
+
+    public function ggCallbackAction(){
+        $code = $this->params()->fromQuery('code');
+
+        $this->config = $this->getServiceLocator()->get('Config');
+        $gClient = $this->GoogleApi();
+        if(isset($code)){
+
+            $gClient->authenticate($code);
+            $_SESSION['token'] = $gClient->getAccessToken();
+            $this->redirect()->toUrl($this->config['gg']['redirectURL']);
+        }
+
+
+        if (isset($_SESSION['token'])) {
+            $gClient->setAccessToken($_SESSION['token']);
+        }
+
+        if ($gClient->getAccessToken()) {
+
+            $google_oauthV2 = new \Google_Oauth2Service($gClient);
+            //Get user profile data from google
+            $gpUserProfile = $google_oauthV2->userinfo->get();
+
+            //Initialize User class
+            //$user = new User();
+
+            if ($gpUserProfile['email']) {
+
+                $mUser = $this->serviceLocator->get('Home\Model\UserTable');
+                $arrAccount = $mUser->checkAccount($gpUserProfile['email'])->current();
+
+                if (!$arrAccount)
+                {
+
+                    //Insert or update user data to the database
+                    $arrAccount = array(
+                        'id_gg'         => $gpUserProfile['id'],
+                        'fullname'      => $gpUserProfile['given_name'].' '.$gpUserProfile['family_name'],
+                        'email'         => $gpUserProfile['email'],
+                        'avatar'        => $gpUserProfile['picture'],
+                        'password'        => md5($gpUserProfile['id']),
+                        'register_ip'   => $this->getClientIP()
+                    );
+                    $mUser->save($arrAccount);
+
+                }
+                else
+                {
+                    if(!$arrAccount['id_gg'])
+                    {
+                        $arrAccount['id_gg']  	    = $gpUserProfile['id'];
+                        $mUser->updateUser($arrAccount, $gpUserProfile['email']);
+                    }
+                }
+
+                $authService = $this->getServiceLocator()->get('Authenticate');
+                if($authService->login(array('email'=>$arrAccount['email'],'password'=>$arrAccount['id_gg'])) == true){
+
+
+                    $data  = array();
+                    $permissionTable = $this->getServiceLocator()->get('Home\Model\PermissionTable');
+                    $userID                     =   $this->identity()->id;
+                    $groupID                    =   $this->identity()->group_id;
+                    $data['user']               =   $this->getTable()->getItem(array('id'=>$userID));
+                    $data['group']              =   $this->getTable()->getItem(array('id'=>$groupID),array('task'=>'store-group-info'));
+                    $data['permission']['role']         =   $data['group']['group_name'];
+                    $data['permission']['privileges']   =   $permissionTable->getItem($data['group'],array('task'=>'store-permission-info'));
+
+                    $infoUser       = new \ZendVN\System\Info();
+                    $infoUser->storeInfo($data);
+                    $this->redirect()->toUrl('/user/account/');
+                }else{
+                    $error[] =   $authService->getError();
+                }
+            }
+
+        }
+    }
+
+    /**
+     * Get client IP
+     *
+     * @return string
+     */
+    protected function getClientIP()
+    {
+        switch (true)
+        {
+            case isset($_SERVER['HTTP_CLIENT_IP']):
+                return $_SERVER['HTTP_CLIENT_IP'];
+
+            case isset($_SERVER['HTTP_X_FORWARDED_FOR']):
+                return $_SERVER['HTTP_X_FORWARDED_FOR'];
+
+            case isset($_SERVER['HTTP_X_FORWARDED']):
+                return $_SERVER['HTTP_X_FORWARDED'];
+
+            case isset($_SERVER['HTTP_FORWARDED_FOR']):
+                return $_SERVER['HTTP_FORWARDED_FOR'];
+
+            case isset($_SERVER['HTTP_FORWARDED']):
+                return $_SERVER['HTTP_FORWARDED'];
+
+            case isset($_SERVER['REMOTE_ADDR']):
+                return $_SERVER['REMOTE_ADDR'];
+
+            default:
+                return 'UNKNOWN';
+        }
+    }
+
+    /**
+     * END
+     */
 
     public function validateAction(){
         $loginForm   = $this->serviceLocator->get('FormElementManager')->get('loginForm');

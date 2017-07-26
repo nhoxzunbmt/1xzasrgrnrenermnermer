@@ -1,4 +1,4 @@
-<?php 
+<?php
 
     $myForm             = $this->myForm;
     $myForm->setAttribute('action', $this->url(null, array(
@@ -6,15 +6,15 @@
             'controller'    => 'user',
             'action'        => 'login'
     )));
-    
-    
+
+
     $myForm->prepare();
     $elementEmail       = $myForm->get('my-email');
     $elementPassword    = $myForm->get('my-password');
     $elementCheckbox    = $myForm->get('my-checkbox');
     $elementBtnSubmit   = $myForm->get('my-button-submit');
-   
-    
+
+
     $elements       = array(
             array(
                     'label'     => $this->formLabel($elementEmail),
@@ -73,12 +73,12 @@ $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'ho
 <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_URL;?>/default/js/jquery.form.js"></script>
 <script type="text/javascript">
-    var options = { 
+    var options = {
         target      : '#ajax-info',
         dataType    : 'json',
-        success     : showResponse  
- 
-    }; 
+        success     : showResponse
+
+    };
 
     function showResponse(data){
         if(data.status == 'success'){
@@ -94,48 +94,48 @@ $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'ho
             if(data.messages['redirect']){
                 window.location.href = data.messages['redirect'];
             }
-           
+
         }else if(data.status == 'error'){
-            
+
             /*var error   = '';
             for(x in data.messages){
                 error += data.messages[x] + '<br/>';
             }*/
             $('#li-email, #li-password').removeAttr('style');
             $('#inputEmail, #inputPassword').removeClass();
-            
+
             if(data.messages['email']){
                 $('#inputEmail').addClass('inputWarmning');
             }
             if(data.messages['password']){
                 $('#inputPassword').addClass('inputWarmning');
-            } 
+            }
 
             $('#ajax-info-email').html(data.messages['email'])
                                     .removeClass()
                                     .addClass('content-error')
                                     .css({'width':'386px'});
-            
+
             $('#ajax-info-password').html(data.messages['password'])
                                     .removeClass()
                                     .addClass('content-error')
                                     .css({'width':'386px'});
 
-            
 
-            
+
+
         }else if(data.status == undefined){
             $('#ajax-info').html('Có lỗi trong quá trình xử lý').removeClass().addClass('content-warning');
         }
     }
-    
+
     $(document).ready(function() {
         /*$('#login-form').submit(function(){
-            $(this).ajaxSubmit(options); 
-            return false; 
+            $(this).ajaxSubmit(options);
+            return false;
         });*/
     })
-    
+
 
 </script>
 
@@ -144,7 +144,7 @@ $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'ho
 </div>
 <div class="pageWrap">
 <div class="leftMainContent popupPage">
-  
+
     <div class="signInNewDialog">
 		<div class="TitleDialog">
             <h4>Đăng nhập</h4>
@@ -152,9 +152,9 @@ $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'ho
 		 <div class="ContentDialog">
              <?php echo isset($xhtmlError) ? $xhtmlError : '';?>
          	<h6>Bạn chưa có tài khoản?<a href="<?php echo $linkRegister ;?>" rel="nofollow">Tạo tài khoản</a> <a href="<?php echo $linkPasswordForgot;?>" rel="nofollow">Quên mật khẩu</a></h6>
-             
+
             <ol>
-            	<?php 
+            	<?php
                 echo $this->form()->openTag($myForm);
                     echo $this->partialLoop('form-group.phtml', $elements);
                 echo $this->form()->closeTag();
@@ -165,4 +165,3 @@ $linkPasswordForgot     = $this->url('MVC_HomeRouter/action',array('module'=>'ho
 	</div>
 </div>
 </div>
-   

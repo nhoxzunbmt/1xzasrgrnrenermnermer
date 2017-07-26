@@ -5,21 +5,16 @@
 
     <div id="form-register">
         <form action="/" class="form" method="post"><input name="__RequestVerificationToken" type="hidden" value="ZVoZBEZeZQgLRXVHjTGkCXMFYz0YLwOSXWLM4fRzF1EzUXJPOaH0hIJGD2LaNm0ePw-eIU0CEra7HZ5ikcfB_wSc7FY1" /><input id="sid" name="sid" type="hidden" value="858d4d8cf4e3421a8f5738ebaa2ec0d3" /><input data-val="true" data-val-number="The field mode must be a number." data-val-required="The mode field is required." id="mode" name="mode" type="hidden" value="0" /><input id="AppName" name="AppName" type="hidden" value="muabannet" /><input id="Services" name="Services" type="hidden" value="mbnv2" /><input id="returnUrl" name="returnUrl" type="hidden" value="https://muaban.net/dang-tin" /><input id="callbackUrl" name="callbackUrl" type="hidden" value="https://muaban.net/trang-ca-nhan/SignInCallback" /><input data-val="true" data-val-required="The IsShowCaptCha field is required." id="IsShowCaptCha" name="IsShowCaptCha" type="hidden" value="False" />        <div class="col-md-12 content">
-                <div data-gtm-event="mbn-event-all"
-                     data-gtm-category="mbn-user"
-                     data-gtm-action="sign-in"
-                     class="button-social button-facebook" onclick="javascript: goSocial('facebook')">
+                <a href="<?php echo filter_var($this->fbLogin, FILTER_SANITIZE_URL) ?>"
+                     class="button-social button-facebook">
                     <span class="icon-facebook"></span>
                     Đăng nhập bằng Facebook
-                </div>
+                </a>
                 <div class="button-space"></div>
-                <div data-gtm-event="mbn-event-all"
-                     data-gtm-category="mbn-user"
-                     data-gtm-action="sign-in"
-                     class="button-social button-google" onclick="javascript:goSocial('google')">
+                <a href="<?php echo filter_var($this->ggLogin, FILTER_SANITIZE_URL) ?>" class="button-social button-google">
                     <span class="icon-google-plus"></span>
                     Đăng nhập bằng Google
-                </div>
+                </a>
                 <div class="button-space"></div>
 
                 <div data-gtm-event="mbn-event-all"

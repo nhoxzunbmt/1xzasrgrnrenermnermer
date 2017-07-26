@@ -24,4 +24,9 @@ return array(
       		),
       	),
    ),
+    'gg' => array(
+        'clientId' => '24994711283-rk6k98c6hadt088akukd680c8hlaok09.apps.googleusercontent.com',
+        'clientSecret' => 'e6OAammI0l1m8G6JiHmtkVCR',
+        'redirectURL' => 'http://dev.bds.com/home/user/gg-callback'
+    )
 );

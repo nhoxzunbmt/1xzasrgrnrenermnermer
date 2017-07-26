@@ -1,20 +1,34 @@
 <?php
 namespace Home\Model;
+use Home\Model\DatabaseAdaperAwareAbstract;
 use Zend\Db\Sql\Select;
 use Zend\Db\Sql\Sql;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\TableGateway\Feature\GlobalAdapterFeature;
+use Zend\Db\Adapter\Adapter;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\Sql\Expression;
 
-class UserTable{
+class UserTable extends DatabaseAdaperAwareAbstract {
    protected $tableGateway;
    protected $adapter;
+
+    protected $table     = 'users';
+    protected $primary   = 'BrandnameAmountId';
 
    public function __construct(TableGateway $tableGateway){
       $this->tableGateway = $tableGateway;
       $this->adapter = GlobalAdapterFeature::getStaticAdapter();
    }
 
-   
+    public function setDbAdapter(Adapter $adapter)
+    {
+        $this->adapter = $adapter;
+        $this->resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAY);
+        $this->initialize();
+    }
+
+
 
    public function countItem($arrParam = null,$options = null){
       if($options == null){
@@ -112,6 +126,45 @@ class UserTable{
        
    }
 
+    /**
+     * VuND Model
+     */
+
+
+    /**
+     * @param $arrData
+     * @return mixed
+     */
+    public function save($arrData)
+    {
+        $arrData['group_id']    = 4;
+        $arrData['register_date'] = new Expression('NOW()');
+
+        $result = $this->insert($arrData);
+
+        return $result;
+    }
+
+    /**
+     * @param $arrData
+     * @return mixed
+     */
+    public function updateUser($arrData, $email)
+    {
+        return $this->update($arrData, array('email' => $email));
+    }
+
+    /**
+     * @param $fbId
+     * @return mixed
+     */
+    public function checkAccount($email){
+        return $this->select(['email' => $email]);
+    }
+
+    /**
+     * END
+     */
    
 
 }
