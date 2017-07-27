@@ -69,49 +69,7 @@ if(!empty($images)){
     }
 }
 
-//Tin tương tự
-$xhtmlTuongTu = '';
 
-if(!empty($this->itemsTuongTu)){
-    $i = 1;
-    foreach($this->itemsTuongTu as $itemTuongTu){
-        $imageTuongTu   = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
-        if(!empty($itemTuongTu['images'])){
-            $imagesTuongTu  = \Zend\Json\Json::decode($itemTuongTu['images']);
-            foreach ($imagesTuongTu as $key => $imgTuongTu) {
-                if($i == 1){
-                    $imageTuongTu = UPLOAD_URL .'/real-estate/'.$imgTuongTu;
-                    break;
-                }
-                $i++;
-            }
-        }
-
-
-        $TTprice          = $itemTuongTu['price'];
-
-
-        $linkDetail = $this->url('DetailBatDongSanRoute',array(
-            'module'        =>  'home',
-            'controller'    =>  'realestate',
-            'action'        =>  'detail',
-            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($itemTuongTu['name_type']),
-            'title'         =>  \ZendVN\Url\FriendlyLink::filter($itemTuongTu['title']),
-            'cid'           =>  $itemTuongTu['cat_id'],
-            'id'            =>  $itemTuongTu['id'],
-            'extension'     =>  'html',
-        ));
-
-        $xhtmlTuongTu .= ' <li>
-                                  <a class="imgBox" title="'.$itemTuongTu['title'].'" href="'.$linkDetail.'"><img src="'.$imageTuongTu.'" width="74" height="55" alt=""></a>
-                                  <h3>
-                                    <a href="'.$linkDetail.'" title="'.$itemTuongTu['title'].'">'.\ZendVN\Filter\ReadMore::create($itemTuongTu['title'],0,80).'</a>
-                                    <span>'.\ZendVN\Convert\Price::convert($TTprice).'</span>
-                                  </h3>
-                                </li>';
-
-    }
-}
 ?>
 <div class="posting-line"></div>
 <div class="container clearfix">
@@ -482,23 +440,65 @@ if(!empty($this->itemsTuongTu)){
                 <h4 class="title">
                     <span>Tin rao vặt tương tự</span>
                 </h4>
-                <div class="mbn-box-list-content">
-                    <a class="mbn-image" title="Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao" href="https://muaban.net/nha-mat-tien-quan-go-vap-l5920-c3201/ban-nhanh-re-nha-mat-tien-duong-so-3-p9-4x18m-duc-1-lau-moi-dep-cao-id39688708">
-                        <img title="Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao" alt="Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao"  data-original="https://cdn01.muaban.net/mogi/thumb-list/201707/27/617/eb1d61373a9d443ba9dad247469c1e3a.jpg" src="/content/images/1x1.gif" width="120" height="90" />
-                    </a>
-                    <a title="Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao" href="https://muaban.net/nha-mat-tien-quan-go-vap-l5920-c3201/ban-nhanh-re-nha-mat-tien-duong-so-3-p9-4x18m-duc-1-lau-moi-dep-cao-id39688708" data-gtm-event=mbn-event-link data-gtm-category=mbn-detail data-gtm-action=detail-similar>
-                        <div class="mbn-content">
-                            <h2 class="mbn-title">Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao</h2>
-                            <span class="mbn-price">3 tỷ 945 triệu</span>
-                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Gò Vấp, TP.HCM</span>
-                            <span class="mbn-date"><?php echo $date_modifi;?></span>
-
-                            <span class="mbn-item-area">Diện tích: <b>68,00 m<sup>2</sup></b></span>
 
 
+                <?php if (!empty($this->itemsTuongTu)): ?>
+
+
+                <?php foreach ($this->itemsTuongTu as $key => $itemTuongTu):
+                        $imageTuongTu   = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
+                        $i = 1;
+                        if(!empty($itemTuongTu['images'])){
+                            $imagesTuongTu  = \Zend\Json\Json::decode($itemTuongTu['images']);
+                            foreach ($imagesTuongTu as  $imgTuongTu) {
+                                if($i == 1){
+                                    $imageTuongTu = UPLOAD_URL .'/real-estate/'.$imgTuongTu;
+                                    break;
+                                }
+                                $i++;
+                            }
+                        }
+
+
+                        $TTprice          = $itemTuongTu['price'];
+
+
+                        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+                            'module'        =>  'home',
+                            'controller'    =>  'realestate',
+                            'action'        =>  'detail',
+                            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($itemTuongTu['name_type']),
+                            'title'         =>  \ZendVN\Url\FriendlyLink::filter($itemTuongTu['title']),
+                            'cid'           =>  $itemTuongTu['cat_id'],
+                            'id'            =>  $itemTuongTu['id'],
+                            'extension'     =>  'html',
+                        ));
+                        $name_city      = $itemTuongTu['name_city'];
+                        $name_district  = $itemTuongTu['name_district'];
+                        $name_ward      = $itemTuongTu['name_ward'];
+                        $adress         = $name_ward .' - ' .$name_district .' - '.$name_city;
+                        ?>
+                        <div class="mbn-box-list-content">
+                            <a class="mbn-image" title="<?php echo $itemTuongTu['title']?>" href="<?php echo $linkDetail?>">
+                                <img title="<?php echo $itemTuongTu['title']?>" alt="<?php echo $itemTuongTu['title']?>"  data-original="<?php echo $imageTuongTu?>" src="<?php echo $imageTuongTu?>"
+                                     src="/content/images/1x1.gif" width="120" height="90" />
+                            </a>
+                            <a title="<?php echo $itemTuongTu['title']?>" href="<?php echo $linkDetail?>" data-gtm-event=mbn-event-link data-gtm-category=mbn-detail data-gtm-action=detail-similar>
+                                <div class="mbn-content">
+                                    <h2 class="mbn-title"><?php echo \ZendVN\Filter\ReadMore::create($itemTuongTu['title'],0,80)?></h2>
+                                    <span class="mbn-price"><?php echo \ZendVN\Convert\Price::convert($TTprice)?></span>
+                                    <span class="mbn-address"><span class="icon icon-map5"></span> <?php echo $adress?></span>
+                                    <span class="mbn-date"><?php echo $date_modifi;?></span>
+
+                                    <span class="mbn-item-area">Diện tích: <b><?php echo $itemTuongTu['area']?> m<sup>2</sup></b></span>
+
+
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
+                <?php endforeach ?>
+                <?php endif ?>
+
 
             </div>
             <div class="borderTop"></div>
@@ -506,34 +506,7 @@ if(!empty($this->itemsTuongTu)){
 
     </div>
 
-    <div data-bind="with:ViewedItem">
-
-        <div class="mbn-home home-viewed visible-lg clearfix" style="margin-top:30px; ">
-
-            <div class="mbn-ctl-box">
-                <h2 class="title"><span>Tin đã xem</span></h2>
-            </div>
-
-            <div class="home-viewed-content clearfix">
-                <ul class="home-viewed-list clearfix" id="home-viewed-list">
-                    <li>
-                        <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-detail" data-gtm-action="home-favorite-posting-click" title="<?php echo $title?>" href="https://muaban.net/nha-mat-tien-quan-go-vap-l5920-c3201/nha-ban-go-vap-duc-4-tam-4x17m-hem-5m-bui-quang-la-gia-3-8-ty-id<?php echo $id;?>">
-                            <span class="viewed-item clearfix">
-                                <span class="viewed-item-img">
-                                        <img title="<?php echo $title?>" alt="<?php echo $title?>"  data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/24/145/1f43a901bf3147db868c84f2249950f1.jpg" src="/content/images/1x1.gif" width="120" height="90" />
-                                </span>
-                                <span class="viewed-item-body"><?php echo $title?></span>
-                                <span class="viewed-item-price">3 tỷ 800 triệu</span>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-
-
-    </div>
+    
     <div class="cl-detail-posting visible-sm visible-xs clearfix ">
         <span data-bind="click:GotoPosting" class="btn-primary"><i class="icon icon-pencil84"></i> ĐĂNG TIN RAO VẶT MIỄN PHÍ</span>
     </div>

@@ -14,7 +14,7 @@
 
         if (!empty($item['images'])) {
             $images = \Zend\Json\Json::decode($item['images']);
-            foreach ($images as $key => $image) {
+            foreach ($images as  $image) {
                 if ($i == 1) {
                     $image = UPLOAD_URL . '/real-estate/' . $image;
                     break;
