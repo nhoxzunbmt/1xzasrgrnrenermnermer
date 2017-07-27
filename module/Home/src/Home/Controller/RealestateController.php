@@ -107,11 +107,9 @@ class RealestateController extends ActionController
         $this->_arrParam['paginator'] = $this->_paginatorParams;
 
 
-//        echo '<pre>';
-//        var_dump($this->_arrParam);
 
         //Load templates
-        $this->layout('layout/home');
+        $this->layout('layout/home_v2');
     }
 
     public function indexAction()
@@ -148,14 +146,15 @@ class RealestateController extends ActionController
 
 
         //nested
-        $view->setTemplate('home/realestate/index');
+        $view->setTemplate('home_v2/realestate/index');
+
         $contentRightColumn = new ViewModel(array(
             'itemsTypeRealEstate' => $itemsTypeRealEstate,
             'itemsCity' => $itemsCity,
             'itemsProject' => $itemsProject,
             'itemsProjectCategory' => $itemsProjectCategory,
         ));
-        $contentRightColumn->setTemplate('home/realestate/nested-content-right-column');
+        $contentRightColumn->setTemplate('home_v2/realestate/nested-content-right-column');
 
         $view->addChild($contentRightColumn, 'contentRightColumn');
 
@@ -170,6 +169,7 @@ class RealestateController extends ActionController
             'itemRealestateMoiNhat' => $itemRealestateMoiNhat,
             'listCity' => $listCity,
         ));
+
         return $view;
 
 
@@ -614,7 +614,7 @@ class RealestateController extends ActionController
         ));
         $contentRightColumn->setTemplate('home/realestate/nested-content-right-column');
         $view->addChild($contentRightColumn, 'contentRightColumn');
-        //end 
+        //end
 
         $view->setVariables(array(
             'title' => $title,
@@ -932,14 +932,14 @@ class RealestateController extends ActionController
         $itemsProjectCategory = $this->getTable()->itemInselectBox($this->_arrParam, array('task' => 'list-item-project-category'));
 
         //nested
-        $view->setTemplate('home/realestate/detail');
+        $view->setTemplate('home_v2/realestate/detail');
         $contentRightColumn = new ViewModel(array(
             'itemsTypeRealEstate' => $itemsTypeRealEstate,
             'itemsCity' => $itemsCity,
             'itemsProject' => $itemsProject,
             'itemsProjectCategory' => $itemsProjectCategory,
         ));
-        $contentRightColumn->setTemplate('home/realestate/nested-content-right-column');
+        $contentRightColumn->setTemplate('home_v2/realestate/nested-content-right-column');
 
         $view->addChild($contentRightColumn, 'contentRightColumn');
 

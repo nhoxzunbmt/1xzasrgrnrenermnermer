@@ -21808,7 +21808,7 @@ var mbnConst = function () {
         MarkAsReadInbox: "/Inbox/MarkAsReadInbox/",
         CheckRedirectUrlFromId: "/Inbox/CheckRedirectUrlFromId",
         CheckRedirectUrlFromMessageId: "/Inbox/CheckRedirectUrlFromMessageId",
-        GetTotalInboxNotRead: "/Inbox/GetTotalInboxNotRead"
+        GetTotalInboxNotRead: "https://muaban.net/Inbox/GetTotalInboxNotRead"
     }
 }, mbnConf = function () {
     return moment.lang("vn", {

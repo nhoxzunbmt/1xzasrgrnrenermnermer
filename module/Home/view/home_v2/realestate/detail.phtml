@@ -1,0 +1,546 @@
+<?php
+$id             = $this->item['id'];
+$title          = $this->item['title'];
+$name_city      = $this->item['name_city'];
+$name_district  = $this->item['name_district'];
+$name_ward      = $this->item['name_ward'];
+$adress         = $name_ward .' - ' .$name_district .' - '.$name_city;
+$content        = $this->item['content'];
+$fullname       = $this->item['fullname'];
+$phone          = $this->item['phone'];
+$name_type      = $this->item['name_type'];
+
+$date_start     = $this->item['date_start'];
+$date_end       = $this->item['date_end'];
+$date_modifi    = $this->item['date_modifi'];
+$name_project   = $this->item['name_project'];
+$floor          = $this->item['floor'];
+$bedroom        = $this->item['bedroom'];
+$bathroom       = $this->item['bathroom'];
+$direction      = $this->item['direction'];
+$area           = $this->item['area'];
+$type_news      = $this->item['type_news'];
+$status         = $this->item['status'];
+$cat_id         = $this->item['cat_id'];
+$avenue         = (!empty($this->item['avenue'])) ? $this->item['avenue'] : 'Chưa cập nhật';
+$name_juridical = (!empty($this->item['name_juridical'])) ? $this->item['name_juridical'] : 'Chưa cập nhật';
+$direction      = (!empty($this->item['direction'])) ? $this->item['direction'] : 'Chưa cập nhật';
+$bedroom        = (!empty($this->item['bedroom'])) ? $this->item['bedroom'] : 'Chưa cập nhật';
+$bathroom       = (!empty($this->item['bathroom'])) ? $this->item['bathroom'] : 'Chưa cập nhật';
+$floor          = (!empty($this->item['floor'])) ? $this->item['floor'] : 'Chưa cập nhật';
+$avatar         = (!empty($this->item['avatar']))  ? UPLOAD_URL .'/avatar/'.$this->item['avatar'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
+$name_status    = $this->item['name_status'];
+$latitude_gmap  = (!empty($this->item['latitude_gmap'])) ? $this->item['latitude_gmap'] : '21.033333';
+$longitude_gmap = (!empty($this->item['longitude_gmap'])) ? $this->item['longitude_gmap'] : '105.85000000000002';
+$UrlViewMap     = $this->url('MVC_HomeRouter/MapApi',array('module'=>'home','controller'=>'map-api','action'=>'index','latitude'=>$latitude_gmap,'longitude'=>$longitude_gmap));
+
+
+
+$xImage         = '';
+$xImageLi       = '';
+$images         = $this->item['images'];
+
+
+//Quy đổi
+
+$price          = $this->item['price'];
+
+if($price < 1000){
+    $xprice = $price . ' Triệu';
+}else{
+    $xprice = round(($price / 1000) * 100) / 100 . " Tỷ";
+}
+
+//Quy đổi
+$priceVND  = $price . '000000' ;//VND
+$priceUSD  = round($priceVND / 20000);//VND->USD
+$gold      = round($priceVND / 42000000);//VND->SJC
+
+if(!empty($images)){
+    $images     = \Zend\Json\Json::decode($images);
+    foreach ($images as $key => $image) {
+        $event       = '';
+        $image       = UPLOAD_URL .'/real-estate/'.$image;
+        $xImage     .= ' <li>
+                                    <a class="swipebox" title="' . $title . '" href="' . $image . '">
+                                        <img class="imageThumbOne" alt="' . $title . '" src="' . $image . '">
+                                    </a>
+                                </li>';
+    }
+}
+
+//Tin tương tự
+$xhtmlTuongTu = '';
+
+if(!empty($this->itemsTuongTu)){
+    $i = 1;
+    foreach($this->itemsTuongTu as $itemTuongTu){
+        $imageTuongTu   = TEMPLATE_URL .'/default/images/nha_mat_tien_100x75.png';
+        if(!empty($itemTuongTu['images'])){
+            $imagesTuongTu  = \Zend\Json\Json::decode($itemTuongTu['images']);
+            foreach ($imagesTuongTu as $key => $imgTuongTu) {
+                if($i == 1){
+                    $imageTuongTu = UPLOAD_URL .'/real-estate/'.$imgTuongTu;
+                    break;
+                }
+                $i++;
+            }
+        }
+
+
+        $TTprice          = $itemTuongTu['price'];
+
+
+        $linkDetail = $this->url('DetailBatDongSanRoute',array(
+            'module'        =>  'home',
+            'controller'    =>  'realestate',
+            'action'        =>  'detail',
+            'namecategory'  =>  \ZendVN\Url\FriendlyLink::filter($itemTuongTu['name_type']),
+            'title'         =>  \ZendVN\Url\FriendlyLink::filter($itemTuongTu['title']),
+            'cid'           =>  $itemTuongTu['cat_id'],
+            'id'            =>  $itemTuongTu['id'],
+            'extension'     =>  'html',
+        ));
+
+        $xhtmlTuongTu .= ' <li>
+                                  <a class="imgBox" title="'.$itemTuongTu['title'].'" href="'.$linkDetail.'"><img src="'.$imageTuongTu.'" width="74" height="55" alt=""></a>
+                                  <h3>
+                                    <a href="'.$linkDetail.'" title="'.$itemTuongTu['title'].'">'.\ZendVN\Filter\ReadMore::create($itemTuongTu['title'],0,80).'</a>
+                                    <span>'.\ZendVN\Convert\Price::convert($TTprice).'</span>
+                                  </h3>
+                                </li>';
+
+    }
+}
+?>
+<div class="posting-line"></div>
+<div class="container clearfix">
+    <div class="clearfix">
+
+        <div class="breadcrumb breadcrumbs">
+            <div class="rdfa-breadcrumb">
+                <div xmlns:v="http://rdf.data-vocabulary.org/#">
+                    <div>
+                        <span class="breadcrumbs-title"> </span>
+                        <span typeof="v:Breadcrumb">
+                    <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-nav" data-gtm-action="/"
+                       rel="v:url" property="v:title" href="https://muaban.net/" class="home">Trang chủ</a>
+                </span>
+                        <span class="icon icon-arrow-s"></span>
+                        <span typeof="v:Breadcrumb"> <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-nav" data-gtm-action="listing-nav-https://muaban.net/ho-chi-minh"
+                                                        rel="v:url" property="v:title" href="https://muaban.net/ho-chi-minh" title="TP.HCM">TP.HCM</a></span>
+                        <span class="icon icon-arrow-s"></span>
+                        <span typeof="v:Breadcrumb"> <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-nav" data-gtm-action="listing-nav-https://muaban.net/mua-ban-nha-dat-cho-thue-ho-chi-minh-l59-c3"
+                                                        rel="v:url" property="v:title" href="https://muaban.net/mua-ban-nha-dat-cho-thue-ho-chi-minh-l59-c3" title="Bất động sản">Bất động sản</a></span>
+                        <span class="icon icon-arrow-s"></span>
+                        <span typeof="v:Breadcrumb"> <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-nav" data-gtm-action="listing-nav-https://muaban.net/ban-nha-can-ho-ho-chi-minh-l59-c32"
+                                                        rel="v:url" property="v:title" href="https://muaban.net/ban-nha-can-ho-ho-chi-minh-l59-c32" title="Bán nhà, Căn hộ">Bán nhà, Căn hộ</a></span>
+                        <span class="icon icon-arrow-s"></span>
+                        <span typeof="v:Breadcrumb"> <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-nav" data-gtm-action="listing-nav-https://muaban.net/nha-mat-tien-ho-chi-minh-l59-c3201"
+                                                        rel="v:url" property="v:title" href="https://muaban.net/nha-mat-tien-ho-chi-minh-l59-c3201" title="Nhà mặt tiền/phố">Nhà mặt tiền/phố</a></span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="cl-detail clearfix">
+        <div class="dt-content col-sm-12 col-xs-12 clearfix" id="dvContent">
+            <div class="cl-title clearfix">
+                <h1>
+                    <?php echo $title?>
+                </h1>
+            </div>
+            <div class="cl-price-sm clearfix">
+                    <span class="visible-lg float-left">
+                        <i class="icon icon-dollar103"></i>&nbsp;
+                        <?php echo \ZendVN\Convert\Price::convert($price);?> đ
+                    </span>
+                <span class="visible-lg float-left"><i class="icon icon-map5"></i>&nbsp;<?php echo $adress?></span>
+                <span class="float-left"><i class="icon icon-clock96"></i>&nbsp;Ngày <?php echo $date_modifi;?></span>
+                <span class="float-left"><i class="icon icon-tag31"></i>&nbsp;Mã tin: <?php echo $id;?></span>
+            </div>
+            <div class="ct-image">
+                <div id="owl-carousel-detail" class="owl-carousel owl-theme">
+                    <div class="item">
+
+                        <img title="<?php echo $title?> <?php echo $id;?>" alt="<?php echo $title?>"
+                             class="lazyOwl"  data-src="https://cdn.muaban.net/cdn/images/thumb-detail/201707/24/145/1f43a901bf3147db868c84f2249950f1.jpg">
+                    </div>
+                    <div class="item">
+
+                        <img title="<?php echo $title?> <?php echo $id;?>" alt="<?php echo $title?>"
+                             class="lazyOwl"  data-src="https://cdn.muaban.net/cdn/images/thumb-detail/201707/24/145/ae72b2af1a9f4ec1b2cebbc5e0f3e93c.jpg">
+                    </div>
+                    <div class="item">
+
+                        <img title="<?php echo $title?> <?php echo $id;?>" alt="<?php echo $title?>"
+                             class="lazyOwl"  data-src="https://cdn.muaban.net/cdn/images/thumb-detail/201707/24/145/75ba373c1c1e417c9f255fc8381d4d6f.jpg">
+                    </div>
+                    <div class="item">
+
+                        <img title="<?php echo $title?> <?php echo $id;?>" alt="<?php echo $title?>"
+                             class="lazyOwl"  data-src="https://cdn.muaban.net/cdn/images/thumb-detail/201707/24/145/a9358e50b6d142d78f4f05c7fb2e382f.jpg">
+                    </div>
+                    <div class="item">
+
+                        <img title="<?php echo $title?> <?php echo $id;?>" alt="<?php echo $title?>"
+                             class="lazyOwl"  data-src="https://cdn.muaban.net/cdn/images/thumb-detail/201707/24/145/9cc3f764608845308e9b8afde0ac84b2.jpg">
+                    </div>
+                    <div class="item">
+
+                        <img title="<?php echo $title?> <?php echo $id;?>" alt="<?php echo $title?>"
+                             class="lazyOwl"  data-src="https://cdn.muaban.net/cdn/images/thumb-detail/201707/24/145/56aa8341b6fe4428becf67bf45537103.jpg">
+                    </div>
+                    <div class="item">
+
+                        <img title="<?php echo $title?> <?php echo $id;?>" alt="<?php echo $title?>"
+                             class="lazyOwl"  data-src="https://cdn.muaban.net/cdn/images/thumb-detail/201707/24/145/58a3d031ceb74091a74743fe187b7a2e.jpg">
+                    </div>
+                    <div class="item">
+
+                        <img title="<?php echo $title?> <?php echo $id;?>" alt="<?php echo $title?>"
+                             class="lazyOwl"  data-src="https://cdn.muaban.net/cdn/images/thumb-detail/201707/24/145/fed3f61375b44b0da7e641f4a33d1694.jpg">
+                    </div>
+                </div>
+            </div>
+          
+
+            <div class="ct-price clearfix">
+                <div class="col-md-2 col-sm-2 col-xs-3 price-name">Giá:</div>
+                <div class="col-md-10 col-sm-10 col-xs-9 price-value">
+                    <?php echo \ZendVN\Convert\Price::convert($price);?> đ
+                </div>
+            </div>
+            <div class="ct-contact clearfix">
+                <div class="clearfix">
+                    <div class="col-md-2 col-sm-2 col-xs-3 price-name">Liên hệ:</div>
+                    <div class="col-md-10 col-sm-10 col-xs-9 contact-name"><?php echo $fullname;?>
+
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <div class="col-md-2 col-sm-2 col-xs-3 price-name">Điện thoại:</div>
+                    <div class="col-md-10 col-sm-10 col-xs-9 contact-mobile">
+                        <span data-bind="visible:ShowMobile()==false"><?php echo $phone;?></span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="ct-body overflow clearfix">
+                <?php echo $content;?>
+            </div>
+
+            <div class="ct-tech clearfix">
+                <div class=" tect-title clearfix">Thông tin bất động sản</div>
+                <ul class="clearfix">
+                    <li class="col-md-12 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-2 col-sm-5 col-xs-5 item-name">Loại bất động sản:</div>
+                            <div class="col-md-9 col-sm-7 col-xs-7 item-value">Nhà mặt tiền</div>
+                        </div>
+                    </li>
+                    <li class="col-md-12 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-2 col-sm-5 col-xs-5 item-name">Địa chỉ:</div>
+                            <div class="col-md-9 col-sm-7 col-xs-7 item-value">-</div>
+                        </div>
+                    </li>
+                    <li class="col-md-12 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-2 col-sm-5 col-xs-5 item-name">Dự án:</div>
+                            <div class="col-md-9 col-sm-7 col-xs-7 item-value">-</div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Diện tích đất:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Tầng/Lầu:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Phòng ngủ:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                        </div>
+                    </li>
+
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Diện tích xây dựng:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Phòng tắm:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Diện tích sử dụng:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Tổng số phòng:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Năm xây dựng:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Năm sửa chữa:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Hướng:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Pháp lý:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Đường trước nhà:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Chính chủ:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"><input type="checkbox" disabled="disabled"  /></div>
+                        </div>
+                    </li>
+                    <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
+                        <div>
+                            <div class="col-md-5 col-sm-5 col-xs-5 item-name">Thuộc dự án:</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="tect-title clearfix" style="margin-top: 15px;border-top: 1px solid #e5e5e5; padding-top:15px; display:none">Nội thất:</div>
+                <ul class="ct-safe-list clearfix" style="display:none">
+
+                </ul>
+                <div class="tect-title clearfix" style="margin-top: 15px;border-top: 1px solid #e5e5e5; padding-top:15px;  display:none">Các tiện nghi:</div>
+                <ul class="ct-safe-list clearfix" style="display:none">
+
+                </ul>
+            </div>
+
+            <div class="ct-social clearfix" id="dvEditClassified">
+                <div class="col-md-7 col-sm-7 col-xs-12 favorite" style="padding:0px">
+                    <span><a data-gtm-event="mbn-event-all" data-gtm-category="mbn-detail" data-gtm-action="detail-cmd-favorite"
+                             title="Bỏ thích/Thích" data-bind="click: AddOrRemoveFavorite"><i class="icon icon-common_star_favorite_bookmark_" style="font-size:18px;" data-bind="style:{color:IsFavorite()==false? '#23527c':'#eda703'}"></i><span data-bind="text:IsFavorite()?'Bỏ thích':'Thích'"></span></a></span>
+
+                    <span><a data-gtm-event="mbn-event-link" data-gtm-category="mbn-detail" data-gtm-action="detail-cmd-feedback"
+                             title="Báo vi phạm" data-bind="click:ShowFeedBack"><i class="icon icon-exclamation3" style="font-size:18px;"></i>Báo vi phạm</a></span>
+                    <span data-bind="click:PrintDetail, visible: ShowPrint" style="display:none">
+                        <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-detail" data-gtm-action="detail-cmd-print"
+                           title="In tin"><i class="fa fa-print" style="font-size:18px;"></i>In nội dung tin</a>
+                    </span>
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12 social">
+
+                    <span class="fb-like" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></span>
+
+                    <span>
+                        <span class="g-plusone" data-size="medium" data-annotation="none"></span>
+                    </span>
+
+                    <span>
+                        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                    </span>
+
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+        <div class="dt-service">
+            <div class="dt-service-ctl">
+                <div class="sv-link clearfix">
+                    <button data-gtm-event="mbn-event-all" data-gtm-category="mbn-detail" data-gtm-action="detail-nav-search"
+                            class="btn btn-default btn-result" data-bind="click: ListPage">
+                        <span><i class="fa fa-angle-left"></i> Trở lại kết quả</span>
+                    </button>
+
+                    <button data-gtm-event="mbn-event-all" data-gtm-category="mbn-detail" data-gtm-action="detail-nav-next"
+                            class="btn btn-default btn-next"  data-bind="click: NextPage">
+                        <span><i class="fa fa-angle-right"></i>Tin sau</span>
+                    </button>
+                    <button data-gtm-event="mbn-event-all" data-gtm-category="mbn-detail" data-gtm-action="detail-nav-back"
+                            class="btn btn-default btn-prev"  data-bind="click:PrePage">
+                        <span><i class="fa fa-angle-left"></i>Tin trước</span>
+                    </button>
+                </div>
+                <div class="sv-action clearfix">
+                    <div data-gtm-event="mbn-event-all" data-gtm-category="mbn-detail" data-gtm-action="detail-buy-service"
+                         class="sv-vip clearfix" data-bind="click: GotoSV">
+                        <div class="icon-vip">
+                        </div>
+                        <div class="vip-description">
+                            <span><i class="icon icon-buynow"></i></span>
+                            <div class="note">
+                                Tin của bạn có nhiều người xem hơn
+                            </div>
+                        </div>
+                        <div class="vip-arrow">
+                            <i class="icon icon-arrow89"></i>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dt-service-ads">
+
+
+                <div class="mbn-box-ads">
+                    <div class="mbn-title-header">
+                        <span class="title-special">Tin quảng cáo</span>
+                        <button id="mbn-classified-ads-next" data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-next" class="btn special-ctn-next">
+                            <i class="icon icon-right218"></i>
+                        </button>
+                        <button id="mbn-classified-ads-prev" data-gtm-event="mbn-event-all" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-back" class="btn special-ctn-next">
+                            <i class="icon icon-left207"></i>
+                        </button>
+
+                        <span class="title-qc">
+            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-help"
+               href="https://muaban.net/uploads/huong-dan/bang_gia/tin-quang-cao/index.html"><i class="icon icon-QuestionMark"></i></a>
+        </span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <ul id="mbn-classified-ads" class="hidden-xs">
+                        <li>
+                            <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-listing-spright" data-gtm-action="listing-spright-posting-id-39613009"
+                               title="Nhà hẻm Trần Bình Trọng phường 1 quận Gò Vấp" href="/nha-hem-ngo-quan-go-vap-l5920-c3202/nha-hem-tran-binh-trong-phuong-1-quan-go-vap-id39613009">
+                                <img class="spright-image" title="Nhà hẻm Trần Bình Trọng phường 1 quận Gò Vấp" alt="Nhà hẻm Trần Bình Trọng phường 1 quận Gò Vấp"  data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/24/117/d64a2c3df5014f879742fcf0518633e9.jpg" src="/content/images/1x1.gif" width="100" height="75" />
+                                <div class="spright-content">
+                                    <h2>Nhà hẻm Trần Bình Trọng phường 1 quận Gò Vấp</h2>
+                                    <span class="spright-price">2 tỷ 800 triệu</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="owl-carousel-ads" class="owl-carousel visible-xs"></div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <div class="visible-lg">
+                    <div class="sv-title">
+                        <a href="/thong-tin/gioi-thieu-c4/an-toan-khi-giao-dich-id35" data-gtm-event="mbn-event-link" data-gtm-category="mbn-detail" data-gtm-action="detail-help-tips">Hướng dẫn giao dịch an toàn</a>
+                    </div>
+                    <div class="sv-sale-key">
+                        <ul class="key-list">
+                            <li>Không thanh toán tiền trước khi nhận hàng</li>
+                            <li>Kiểm tra hàng cẩn thận trước khi mua</li>
+                            <li>Giao dịch ở nơi công cộng</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="dt-content col-sm-12 col-xs-12">
+            <!--Classified Similar-->
+
+            <div class="mbn-list-similar">
+                <h4 class="title">
+                    <span>Tin rao vặt tương tự</span>
+                </h4>
+                <div class="mbn-box-list-content">
+                    <a class="mbn-image" title="Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao" href="https://muaban.net/nha-mat-tien-quan-go-vap-l5920-c3201/ban-nhanh-re-nha-mat-tien-duong-so-3-p9-4x18m-duc-1-lau-moi-dep-cao-id39688708">
+                        <img title="Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao" alt="Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao"  data-original="https://cdn01.muaban.net/mogi/thumb-list/201707/27/617/eb1d61373a9d443ba9dad247469c1e3a.jpg" src="/content/images/1x1.gif" width="120" height="90" />
+                    </a>
+                    <a title="Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao" href="https://muaban.net/nha-mat-tien-quan-go-vap-l5920-c3201/ban-nhanh-re-nha-mat-tien-duong-so-3-p9-4x18m-duc-1-lau-moi-dep-cao-id39688708" data-gtm-event=mbn-event-link data-gtm-category=mbn-detail data-gtm-action=detail-similar>
+                        <div class="mbn-content">
+                            <h2 class="mbn-title">Bán nhanh rẻ nhà mặt tiền đường Số 3, P9, 4x18m đúc 1 lầu mới đẹp cao</h2>
+                            <span class="mbn-price">3 tỷ 945 triệu</span>
+                            <span class="mbn-address"><span class="icon icon-map5"></span> Quận Gò Vấp, TP.HCM</span>
+                            <span class="mbn-date"><?php echo $date_modifi;?></span>
+
+                            <span class="mbn-item-area">Diện tích: <b>68,00 m<sup>2</sup></b></span>
+
+
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="borderTop"></div>
+        </div>
+
+    </div>
+
+    <div data-bind="with:ViewedItem">
+
+        <div class="mbn-home home-viewed visible-lg clearfix" style="margin-top:30px; ">
+
+            <div class="mbn-ctl-box">
+                <h2 class="title"><span>Tin đã xem</span></h2>
+            </div>
+
+            <div class="home-viewed-content clearfix">
+                <ul class="home-viewed-list clearfix" id="home-viewed-list">
+                    <li>
+                        <a data-gtm-event="mbn-event-link" data-gtm-category="mbn-detail" data-gtm-action="home-favorite-posting-click" title="<?php echo $title?>" href="https://muaban.net/nha-mat-tien-quan-go-vap-l5920-c3201/nha-ban-go-vap-duc-4-tam-4x17m-hem-5m-bui-quang-la-gia-3-8-ty-id<?php echo $id;?>">
+                            <span class="viewed-item clearfix">
+                                <span class="viewed-item-img">
+                                        <img title="<?php echo $title?>" alt="<?php echo $title?>"  data-original="https://cdn.muaban.net/cdn/images/thumb-list/201707/24/145/1f43a901bf3147db868c84f2249950f1.jpg" src="/content/images/1x1.gif" width="120" height="90" />
+                                </span>
+                                <span class="viewed-item-body"><?php echo $title?></span>
+                                <span class="viewed-item-price">3 tỷ 800 triệu</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            
+            </div>
+        </div>
+
+
+    </div>
+    <div class="cl-detail-posting visible-sm visible-xs clearfix ">
+        <span data-bind="click:GotoPosting" class="btn-primary"><i class="icon icon-pencil84"></i> ĐĂNG TIN RAO VẶT MIỄN PHÍ</span>
+    </div>
+</div>
+
+
+
+
+
+
