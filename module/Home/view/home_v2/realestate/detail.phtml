@@ -22,12 +22,12 @@ $area           = $this->item['area'];
 $type_news      = $this->item['type_news'];
 $status         = $this->item['status'];
 $cat_id         = $this->item['cat_id'];
-$avenue         = (!empty($this->item['avenue'])) ? $this->item['avenue'] : 'Chưa cập nhật';
-$name_juridical = (!empty($this->item['name_juridical'])) ? $this->item['name_juridical'] : 'Chưa cập nhật';
-$direction      = (!empty($this->item['direction'])) ? $this->item['direction'] : 'Chưa cập nhật';
-$bedroom        = (!empty($this->item['bedroom'])) ? $this->item['bedroom'] : 'Chưa cập nhật';
-$bathroom       = (!empty($this->item['bathroom'])) ? $this->item['bathroom'] : 'Chưa cập nhật';
-$floor          = (!empty($this->item['floor'])) ? $this->item['floor'] : 'Chưa cập nhật';
+$avenue         = (!empty($this->item['avenue'])) ? $this->item['avenue'] : '-';
+$name_juridical = (!empty($this->item['name_juridical'])) ? $this->item['name_juridical'] : '-';
+$direction      = (!empty($this->item['direction'])) ? $this->item['direction'] : '-';
+$bedroom        = (!empty($this->item['bedroom'])) ? $this->item['bedroom'] : '-';
+$bathroom       = (!empty($this->item['bathroom'])) ? $this->item['bathroom'] : '-';
+$floor          = (!empty($this->item['floor'])) ? $this->item['floor'] : '-';
 $avatar         = (!empty($this->item['avatar']))  ? UPLOAD_URL .'/avatar/'.$this->item['avatar'] :  TEMPLATE_URL .'/admin/images/NoImage.jpg';
 $name_status    = $this->item['name_status'];
 $latitude_gmap  = (!empty($this->item['latitude_gmap'])) ? $this->item['latitude_gmap'] : '21.033333';
@@ -246,31 +246,31 @@ if(!empty($this->itemsTuongTu)){
                     <li class="col-md-12 col-sm-12 col-xs-12 tect-item">
                         <div>
                             <div class="col-md-2 col-sm-5 col-xs-5 item-name">Địa chỉ:</div>
-                            <div class="col-md-9 col-sm-7 col-xs-7 item-value">-</div>
+                            <div class="col-md-9 col-sm-7 col-xs-7 item-value"><?php echo $adress;?></div>
                         </div>
                     </li>
                     <li class="col-md-12 col-sm-12 col-xs-12 tect-item">
                         <div>
                             <div class="col-md-2 col-sm-5 col-xs-5 item-name">Dự án:</div>
-                            <div class="col-md-9 col-sm-7 col-xs-7 item-value">-</div>
+                            <div class="col-md-9 col-sm-7 col-xs-7 item-value"><?php echo $name_type;?></div>
                         </div>
                     </li>
                     <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
                         <div>
                             <div class="col-md-5 col-sm-5 col-xs-5 item-name">Diện tích đất:</div>
-                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"><strong><?php echo $area;?></strong> M²</div>
                         </div>
                     </li>
                     <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
                         <div>
                             <div class="col-md-5 col-sm-5 col-xs-5 item-name">Tầng/Lầu:</div>
-                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"><?php echo $floor;?></div>
                         </div>
                     </li>
                     <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
                         <div>
                             <div class="col-md-5 col-sm-5 col-xs-5 item-name">Phòng ngủ:</div>
-                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"><?php echo $bedroom;?></div>
                         </div>
                     </li>
 
@@ -283,13 +283,13 @@ if(!empty($this->itemsTuongTu)){
                     <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
                         <div>
                             <div class="col-md-5 col-sm-5 col-xs-5 item-name">Phòng tắm:</div>
-                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"><?php echo $bathroom;?></div>
                         </div>
                     </li>
                     <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
                         <div>
                             <div class="col-md-5 col-sm-5 col-xs-5 item-name">Diện tích sử dụng:</div>
-                            <div class="col-md-7 col-sm-7 col-xs-7 item-value">-</div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"><strong><?php echo $area;?></strong> M²</div>
                         </div>
                     </li>
                     <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
@@ -319,7 +319,7 @@ if(!empty($this->itemsTuongTu)){
                     <li class="col-md-6 col-sm-12 col-xs-12 tect-item">
                         <div>
                             <div class="col-md-5 col-sm-5 col-xs-5 item-name">Pháp lý:</div>
-                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"></div>
+                            <div class="col-md-7 col-sm-7 col-xs-7 item-value"><?php echo $name_juridical;?></div>
                         </div>
                     </li>
                     <li class="col-md-6 col-sm-12 col-xs-12 tect-item" style="display:none">
@@ -528,7 +528,7 @@ if(!empty($this->itemsTuongTu)){
                         </a>
                     </li>
                 </ul>
-            
+
             </div>
         </div>
 
