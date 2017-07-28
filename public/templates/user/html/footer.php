@@ -74,9 +74,7 @@ if(!empty($this->arrParams['listCity'])){
     </div>    
 
 
-<script type="text/javascript" src="http://muabannhadat.com.vn/js/ucjs.js"></script>    
 
-    
 <div style="width: 585px; position: absolute; left: 338px; top: 10%; z-index: 1000; display: none;" id="ttpopup" class="Dialog_4 pDialog">
         <div class="TitleDialog">
             <h4 id="ctinhthanh">Chọn tỉnh thành</h4>

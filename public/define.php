@@ -22,7 +22,6 @@ define('PUBLIC_PATH',APPLICATION_PATH . DS . 'public');
 //Hằng số lưu đường dẫn thư mục templates
 define('TEMPLATE_PATH', PUBLIC_PATH . DS . 'templates');
 
-
 //Hằng số lưu đường dẫn thư mục upload
 define('UPLOAD_PATH',PUBLIC_PATH . DS . 'upload');
 

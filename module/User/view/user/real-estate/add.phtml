@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-	
+
 $myForm	= $this->myForm;
 echo $this->form()->openTag($this->myForm);
 
@@ -12,7 +12,7 @@ $frmTypeRealEstate          = $this->cmsSelect('type_real_estate','',$this->item
 
 //Kiểu bất động sản
 $arrOptions = array(
-  
+
 );
 $frmTypeRealEstateChild     = $this->cmsSelect('type_real_estate_child','',$arrOptions,'no-level',array('class' =>'select'));
 
@@ -47,7 +47,7 @@ $arrOptions = array(
     array('id'=>'Chưa xác định','name'=>'Chưa xác định'),
 );
 $frmDirection               = $this->cmsSelect('direction','',$arrOptions,'no-level',array('class' =>'select'));
-    
+
 //Pháp lý
 $arrOptions = array(
     array('id'=>'','name'=>'--Chọn--'),
@@ -60,7 +60,7 @@ $frmJuridical               = $this->cmsSelect('juridical','',$arrOptions,'no-le
 
 //Số tầng
 $arrOptions = array(
-  
+
 );
 for($i = 0 ; $i <= 40; $i++){
     if($i == 0){
@@ -70,7 +70,7 @@ for($i = 0 ; $i <= 40; $i++){
     }if($i == 40){
         $arrOptions[] = array('id'=>$i,'name'=>'> 40');
     }
-    
+
 }
 $frmFloor                   = $this->cmsSelect('floor','',$arrOptions,'no-level',array('class' =>'select'));
 
@@ -79,22 +79,22 @@ $frmcity                    = $this->cmsSelect('city','',$this->itemsCity,'no-le
 
 //Quận huyện
 $arrOptions = array(
-  
+
 );
 $frmDistrict                = $this->cmsSelect('district','',$arrOptions,'no-level',array('class' =>'select'));
-  
+
 //Xã phường
 $arrOptions = array(
-  
+
 );
 $frmWard                    = $this->cmsSelect('ward','',$arrOptions,'no-level',array('class' =>'select'));
-    
+
 //Thuộc dự án
 $arrOptions = array(
-  
+
 );
 $frmProject                 = $this->cmsSelect('project_bds','',$arrOptions,'no-level',array('class' =>'select'));
-  
+
 
 
 $messagesErrors = $this->elementErrors(array(
@@ -107,14 +107,14 @@ $messagesErrors = $this->elementErrors(array(
 
 $xhtmlError     =  $this->errorMessages($this->error,'user');
 
- 
-
-?>	
 
 
-                     
+?>
+
+
+
 <?php echo $messagesErrors .$xhtmlError;?>
-                    
+
 <script src="<?php echo TEMPLATE_URL;?>/user/js/propertyUsers.js?v=23072014.163" type="text/javascript"></script>
 <div class="steps">
         <div class="step1 active">
@@ -128,7 +128,7 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
     </div>
 
 
-    
+
     <div id="BoxPostProperty">
          <div class="TitleBox">
             <h2>
@@ -145,7 +145,7 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                         <td width="31%"></td>
                     </tr>
                 <tr>
-                    <td class="Col1">                      
+                    <td class="Col1">
                         <span>Tiêu đề</span> <font class="star">*</font>
                     </td>
                     <td class="Col2" colspan="3">
@@ -159,16 +159,16 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                     </td>
                     <td class="Col2" colspan="3">
                     	<?php  echo $this->formTextarea($myForm->get('content'));?>
-     
+
                     </td>
                 </tr>
                 <tr>
                     <td class="Col1" width="24%">
                     </td>
                     <td class="Col2" colspan="3">
-                   	 	
-                        	
-                           
+
+
+
                         <div id="uploaderform" style="width:90%;">
                             <label>
                                 <span class="small"><a href="#" id="AddMoreFileBox"><img src="<?php echo TEMPLATE_URL;?>/user/images/add.jpg">Thêm nhiều hình ảnh</a></span>
@@ -176,8 +176,8 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                                 <div id="AddFileInputBox"><input id="fileInputBox" style="margin-bottom: 5px;" type="file" name="image[]"></div>
                                 <div class="sep_s"></div>
                         </div>
-                            
-                        
+
+
                     </td>
                 </tr>
                 <tr>
@@ -197,16 +197,16 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                     </td>
                     <td class="Col2">
                         <?php echo $frmTypeRealEstate;?>
-                        
+
                     </td>
                     <td class="Col1">
                         <span>Loại giao dịch</span> <font class="star">*</font>
                     </td>
                     <td class="Col2">
                         <?php echo $frmTypeTransaction;?>
-                        
+
                     </td>
-                    
+
                 </tr>
                 <tr>
                     <td class="Col1">
@@ -218,7 +218,7 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                     </td>
                     <td class="Col1">
                     	 <span>Diện tích (m<sup>2</sup>)</span> <font class="star">*</font>
-                     
+
                     </td>
                     <td class="Col2">
                         <?php  echo $this->formText($myForm->get('area'));?>
@@ -229,7 +229,7 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                 	<td height="20"><span id="dt" style="font-weight: bold; color: #df3832;"></span></td>
                 </tr>
                 <tr>
-                   
+
                     <td class="Col1" colspan="2">
                         <?php  echo $this->formCheckBox($myForm->get('display_price'));?> <span style="vertical-align: top">Không hiển thị giá</span>
                     </td>
@@ -244,10 +244,10 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                     <td class="Col1" colspan="2">
                         <span id="tg" style="font-weight: bold; color: #df3832"></span>
                     </td>
-                    
+
                 </tr>
-                
-                
+
+
                 <tr>
                     <td class="Col1">
                         <span>Giá/m<sup>2</sup></span> <font class="star">*</font>
@@ -304,7 +304,7 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                         <?php  echo $this->formText($myForm->get('bathroom'));?>
                     </td>
                 </tr>
-               
+
                  <tr>
                 	<td colspan="4" height="5"></td>
                 </tr>
@@ -322,15 +322,15 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                     </td>
                     <td class="Col2">
                         <?php echo $frmcity ;?>
-                        
+
                     </td>
                     <td class="Col1">
                         <span>Quận/ huyện</span> <font class="star">*</font>
-                     
+
                     </td>
                     <td class="Col2">
                         <?php echo $frmDistrict;?>
-                        
+
                     </td>
                 </tr>
                 <tr>
@@ -347,7 +347,7 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                         <?php echo $frmProject;?>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="Col1">
                         <span>Số nhà</span>
@@ -360,7 +360,7 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                     </td>
                     <td class="Col2">
                         <?php  echo $this->formText($myForm->get('nameavenue'));?>
-                       
+
                     </td>
                 </tr>
                  <tr>
@@ -417,9 +417,9 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                 <tr>
                     <td colspan="4">
                         <div class="PositionMap">
-                            <div class="gMap">  
+                            <div class="gMap">
                                 <div id="MainContent_ctl00_MapVBD1_dvTextPanel" style="BORDER-RIGHT: red 0px solid; BORDER-TOP: red 0px solid; PADDING-LEFT: 5px; FLOAT: left;BORDER-LEFT: red 0px solid; WIDTH: 700px; BORDER-BOTTOM: red 0px solid; padding-bottom: 20px;">
-                                
+
                                 <span id="MainContent_ctl00_MapVBD1_lbl1" style="font-weight:bold;">Hỗ trợ tìm địa chỉ nhà bạn trên bản đồ</span>
                                 <br><br>
 
@@ -433,10 +433,10 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
 
                                 <br>
                                 <div id="divKQ"></div>
-                                
+
                                 <span id="MainContent_ctl00_MapVBD1_Label3">Ví dụ: Từ Tây, Yên phú, yên mỹ, Hưng Yên  -&gt; sau đó nhấn nút tìm.</span>
-                              
-                              
+
+
                                 </div>
                                 <div id="container" style="width: 740px; height: 300px; border: 0px solid red; position: relative; float: left; background-color: rgb(229, 227, 223); overflow: hidden;">
                                         <div id="map-canvas" style="margin-bottom:50px;"></div>
@@ -445,10 +445,10 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                         </div>
 
 
-                        
+
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td class="Col1" colspan="4">
                         <ul class="Btform">
@@ -467,13 +467,13 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
         </table>
 </div>
     </div>
-    
 
 
 
 
 
-    <?php 
+
+    <?php
         $linkLoadTypeRealEstate = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-select-type-real-estate'));
         $linkLoadDistrict       = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-select-district'));
         $linkLoadWard           = $this->url(null,array('module'=>'user','controller'=>'real-estate','action'=>'load-select-ward'));
@@ -504,8 +504,8 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
             $("#type_money").change(function(){
                 typeMoney = $("#type_money option:selected").val();
             });
-            
-        
+
+
             $("#textPrice").keyup(function(){
                 var val     = $(this).val();
                 var pattern = /[0-9]+$/;
@@ -513,17 +513,17 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                     alert('Vui lòng nhập số');
                 }else{
                     val = trim(val, ' ').replace(',', '.')
-                   
+
                         if (val < 1000)
                             $("span#tg").html(val + " Triệu");
                         else {
                             $("span#tg").html(Math.round((val / 1000) * 100) / 100 + " Tỷ");
                         }
-                    
-                       
-                   
+
+
+
                 }
-                
+
             });
 
             $("#textPrice_m2").keyup(function(){
@@ -533,17 +533,17 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
                     alert('Vui lòng nhập số');
                 }else{
                     val = trim(val, ' ').replace(',', '.')
-                 
+
                         if (val < 1000)
                             $("span#gm").html(val + " Triệu");
                         else {
                             $("span#gm").html(Math.round((val / 1000) * 100) / 100 + " Tỷ");
                         }
-                    
-                    
-                   
+
+
+
                 }
-                
+
             });
 
 
@@ -606,14 +606,14 @@ $xhtmlError     =  $this->errorMessages($this->error,'user');
 
 
 
-       
-        
+
+
     </script>
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript"> 
-$(document).ready(function() { 
+
+<script type="text/javascript">
+$(document).ready(function() {
 //elements
 var progressbox     = $('#progressbox'); //progress bar wrapper
 var progressbar     = $('#progressbar'); //progress bar element
@@ -627,28 +627,20 @@ var MaxFileInputs   = 5; //Maximum number of file input boxs
 
 // adding and removing file input box
 var i = $("#AddFileInputBox div").size() + 1;
-$("#AddMoreFileBox").click(function () {
+$("#AddMoreFileBox").click(function (event) {
     event.returnValue = false;
     if(i < MaxFileInputs)
     {
-      $('<span><input type="file" id="fileInputBox" size="20" name="image[]" class="addedInput" value=""/><a href="#" class="removeclass small2"><img src="<?php echo TEMPLATE_URL;?>/user/images/delete.jpg" border="0" /></a></span>').appendTo(FileInputsHolder);
+      $('<span><input type="file" id="fileInputBox" size="20" name="image[]" class="addedInput" value=""/><a onclick="removeIMG(this)" href="javascript:void(0)" class="removeclass small2"><img src="<?php echo TEMPLATE_URL;?>/user/images/delete.jpg" border="0" /></a></span>').appendTo(FileInputsHolder);
       i++;
     }
     return false;
 });
 
-$("body").on("click",".removeclass", function(e){
-    event.returnValue = false;
-    if( i > 1 ) {
-        $(this).parents('span').remove();i--;
-    }
-    
-}); 
-
 $("#ShowForm").click(function () {
   $("#uploaderform").slideToggle(); //Slide Toggle upload form on click
 });
-  
+
 $(myform).ajaxForm({
   beforeSend: function() { //brfore sending form
     submitbutton.attr('disabled', ''); // disable upload button
@@ -657,7 +649,7 @@ $(myform).ajaxForm({
     progressbar.width(completed); //initial value 0% of progressbar
     statustxt.html(completed); //set status text
     statustxt.css('color','#000'); //initial color of status text
-    
+
   },
   uploadProgress: function(event, position, total, percentComplete) { //on progress
     progressbar.width(percentComplete + '%') //update progressbar percent complete
@@ -668,7 +660,7 @@ $(myform).ajaxForm({
       }else{
         statustxt.css('color','#000');
       }
-      
+
     },
   complete: function(response) { // on complete
     output.html(response.responseText); //update element with received data
@@ -679,16 +671,20 @@ $(myform).ajaxForm({
   }
 });
 
-}); 
-</script> 
+});
+
+function  removeIMG(obj) {
+    $(obj).closest('span').remove();
+}
+</script>
 <link href="<?php echo TEMPLATE_URL;?>/user/css/js-form.css" rel="stylesheet" type="text/css" />
 
 <style type="text/css">
       html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
     </style>
-    
+
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzt_2S45qa9J9Eo0KP5ltMxtxJXZv6vKU&sensor=false&
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt65JAQ4XT9dsv5ZouzNLvWQ4hxlfiaNg&sensor=false&
           language=vi&
           region=GB">
     </script>
@@ -725,10 +721,10 @@ $(myform).ajaxForm({
                   title: results[0].address_components[0].long_name
               });
               google.maps.event.addListener(marker, 'click', toggleBounce);
-              
+
               var content = 'Name: ' + results[0].address_components[0].long_name + '<br/>'
                        + 'Address: ' + results[0].formatted_address + '<br/>';
-              
+
               infowindow = new google.maps.InfoWindow({
                     map: map,
                     position: results[0].geometry.location,
@@ -750,23 +746,23 @@ $(myform).ajaxForm({
 
       }
 
-  
+
 
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
 
-    <script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor-study/ckeditor.js"></script>
+    <script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="<?php echo EDITOR_URL; ?>/ckfinder/ckfinder.js"></script>
 
 <script>
         var content = CKEDITOR.replace( 'content', {
-            customConfig    : 'config-05.js',
-            
+            customConfig    : 'config.js',
+
         });
         CKFinder.setupCKEditor( content, 'plugins/ckfinder/' );
 
-    
+
 
     </script>
 

@@ -3,26 +3,26 @@ $config = new \ZendVN\Config\Config();
 //echo $config->limitSendEmailMarketing();
 if(!empty($this->arrParams['itemSkin'])){
   $arrConfigBackground = \Zend\Json\Json::decode($this->arrParams['itemSkin']->config_background);
-  $curentBackground = UPLOAD_URL .'/skin/'.$arrConfigBackground->curentBackground->background; 
-  $fixed            = $arrConfigBackground->curentBackground->style; 
-} 
+  $curentBackground = UPLOAD_URL .'/skin/'.$arrConfigBackground->curentBackground->background;
+  $fixed            = $arrConfigBackground->curentBackground->style;
+}
 
 ?>
 <?php echo $this->doctype(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   
+
 
     <?php echo $this->headTitle()->setSeparator(" - ")->append($config->title());?>
-   
+
 
     <!-- Meta -->
     <?php echo $this->headMeta()
             ->appendName('description', $config->description())
             ->prependName('keywords',$config->keyword())
             ->appendHttpEquiv('REFRESH', '600')
-            
+
     ?>
 
     <!-- Le styles -->
@@ -49,21 +49,21 @@ if(!empty($this->arrParams['itemSkin'])){
             ->prependFile(TEMPLATE_URL . '/default/js/SearchMain.js?v=23072014.16');
      ?>
 
-  
 
-	
 
-	
+
+
+
     <script type="text/javascript">
-        
+
 //        var pathClientAjax = "http://localhost/mbndv6/";
 //                var pathClient = "http://localhost/mbndv6/";
         var pathClientAjax = "http://batdongsan.vn/";
         var pathClient = "http://batdongsan.vn/";
-        
+
 //        var pathClientAjax = location.protocol + "//" + location.host + "/";
 //        var pathClient = location.protocol + "//" + location.host + "/";
-//        
+//
         var pathImagesUrl = "http://batdongsan.vn/";
 
         var pathClientUploadFilePhoToMap = "http://batdongsan.vn/";
@@ -83,8 +83,8 @@ if(!empty($this->arrParams['itemSkin'])){
 
 
     </script>
-	
-	
+
+
 
 <script type="text/javascript">
  var ismobile = (/iphone|ipod|android|blackberry|opera mini|windows\sce|palm|smartphone|iemobile/i.test(navigator.userAgent.toLowerCase()));
@@ -129,10 +129,10 @@ if(!empty($this->arrParams['itemSkin'])){
              if ($.cookie('MobileVersion') == 0) {
                  $.cookie('MobileVersion', '1', { expires: 1, path: '/', domain: 'batdongsan.vn' });
                  $.cookie('MobileVersion', '1', { expires: 1, path: '/', domain: 'm.batdongsan.vn' });
-                 
+
              }
              location.replace("http://m.batdongsan.vn/?mv=1");
-            
+
          }
 
 
@@ -141,15 +141,15 @@ if(!empty($this->arrParams['itemSkin'])){
   _gaq.push(['_setDomainName', '.batdongsan.vn']);
   _gaq.push(['_trackPageview']);
   _gaq.push(['_trackPageLoadTime']);
-  
+
   var arrSeofix=new Array();
-  
+
   try
   {
     if(arrSeofix != null)
     {
       var countSeofix=0;
-      
+
       for(i=0;i<arrSeofix.length;i++)
 		  {
 			  var tempsf=arrSeofix[i].split('#');
@@ -165,16 +165,16 @@ if(!empty($this->arrParams['itemSkin'])){
   }
   catch(err)
   {}
-  
-  
+
+
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-  
- 
+
+
 (function(d, t) {
 var g = d.createElement(t),
 	s = d.getElementsByTagName(t)[0];
@@ -182,7 +182,7 @@ g.async = true;
 g.src = 'https://apis.google.com/js/plusone.js';
 s.parentNode.insertBefore(g, s);
 })(document, 'script');
-        
+
   function trackPageview(str)
   {
 	  var pageTracker = _gat._getTracker("UA-4041217-1");
@@ -199,31 +199,31 @@ s.parentNode.insertBefore(g, s);
 	  var pageTracker = _gat._getTracker("UA-4041217-1");
 	  if(key=="1")
       {
-	     
+
 	      pageTracker._trackPageview("anz-moigioi-submitted/".tpName);
 	      pageTracker._trackPageLoadTime("anz-moigioi-submitted/".tpName);
-	      pageTracker._trackEvent("ANZ Register Forms", "anz-moigioi-submitted/".tpName);	
+	      pageTracker._trackEvent("ANZ Register Forms", "anz-moigioi-submitted/".tpName);
 	  }
 	  else
       {
 		  pageTracker._trackPageview("anz-loan-submitted/".tpName);
 	      pageTracker._trackPageLoadTime("anz-loan-submitted/".tpName);
-	      pageTracker._trackEvent("ANZ Register Forms", "anz-loan-submitted/".tpName);	
+	      pageTracker._trackEvent("ANZ Register Forms", "anz-loan-submitted/".tpName);
 	  }
 
-      
+
   }
 
-</script>	
- 
- 
+</script>
+
+
 <!-- Start Alexa Certify Javascript -->
 <script type="text/javascript">
     _atrk_opts = { atrk_acct: "VVbHg1aAQ700Mx", domain: "muabannhadat.com.vn", dynamic: true };
     (function () { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(as, s); })();
 </script>
 <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=VVbHg1aAQ700Mx" style="display:none" height="1" width="1" alt="" /></noscript>
-<!-- End Alexa Certify Javascript -->  
+<!-- End Alexa Certify Javascript -->
 <script type='text/javascript' src='http://adserver.ringier.com.vn/new/www/delivery/spcjs.php?id=9&amp;target=_blank&amp;charset=UTF-8'></script>
 
 <!-- All Google Analytics -->
@@ -259,21 +259,21 @@ s.parentNode.insertBefore(g, s);
 	<div style="width:1010px;margin: 0 auto;background:white;">
         <div class="header">
           <?php include_once 'html/header.php';?>
-         
+
         </div>
-        
-      
+
+
         <div class="mainNav">
           <?php include_once 'html/navigation.php';?>
         </div>
-   
-  
-        <?php echo $this->content;?> 
-    </div> 
+
+
+        <?php echo $this->content;?>
+    </div>
     <div class="footer">
         <?php include_once 'html/footer.php';?>
-    </div> 
-  
+    </div>
+
 </body>
 </html>
 <!--

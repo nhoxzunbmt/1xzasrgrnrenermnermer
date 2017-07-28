@@ -418,6 +418,7 @@ class RealEstateController extends ActionController
 
     }
     public function addAction(){
+
         $error = array();
         //Tiêu đề
         $title      =  'Đăng tin bất động sản';   
@@ -450,16 +451,13 @@ class RealEstateController extends ActionController
         ));
         $RealEstateForm->bind($object);
 
-
-       
-        
-
-
         if($this->getRequest()->isPost()){
             
             $data = $this->getRequest()->getPost();
+
+
             $RealEstateForm->setData($data);
-            
+
             //Kiểm tra chọn select box
             if(empty($this->_arrPost['type_real_estate'])){
                 $error[]    = 'Bạn phải chọn loại Bất động sản!';
@@ -468,7 +466,7 @@ class RealEstateController extends ActionController
             }if(empty($this->_arrPost['district'])){
                 $error[]    = 'Bạn phải chọn Quận huyện!';
             }
-                
+
             //Upload File
             $jsonImage          = '';
             $arrFileName        = array();
@@ -497,14 +495,17 @@ class RealEstateController extends ActionController
                     }
                 }
                 $jsonImage          = \Zend\Json\Json::encode($arrImages);  
-            }    
-                    
+            }
+
+
             if($RealEstateForm->isValid() && empty($error)){
+
+
                 //Lấy ngày hiện tại
                 $date_start = date('d/m/Y');
                 //Cộng thêm 7 ngày
                 $date_end   = strtotime(date("d-m-Y", strtotime(date('d-m-Y'))) . " +7 day");
-                $date_end   = strftime("%d/%m/%Y",$date_end); 
+                $date_end   = strftime("%d/%m/%Y",$date_end);
 
                 //Chống tấn công XSS
                 $purifier   = new \HTMLPurifier_HTMLPurifier();
@@ -548,8 +549,7 @@ class RealEstateController extends ActionController
             
             }
         }
-       
-                    
+
 
         $view->setVariables(array(
             'arrParam'                  =>  $this->_arrParam,
@@ -559,6 +559,7 @@ class RealEstateController extends ActionController
             'itemsCity'                 =>  $itemsCity,
             'error'                     =>  $error,
         ));
+
         return $view;
 
     }
@@ -1093,6 +1094,7 @@ class RealEstateController extends ActionController
         if ($this->getRequest()->isXmlHttpRequest() == true){
             $isXmlHttpRequest = true;
             $itemsWard  = $this->getTable()->listItem($this->_arrParam,array('task'=>'list-item-ward'));
+
             $district   = $this->params()->fromQuery('district');
             foreach($itemsWard as $key=>$value){
                 if($value['district_id'] == $district) $data[] = $value;

@@ -175,12 +175,12 @@ class Account extends Form{
 		//ID
 		$this->add(array(
 			'name'	=>	'id',
-			
+
 			'attributes'	=>	array(
 				'type'	=>	'hidden',
-				
+
 			),
-			
+
 		));
 
 		//Submit

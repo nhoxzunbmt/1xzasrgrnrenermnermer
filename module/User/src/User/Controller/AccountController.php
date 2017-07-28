@@ -234,16 +234,21 @@ class AccountController extends ActionController
         $itemsCity      = array_slice ($itemsCity,1,count($itemsCity) - 1);
         if($this->getRequest()->isPost()){
             $data = $this->getRequest()->getPost();
+
             $userForm->setData($data);
+
             if($userForm->isValid()){
+
                 $upload = new \ZendVN\File\Upload();
                 $upload->addValidator('Extension', true, array('png','jpg'), 'image' );
                 $upload->addValidator ('Size', false, array('min' => '10kb','max' => '500kb'), 'image' );
+
                 if($upload->isValid('image')){
                     //upload ảnh mới
                     $fileName = $upload->uploadFile('image', UPLOAD_PATH .'/avatar/', array('task' => 'rename'), 'batdongsan_');
                     //Chống tấn công XSS
                     $purifier   = new \HTMLPurifier_HTMLPurifier();
+
                     $data    =  array(
                         'username'  => $purifier->purify($this->_viewHelper->cmsReplaceString($this->_arrPost['username'])),
                         'password'  => md5($this->_arrPost['password']),
@@ -257,6 +262,7 @@ class AccountController extends ActionController
                         'introduced'=> $purifier->purify($this->_viewHelper->cmsReplaceString($this->_arrPost['introduced'])), 
                         'parent'    => $this->identity()->id, 
                     );
+
                     $this->getTable()->saveItem($data,array('task'=>'add'));
                     $this->flashMessenger()->addSuccessMessage('Dữ liệu đã được lưu thành công');
                     $this->redirect()->toUrl('/user/account/staff/');
