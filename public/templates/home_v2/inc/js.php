@@ -44,3 +44,17 @@
 <script>
     $(".chosen-select").chosen("destroy");
 </script>
+<script type="text/javascript">
+    mbnSetting.IsFavorite('False');
+    mbnSetting.ClassifiedId(39727762);
+    mbnSetting.CategoryCode('32');
+    mbnSetting.CityCode('59');
+    var categoryCode = ('3201');
+    var cityId = '30';
+    var isOwner = 0;
+    mbnSetting.ClassifiedAds({});
+    mbnSetting.TotalClassifiedAds(3);
+    var StopWatch = ', 99: 4, 3: 17, 4: 17, 5: 17, 6: 18, 6: 18, 7: 18, Wait Ads: 18, Wait Similar: 18';
+</script>
+
+<script src="https://muaban.net/res/js/Home/Detail?v=Y1nDxz5vnht_jnItfky3_w2nqZradAcV2PJO_5ls5Q41"></script>
